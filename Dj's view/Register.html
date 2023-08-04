@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crescento DJ - Registrarse</title>
+    <link rel="stylesheet" href="Register.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Registrarse</h1>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="button" class="register-btn" onclick="registerUser()">Registrarse</button>
+        </form>
+
+        <!-- Mensaje de registro exitoso -->
+        <div class="success-message" id="successMessage" style="display: none;"></div>
+    </div>
+    <a href="Hello page.html" class="back-btn">← Regresar</a>
+
+    <script src="Register.js"></script>
+</body>
+
+</html>
