@@ -1,22 +1,24 @@
+<!-- Hello page.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crescendo DJ - Iniciar sesión o Registrarse</title>
+    <title>Crescento DJ - Hello</title>
     <link rel="stylesheet" href="Hello page.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Bienvenido a Crescendo DJ</h1>
-        <p>Inicia sesión o regístrate para acceder a todas las funcionalidades como Dj.</p>
-        <div class="buttons">
-            <a class="login-btn" href="login.html">Iniciar sesión</a>
-            <a class="register-btn" href="register.html">Registrarse</a>
+        <h1>Bienvenido a Crescento DJ</h1>
+        <div class="button-container">
+            <button class="button" onclick="redirectToLogin()">Iniciar Sesión</button>
+            <button class="button" onclick="redirectToRegister()">Registrarse</button>
         </div>
     </div>
+
+    <script src="Hello page.js"></script>
 </body>
 
 </html>
