@@ -5,16 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crescento DJ - Hello</title>
+    <title>Crescento DJ - Iniciar Sesión</title>
     <link rel="stylesheet" href="Hello page.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Bienvenido a Crescento DJ</h1>
-        <div class="button-container">
-            <button class="button" onclick="redirectToLogin()">Iniciar Sesión</button>
-            <button class="button" onclick="redirectToRegister()">Registrarse</button>
+    <div class="background">
+        <div class="container">
+            <h1>Bienvenido a Crescento DJ</h1>
+            <form class="login-form">
+                <input type="text" placeholder="Nombre de Usuario">
+                <input type="password" placeholder="Contraseña">
+                <button class="Neon">Iniciar Sesión</button>
+            </form>
+            <p>¿No tienes una cuenta? <a href="Register.html">Regístrate aquí</a></p>
         </div>
     </div>
 
