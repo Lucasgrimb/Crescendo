@@ -34,7 +34,7 @@ body {
 
 /* Titulo */
 h1 {
-    font-family: 'Coolvetica Regular', sans-serif; /* Cambia la fuente por 'Coolvetica Regular' */
+    font-family: 'Coolvetica Regular', sans-serif; 
     color: #fff;
     font-size: 30px;
     font-weight: 560;
@@ -56,13 +56,13 @@ h1 {
     align-items: center;
 }
 
-/* Campos de entrada */
+/* Campos de entrada de info (username y contraseña) */
 input[type="text"],
 input[type="password"] {
     width: 80%;
     padding: 10px;
     margin: 5px 0;
-    border: none;
+    border-color: antiquewhite;
     border-radius: 5px;
     background-color: #0e0e10;
     color: #fff;
