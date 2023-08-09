@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="Hello page.css">
     <style>
         @font-face {
-            font-family: 'Coolvetica Regular';
+            font-family: 'Inter Bold';
             src: url('/fonts/Coolvetica-Regular.ttf') format('truetype'); 
+            src: url('/fonts/Inter-Bold.ttf') format('truetype'); 
         }
     </style>
 </head>
@@ -18,13 +19,16 @@
 <body>
     <div class="background">
         <div class="container">
-            <h1>Hola<span class="emoji"> 👋 </span></h1>
+            <div class="title-container">
+                <h1>Lleva tu fiesta al siguiente nivel con<span class="pink"> Crescendo </span></h1>
+            </div>
             <form class="login-form">
                 <input type="text" placeholder="Nombre de Usuario">
                 <input type="password" placeholder="Contraseña">
-                <button class="Neon">Iniciar Sesión</button>
+                <button class="But1">Iniciar Sesión</button>
             </form>
-            <p>¿No tienes una cuenta? <a href="Register.html">Regístrate aquí</a></p>
+            <p class="register-text">¿No tenes cuenta? <a class="custom-link" href="Register.html">Regístrate </a></p>
+
         </div>
     </div>
 

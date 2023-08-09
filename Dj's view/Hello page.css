@@ -16,9 +16,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
-/* Key frames animacion title*/
+
+/* Key frames animacion title */
 @keyframes fade-up {
     0% {
         opacity: 0;
@@ -26,27 +26,22 @@ body {
     }
     100% {
         opacity: 1;
-        transform:translateY(0px) scale(1) ;
+        transform: translateY(0px) scale(1);
     }
 }
-/* Key frames animacion logo */
-
 
 /* Titulo */
-h1 {
-    font-family: 'Coolvetica Regular', sans-serif; 
-    color: #fff;
-    font-size: 30px;
-    font-weight: 560;
-    opacity: 0.94;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fade-up 0.5s 0.2s backwards;
+.title-container {
+    margin-top: -10%;
+    width: fit-content;
+    color: #036CCD;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
 }
-.emoji {
-    font-size: 30px;
-    margin-left: 5px;
+.pink{
+    color: darkorchid;
+    max-width: max-content;
 }
 
 /* Formulario de inicio de sesión */
@@ -54,29 +49,57 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 80%; /* Ancho del formulario */
+    margin: 0 auto; /* Centrar el formulario */
 }
 
 /* Campos de entrada de info (username y contraseña) */
+
 input[type="text"],
 input[type="password"] {
-    width: 80%;
+    width: 52%; 
     padding: 10px;
-    margin: 5px 0;
-    border-color: antiquewhite;
+    margin: 20px 0;
+    border: 1px solid #9D9C9C;
     border-radius: 5px;
-    background-color: #0e0e10;
+    background-color: rgba(0, 0, 0, 0); 
     color: #fff;
     font-size: 14px;
     outline: none;
 }
 
+
+
 /* Botón de inicio de sesión */
-button.Neon {
+.But1{
     padding: 10px 20px;
-    margin-top: 10px;
+    position: relative; 
+    bottom: -40px; 
     border: none;
     border-radius: 5px;
     background-color: #1a1a1d;
     color: #fff;
 }
 
+.register-text {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    color: #9D9C9C;
+    margin-top: -50px;
+}
+
+.custom-link {
+    font-family: 'Inter.bold', sans-serif;
+    color: #036CCD;
+    line-height: normal;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none;
+    
+}
