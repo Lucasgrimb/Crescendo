@@ -1,3 +1,64 @@
-.neon{
+/* Hello page.css */
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Fondo de pantalla completa */
+.background {
+    background-image: url(/Assets/binevenida.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
+}
+
+/* Titulo */
+h1 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Formulario de inicio de sesión */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #0e0e10;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Botón de inicio de sesión */
+button.Neon {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1a1a1d;
+    color: #fff;
+}
+
+/* Cambiar color del enlace */
+.login-form p a {
+    color: white;
 }
