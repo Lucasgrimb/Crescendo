@@ -18,13 +18,35 @@ body {
     align-items: center;
     
 }
+/* Key frames animacion title*/
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform:translateY(0px) scale(1) ;
+    }
+}
+/* Key frames animacion logo */
+
 
 /* Titulo */
 h1 {
+    font-family: 'Coolvetica Regular', sans-serif; /* Cambia la fuente por 'Coolvetica Regular' */
     color: #fff;
-    font-size: 18px;
-    margin-bottom: 20px;
-    text-align: center;
+    font-size: 30px;
+    font-weight: 560;
+    opacity: 0.94;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fade-up 0.5s 0.2s backwards;
+}
+.emoji {
+    font-size: 30px;
+    margin-left: 5px;
 }
 
 /* Formulario de inicio de sesión */
@@ -58,7 +80,3 @@ button.Neon {
     color: #fff;
 }
 
-/* Cambiar color del enlace */
-.login-form p a {
-    color: white;
-}
