@@ -38,10 +38,25 @@ body {
     font-family: Inter;
     font-size: 18px;
     font-style: normal;
+    gradient:
 }
 .pink{
-    color: darkorchid;
-    max-width: max-content;
+    background: linear-gradient(300deg, #9D9C9D 4.08%, #9A23D6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: Inter;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    
+}
+
+/* Hola dj 👋 */ 
+.Dj-Salute {
+    font-family: Inter-Bold;
+    color: #fff;
 }
 
 /* Formulario de inicio de sesión */
@@ -70,16 +85,14 @@ input[type="password"] {
 
 
 
-/* Botón de inicio de sesión */
 .But1{
     padding: 10px 20px;
-    position: relative; 
-    bottom: -40px; 
     border: none;
     border-radius: 5px;
     background-color: #1a1a1d;
     color: #fff;
 }
+
 
 .register-text {
     font-size: 12px;
@@ -89,8 +102,9 @@ input[type="password"] {
     font-family: 'Inter', sans-serif;
     text-align: center;
     color: #9D9C9C;
-    margin-top: -50px;
+    margin-top: 10px; /* Puedes ajustar este valor según tu preferencia */
 }
+
 
 .custom-link {
     font-family: 'Inter.bold', sans-serif;
@@ -103,3 +117,4 @@ input[type="password"] {
     text-decoration: none;
     
 }
+ 
