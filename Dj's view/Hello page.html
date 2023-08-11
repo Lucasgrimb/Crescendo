@@ -5,18 +5,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crescento DJ - Hello</title>
+    <title>Crescento DJ - Iniciar Sesión</title>
     <link rel="stylesheet" href="Hello page.css">
+    <style>
+        @font-face {
+            font-family: 'Inter Bold';
+            src: url('/fonts/Coolvetica-Regular.ttf') format('truetype'); 
+            src: url('/fonts/Inter-Bold.ttf') format('truetype'); 
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Bienvenido a Crescento DJ</h1>
-        <div class="button-container">
-            <button class="button" onclick="redirectToLogin()">Iniciar Sesión</button>
-            <button class="button" onclick="redirectToRegister()">Registrarse</button>
+    <div class="background">
+        <div class="Flex-Container">
+             <div class="container">
+            <div class="Upper-part">
+                   <div class="title-container">
+                <h1> <span class="Bold">Lleva tu </span> fiesta <span class="Bold">al</span>  <br> siguiente nivel <span class="Bold">con</span>  <br><span class="pink"> Crescendo </span></h1>
+            </div>
+            <div class="Speaking">
+                <p>Crescendo le permite a los usuarios hacerle un request <br>al dj y que toda la experiencia de la musica en tu fiesta <br>sea mas personalizada.</p>
+            </div>
+            </div>
+         
+            <div class="Low-part"> 
+            <form class="login-form">
+                <input type="text" placeholder="Usuario">
+                <input type="password" placeholder="Contraseña">
+            </form>
+            <button class="But1">Iniciar Fiesta</button>
+              <p class="register-text">¿No tenes cuenta? <a class="custom-link" href="Register.html">Regístrarme </a></p>
+         </div>
+          
+
         </div>
     </div>
+ </div>
+       
 
     <script src="Hello page.js"></script>
 </body>
