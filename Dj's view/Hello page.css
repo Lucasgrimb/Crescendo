@@ -49,8 +49,9 @@ position: relative;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-top: -10%;
-    width: fit-content;
+    margin-top: -40%;
+    width: 328px;
+    height: 102;
     color: #036CCD;
     font-family: Inter;
     font-size: 18px;
@@ -69,10 +70,14 @@ position: relative;
     
 }
 
-/* Hola dj 👋 */ 
-.Dj-Salute {
+/*  parrafo bienvenida 👋 */ 
+.Speaking {
     font-family: Inter-Bold;
-    color: #fff;
+    color: #861818;
+    font-size: 12px;
+    font-weight: 500;
+    width: 312px;
+    height: 45px;
 }
 
 /* Formulario de inicio de sesión */
