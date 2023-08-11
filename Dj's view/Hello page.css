@@ -19,6 +19,7 @@ position: relative;
     background-image: url(/Assets/binevenida.png);
     background-repeat: no-repeat;
     background-position-x: center;
+    background-position-y:cen;
     background-attachment: fixed;
     max-width: 100vw;
     height: 100vh;
@@ -49,12 +50,13 @@ position: relative;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-top: -40%;
+    position: absolute;
+    top: -160px;
+    right: -40px;
     width: 328px;
     height: 102;
-    color: #036CCD;
     font-family: Inter;
-    font-size: 18px;
+    font-size: 14px;
     font-style: normal;
 }
 .pink{
@@ -67,17 +69,25 @@ position: relative;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    
+}
+.Bold {
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 28px
+
 }
 
 /*  parrafo bienvenida 👋 */ 
 .Speaking {
-    font-family: Inter-Bold;
-    color: #861818;
-    font-size: 12px;
-    font-weight: 500;
-    width: 312px;
+    color: #9D9C9C;
+    width: 314px;
     height: 45px;
+font-family: Inter;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
 }
 
 /* Formulario de inicio de sesión */
@@ -93,8 +103,8 @@ position: relative;
 
 input[type="text"],
 input[type="password"] {
-    width: 52%; 
-    padding: 10px;
+    width: 200px; 
+    padding: 15px;
     margin: 20px 0;
     border: 1px solid #9D9C9C;
     border-radius: 5px;
@@ -107,16 +117,34 @@ input[type="password"] {
 
 
 .But1{
-    pointer-events: visible;
-    padding: 10px 20px;
+    box-shadow: 0 0 5px #3E2F45,
+    0 0 25px #3E2F45;
+    width: 195px;
+height: 50px;
+flex-shrink: 0;
+    position: absolute;
+    bottom: -140px;
+    left: 60px;
+    width: 195px;
+flex-shrink: 0;
     border: none;
     border-radius: 5px;
-    background-color: #1a1a1d;
+    background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
     color: #fff;
+}
+.But1:hover {
+    box-shadow: 0 0 5px #4E3E55,
+    0 0 10px #4E3E55, 0 0 25px #4E3E55,
+    0 0 20px #4E3E55, 0 0 40px #4E3E55;
+}
+.But1:hover {
+    letter-spacing: 0.25em;
 }
 
 
 .register-text {
+    position: absolute;
+    left: 70px;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
