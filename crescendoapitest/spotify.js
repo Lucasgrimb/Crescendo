@@ -1,30 +1,64 @@
-// URL de la API de autorización de Spotify para obtener el token de acceso
-const authEndpoint = 'https://accounts.spotify.com/api/token';
 
-// Función para obtener el token de acceso mediante la autenticación "Client Credentials"
-async function getAccessToken() {
-    try {
-        // Realizar una solicitud POST a la API de autorización de Spotify con las credenciales de cliente
-        const response = await fetch(authEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + btoa(`?:?`, [process.env.clientId, process.env.clientSecret]),
-            },
-            body: 'grant_type=client_credentials',
-        });
 
-        // Verificar si la solicitud fue exitosa
-        if (!response.ok) {
-            throw new Error('No se pudo obtener el token de acceso');
-        }
+// El resto de tu código
 
-        // Obtener los datos de la respuesta como JSON y devolver el token de acceso
-        const data = await response.json();
-        return data.access_token;
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
+const BASE_URL = 'https://api.spotify.com/v1';
+
+
+
+async function getSpotifyToken(client_id, client_secret) {
+    const { default: fetch } = await import('node-fetch');
+
+    const response = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64')
+        },
+        body: 'grant_type=client_credentials'
+    });
+
+    const data = await response.json();
+    return data.access_token;
 }
 
+async function getSongInfo(songId, token) {
+    const { default: fetch } = await import('node-fetch');
+
+    const response = await fetch(`${BASE_URL}/tracks/${songId}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    });
+
+    const data = await response.json();
+    return {
+        name: data.name,
+        artist: data.artists[0].name, // Asumimos que sólo quieres el primer artista
+        image: data.album.images[0].url // Asumimos que quieres la primera imagen
+    };
+}
+
+async function fetchSongInfo(songId, client_id, client_secret) {
+    const token = await getSpotifyToken(client_id, client_secret);
+    const songInfo = await getSongInfo(songId, token);
+    return songInfo;
+}
+
+// Uso de la función
+const CLIENT_ID = process.env.clientId;
+const CLIENT_SECRET = process.env.clientSecret;
+const SONG_ID = '03Ntkzzjkz7nFJldcPbL90?si=80e1dfdf594a45d4';
+
+// fetchSongInfo(SONG_ID, CLIENT_ID, CLIENT_SECRET).then(info => {
+//     console.log(info); // Esto imprimirá la información de la canción en formato JSON.
+// });
+
+module.exports = { getSpotifyToken }
+
+// ... (resto de tu código)
+
+module.exports = {
+    fetchSongInfo
+};
