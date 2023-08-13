@@ -1,45 +1,58 @@
-express = require("express");
-const spotify = require("./spotify")
-const app = express();
+// ---------- REQUIRES ----------
+const express = require("express");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const { fetchSongInfo } = require('./spotify');
-const { QueryDB } = require("./SQL");
-const { QueryDBp } = require("./SQL");
+const { fetchSongInfo, isValidSongOnSpotify } = require('./spotify');
+const { QueryDB, QueryDBp } = require("./SQL");
+
+
+
+// ---------- APP SETUP ----------
+const app = express();
 app.use(express.json());
+const PORT = 3000;
+
+// ---------- MIDDLEWARE ----------
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (!token) return res.sendStatus(401);
+    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    });
+}
+
+// ---------- ROUTES ----------
 
 
-
-
-//Register: 
-//Guardo en la base de datos username y contraseña (Y id). Me fijo que no este repetido. 
+// ----------Registration route--------------   OK
 app.post('/api/register', async (req, res) => {
-    const userDj = {
-        userName: req.body.userName,
-        password: req.body.password,
-    }
-    if (!userDj.userName || !userDj.password) {
-        return res.status(400).json({
-            error: "Both username and password are required"
-        });
-    }
-    
-    const result = await QueryDBp(`SELECT * FROM users WHERE username = ?`,[userDj.userName]);
+    try {
+        const { userName, password } = req.body;
 
-    if(result[0].length > 0){
-        return res.status(400).json({
-            error: "Username already in use"
-        });
+        if (!userName || !password) {
+            return res.status(400).json({ error: "Both username and password are required" });
+        }
+        
+        const existingUser = await QueryDBp("SELECT * FROM users WHERE username = ?", [userName]);
+        if (existingUser[0].length > 0) {
+            return res.status(400).json({ error: "Username already in use" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await QueryDBp("INSERT INTO users (username, password) VALUES (?, ?)", [userName, hashedPassword]);
+        res.sendStatus(200); 
+    } catch (err) {
+        res.status(500).json({ error: "Internal server error" });
     }
-    const hashedPassword = await bcrypt.hash(userDj.password, 10);
-    await QueryDBp(`INSERT INTO users (username, password) VALUES (?, ?)`, [userDj.userName, hashedPassword]);
-    res.sendStatus(200);  
 });
 
 
-//Login:  
-//establesco los datos que me tiene que pasar el usuario en un objeto llamado logdj
+
+// ----------------Login route-------------------   OK
 app.post('/api/login', async (req, res) => {
     const logdj = {
         userName: req.body.userName,
@@ -67,7 +80,6 @@ if (!validPassword) {
     });
 }
 
-
 //creo access y refresh token 
 const accessToken = jwt.sign({ userId: user.user_id }, process.env.SECRET_KEY, { expiresIn: '1h' });
 const refreshToken = crypto.randomBytes(40).toString('hex');
@@ -81,31 +93,49 @@ const sql = `INSERT INTO refresh_tokens (token, user_id, expiry_date) VALUES ('$
 await QueryDBp(sql);
 
 
-//devuelvo access y refresh token
-res.json({ accessToken, refreshToken });
+// Configura la respuesta para enviar la cookie httpOnly con el refresh token
+res.cookie('refreshToken', refreshToken, {
+    httpOnly: true,
+    expires: new Date(Date.now() + 24 * 60 * 60 * 1000),  // Expira en 24 horas
+    secure: process.env.NODE_ENV !== 'development',     // Establece la cookie como 'secure' si no estás en modo desarrollo
+    sameSite: 'strict'                                 // Establece la política de SameSite
+});
 
+res.status(200).json({ 
+    message: 'Login successful',
+    accessToken: accessToken 
+});
 });
 
 
-//Pedir canción: 
+
+//-----------------Request song route------------------   NOT READY (falta ver que pasa cuando se repiten las canciones pedidas)
 //Le pasas el id de la canción seleccionada a la base de datos. 
-app.post('/api/selectsong', authenticateToken, async(req, res) => {
-    const songReq = {
-        songId: req.body.songId,
-    }
-    await QueryDBp(`INSERT INTO songs (song_id, song_state) VALUES ('${songReq.songId}', '${"pendiente"}')`);
-    res.sendStatus(200);
+app.post('/api/store-song-request', async (req, res) => {
+    const { songId } = req.body;
 
-    
+    if (!songId) {
+        return res.status(400).json({ error: "songId is required" });
+    }
+
+    const CLIENT_ID = process.env.clientId;
+    const CLIENT_SECRET = process.env.clientSecret;
+
+    const isValid = await isValidSongOnSpotify(songId, CLIENT_ID, CLIENT_SECRET);
+
+    if (!isValid) {
+        return res.status(400).json({ error: "Invalid songId" });
+    }
+
+    // Si es válido, guarda el ID en la base de datos
+    await QueryDBp(`INSERT INTO songs (song_id, song_state) VALUES (?, ?)`, [songId, 'pendiente']);
+    res.sendStatus(200);
 });
 
 
 
 
-//Pedir canciones pedidas (dj):
-//La api busca la cancion en spotify con el id, y le muestra al dj los resultados de la api de Spotify (foto, nombre, artista, genero)
-
-
+//---------------Show requested songs (dj only)------------------  OK
 app.get('/api/selectedsongs', authenticateToken, async (req, res) => {
     const [rows] = await QueryDB('SELECT song_id FROM songs');
     const songIds = rows.map(row => row.song_id);
@@ -122,23 +152,33 @@ app.get('/api/selectedsongs', authenticateToken, async (req, res) => {
 
 
 
+//-------------Accept/reject song route (dj only)--------------  OK
 
-
-
-//Aceptar/rechazar canción:
 //Cambias el estado de la canción en la db (pendiente, aceptada, rechazada)
-
-app.post('/api/songstate',authenticateToken, (req, res) => {
-    const songReq = {
+app.post('/api/update-song-state', authenticateToken, async (req, res) => {
+    const song = {
         songId: req.body.songId,
-        songState: req.body.songState,
+        password: req.body.songState,
     }
+
+    // Verifica que songId y songState estén presentes
+    if (!song.songId || !song.songState) {
+        return res.status(400).json({ error: "Both songId and songState are required" });
+    }
+
+    // Verifica que songState sea uno de los tres valores permitidos
+    const validStates = ["hold", "accepted", "rejected"];
+    if (!validStates.includes(song.songState)) {
+        return res.status(400).json({ error: "Invalid songState value" });
+    }
+
+    // Actualiza el estado de la canción en la base de datos
+    await QueryDBp("UPDATE songs SET song_state = ? WHERE song_id = ?", [songState, songId]);
     res.sendStatus(200);
 });
 
 
-
-//actualizar token 
+//------------ Update tokens route (jd only)--------------------  OK
 app.post('/api/token', async (req, res) => {
     const refreshToken = req.body.refreshToken;
 
@@ -169,44 +209,21 @@ app.post('/api/token', async (req, res) => {
     // Actualizo refresh token
      await QueryDBp(`UPDATE refresh_tokens SET token = ?, expiry_date = ? WHERE user_id = ?`, [newRefreshToken, formattedDate, tokenData.user_id]);
 
-     
+    // Configura la respuesta para enviar la cookie httpOnly con el refresh token
+    res.cookie('newRefreshToken', newRefreshToken, {
+    httpOnly: true,
+    expires: new Date(Date.now() + 24 * 60 * 60 * 1000),  // Expira en 24 horas
+    secure: process.env.NODE_ENV !== 'development',     // Establece la cookie como 'secure' si no estás en modo desarrollo
+    sameSite: 'strict'                                 // Establece la política de SameSite
+});
  
 
     //muestro access y refresh token 
-    res.json({ accessToken, newRefreshToken });
+    res.json({ accessToken });
 });
 
 
-
-
-//funcion que uso despues como MIDDLEWARE
-function authenticateToken(req, res, next) {
-    // Extraer el encabezado de autorización
-    const authHeader = req.headers['authorization'];
-
-    // Extraer el token del encabezado (espera un formato "Bearer TOKEN")
-    const token = authHeader && authHeader.split(' ')[1];
-
-    // Si no hay token, devuelve un 401 Unauthorized
-    if (!token) return res.sendStatus(401);
-
-    // Verificar el token
-    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
-        // Si hay un error (token inválido o expirado), devuelve un 403 Forbidden
-        if (err) return res.sendStatus(403);
-
-        // Si el token es válido, coloca el payload en req.user
-        req.user = user;
-
-        // Continuar con el siguiente middleware o función de ruta
-        next();
-    });
-}
-
-
-const PORT = 3000;
-
+// Start server
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
 });
-
