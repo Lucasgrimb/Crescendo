@@ -1,21 +1,16 @@
 
-body {
+/* body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     width:100% ;
     height: 100%;
     font-family: Arial, sans-serif;
 
-}
-.Flex-Container {
-position: relative;
-}
-
+} */
 /* Fondo de pantalla completa */
-.background {   
-    background: linear-gradient(to left,#9D9C9D 4.08%, #9A23D6 100%);
+/* .background {   
+    background: linear-gradient(278deg, #9D9C9D 4.08%, #9A23D6 100%);
     background-image: url(/Assets/binevenida.png);
     background-repeat: no-repeat;
     background-position-x: center;
@@ -27,10 +22,10 @@ position: relative;
     align-items: center;
     width: 375px;
     height: 667px;
-}
+} */
 
 /* Key frames animacion title */
-@keyframes fade-up {
+/* @keyframes fade-up {
     0% {
         opacity: 0;
         transform: translateY(30px) scale(0.9);
@@ -40,34 +35,27 @@ position: relative;
         transform: translateY(0px) scale(1);
     }
 }
-.Low-part {
-    background-color: transparent;
-
-}
-
 .Upper-part {
-background-color: aqua;
-align-items: center;
-justify-content: center;
-
-}
+    display: flex;
+    margin-top: -100px;
+    margin-left: 29px;
+} */
 /* Titulo */
-.title-container {
+/* .title-container {
     background: linear-gradient(288deg, #110517 -50.08%, #9D9C9C 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: absolute;
-    top: -160px;
-    right: -40px;
     width: 328px;
     height: 102;
     font-family: Inter;
-    font-size: 14px;
+    font-size: 18px;
     font-style: normal;
+    margin-top: -140px
 }
 .pink{
-    background: linear-gradient(to left, #9D9C9D -40.08%, #9A23D6 100%);
+    background: linear-gradient(to left, #9D9C9D -70.08%, #9A23D6 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -82,12 +70,12 @@ justify-content: center;
     font-weight: 400;
     font-size: 28px
 
-}
+} */
 
 /*  parrafo bienvenida 👋 */ 
-.Speaking {
+/* .Speaking {
     color: #9D9C9C;
-    width: 314px;
+    width: 360px;
     height: 45px;
 font-family: Inter;
 font-size: 10px;
@@ -95,22 +83,21 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 
-}
+} */
 
 /* Formulario de inicio de sesión */
-.login-form {
+/* .login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%; /* Ancho del formulario */
-    margin: 0 auto; /* Centrar el formulario */
-}
+    
+} */
 
 /* Campos de entrada de info (username y contraseña) */
 
-input[type="text"],
+/* input[type="text"],
 input[type="password"] {
-    width: 200px; 
+    width: 225px; 
     padding: 15px;
     margin: 18px 0;
     border: 1px solid #9D9C9C;
@@ -119,34 +106,31 @@ input[type="password"] {
     color: #fff;
     font-size: 14px;
     outline: none;
-}
+
+} */
 
 
 /* iniciar sesion boton */
-.But1{
+/* .But1{
     box-shadow: 0 0 5px #3E2F45,
     0 0 25px #3E2F45;
     width: 195px;
-height: 50px;
-flex-shrink: 0;
-    position: absolute;
-    bottom: -120px;
-    left: 60px;
-    width: 195px;
-flex-shrink: 0;
+    height: 50px;
     border: none;
     border-radius: 5px;
     background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
     color: #fff;
+
 }
 .But1:hover {
     box-shadow: 0 0 5px #4E3E55,
     0 0 10px #4E3E55, 0 0 25px #4E3E55,
     0 0 20px #4E3E55, 0 0 40px #4E3E55;
 }
+
+
 .register-text {
     position: absolute;
-    left: 70px;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
@@ -154,7 +138,7 @@ flex-shrink: 0;
     font-family: 'Inter', sans-serif;
     text-align: center;
     color: #9D9C9C;
-    margin-top: -15px; /* Puedes ajustar este valor según tu preferencia */
+    margin-top: 152px;
 }
 
 
@@ -169,4 +153,147 @@ flex-shrink: 0;
     text-decoration: none;
     
 }
- 
+
+.Low-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 65px;
+} */
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
+
+}
+
+nav.nav {
+    position: fixed;
+    top: 0;
+    padding: 5px;
+    width: 100vw;
+}
+.nav>h1 {
+    font-weight: 400;
+    color: white;
+    font-size: 20px;
+    font-family: MuseoModerno;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+.flex {
+    display: flex;
+}
+.flex-col {
+    flex-direction: column;
+}
+.min-h-screen {
+    min-height: 100vh;
+}
+.main-bg {
+    background: linear-gradient(134deg, rgba(200, 176, 212, 0.20) 0%, rgba(17, 5, 23, 0.20) 80.21%), radial-gradient(95.74% 140.04% at 188.67% 125.41%, rgba(190, 164, 202, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(211, 187, 217, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(206, 181, 212, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(194, 169, 201, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(210, 181, 200, 0.00) 0%, #110517 100%);
+    background-blend-mode: normal, darken, darken, darken, darken, darken;
+}
+.justify-center {
+    justify-content: center;
+}
+.items-center {
+    align-items: center;
+}
+
+/* Title gradient */
+.awafi {
+    font-weight: 400;
+}
+.header-gradient{
+    background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 32px;
+    margin-right: 20px;
+    margin-top: -80px;
+    text-align: left;
+}
+.pink {
+    background: linear-gradient(278deg, #b27ecc 4.08%, #9A23D6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.div>h1>.awafi{
+    font-weight: 300;
+    background-color: transparent;
+    background: transparent;
+    color: red;
+}
+
+/* parrafo */
+.color-gray {
+    font-size: 12px;
+    padding: 18px;
+    text-align: center;
+    color: #9D9C9C;
+    margin-left: 18px;
+    margin-top: -20px;
+    text-align: left;
+}
+
+div>form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+form > input {
+    width: 250px;
+    height: 50px;
+    border: 1px solid #9D9C9C;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 5px;
+    background-color: transparent;
+    font-size: 1rem;
+    color: white;
+    outline: none;
+}
+label {
+    width: 100%;
+    color: white;
+    font-size: 1rem;
+    padding: 5px;
+}
+
+/* no tenes cuenta? registrate */
+p.m-2 {
+    font-size: 14px;
+    margin-top: -18px;
+    color: #9D9C9C;
+    font-family: inter;
+    font-weight: 700;
+}
+/* registrarme link */
+.registrar-link {
+    color: #9A23D6;
+    font-family: inter, sans-serif;
+    font-weight: 600;
+
+}
+
+/* iniciar fiesta*/
+.login-cta {
+    position: absolute;
+    box-shadow: 0 0 5px #3E2F45,
+    0 0 25px #3E2F45;
+    width: 195px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
+    color: #fff;
+    cursor: pointer;
+    margin-top: 370px;
+    font-size: 24px;
+}
+
+
