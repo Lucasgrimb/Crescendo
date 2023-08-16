@@ -9,8 +9,8 @@
   },
   "repository": {
   "type": "git",
-  "url": "https://github.com/dan-dervich/nextJS-Grocery-Shopping-List-backend.git"
-},
+  "url": "https://github.com/Lucasgrimb/Crescendo.git"
+  },
   "engines": {
     "node": "18.x"
   },
