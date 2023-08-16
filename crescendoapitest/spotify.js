@@ -54,8 +54,9 @@ async function fetchSongInfo(songId, client_id, client_secret) {
 
 
 async function isValidSongOnSpotify(songId, client_id, client_secret) {
+
     const token = await getSpotifyToken(client_id, client_secret);
-    
+
     const { default: fetch } = await import('node-fetch');
 
     const response = await fetch(`${BASE_URL}/tracks/${songId}`, {
@@ -64,6 +65,7 @@ async function isValidSongOnSpotify(songId, client_id, client_secret) {
             'Authorization': 'Bearer ' + token
         }
     });
+
 
     return response.status === 200;
 }
