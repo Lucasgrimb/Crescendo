@@ -4,7 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon index.js"
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/Lucasgrimb/Crescendo.git"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "author": "",
   "license": "ISC",
