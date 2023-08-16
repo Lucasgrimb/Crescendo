@@ -1,4 +1,3 @@
-// Selecciono los elementos que se animarán//
 const title = document.querySelector('.header-gradient');
 const description = document.querySelector('.color-gray');
 const form = document.querySelector('form');
@@ -6,10 +5,10 @@ const button = document.querySelector('.login-cta');
 const nav = document.querySelector('.nav')
 const usuario = document.getElementById("usuario")
 usuario.addEventListener("click", async (e)=> {
-  const req = await fetch("")
+  const req = await fetch("https://")
 })
 
-// Configurar la animación//
+// Animacion de entrada//
 const animation = anime.timeline({
   easing: 'easeOutExpo',
   duration: 500,

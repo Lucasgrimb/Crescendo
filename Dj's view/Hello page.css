@@ -181,6 +181,8 @@ nav.nav {
     font-family: MuseoModerno;
     margin-top: 12px;
     margin-left: 12px;
+    /* recomendacion de chona, sacar el nav */
+    opacity: 0;
 }
 .flex {
     display: flex;

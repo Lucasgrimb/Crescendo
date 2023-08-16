@@ -1,0 +1,101 @@
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
+
+}
+
+nav.nav {
+    position: fixed;
+    top: 0;
+    padding: 5px;
+    width: 100vw;
+}
+.nav>h1 {
+    font-weight: 400;
+    color: white;
+    font-size: 15px;
+    font-family: MuseoModerno;
+    margin-top: 12px;
+    margin-left: 12px;
+    opacity: 0;
+}
+.flex {
+    display: flex;
+}
+.flex-col {
+    flex-direction: column;
+}
+.min-h-screen {
+    min-height: 100vh;
+}
+.main-bg {
+
+    background-image: url(/Assets/binevenida.png);
+   /* background: linear-gradient(134deg, rgba(200, 176, 212, 0.20) 0%, rgba(17, 5, 23, 0.20) 80.21%), radial-gradient(95.74% 140.04% at 188.67% 125.41%, rgba(190, 164, 202, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(211, 187, 217, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(206, 181, 212, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(194, 169, 201, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(210, 181, 200, 0.00) 0%, #110517 100%);
+    background-blend-mode: normal, darken, darken, darken, darken, darken;
+    */ /* degradado viejo por las dudas */
+}
+.justify-center {
+    justify-content: center;
+}
+.items-center {
+    align-items: center;
+}
+/* formulario mail,user,password, */
+div>form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+form>input{
+    width: 250px;
+    height: 50px;
+    border: 1px solid #9D9C9C;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 5px;
+    background-color: transparent;
+    font-size: 1rem;
+    outline: none;
+    color: white;
+}
+
+/* Crescendo gradient */
+.header-gradient{
+    background: linear-gradient(278deg, #b27ecc 4.08%, #9A23D6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 45px;
+    margin-top: -120px;
+    font-family:Inter ;
+}
+/* Eleva tus fiestas */
+.color-gray {
+    font-weight: 400;
+    font-size: 13px;
+    text-align: center;
+    color: #9D9C9C;
+    margin-top: -30px;
+}
+
+/* iniciar fiesta btn */
+.login-cta {
+    position: absolute;
+    justify-content: center;
+    box-shadow: 0 0 5px #3E2F45,
+    0 0 25px #3E2F45;
+    width: 195px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
+    color: #fff;
+    cursor: pointer;
+    margin-top: 470px;
+    font-size: 24px;
+}
+
