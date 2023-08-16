@@ -160,6 +160,7 @@ input[type="password"] {
     align-items: center;
     gap: 65px;
 } */
+
 body {
     padding: 0px;
     margin: 0px;
@@ -176,7 +177,7 @@ nav.nav {
 .nav>h1 {
     font-weight: 400;
     color: white;
-    font-size: 20px;
+    font-size: 15px;
     font-family: MuseoModerno;
     margin-top: 12px;
     margin-left: 12px;
@@ -191,8 +192,11 @@ nav.nav {
     min-height: 100vh;
 }
 .main-bg {
-    background: linear-gradient(134deg, rgba(200, 176, 212, 0.20) 0%, rgba(17, 5, 23, 0.20) 80.21%), radial-gradient(95.74% 140.04% at 188.67% 125.41%, rgba(190, 164, 202, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(211, 187, 217, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(206, 181, 212, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(194, 169, 201, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(210, 181, 200, 0.00) 0%, #110517 100%);
+
+    background-image: url(/Assets/binevenida.png);
+   /* background: linear-gradient(134deg, rgba(200, 176, 212, 0.20) 0%, rgba(17, 5, 23, 0.20) 80.21%), radial-gradient(95.74% 140.04% at 188.67% 125.41%, rgba(190, 164, 202, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(211, 187, 217, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(206, 181, 212, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(194, 169, 201, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(210, 181, 200, 0.00) 0%, #110517 100%);
     background-blend-mode: normal, darken, darken, darken, darken, darken;
+    */
 }
 .justify-center {
     justify-content: center;
@@ -201,10 +205,11 @@ nav.nav {
     align-items: center;
 }
 
-/* Title gradient */
-.awafi {
+/* titulo palabras bold */
+.light-weight {
     font-weight: 400;
 }
+/* titulo*/
 .header-gradient{
     background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
     background-clip: text;
@@ -215,17 +220,12 @@ nav.nav {
     margin-top: -80px;
     text-align: left;
 }
+/* titulo crescendo rosa */
 .pink {
     background: linear-gradient(278deg, #b27ecc 4.08%, #9A23D6 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-.div>h1>.awafi{
-    font-weight: 300;
-    background-color: transparent;
-    background: transparent;
-    color: red;
 }
 
 /* parrafo */
@@ -296,4 +296,4 @@ p.m-2 {
     font-size: 24px;
 }
 
-
+/* key frames */
