@@ -1,3 +1,29 @@
+/*
+Endpoints: 
+/api/register
+const { userName, password } = req.body;
+
+/api/login
+ const { userName, password } = req.body;
+
+/api/store-song-request
+ const { songId } = req.body;
+
+/api/selectedsongs
+authenticatetoken
+
+/api/update-song-state
+const { songId, song_state} = req.body;
+authenticatetoken
+
+/api/token
+const refreshToken = req.body.refreshToken;
+
+/api/generate-qr
+let url = "https://www.youtube.com";
+*/
+
+
 // ---------- REQUIRES ----------
 const express = require("express");
 const bcrypt = require('bcrypt');
@@ -5,6 +31,9 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { fetchSongInfo, isValidSongOnSpotify } = require('./spotify');
 const { QueryDB, QueryDBp } = require("./SQL");
+const QRCode = require('qrcode');
+const { createCanvas, loadImage } = require('canvas');
+
 
 
 
@@ -12,6 +41,7 @@ const { QueryDB, QueryDBp } = require("./SQL");
 const app = express();
 app.use(express.json());
 const PORT = 3000;
+
 
 // ---------- MIDDLEWARE ----------
 function authenticateToken(req, res, next) {
@@ -46,7 +76,7 @@ app.post('/api/register', async (req, res) => {
         await QueryDBp("INSERT INTO users (username, password) VALUES (?, ?)", [userName, hashedPassword]);
         res.sendStatus(200); 
     } catch (err) {
-        res.status(500).json({ error: "Internal server error" });
+        res.status(500).json({ error: err });
     }
 });
 
@@ -109,9 +139,11 @@ res.status(200).json({
 
 
 
-//-----------------Request song route------------------   NOT READY (falta ver que pasa cuando se repiten las canciones pedidas)
+//-----------------Request song route------------------   OK
 //Le pasas el id de la canción seleccionada a la base de datos. 
 app.post('/api/store-song-request', async (req, res) => {
+   
+
     const { songId } = req.body;
 
     if (!songId) {
@@ -127,9 +159,24 @@ app.post('/api/store-song-request', async (req, res) => {
         return res.status(400).json({ error: "Invalid songId" });
     }
 
-    // Si es válido, guarda el ID en la base de datos
-    await QueryDBp(`INSERT INTO songs (song_id, song_state) VALUES (?, ?)`, [songId, 'pendiente']);
-    res.sendStatus(200);
+    // Verificar el estado actual del songId en la base de datos
+    const currentSong = await QueryDBp(`SELECT song_state FROM songs WHERE song_id = ?`, [songId]);
+
+    if (currentSong[0] && currentSong[0].length) {
+        const songState = currentSong[0][0].song_state;
+
+        if (songState === 'accepted' || songState === 'hold') {
+            return res.status(400).json({ error: "La canción ya ha sido solicitada y está " + songState });
+        } else {
+            // Si la canción fue previamente rechazada, actualiza su estado a 'hold'
+            await QueryDBp(`UPDATE songs SET song_state = ? WHERE song_id = ?`, ['hold', songId]);
+            return res.sendStatus(200);
+        }
+    } else {
+        // Si no está en la base de datos, guarda el ID en la base de datos con estado 'hold'
+        await QueryDBp(`INSERT INTO songs (song_id, song_state) VALUES (?, ?)`, [songId, 'hold']);
+        return res.sendStatus(200);
+    }
 });
 
 
@@ -152,13 +199,13 @@ app.get('/api/selectedsongs', authenticateToken, async (req, res) => {
 
 
 
-//-------------Accept/reject song route (dj only)--------------  OK
+//-------------Accept/reject song route (dj only)--------------  OK (hacer dos rutas)pasar id por param api/:songId/accept
 
-//Cambias el estado de la canción en la db (pendiente, aceptada, rechazada)
-app.post('/api/update-song-state', authenticateToken, async (req, res) => {
+//Cambias el estado de la canción en la db (hold, accepted, rejected)
+app.post('/api/:songId/accept', authenticateToken, async (req, res) => {
     const song = {
         songId: req.body.songId,
-        password: req.body.songState,
+        songState: req.body.songState,
     }
 
     // Verifica que songId y songState estén presentes
@@ -222,8 +269,38 @@ app.post('/api/token', async (req, res) => {
     res.json({ accessToken });
 });
 
+//--------GENERATE QR-------------
+
+app.get('/api/generate-qr', (req, res) => {
+    let url = "https://www.youtube.com"; 
+
+    const options = {
+        errorCorrectionLevel: 'H',  // Nivel de corrección de errores
+        type: 'image/jpeg',         // Tipo de imagen
+        quality: 0.3,               // Calidad para 'image/jpeg' (0.3 a 1)
+        color: {
+            dark: '#00F',           // Cuadros azules
+            light: '#FFF'           // Fondo blanco
+        },
+        width: 200,                 // Ancho del código QR
+        margin: 10                  // Espacio alrededor del código QR
+    };
+
+    QRCode.toDataURL(url, options)
+        .then(qr => {
+            res.send(`<img src="${qr}"/>`);
+        })
+        .catch(err => {
+            res.send('Error generando el QR');
+            console.error(err);
+        });
+});
+
+
+
 
 // Start server
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
 });
+
