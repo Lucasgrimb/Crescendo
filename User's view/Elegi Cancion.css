@@ -3,6 +3,7 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
+  
 
 }
 
@@ -44,6 +45,7 @@ nav.nav {
     align-items: center;
 }
 .clean-hand{
+    font-style: none;
     background: none;
 }
 /* titulo palabras bold */
@@ -65,3 +67,4 @@ nav.nav {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+

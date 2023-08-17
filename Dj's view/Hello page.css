@@ -259,12 +259,6 @@ form > input {
     color: white;
     outline: none;
 }
-label {
-    width: 100%;
-    color: white;
-    font-size: 1rem;
-    padding: 5px;
-}
 
 /* no tenes cuenta? registrate */
 p.m-2 {
