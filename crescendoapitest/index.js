@@ -137,15 +137,47 @@ res.status(200).json({
 });
 });
 
+//-----------------Iniciar Fiesta----------------------
+
+app.post('/api/startparty/:dj_id', (req, res) => {
+    const dj_id = req.params.dj_id;
+
+    if (!dj_id) {
+      return res.status(400).json({ error: 'El dj_id es requerido' });
+    }
+
+    // Insertar una nueva fila en la tabla 'party'
+    pool.execute('INSERT INTO party (dj_id) VALUES (?)', [dj_id])
+        .then(async ([result]) => {
+            if (result.affectedRows > 0) {
+                // Supongamos que quieres llevar al usuario a "https://tu-pagina-web.com/fiesta/{party_id}"
+                const url = `https://tu-pagina-web.com/fiesta/${result.insertId}`;
+                const qr = await QRCode.toDataURL(url);
+
+                res.json({
+                    success: true,
+                    message: 'Party iniciada con éxito',
+                    party_id: result.insertId,
+                    qr_code: qr
+                });
+            } else {
+                res.status(500).json({ error: 'No se pudo iniciar la party' });
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).json({ error: 'Error del servidor' });
+        });
+});
+
 
 
 //-----------------Request song route------------------   OK
 //Le pasas el id de la canción seleccionada a la base de datos. 
-app.post('/api/store-song-request', async (req, res) => {
-   
-
-    const { songId } = req.body;
-
+app.post('/api/store-song-request/:party_id', async (req, res) => {
+    const party_id = req.params.party_id;
+    const { songId } = req.body; 
+       
     if (!songId) {
         return res.status(400).json({ error: "songId is required" });
     }
