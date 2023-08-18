@@ -56,7 +56,12 @@
                     al dj y que toda la experiencia de la musica en tu fiesta
                    sea mas personalizada.</p>
               <form>
-                  <input name="usuario" id="usuario" type="text" placeholder="Usuario">
+               <div class="input-container">
+                    <input type="text" id="username" autocomplete="off" 
+                    placeholder="ingresa tu nombre de usuario" required
+                    class="text-input">
+                    <label for="username" class="label">Usuario</label>
+                </div>
                   <input name="password" id="password" type="password" placeholder="Contraseña">
                   <p class="m-2">¿No tenes cuenta? <a class="registrar-link" href="Register.html">Registrarme</a></p>
                   <button class="login-cta" type="submit">Iniciar fiesta</button> 
