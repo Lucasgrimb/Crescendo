@@ -21,23 +21,29 @@
         <form>
             <div class="input-container">
                 <input type="text" id="search" autocomplete="off" 
-                       placeholder="ingresa tu cancion" required
-                       class="text-input">
-                <label for="username" class="label">Busca tu cancion</label>
-                <button class="searchbtn" type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
 
+                       class="text-input">
+                <label for="search" class="label">Busca tu cancion</label>
+                <button class="searchbtn" type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
             </div>
         </form>
 
         <!-- Contenedor de resultados -->
         <div id="resultsDropdown" class="dropdown"></div>
+
+        <!-- Contenedor de la lista de canciones (similar a Spotify) -->
+        <div class="playlist-container">
+            <div class="song-list">
+
+                </div>
+                <!-- Repite el bloque .song-item para cada canción -->
+            </div>
+        </div>
     </div>
-    
+
     <script src="https://kit.fontawesome.com/a0dea97709.js" crossorigin="anonymous"></script>
-    <!-- Aquí deberías agregar también la referencia a tu archivo JS que realiza la búsqueda y muestra los resultados. -->
+    <!-- Asegúrate de agregar también la referencia a tu archivo JS que realiza la búsqueda y muestra los resultados -->
     <script src="Elegi Cancion.js"></script>
 </body>
 
 </html>
-
-

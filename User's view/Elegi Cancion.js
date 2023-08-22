@@ -42,13 +42,15 @@ function searchTrack(query, token) {
 }
 
 // Función para mostrar los resultados de búsqueda en el DOM
-function displayResults(tracks) {
-    const resultsDiv = document.getElementById('resultsDropdown'); // Asegúrate de tener un elemento con este ID en tu HTML
-    resultsDiv.innerHTML = '';
- 
 
+
+// Función para mostrar los resultados de búsqueda en el DOM
+function displayResults(tracks) {
+    const resultsDiv = document.getElementById('resultsDropdown');
+    resultsDiv.innerHTML = '';
+    
     tracks.forEach((track) => {
-        const image = track.album.images[0].url;
+        const image = track.album.images[0]?.url || '';  // Usamos un operador opcional en caso de que no haya imagen
         const title = track.name;
         const artist = track.artists[0].name;
         const trackId = track.id;
@@ -60,28 +62,27 @@ function displayResults(tracks) {
         imageElement.src = image;
         imageElement.alt = title;
 
-        const titleElement = document.createElement('p');
+        const titleElement = document.createElement('h3'); // Usamos h3 para el nombre de la canción, como en tu ejemplo
         titleElement.textContent = title;
 
         const artistElement = document.createElement('p');
         artistElement.textContent = artist;
 
-
         resultDiv.appendChild(imageElement);
         resultDiv.appendChild(titleElement);
         resultDiv.appendChild(artistElement);
-
-
-        resultsDiv.appendChild(resultDiv);
+        
         resultDiv.addEventListener('click', function() {
-            console.log("Track ID: ", trackId);  // Esto imprimirá el ID de la canción en consola
+            console.log("Track ID: ", trackId);
         });
+
         resultsDiv.appendChild(resultDiv);
     });
     
-    resultsDiv.style.display = 'block';  // Añade esta línea
-
+    resultsDiv.style.display = 'block';
 }
+
+
 
 
 // Manejador de evento para el botón de búsqueda
