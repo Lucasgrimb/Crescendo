@@ -1,8 +1,9 @@
 
 /* falta que: 
 - cambies el html y css para que no quede horrible
-- crear una funcion para que al tocar una cancion, se guarde el id de esa cancion en una variable global publica. 
-
+- buscar forma de guardar el id de la cancion al precionarla. te dejo una pista: "resultDiv.setAttribute("data-id", trackId); "
+- El confirmar/cancelar oferta tiene que ser en la misma pagina. 
+- Deja todo oculto y cunado uno toca una cancion aparece. 
 */
 
 
@@ -89,7 +90,7 @@ function displayResults(tracks) {
         resultDiv.appendChild(titleElement);
         resultDiv.appendChild(artistElement);
 
-        resultDiv.setAttribute("data-id", trackId);
+        
         //se muestran los id de las canciones por orden. 
         console.log(trackId);
        // resultDiv.appendChild(trackIdElement);
