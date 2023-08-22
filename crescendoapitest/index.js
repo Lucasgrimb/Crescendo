@@ -145,6 +145,7 @@ res.status(200).json({
 });
 });
 
+
 //-----------------Iniciar Fiesta----------------------
 
 app.post('/api/startparty/:user_id', authenticateToken, (req, res) => {
@@ -180,12 +181,14 @@ app.post('/api/startparty/:user_id', authenticateToken, (req, res) => {
 
 
 
+
 //-----------------Request song route------------------   OK
 //Le pasas el id de la canción seleccionada a la base de datos. 
-app.post('/api/store-song-request/:party_id', async (req, res) => {
-    const party_id = req.params.party_id;
-    const { songId } = req.body; 
-       
+app.post('/api/store-song-request', async (req, res) => {
+   
+
+    const { songId } = req.body;
+
     if (!songId) {
         return res.status(400).json({ error: "songId is required" });
     }
