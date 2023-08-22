@@ -23,6 +23,14 @@ const refreshToken = req.body.refreshToken;
 let url = "https://www.youtube.com";
 */
 
+/* que tengo que hacer para mañana? 
+
+- resolver el tema de iniciar fiesta 
+
+- no se que mas... */
+
+
+
 
 // ---------- REQUIRES ----------
 const express = require("express");
@@ -137,15 +145,47 @@ res.status(200).json({
 });
 });
 
+//-----------------Iniciar Fiesta----------------------
+
+app.post('/api/startparty/:user_id', authenticateToken, (req, res) => {
+    const dj_id = req.params.user_id;
+
+    if (!user_id) {
+      return res.status(400).json({ error: 'El dj_id es requerido' });
+    }
+
+    // Insertar una nueva fila en la tabla 'party'
+    pool.execute('INSERT INTO party (dj_id) VALUES (?)', [dj_id])
+        .then(async ([result]) => {
+            if (result.affectedRows > 0) {
+                // Supongamos que quieres llevar al usuario a "https://tu-pagina-web.com/fiesta/{party_id}"
+                const url = `https://tu-pagina-web.com/fiesta/${result.insertId}`;
+                const qr = await QRCode.toDataURL(url);
+
+                res.json({
+                    success: true,
+                    message: 'Party iniciada con éxito',
+                    party_id: result.insertId,
+                    qr_code: qr
+                });
+            } else {
+                res.status(500).json({ error: 'No se pudo iniciar la party' });
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).json({ error: 'Error del servidor' });
+        });
+});
+
 
 
 //-----------------Request song route------------------   OK
 //Le pasas el id de la canción seleccionada a la base de datos. 
-app.post('/api/store-song-request', async (req, res) => {
-   
-
-    const { songId } = req.body;
-
+app.post('/api/store-song-request/:party_id', async (req, res) => {
+    const party_id = req.params.party_id;
+    const { songId } = req.body; 
+       
     if (!songId) {
         return res.status(400).json({ error: "songId is required" });
     }
@@ -160,7 +200,7 @@ app.post('/api/store-song-request', async (req, res) => {
     }
 
     // Verificar el estado actual del songId en la base de datos
-    const currentSong = await QueryDBp(`SELECT song_state FROM songs WHERE song_id = ?`, [songId]);
+    const currentSong = await QueryDBp(`SELECT song_state FROM songs WHERE song_id = ? AND party_id == ?`, [songId, party_id]);
 
     if (currentSong[0] && currentSong[0].length) {
         const songState = currentSong[0][0].song_state;
@@ -174,7 +214,7 @@ app.post('/api/store-song-request', async (req, res) => {
         }
     } else {
         // Si no está en la base de datos, guarda el ID en la base de datos con estado 'hold'
-        await QueryDBp(`INSERT INTO songs (song_id, song_state) VALUES (?, ?)`, [songId, 'hold']);
+        await QueryDBp(`INSERT INTO songs (song_id, song_state, party_id) VALUES (?, ?, ?)`, [songId, 'hold', party_id]);
         return res.sendStatus(200);
     }
 });
@@ -183,8 +223,9 @@ app.post('/api/store-song-request', async (req, res) => {
 
 
 //---------------Show requested songs (dj only)------------------  OK
-app.get('/api/selectedsongs', authenticateToken, async (req, res) => {
-    const [rows] = await QueryDB('SELECT song_id FROM songs');
+app.get('/api/selectedsongs/:party_id', authenticateToken, async (req, res) => {
+    const party_id = req.params.party_id;
+    const [rows] = await QueryDB(`SELECT song_id FROM songs WHERE party_id = ?`, [party_id]);
     const songIds = rows.map(row => row.song_id);
 
     const CLIENT_ID = process.env.clientId;
@@ -201,29 +242,35 @@ app.get('/api/selectedsongs', authenticateToken, async (req, res) => {
 
 //-------------Accept/reject song route (dj only)--------------  OK (hacer dos rutas)pasar id por param api/:songId/accept
 
-//Cambias el estado de la canción en la db (hold, accepted, rejected)
-app.post('/api/:songId/accept', authenticateToken, async (req, res) => {
-    const song = {
-        songId: req.body.songId,
-        songState: req.body.songState,
-    }
+//accept
+app.post('/api/:songId/:party_id/accept', authenticateToken, async (req, res) => {
+        const party_id =   req.params.party_id;
+        const songId =  req.body.songId;
 
     // Verifica que songId y songState estén presentes
-    if (!song.songId || !song.songState) {
-        return res.status(400).json({ error: "Both songId and songState are required" });
-    }
-
-    // Verifica que songState sea uno de los tres valores permitidos
-    const validStates = ["hold", "accepted", "rejected"];
-    if (!validStates.includes(song.songState)) {
-        return res.status(400).json({ error: "Invalid songState value" });
+    if (!songId || !party_id) {
+        return res.status(400).json({ error: "Both songId and party_id are required" });
     }
 
     // Actualiza el estado de la canción en la base de datos
-    await QueryDBp("UPDATE songs SET song_state = ? WHERE song_id = ?", [songState, songId]);
+    await QueryDBp(`UPDATE songs SET song_state = 'accepted' WHERE song_id = ? AND party_id = ?`, [song_id, party_id]);
     res.sendStatus(200);
 });
 
+//reject
+app.post('/api/:songId/:party_id/reject', authenticateToken, async (req, res) => {
+    const party_id =   req.params.party_id;
+    const songId =  req.body.songId;
+
+// Verifica que songId y songState estén presentes
+if (!songId || !party_id) {
+    return res.status(400).json({ error: "Both songId and party_id are required" });
+}
+
+// Actualiza el estado de la canción en la base de datos
+await QueryDBp(`UPDATE songs SET song_state = 'rejected' WHERE song_id = ? AND party_id = ?`, [song_id, party_id]);
+res.sendStatus(200);
+});
 
 //------------ Update tokens route (jd only)--------------------  OK
 app.post('/api/token', async (req, res) => {
@@ -268,35 +315,6 @@ app.post('/api/token', async (req, res) => {
     //muestro access y refresh token 
     res.json({ accessToken });
 });
-
-//--------GENERATE QR-------------
-
-app.get('/api/generate-qr', (req, res) => {
-    let url = "https://www.youtube.com"; 
-
-    const options = {
-        errorCorrectionLevel: 'H',  // Nivel de corrección de errores
-        type: 'image/jpeg',         // Tipo de imagen
-        quality: 0.3,               // Calidad para 'image/jpeg' (0.3 a 1)
-        color: {
-            dark: '#00F',           // Cuadros azules
-            light: '#FFF'           // Fondo blanco
-        },
-        width: 200,                 // Ancho del código QR
-        margin: 10                  // Espacio alrededor del código QR
-    };
-
-    QRCode.toDataURL(url, options)
-        .then(qr => {
-            res.send(`<img src="${qr}"/>`);
-        })
-        .catch(err => {
-            res.send('Error generando el QR');
-            console.error(err);
-        });
-});
-
-
 
 
 // Start server
