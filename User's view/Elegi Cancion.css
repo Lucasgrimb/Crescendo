@@ -1,18 +1,19 @@
-
+/* Estilos generales para el cuerpo de la página */
 body {
     padding: 0px;
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
-  
-
 }
 
+/* Estilos para la barra de navegación */
 nav.nav {
     position: fixed;
     top: 0;
     padding: 5px;
     width: 100vw;
 }
+
+/* Estilos para el título en la barra de navegación */
 .nav>h1 {
     font-weight: 400;
     color: white;
@@ -22,38 +23,51 @@ nav.nav {
     margin-left: 12px;
     opacity: 0;
 }
+
+/* Estilos para contenedores con disposición en flex */
 .flex {
     display: flex;
 }
+
+/* Hace que los elementos hijos de un contenedor se ordenen en dirección columna */
 .flex-col {
     flex-direction: column;
 }
+
+/* Asegura que un elemento ocupe al menos el alto total de la ventana */
 .min-h-screen {
     min-height: 100vh;
 }
-.main-bg {
 
+/* Estilos de fondo para el contenedor principal */
+.main-bg {
     background-image: url(/Assets/binevenida.png);
-   /* background: linear-gradient(134deg, rgba(200, 176, 212, 0.20) 0%, rgba(17, 5, 23, 0.20) 80.21%), radial-gradient(95.74% 140.04% at 188.67% 125.41%, rgba(190, 164, 202, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(211, 187, 217, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(206, 181, 212, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(194, 169, 201, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(210, 181, 200, 0.00) 0%, #110517 100%);
-    background-blend-mode: normal, darken, darken, darken, darken, darken;
-    */ /* degradado viejo por las dudas */
 }
+
+/* Centrar elementos hijos horizontalmente en un contenedor flex */
 .justify-center {
     justify-content: center;
 }
+
+/* Centrar elementos hijos verticalmente en un contenedor flex */
 .items-center {
     align-items: center;
 }
+
+/* Estilo de texto con fondo amarillo y texto transparente */
 .clean-hand {
-  /* aca va los styles para que la mano no tenga ningun degradado y se vea como originalmente es */
+    background: #FFCF4B;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-
-/* titulo palabras bold */
+/* Estilo para palabras con peso tipográfico ligero */
 .light-weight {
     font-weight: 400;
 }
-/* titulo*/
+
+/* Degradado para el encabezado */
 .header-gradient{
     background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
     margin-left: -33px;
@@ -63,7 +77,8 @@ nav.nav {
     -webkit-text-fill-color: transparent;
     font-size: 32px;
 }
-/* titulo crescendo rosa */
+
+/* Estilo para el texto con degradado rosa */
 .pink {
     background: linear-gradient(278deg, #b27ecc 4.08%, #9A23D6 100%);
     background-clip: text;
@@ -71,8 +86,7 @@ nav.nav {
     -webkit-text-fill-color: transparent;
 }
 
-
-/* input usuario */
+/* Contenedor del campo de entrada (input) */
 .input-container{
     display: flex;
     margin: 20px;
@@ -81,7 +95,8 @@ nav.nav {
     position: relative;
     margin-bottom: 280px;
 }
-/* texto usuario */
+
+/* Etiqueta del campo de entrada */
 .label{
     font-family: inter;
     position: absolute;
@@ -92,7 +107,8 @@ nav.nav {
     z-index: 1;
     color: #b3b3b3;
 }
-/* texto ingresa tu usuario */
+
+/* Estilo del campo de entrada de texto */
 .text-input{
     padding: 15px;
     width: 250px;
@@ -102,54 +118,57 @@ nav.nav {
     border-radius: 5px;
     font-size: 18px;
     outline: none;
-    transition:all .3s;
+    transition: all .3s;
     color: #fff;
 }
-/* cuadradito abajo de Usuario */
+
+/* Línea decorativa debajo de la etiqueta del input */
 .label::before{
-content: "";
-height: 5px;
-background-color: #120618;
-position: absolute;
-left: 0;
-top: 10px;
-width: 100%;
-z-index: -1;
+    content: "";
+    height: 5px;
+    background-color: #120618;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    z-index: -1;
 }
-/* borde al clickear */
+
+/* Estilos al enfocar el campo de entrada */
 .text-input:focus{
     border: 2px solid #ffffff;
 }
-/* texto al clickear */
+
+/* Estilo de animación para la etiqueta al enfocar el input */
 .text-input:focus+.label,
 .filled{
     top: -10px;
     color: #ffffff;
     font-size: 14px;
 }
-/* animacion de ingresa tu usuario */
+
+/* Opacidad y animación para el texto de marcador de posición */
 .text-input::placeholder{
     font-size: 16px;
     opacity: 0;
     transition: all .3s;
 }
-/* opacidad ingresar usuario */
+
+/* Opacidad al enfocar el campo de entrada */
 .text-input:focus::placeholder{
     opacity: 1;
     animation-delay: 0.2s;
 }
 
-/* esto hace que si tiene algo 
-escrito el usuario se quede arriba */
+/* Ajustes de estilo si el input está lleno */
 .text-input:focus+label,
 .text-input:valid+label{
     top: -10px;
     color: #f5f5f5;
     font-size: 14px;
 }
-/* termina input usuario */
 
-
+/* Estilo para el botón de búsqueda */
 .searchbtn{
     font-size: 18px;
     margin-left: 220px;
@@ -158,4 +177,32 @@ escrito el usuario se quede arriba */
     background-color: transparent;
     color: #9D9C9C;
     border: none;
+}
+
+/* Estilo para el contenedor desplegable */
+.dropdown {
+    display: none; /* inicialmente oculto */
+    width: 260px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+}
+
+/* Estilo para cada resultado en el desplegable */
+.result {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Ajustes para el último resultado del desplegable */
+.result:last-child {
+    border-bottom: none;
+}
+
+/* Estilo para las imágenes dentro de los resultados */
+.result img {
+    width: 50px;
+    height: 50px;
 }

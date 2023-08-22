@@ -3,44 +3,6 @@ const mysql = require("mysql2/promise");
 require('dotenv').config();
 
 
-// function connect() {
-//     connection.connect((err) => {
-//         if (err) {
-//             console.error("Error conectándose: " + err);
-//             return;
-//         }
-        
-//         console.log("Base de datos conectada");
-//     });
-// }
-
-
-// async function QueryDBp(query, params) {
-//     let connection;
-//     try {
-//         connection = await mysql.createConnection({
-//             host: process.env.DB_HOST,
-//             user: process.env.DB_USER,
-//             password: process.env.DB_PASS,
-//             database: "crescendo",
-//             ssl: {
-//                 rejectUnauthorized: true
-//             }
-//         });
-
-//         let [rows, fields] = await connection.execute(query, params);
-//         return [rows, fields];
-
-//     } catch (error) {
-//         console.error("Error al ejecutar la consulta:", error);
-//         throw error;  // Re-lanza el error para manejarlo más adelante si es necesario
-//     } finally {
-//         if (connection) {
-//             connection.end(); // Cierra la conexión
-//         }
-//     }
-// }
-
 
 
 
