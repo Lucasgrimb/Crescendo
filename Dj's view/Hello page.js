@@ -4,10 +4,11 @@ const form = document.querySelector('form');
 const button = document.querySelector('.login-cta');
 const nav = document.querySelector('.nav')
 const usuario = document.getElementById("usuario")
+/*
 usuario.addEventListener("click", async (e)=> {
   const req = await fetch("https://")
 })
-
+*/
 // Animacion de entrada//
 const animation = anime.timeline({
   easing: 'easeOutExpo',

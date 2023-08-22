@@ -1,3 +1,5 @@
+
+<script src="https://kit.fontawesome.com/a0dea97709.js" crossorigin="anonymous"></script>
 // ... (El resto del código se mantiene igual hasta la función displayResults)
 
 // Función para mostrar los resultados de la búsqueda en el DOM
@@ -38,3 +40,4 @@ function displayResults(tracks) {
     // Mostrar el menú desplegable con los resultados
     document.getElementById('resultsDropdown').style.display = 'block';
 }
+

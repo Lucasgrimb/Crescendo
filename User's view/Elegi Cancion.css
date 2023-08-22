@@ -44,10 +44,14 @@ nav.nav {
 .items-center {
     align-items: center;
 }
-.clean-hand{
-    font-style: none;
-    background: none;
+.clean-hand {
+    background: #FFCF4B;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+
+
 /* titulo palabras bold */
 .light-weight {
     font-weight: 400;
@@ -55,6 +59,8 @@ nav.nav {
 /* titulo*/
 .header-gradient{
     background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
+    margin-left: -33px;
+    margin-top: -83px;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -68,3 +74,91 @@ nav.nav {
     -webkit-text-fill-color: transparent;
 }
 
+
+/* input usuario */
+.input-container{
+    display: flex;
+    margin: 20px;
+    height: 50px;
+    width: 260px;
+    position: relative;
+    margin-bottom: 280px;
+}
+/* texto usuario */
+.label{
+    font-family: inter;
+    position: absolute;
+    left: 10px;
+    top: 18px;
+    transition: all 0.2s;
+    padding: 0 2px;
+    z-index: 1;
+    color: #b3b3b3;
+}
+/* texto ingresa tu usuario */
+.text-input{
+    padding: 15px;
+    width: 250px;
+    height: 25px;
+    border: 1px solid #9D9C9C;
+    background: transparent;
+    border-radius: 5px;
+    font-size: 18px;
+    outline: none;
+    transition:all .3s;
+    color: #fff;
+}
+/* cuadradito abajo de Usuario */
+.label::before{
+content: "";
+height: 5px;
+background-color: #120618;
+position: absolute;
+left: 0;
+top: 10px;
+width: 100%;
+z-index: -1;
+}
+/* borde al clickear */
+.text-input:focus{
+    border: 2px solid #ffffff;
+}
+/* texto al clickear */
+.text-input:focus+.label,
+.filled{
+    top: -10px;
+    color: #ffffff;
+    font-size: 14px;
+}
+/* animacion de ingresa tu usuario */
+.text-input::placeholder{
+    font-size: 16px;
+    opacity: 0;
+    transition: all .3s;
+}
+/* opacidad ingresar usuario */
+.text-input:focus::placeholder{
+    opacity: 1;
+    animation-delay: 0.2s;
+}
+
+/* esto hace que si tiene algo 
+escrito el usuario se quede arriba */
+.text-input:focus+label,
+.text-input:valid+label{
+    top: -10px;
+    color: #f5f5f5;
+    font-size: 14px;
+}
+/* termina input usuario */
+
+
+.searchbtn{
+    font-size: 18px;
+    margin-left: 220px;
+    margin-top: 20px;
+    position: absolute;
+    background-color: transparent;
+    color: #9D9C9C;
+    border: none;
+}

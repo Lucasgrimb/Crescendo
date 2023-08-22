@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crescendo Dj - Elegir cancion</title>
     <link rel="stylesheet" href="Elegi Cancion.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
 </head>
 
 <body>
@@ -13,19 +14,20 @@
         <h1>Crescendo</h1>
     </nav>
     <div class="flex flex-col min-h-screen justify-center items-center main-bg">
-        <h1 class="header-gradient"> Hola <span class="clean-hand">👋🏼</span>
-            <span class="light-weight">bienvenido <br> a</span> <span class="pink">Crescendo</span></h1>
-        <div id="searchForm">
-            <input type="text" id="searchInput" placeholder="Escribe el nombre de una canción">
-            <button id="searchButton">Buscar</button>
-        </div>
 
-        <div class="dropdown" id="resultsDropdown">
-            <div id="results"></div>
+        <h1 class="header-gradient"> Hola <span class="clean-hand">👋🏼</span> 
+        <span class="light-weight">bienvenido <br> a</span> <span class="pink">Crescendo</span></h1>
+            <form>
+                <div class="input-container">
+                    <input type="text" id="search" autocomplete="off" 
+                    placeholder="ingresa tu cancion" required
+                    class="text-input">
+                    <label for="username" class="label">Busca tu cancion</label>
+                    <button class="searchbtn" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </div>
+            </form>
         </div>
-    </div>
-
-    <script src="script.js"></script>
+        <script src="https://kit.fontawesome.com/a0dea97709.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
