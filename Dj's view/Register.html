@@ -26,9 +26,18 @@
         <h1 class="header-gradient">Crescendo</h1>
         <h6 class="color-gray">Elevá tus fiestas</h6>
     <form>
-        <input name="usuario" id="usuario" type="text" placeholder="Usuario">
-        <input name="password" id="password" type="password" placeholder="Contraseña">
-        <input type="mail" id="mail" type="text" placeholder="Email">
+        <div class="input-container">
+            <input type="text" id="username" autocomplete="off" 
+            placeholder="ingresa tu Usuario" required
+            class="text-input">
+            <label for="username" class="label">Usuario</label>
+        </div>
+        <div class="input1-container1">
+            <input type="password" id="password" autocomplete="off"
+            placeholder="ingresa tu Contraseña" required
+            class="text1-input1">
+            <label for="password" class="label1"> Contraseña</label>
+        </div>
         <button class="login-cta" type="submit">Iniciar fiesta</button> 
     </form>
 </div>

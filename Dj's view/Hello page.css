@@ -219,7 +219,7 @@ nav.nav {
     -webkit-text-fill-color: transparent;
     font-size: 32px;
     margin-right: 20px;
-    margin-top: -80px;
+    margin-top: -120px;
     text-align: left;
 }
 /* titulo crescendo rosa */
@@ -274,7 +274,7 @@ form > input {
     font-family: inter;
     position: absolute;
     left: 10px;
-    top: 14px;
+    top: 18px;
     transition: all 0.2s;
     padding: 0 2px;
     z-index: 1;
@@ -332,15 +332,97 @@ escrito el usuario se quede arriba */
 .text-input:focus+label,
 .text-input:valid+label{
     top: -10px;
-    color: whitesmoke;
+    color: #f5f5f5;
     font-size: 14px;
 }
 /* termina input usuario */
 
+/* arranca input contraseña */
+
+/* input contraseña */
+.input1-container1{
+    display: flex;
+    margin: 20px;
+    height: 50px;
+    width: 260px;
+    position: relative;
+}
+/* texto contraseña */
+.label1{
+    font-family: inter;
+    position: absolute;
+    left: 10px;
+    top: 18px;
+    transition: all 0.2s;
+    padding: 0 2px;
+    z-index: 1;
+    color: #b3b3b3;
+}
+/* texto ingresa tu usuario */
+.text1-input1{
+    padding: 15px;
+    width: 250px;
+    height: 25px;
+    border: 1px solid #9D9C9C;
+    background: transparent;
+    border-radius: 5px;
+    font-size: 18px;
+    outline: none;
+    transition:all .3s;
+    color: #fff;
+}
+/* cuadradito abajo de Usuario */
+.label1::before{
+content: "";
+height: 5px;
+background-color: #120618;
+position: absolute;
+left: 0;
+top: 10px;
+width: 100%;
+z-index: -1;
+}
+/* borde al clickear */
+.text1-input1:focus{
+    border: 2px solid #ffffff;
+}
+/* texto al clickear */
+.text1-input1:focus+.label1,
+.filled{
+    top: -10px;
+    color: #ffffff;
+    font-size: 14px;
+}
+/* animacion de ingresa tu usuario */
+.text1-input1::placeholder{
+    font-size: 16px;
+    opacity: 0;
+    transition: all .3s;
+}
+/* opacidad ingresar usuario */
+.text1-input1:focus::placeholder{
+    opacity: 1;
+    animation-delay: 0.2s;
+}
+
+/* esto hace que si tiene algo 
+escrito el usuario se quede arriba */
+.text1-input1:focus+.label1,
+.text1-input1:valid+.label1{
+    top: -10px;
+    color: whitesmoke;
+    font-size: 14px;
+}
+
+/* termina input contraseña */
+
+
+
+
 /* no tenes cuenta? registrate */
 p.m-2 {
     font-size: 14px;
-    margin-top: -18px;
+    margin-top: -12px;
     color: #9D9C9C;
     font-family: inter;
     font-weight: 700;
