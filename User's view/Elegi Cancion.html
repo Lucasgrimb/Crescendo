@@ -2,47 +2,55 @@
 <html lang="en">
 
 <head>
+    <!-- Metadatos básicos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título de la página -->
     <title>Crescendo Dj - Elegir cancion</title>
+
+    <!-- Estilos propios y de terceros -->
     <link rel="stylesheet" href="Elegi Cancion.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
 </head>
 
 <body>
+    <!-- Barra de navegación -->
     <nav class="nav">
         <h1>Crescendo</h1>
     </nav>
 
+    <!-- Contenedor principal -->
     <div class="flex flex-col min-h-screen justify-center items-center main-bg">
-        <h1 class="header-gradient"> Hola <span class="clean-hand">👋🏼</span> 
-        <span class="light-weight">bienvenido <br> a</span> <span class="pink">Crescendo</span></h1>
-            
+        
+        <!-- Encabezado de bienvenida -->
+        <h1 class="header-gradient"> 
+            Hola <span class="clean-hand">👋🏼</span>
+            <span class="light-weight">bienvenido <br> a</span> 
+            <span class="pink">Crescendo</span>
+        </h1>
+        
+        <!-- Formulario de búsqueda -->
         <form>
             <div class="input-container">
                 <input type="text" id="search" autocomplete="off" 
-
+                       placeholder="ingresa tu cancion" required
                        class="text-input">
-                <label for="search" class="label">Busca tu cancion</label>
-                <button class="searchbtn" type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                <label for="username" class="label">Busca tu cancion</label>
+                <!-- Botón de búsqueda con ícono -->
+                <button class="searchbtn" type="submit"> 
+                    <i class="fa fa-search" aria-hidden="true"></i> 
+                </button>
             </div>
         </form>
 
-        <!-- Contenedor de resultados -->
+        <!-- Contenedor donde se mostrarán los resultados de la búsqueda -->
         <div id="resultsDropdown" class="dropdown"></div>
-
-        <!-- Contenedor de la lista de canciones (similar a Spotify) -->
-        <div class="playlist-container">
-            <div class="song-list">
-
-                </div>
-                <!-- Repite el bloque .song-item para cada canción -->
-            </div>
-        </div>
     </div>
-
+    
+    <!-- Librerías JS y scripts propios -->
     <script src="https://kit.fontawesome.com/a0dea97709.js" crossorigin="anonymous"></script>
-    <!-- Asegúrate de agregar también la referencia a tu archivo JS que realiza la búsqueda y muestra los resultados -->
+    <!-- Aquí se realiza la búsqueda y se muestran los resultados en el contenedor anterior -->
     <script src="Elegi Cancion.js"></script>
 </body>
 

@@ -1,13 +1,17 @@
 // Función para obtener el token de acceso de Spotify
 function requestSpotifyToken() {
-    const clientId = '4ba679a5493041059789f92a2c776588'; // Reemplazar con tu client_id
-    const clientSecret = 'f03ee7bb97574f5fa9b1dab44d615c97'; // Reemplazar con tu client_secret (No seguro para producción)
+    // Configura tus credenciales de la aplicación Spotify
+    const clientId = '4ba679a5493041059789f92a2c776588'; 
+    const clientSecret = 'f03ee7bb97574f5fa9b1dab44d615c97'; 
 
+    // Endpoint de Spotify para obtener el token
     const tokenEndpoint = 'https://accounts.spotify.com/api/token';
     const data = 'grant_type=client_credentials';
 
+    // Codifica tus credenciales en Base64
     const base64Credentials = btoa(clientId + ':' + clientSecret);
 
+    // Hace una petición a Spotify para obtener el token
     return fetch(tokenEndpoint, {
         method: 'POST',
         headers: {
@@ -27,6 +31,7 @@ function requestSpotifyToken() {
 
 // Función para buscar canciones en Spotify con un token dado
 function searchTrack(query, token) {
+    // Hace una petición a Spotify para buscar canciones basadas en la query
     return fetch(`https://api.spotify.com/v1/search?q=${query}&type=track&limit=10`, {
         headers: {
             'Authorization': 'Bearer ' + token
@@ -42,15 +47,14 @@ function searchTrack(query, token) {
 }
 
 // Función para mostrar los resultados de búsqueda en el DOM
-
-
-// Función para mostrar los resultados de búsqueda en el DOM
 function displayResults(tracks) {
-    const resultsDiv = document.getElementById('resultsDropdown');
+    // Obtiene el contenedor de resultados del DOM
+    const resultsDiv = document.getElementById('resultsDropdown'); 
     resultsDiv.innerHTML = '';
-    
+
+    // Para cada pista obtenida, crea elementos del DOM para mostrarla
     tracks.forEach((track) => {
-        const image = track.album.images[0]?.url || '';  // Usamos un operador opcional en caso de que no haya imagen
+        const image = track.album.images[0].url;
         const title = track.name;
         const artist = track.artists[0].name;
         const trackId = track.id;
@@ -62,36 +66,35 @@ function displayResults(tracks) {
         imageElement.src = image;
         imageElement.alt = title;
 
-        const titleElement = document.createElement('h3'); // Usamos h3 para el nombre de la canción, como en tu ejemplo
+        const titleElement = document.createElement('p');
         titleElement.textContent = title;
 
         const artistElement = document.createElement('p');
         artistElement.textContent = artist;
 
+        const trackIdElement = document.createElement('p');
+        trackIdElement.textContent = "ID: " + trackId;
+        trackIdElement.classList.add('track-id');
+
         resultDiv.appendChild(imageElement);
         resultDiv.appendChild(titleElement);
         resultDiv.appendChild(artistElement);
-        
-        resultDiv.addEventListener('click', function() {
-            console.log("Track ID: ", trackId);
-        });
+        resultDiv.appendChild(trackIdElement);
 
         resultsDiv.appendChild(resultDiv);
+        resultsDiv.style.display = 'block';  // Muestra el contenedor de resultados
     });
-    
-    resultsDiv.style.display = 'block';
 }
-
-
-
 
 // Manejador de evento para el botón de búsqueda
 document.querySelector('.searchbtn').addEventListener('click', (e) => {
     e.preventDefault(); // Evita que el formulario se envíe y recargue la página
 
+    // Obtiene el valor de la búsqueda del input
     const query = document.getElementById('search').value;
     if (!query) return; // Si no hay texto para buscar, salir
 
+    // Primero solicita el token, luego realiza la búsqueda y finalmente muestra los resultados
     requestSpotifyToken().then(token => {
         return searchTrack(query, token);
     }).then(tracks => {
@@ -100,3 +103,4 @@ document.querySelector('.searchbtn').addEventListener('click', (e) => {
         console.error('Error:', error.message);
     });
 });
+
