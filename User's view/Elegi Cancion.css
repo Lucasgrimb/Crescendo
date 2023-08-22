@@ -45,10 +45,7 @@ nav.nav {
     align-items: center;
 }
 .clean-hand {
-    background: #FFCF4B;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  /* aca va los styles para que la mano no tenga ningun degradado y se vea como originalmente es */
 }
 
 
