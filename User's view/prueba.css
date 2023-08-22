@@ -1,26 +1,8 @@
-
 body {
     padding: 0px;
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
-  
 
-}
-
-nav.nav {
-    position: fixed;
-    top: 0;
-    padding: 5px;
-    width: 100vw;
-}
-.nav>h1 {
-    font-weight: 400;
-    color: white;
-    font-size: 15px;
-    font-family: MuseoModerno;
-    margin-top: 12px;
-    margin-left: 12px;
-    opacity: 0;
 }
 .flex {
     display: flex;
@@ -36,7 +18,7 @@ nav.nav {
     background-image: url(/Assets/binevenida.png);
    /* background: linear-gradient(134deg, rgba(200, 176, 212, 0.20) 0%, rgba(17, 5, 23, 0.20) 80.21%), radial-gradient(95.74% 140.04% at 188.67% 125.41%, rgba(190, 164, 202, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(211, 187, 217, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(206, 181, 212, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(194, 169, 201, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(210, 181, 200, 0.00) 0%, #110517 100%);
     background-blend-mode: normal, darken, darken, darken, darken, darken;
-    */ /* degradado viejo por las dudas */
+    */
 }
 .justify-center {
     justify-content: center;
@@ -44,49 +26,19 @@ nav.nav {
 .items-center {
     align-items: center;
 }
-.clean-hand {
-  /* aca va los styles para que la mano no tenga ningun degradado y se vea como originalmente es */
-}
-
-
-/* titulo palabras bold */
-.light-weight {
-    font-weight: 400;
-}
-/* titulo*/
-.header-gradient{
-    background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
-    margin-left: -33px;
-    margin-top: -83px;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 32px;
-}
-/* titulo crescendo rosa */
-.pink {
-    background: linear-gradient(278deg, #b27ecc 4.08%, #9A23D6 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 
 
 /* input usuario */
 .input-container{
-    display: flex;
-    margin: 20px;
-    height: 50px;
-    width: 260px;
+    width: 250px;
     position: relative;
-    margin-bottom: 280px;
 }
 /* texto usuario */
 .label{
     font-family: inter;
     position: absolute;
     left: 10px;
-    top: 18px;
+    top: 14px;
     transition: all 0.2s;
     padding: 0 2px;
     z-index: 1;
@@ -94,10 +46,10 @@ nav.nav {
 }
 /* texto ingresa tu usuario */
 .text-input{
-    padding: 15px;
+    padding: 0.8rem;
     width: 250px;
     height: 25px;
-    border: 1px solid #9D9C9C;
+    border: 2px solid #9D9C9C;
     background: transparent;
     border-radius: 5px;
     font-size: 18px;
@@ -138,24 +90,10 @@ z-index: -1;
     opacity: 1;
     animation-delay: 0.2s;
 }
-
-/* esto hace que si tiene algo 
-escrito el usuario se quede arriba */
 .text-input:focus+label,
 .text-input:valid+label{
     top: -10px;
-    color: #f5f5f5;
+    color: whitesmoke;
     font-size: 14px;
 }
 /* termina input usuario */
-
-
-.searchbtn{
-    font-size: 18px;
-    margin-left: 220px;
-    margin-top: 20px;
-    position: absolute;
-    background-color: transparent;
-    color: #9D9C9C;
-    border: none;
-}

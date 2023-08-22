@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prueba input</title>
+    <link rel="stylesheet" href="prueba.css">
+</head>
+<style>
+        @font-face {
+            font-family: 'Inter Bold';
+            src: url('/fonts/Coolvetica-Regular.ttf') format('truetype'); 
+            src: url('/fonts/Inter-Bold.ttf') format('truetype'); 
+        }
+    
+        @font-face {
+            font-family: 'Museo Moderno';
+            src: url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap');
+        }
+</style>
+<body>
+    <div class="flex flex-col min-h-screen justify-center items-center main-bg">
+    <form>
+        <div class="input-container">
+            <input type="text" id="username" autocomplete="off" 
+            placeholder="ingresa tu nombre de usuario" required
+            class="text-input">
+            <label for="username" class="label">Usuario</label>
+        </div>
+    </form>
+ </div>
+</body>
+</html>
