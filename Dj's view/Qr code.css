@@ -31,57 +31,21 @@ body {
 
 /* Rectangle rosa glow */
 
-@property --gradient-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-  
-  :root {
-    --clr-1: #052b2f;
-    --clr-2: #073438;
-    --clr-3: #0e4b50;
-    --clr-4: #2d8f85;
-    --clr-5: #637c54;
-  }
-  
-  .card {
-    height: 179px;
-    width: 179px;
-    aspect-ratio: 1 / 1.5;
-    background: var(--clr-1);
-    border-radius: 0.5rem;
+.Rectangle{
     position: relative;
-  }
-  
-  .card::before,
-  .card::after {
-    content: "";
+    width: 179px;
+    height: 179px;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+.Rectangle:before{
+    content: '';
     position: absolute;
-    inset: -0.5rem;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
     z-index: -1;
-    background: conic-gradient(
-      from var(--gradient-angle),
-      var(--clr-3),
-      var(--clr-4),
-      var(--clr-5),
-      var(--clr-4),
-      var(--clr-3)
-    );
-    border-radius: inherit;
-    animation: rotation 20s linear infinite;
-  }
-  
-  .card::after {
-    filter: blur(3.5rem);
-  }
-  
-  @keyframes rotation {
-    0% {
-      --gradient-angle: 0deg;
-    }
-    100% {
-      --gradient-angle: 360deg;
-    }
-  }
-  
+}

@@ -56,10 +56,11 @@ nav.nav {
 
 /* Estilo de texto con fondo amarillo y texto transparente */
 .clean-hand {
-    background: #FFCF4B;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    position: relative;
+font-size: 30px;
+right: 62px;
+bottom: 20px;
+
 }
 
 /* Estilo para palabras con peso tipográfico ligero */
@@ -75,7 +76,7 @@ nav.nav {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 32px;
+    font-size: 30px;
 }
 
 /* Estilo para el texto con degradado rosa */
@@ -93,7 +94,7 @@ nav.nav {
     height: 50px;
     width: 260px;
     position: relative;
-    margin-bottom: 280px;
+    margin-bottom:320px;
 }
 
 /* Etiqueta del campo de entrada */
