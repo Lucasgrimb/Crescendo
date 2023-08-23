@@ -1,0 +1,87 @@
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
+
+}
+.flex {
+    display: flex;
+}
+.flex-col {
+    flex-direction: column;
+}
+.min-h-screen {
+    min-height: 100vh;
+}
+.main-bg {
+
+    background-image: url(/Assets/binevenida.png);
+   /* background: linear-gradient(134deg, rgba(200, 176, 212, 0.20) 0%, rgba(17, 5, 23, 0.20) 80.21%), radial-gradient(95.74% 140.04% at 188.67% 125.41%, rgba(190, 164, 202, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(211, 187, 217, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(206, 181, 212, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(194, 169, 201, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(210, 181, 200, 0.00) 0%, #110517 100%);
+    background-blend-mode: normal, darken, darken, darken, darken, darken;
+    */
+}
+.justify-center {
+    justify-content: center;
+}
+.items-center {
+    align-items: center;
+}
+
+
+/* Rectangle rosa glow */
+
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  :root {
+    --clr-1: #052b2f;
+    --clr-2: #073438;
+    --clr-3: #0e4b50;
+    --clr-4: #2d8f85;
+    --clr-5: #637c54;
+  }
+  
+  .card {
+    height: 179px;
+    width: 179px;
+    aspect-ratio: 1 / 1.5;
+    background: var(--clr-1);
+    border-radius: 0.5rem;
+    position: relative;
+  }
+  
+  .card::before,
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem;
+    z-index: -1;
+    background: conic-gradient(
+      from var(--gradient-angle),
+      var(--clr-3),
+      var(--clr-4),
+      var(--clr-5),
+      var(--clr-4),
+      var(--clr-3)
+    );
+    border-radius: inherit;
+    animation: rotation 20s linear infinite;
+  }
+  
+  .card::after {
+    filter: blur(3.5rem);
+  }
+  
+  @keyframes rotation {
+    0% {
+      --gradient-angle: 0deg;
+    }
+    100% {
+      --gradient-angle: 360deg;
+    }
+  }
+  
