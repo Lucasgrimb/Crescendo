@@ -90,8 +90,7 @@ function displayResults(tracks) {
         resultDiv.appendChild(artistElement);
 
         
-        //se muestran los id de las canciones por orden. 
-        console.log(trackId);
+
        // resultDiv.appendChild(trackIdElement);
 
         resultsDiv.appendChild(resultDiv);
@@ -115,6 +114,10 @@ document.querySelector('.searchbtn').addEventListener('click'), (e) => {
     }).catch(error) => {
         console.error('Error:', error.message)};
 document.addEventListener('DOMContentLoaded', function() {
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
 
     // Manejador de evento para el botón de búsqueda
     document.querySelector('.searchbtn').addEventListener('click', (e) => {
@@ -146,5 +149,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+
+
+});
+    // ... Aquí irían tus funciones requestSpotifyToken, searchTrack, y displayResults, sin cambios.
 
 });
