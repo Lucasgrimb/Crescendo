@@ -42,6 +42,8 @@ nav.nav {
 /* Estilos de fondo para el contenedor principal */
 .main-bg {
     background-image: url(/Assets/binevenida.png);
+    background-position: center;
+    background-size: cover;
 }
 
 /* Centrar elementos hijos horizontalmente en un contenedor flex */
@@ -57,10 +59,9 @@ nav.nav {
 /* Estilo de texto con fondo amarillo y texto transparente */
 .clean-hand {
     position: relative;
-font-size: 30px;
-right: 62px;
-bottom: 20px;
-
+    font-size: 30px;
+    right: 62px;
+    bottom: 20px;
 }
 
 /* Estilo para palabras con peso tipográfico ligero */
@@ -180,22 +181,32 @@ bottom: 20px;
     border: none;
 }
 
+
+/* Editando javascript a partir de ahora /*
+
 /* Estilo para el contenedor desplegable */
 .dropdown {
+    margin-top: 78px;
+    position: absolute;
     display: none; /* inicialmente oculto */
-    width: 260px;
-    max-height: 200px;
+    width: 254px;
+    max-height: 213px;
     overflow-y: auto;
-    background-color: #fff;
-    color: #000;
-    border-radius: 5px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #fff;
+    border-radius: 0px;
+
 }
 
 /* Estilo para cada resultado en el desplegable */
 .result {
+    display: flex; /* Cambia el tipo de display a flex */
+    align-items: center; /* Centra verticalmente los elementos */
     padding: 10px;
     border-bottom: 1px solid #eee;
 }
+
 
 /* Ajustes para el último resultado del desplegable */
 .result:last-child {
@@ -204,6 +215,64 @@ bottom: 20px;
 
 /* Estilo para las imágenes dentro de los resultados */
 .result img {
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
+    border-radius: 9px;
+    margin-right: 11px;
+}
+
+/* Estilo para el nombre de la canción */
+.song-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #ffffff; /* Color de texto oscuro */
+}
+
+/* Estilo para el nombre del artista */
+.song-artist {
+    font-size: 13px;
+    font-weight: 400;
+    color: #ffffff; /* Color de texto más claro */
+}
+.modal {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none; 
+    background: url(/Assets/binevenida.png);
+}
+.modal-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-wrapper > h1{
+       background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
+       background-clip: text;
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+       margin-top: -82px;
+       margin-bottom: 80px;
+}
+
+.modal-wrapper > h2{
+    font-size: 24px;
+    font-weight: 700;
+    color: #9D9C9C;
+    margin-bottom: 10px;
+}
+.modal-wrapper > p{
+color: #9D9C9C;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+margin-top: -10px;
 }

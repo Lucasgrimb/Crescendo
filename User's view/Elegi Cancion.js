@@ -1,12 +1,8 @@
-
 /* falta que: 
-- cambies el html y css para que no quede horrible
+- Arreglar el css para que no quede horrible
 - buscar forma de guardar el id de la cancion al precionarla. te dejo una pista: "resultDiv.setAttribute("data-id", trackId); "
-- El confirmar/cancelar oferta tiene que ser en la misma pagina. 
-- Deja todo oculto y cunado uno toca una cancion aparece. 
+-  Cuando uno toca una cancion aparece el confirmar cancion. 
 */
-
-
 
 // Función para obtener el token de acceso de Spotify
 function requestSpotifyToken() {
@@ -76,28 +72,31 @@ function displayResults(tracks) {
         imageElement.src = image;
         imageElement.alt = title;
 
+        const textContainer = document.createElement('div'); // Nuevo contenedor
+        textContainer.classList.add('text-container');
+
         const titleElement = document.createElement('p');
         titleElement.textContent = title;
+        titleElement.classList.add('song-title'); 
 
         const artistElement = document.createElement('p');
         artistElement.textContent = artist;
+        artistElement.classList.add('song-artist');
 
-        const trackIdElement = document.createElement('p');
-        trackIdElement.textContent = "ID: " + trackId;
-        trackIdElement.classList.add('track-id');
+        textContainer.appendChild(titleElement);
+        textContainer.appendChild(artistElement);
 
         resultDiv.appendChild(imageElement);
-        resultDiv.appendChild(titleElement);
-        resultDiv.appendChild(artistElement);
-
-        
-
-       // resultDiv.appendChild(trackIdElement);
-
+        resultDiv.appendChild(textContainer); // Agregar el nuevo contenedor
         resultsDiv.appendChild(resultDiv);
         resultsDiv.style.display = 'block';  // Muestra el contenedor de resultados
     });
 }
+
+// esconder elegir cancion funciones
+// document.getElementsByClassName("modal").style.display = "none";
+// elegir cancion aparece
+// document.getElementsByClassName("modal").style.display = "initial";
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -131,6 +130,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // ... Aquí irían tus funciones requestSpotifyToken, searchTrack, y displayResults, sin cambios.
+    // Función para ocultar los resultados cuando se hace clic fuera del área
+    window.addEventListener('click', function(event) {
+        const resultsDiv = document.getElementById('resultsDropdown');
+        if (!resultsDiv.contains(event.target)) {
+            resultsDiv.style.display = 'none';
+        }
+    });
+
+    // Resto de las funciones, si las hay...
 
 });
