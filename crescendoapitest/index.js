@@ -119,14 +119,14 @@ if (!validPassword) {
 }
 
 //creo access y refresh token 
-const accessToken = jwt.sign({ userId: user.user_id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+const accessToken = jwt.sign({ userId: user.username }, process.env.SECRET_KEY, { expiresIn: '1h' });
 const refreshToken = crypto.randomBytes(40).toString('hex');
 
 // Almacenar el refresh token en la base de datos con su fecha de vencimiento
 const currentDate = new Date();
 currentDate.setHours(currentDate.getHours() + 5); // Añade 5 hora
 const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
-const sql = `INSERT INTO refresh_tokens (token, user_id, expiry_date) VALUES ('${refreshToken}', '${user.user_id}', '${formattedDate}')`;
+const sql = `INSERT INTO refresh_tokens (token, username, expiry_date) VALUES ('${refreshToken}', '${user.username}', '${formattedDate}')`;
 //Me comunico con la base de datos para guardar refresh token
 await QueryDBp(sql);
 
@@ -148,10 +148,10 @@ res.status(200).json({
 
 //-----------------Iniciar Fiesta----------------------
 
-app.post('/api/startparty/:user_id', authenticateToken, (req, res) => {
-    const dj_id = req.params.user_id;
+app.post('/api/startparty/:username', authenticateToken, (req, res) => {
+    const dj_id = req.params.username;
 
-    if (!user_id) {
+    if (!username) {
       return res.status(400).json({ error: 'El dj_id es requerido' });
     }
 
@@ -294,7 +294,7 @@ app.post('/api/token', async (req, res) => {
         return res.sendStatus(403);
     }
  
-    const accessToken = jwt.sign({ userId: tokenData.user_id }, process.env.SECRET_KEY, { expiresIn: '5m' });
+    const accessToken = jwt.sign({ userId: tokenData.username }, process.env.SECRET_KEY, { expiresIn: '5m' });
 
 
     //creo un nuevo refresh token 
@@ -304,7 +304,7 @@ app.post('/api/token', async (req, res) => {
     const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
     // Actualizo refresh token
-     await QueryDBp(`UPDATE refresh_tokens SET token = ?, expiry_date = ? WHERE user_id = ?`, [newRefreshToken, formattedDate, tokenData.user_id]);
+     await QueryDBp(`UPDATE refresh_tokens SET token = ?, expiry_date = ? WHERE username = ?`, [newRefreshToken, formattedDate, tokenData.username]);
 
     // Configura la respuesta para enviar la cookie httpOnly con el refresh token
     res.cookie('newRefreshToken', newRefreshToken, {
