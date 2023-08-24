@@ -42,6 +42,8 @@ nav.nav {
 /* Estilos de fondo para el contenedor principal */
 .main-bg {
     background-image: url(/Assets/binevenida.png);
+    background-position: center;
+    background-size: cover;
 }
 
 /* Centrar elementos hijos horizontalmente en un contenedor flex */
@@ -250,10 +252,27 @@ nav.nav {
     height: 100%;
     width: 100%;
 }
-.modal-wrapper > h1, .modal-wrapper > h2, .modal-wrapper > p{
-    background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 30px;
+
+.modal-wrapper > h1{
+       background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
+       background-clip: text;
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+       margin-top: -82px;
+       margin-bottom: 80px;
+}
+
+.modal-wrapper > h2{
+    font-size: 24px;
+    font-weight: 700;
+    color: #9D9C9C;
+    margin-bottom: 10px;
+}
+.modal-wrapper > p{
+color: #9D9C9C;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+margin-top: -10px;
 }

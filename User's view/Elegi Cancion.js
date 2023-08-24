@@ -1,3 +1,9 @@
+/* falta que: 
+- Arreglar el css para que no quede horrible
+- buscar forma de guardar el id de la cancion al precionarla. te dejo una pista: "resultDiv.setAttribute("data-id", trackId); "
+-  Cuando uno toca una cancion aparece el confirmar cancion. 
+*/
+
 // Función para obtener el token de acceso de Spotify
 function requestSpotifyToken() {
     // Configura tus credenciales de la aplicación Spotify
@@ -87,7 +93,7 @@ function displayResults(tracks) {
     });
 }
 
-// esconder elegir cancion
+// esconder elegir cancion funciones
 // document.getElementsByClassName("modal").style.display = "none";
 // elegir cancion aparece
 // document.getElementsByClassName("modal").style.display = "initial";
