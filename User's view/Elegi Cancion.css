@@ -191,7 +191,7 @@ nav.nav {
     max-height: 213px;
     overflow-y: auto;
     background-color: transparent;
-    color: #da1414;
+    color: #ffffff;
     border: 2px solid #fff;
     border-radius: 0px;
 
@@ -220,17 +220,17 @@ nav.nav {
 }
 
 /* Estilo para el nombre de la canción */
-.track-title {
+.song-title {
     font-weight: 700;
     font-size: 13px;
-    color: #333; /* Color de texto oscuro */
+    color: #ffffff; /* Color de texto oscuro */
 }
 
 /* Estilo para el nombre del artista */
-.track-artist {
+.song-artist {
     font-size: 13px;
     font-weight: 400;
-    color: #333; /* Color de texto más claro */
+    color: #ffffff; /* Color de texto más claro */
 }
 .modal {
     z-index: 10000;

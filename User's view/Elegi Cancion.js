@@ -71,9 +71,11 @@ function displayResults(tracks) {
 
         const titleElement = document.createElement('p');
         titleElement.textContent = title;
+        titleElement.classList.add('song-title'); 
 
         const artistElement = document.createElement('p');
         artistElement.textContent = artist;
+        artistElement.classList.add('song-artist');
 
         textContainer.appendChild(titleElement);
         textContainer.appendChild(artistElement);
