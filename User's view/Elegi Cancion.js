@@ -1,4 +1,3 @@
-
 /* falta que: 
 - cambies el html y css para que no quede horrible
 - buscar forma de guardar el id de la cancion al precionarla. te dejo una pista: "resultDiv.setAttribute("data-id", trackId); "
@@ -101,8 +100,8 @@ function displayResults(tracks) {
 }
 
 // Manejador de evento para el botón de búsqueda
-document.querySelector('.searchbtn').addEventListener('click', (e) => {
-    e.preventDefault(); // Evita que el formulario se envíe y recargue la página
+document.querySelector('.searchbtn').addEventListener('click'), (e) => {
+    e.preventDefault()}; // Evita que el formulario se envíe y recargue la página
 
     // Obtiene el valor de la búsqueda del input
     const query = document.getElementById('search').value;
@@ -113,7 +112,39 @@ document.querySelector('.searchbtn').addEventListener('click', (e) => {
         return searchTrack(query, token);
     }).then(tracks => {
         displayResults(tracks);
-    }).catch(error => {
-        console.error('Error:', error.message);
+    }).catch(error) => {
+        console.error('Error:', error.message)};
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Manejador de evento para el botón de búsqueda
+    document.querySelector('.searchbtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        performSearch();
     });
+
+    // Manejador de evento para el campo de búsqueda
+    document.querySelector('#search').addEventListener('input', (e) => {
+        performSearch();
+    });
+
+    function performSearch() {
+        const query = document.getElementById('search').value;
+        if (!query) {
+            document.getElementById('resultsDropdown').style.display = 'none';
+            return;
+        }
+
+        requestSpotifyToken()
+            .then(token => {
+                return searchTrack(query, token);
+            })
+            .then(tracks => {
+                displayResults(tracks);
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
+    }
+
+
 });
