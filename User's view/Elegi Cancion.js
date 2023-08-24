@@ -1,3 +1,4 @@
+
 /* falta que: 
 - cambies el html y css para que no quede horrible
 - buscar forma de guardar el id de la cancion al precionarla. te dejo una pista: "resultDiv.setAttribute("data-id", trackId); "
@@ -98,26 +99,7 @@ function displayResults(tracks) {
     });
 }
 
-// Manejador de evento para el botón de búsqueda
-document.querySelector('.searchbtn').addEventListener('click'), (e) => {
-    e.preventDefault()}; // Evita que el formulario se envíe y recargue la página
-
-    // Obtiene el valor de la búsqueda del input
-    const query = document.getElementById('search').value;
-    if (!query) return; // Si no hay texto para buscar, salir
-
-    // Primero solicita el token, luego realiza la búsqueda y finalmente muestra los resultados
-    requestSpotifyToken().then(token => {
-        return searchTrack(query, token);
-    }).then(tracks => {
-        displayResults(tracks);
-    }).catch(error) => {
-        console.error('Error:', error.message)};
 document.addEventListener('DOMContentLoaded', function() {
-
-
-document.addEventListener('DOMContentLoaded', function() {
-
 
     // Manejador de evento para el botón de búsqueda
     document.querySelector('.searchbtn').addEventListener('click', (e) => {
@@ -149,9 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-
-
-});
     // ... Aquí irían tus funciones requestSpotifyToken, searchTrack, y displayResults, sin cambios.
 
 });
