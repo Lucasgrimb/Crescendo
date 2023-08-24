@@ -91,8 +91,7 @@ function displayResults(tracks) {
         resultDiv.appendChild(artistElement);
 
         
-        //se muestran los id de las canciones por orden. 
-        console.log(trackId);
+
        // resultDiv.appendChild(trackIdElement);
 
         resultsDiv.appendChild(resultDiv);
@@ -100,20 +99,38 @@ function displayResults(tracks) {
     });
 }
 
-// Manejador de evento para el botón de búsqueda
-document.querySelector('.searchbtn').addEventListener('click', (e) => {
-    e.preventDefault(); // Evita que el formulario se envíe y recargue la página
+document.addEventListener('DOMContentLoaded', function() {
 
-    // Obtiene el valor de la búsqueda del input
-    const query = document.getElementById('search').value;
-    if (!query) return; // Si no hay texto para buscar, salir
-
-    // Primero solicita el token, luego realiza la búsqueda y finalmente muestra los resultados
-    requestSpotifyToken().then(token => {
-        return searchTrack(query, token);
-    }).then(tracks => {
-        displayResults(tracks);
-    }).catch(error => {
-        console.error('Error:', error.message);
+    // Manejador de evento para el botón de búsqueda
+    document.querySelector('.searchbtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        performSearch();
     });
+
+    // Manejador de evento para el campo de búsqueda
+    document.querySelector('#search').addEventListener('input', (e) => {
+        performSearch();
+    });
+
+    function performSearch() {
+        const query = document.getElementById('search').value;
+        if (!query) {
+            document.getElementById('resultsDropdown').style.display = 'none';
+            return;
+        }
+
+        requestSpotifyToken()
+            .then(token => {
+                return searchTrack(query, token);
+            })
+            .then(tracks => {
+                displayResults(tracks);
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
+    }
+
+    // ... Aquí irían tus funciones requestSpotifyToken, searchTrack, y displayResults, sin cambios.
+
 });
