@@ -57,10 +57,9 @@ nav.nav {
 /* Estilo de texto con fondo amarillo y texto transparente */
 .clean-hand {
     position: relative;
-font-size: 30px;
-right: 62px;
-bottom: 20px;
-
+    font-size: 30px;
+    right: 62px;
+    bottom: 20px;
 }
 
 /* Estilo para palabras con peso tipográfico ligero */
@@ -180,22 +179,34 @@ bottom: 20px;
     border: none;
 }
 
+
+/* Editando javascript a partir de ahora /*
+
 /* Estilo para el contenedor desplegable */
 .dropdown {
     display: none; /* inicialmente oculto */
-    width: 260px;
-    max-height: 200px;
+    width: 274px;
+    max-height: 213px;
     overflow-y: auto;
     background-color: #fff;
-    color: #000;
+    color: #da1414;
     border-radius: 5px;
+}
+/* Estilo para el contenedor de texto (nombre de canción y artista) */
+.text-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 11px; /* Agrega margen a la izquierda del texto */
 }
 
 /* Estilo para cada resultado en el desplegable */
 .result {
+    display: flex; /* Cambia el tipo de display a flex */
+    align-items: center; /* Centra verticalmente los elementos */
     padding: 10px;
     border-bottom: 1px solid #eee;
 }
+
 
 /* Ajustes para el último resultado del desplegable */
 .result:last-child {
@@ -204,6 +215,22 @@ bottom: 20px;
 
 /* Estilo para las imágenes dentro de los resultados */
 .result img {
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
+    border-radius: 9px;
+    margin-right: 11px;
+}
+
+/* Estilo para el nombre de la canción */
+.track-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #333; /* Color de texto oscuro */
+}
+
+/* Estilo para el nombre del artista */
+.track-artist {
+    font-size: 13px;
+    font-weight: 400;
+    color: #333; /* Color de texto más claro */
 }
