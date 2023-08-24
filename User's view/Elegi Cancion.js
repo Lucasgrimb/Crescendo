@@ -85,6 +85,11 @@ function displayResults(tracks) {
     });
 }
 
+// esconder elegir cancion
+// document.getElementsByClassName("modal").style.display = "none";
+// elegir cancion aparece
+// document.getElementsByClassName("modal").style.display = "initial";
+
 document.addEventListener('DOMContentLoaded', function() {
 
     // Manejador de evento para el botón de búsqueda

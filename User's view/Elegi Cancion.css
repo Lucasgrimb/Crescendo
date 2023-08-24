@@ -184,19 +184,17 @@ nav.nav {
 
 /* Estilo para el contenedor desplegable */
 .dropdown {
+    margin-top: 78px;
+    position: absolute;
     display: none; /* inicialmente oculto */
-    width: 274px;
+    width: 254px;
     max-height: 213px;
     overflow-y: auto;
-    background-color: #fff;
+    background-color: transparent;
     color: #da1414;
-    border-radius: 5px;
-}
-/* Estilo para el contenedor de texto (nombre de canción y artista) */
-.text-container {
-    display: flex;
-    flex-direction: column;
-    margin-left: 11px; /* Agrega margen a la izquierda del texto */
+    border: 2px solid #fff;
+    border-radius: 0px;
+
 }
 
 /* Estilo para cada resultado en el desplegable */
@@ -233,4 +231,29 @@ nav.nav {
     font-size: 13px;
     font-weight: 400;
     color: #333; /* Color de texto más claro */
+}
+.modal {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none; 
+    background: url(/Assets/binevenida.png);
+}
+.modal-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+.modal-wrapper > h1, .modal-wrapper > h2, .modal-wrapper > p{
+    background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 30px;
 }
