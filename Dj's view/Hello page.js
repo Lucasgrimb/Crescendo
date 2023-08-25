@@ -44,3 +44,40 @@ animation
     opacity: [0, 1],
   })
 
+// main.js
+
+document.addEventListener('DOMContentLoaded', function () {
+  const loginButton = document.getElementById('loginButton');
+
+  loginButton.addEventListener('click', async function () {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const loginData = {
+          username: username,
+          password: password
+      };
+
+      try {
+          const response = await fetch('/api/login', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(loginData)
+          });
+
+          const responseData = await response.json();
+
+          if (response.ok) {
+              // Successful login
+              document.getElementById('message').textContent = 'Login successful!';
+          } else {
+              // Failed login
+              document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
+          }
+      } catch (error) {
+          console.error('Error during login:', error);
+      }
+  });
+});
