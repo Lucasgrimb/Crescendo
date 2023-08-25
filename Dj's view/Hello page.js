@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
               },
               body: JSON.stringify(loginData)
           });
-
+          
           const responseData = await response.json();
 
           if (responseData.ok) {

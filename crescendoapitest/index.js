@@ -40,9 +40,7 @@ const crypto = require('crypto');
 const { fetchSongInfo, isValidSongOnSpotify } = require('./spotify');
 const { QueryDB, QueryDBp } = require("./SQL");
 const QRCode = require('qrcode');
-const { createCanvas, loadImage } = require('canvas');
-
-
+// const { createCanvas, loadImage } = require('canvas');
 
 
 // ---------- APP SETUP ----------
