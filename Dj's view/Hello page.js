@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
       };
 
       try {
-          const response = await fetch('/api/login', {
+          const response = await fetch('localhost/:3000/api/login', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           const responseData = await response.json();
 
-          if (response.ok) {
+          if (responseData.ok) {
               // Successful login
               document.getElementById('message').textContent = 'Login successful!';
           } else {
