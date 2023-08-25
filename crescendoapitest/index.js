@@ -324,4 +324,3 @@ app.post('/api/token', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
 });
-
