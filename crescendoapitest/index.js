@@ -151,7 +151,7 @@ res.status(200).json({
 app.post('/api/startparty/:username', authenticateToken, (req, res) => {
     const dj_id = req.params.username;
 
-    if (!username) {
+    if (!dj_id) {
       return res.status(400).json({ error: 'El dj_id es requerido' });
     }
 
@@ -184,9 +184,8 @@ app.post('/api/startparty/:username', authenticateToken, (req, res) => {
 
 //-----------------Request song route------------------   OK
 //Le pasas el id de la canción seleccionada a la base de datos. 
-app.post('/api/store-song-request', async (req, res) => {
-   
-
+app.post('/api/store-song-request/:party_id', async (req, res) => {
+    const party_id = req.params.party_id;
     const { songId } = req.body;
 
     if (!songId) {
@@ -256,7 +255,7 @@ app.post('/api/:songId/:party_id/accept', authenticateToken, async (req, res) =>
     }
 
     // Actualiza el estado de la canción en la base de datos
-    await QueryDBp(`UPDATE songs SET song_state = 'accepted' WHERE song_id = ? AND party_id = ?`, [song_id, party_id]);
+    await QueryDBp(`UPDATE songs SET song_state = 'accepted' WHERE song_id = ? AND party_id = ?`, [songId, party_id]);
     res.sendStatus(200);
 });
 
@@ -271,7 +270,7 @@ if (!songId || !party_id) {
 }
 
 // Actualiza el estado de la canción en la base de datos
-await QueryDBp(`UPDATE songs SET song_state = 'rejected' WHERE song_id = ? AND party_id = ?`, [song_id, party_id]);
+await QueryDBp(`UPDATE songs SET song_state = 'rejected' WHERE song_id = ? AND party_id = ?`, [songId, party_id]);
 res.sendStatus(200);
 });
 
