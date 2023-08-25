@@ -7,12 +7,7 @@ const usuario = document.getElementById("usuario");
 const usuerName = document.getElementById("text-input");
 const password = document.getElementById("tex1-input1");
 
-button.addEventListener("click",  ()=> {
-const userN = usuerName.value;
-const pass = password.value;
-fetch('localhost:3000/api/login')
 
-});
 
 
 
@@ -43,4 +38,37 @@ animation
     translateY: [20, 0],
     opacity: [0, 1],
   })
+
+// main.js
+
+
+  button.addEventListener('click', async function () {
+
+      const loginData = {
+          userName: userName,
+          password: password
+      };
+
+      try {
+          const response = await fetch('localhost/:3000/api/login', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(loginData)
+          });
+
+          const responseData = await response.json();
+console.log(response.json());
+          if (responseData.ok) {
+              // Successful login
+              Console.Log('message').textContent = 'Login successful!';
+          } else {
+              // Failed login
+              document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
+          }
+      } catch (error) {
+          console.error('Error during login:', error);
+      }
+  });
 
