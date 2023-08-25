@@ -7,12 +7,7 @@ const usuario = document.getElementById("usuario");
 const usuerName = document.getElementById("text-input");
 const password = document.getElementById("tex1-input1");
 
-button.addEventListener("click",  ()=> {
-const userN = usuerName.value;
-const pass = password.value;
-fetch('localhost:3000/api/login')
 
-});
 
 
 
@@ -46,15 +41,11 @@ animation
 
 // main.js
 
-document.addEventListener('DOMContentLoaded', function () {
-  const loginButton = document.getElementById('loginButton');
 
-  loginButton.addEventListener('click', async function () {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+  button.addEventListener('click', async function () {
 
       const loginData = {
-          username: username,
+          userName: userName,
           password: password
       };
 
@@ -66,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
               },
               body: JSON.stringify(loginData)
           });
-          
-          const responseData = await response.json();
 
+          const responseData = await response.json();
+console.log(response.json());
           if (responseData.ok) {
               // Successful login
-              document.getElementById('message').textContent = 'Login successful!';
+              Console.Log('message').textContent = 'Login successful!';
           } else {
               // Failed login
               document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
@@ -80,4 +71,4 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error('Error during login:', error);
       }
   });
-});
+
