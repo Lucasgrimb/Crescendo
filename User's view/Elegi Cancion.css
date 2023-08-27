@@ -277,6 +277,7 @@ font-style: normal;
 font-weight: 400;
 margin-top: -10px;
 }
+<<<<<<< HEAD
 
 /* llamamos a la foto de la cancion seleccionada */
 #song-image {
@@ -308,3 +309,5 @@ margin-top: -10px;
 
 
 
+=======
+>>>>>>> parent of af61626 (seleccionas cancion y te lleva a la pantalla)
