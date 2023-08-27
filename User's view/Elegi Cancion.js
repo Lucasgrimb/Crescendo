@@ -93,6 +93,11 @@ function displayResults(tracks) {
     });
 }
 
+// esconder elegir cancion funciones
+// document.getElementsByClassName("modal").style.display = "none";
+// elegir cancion aparece
+// document.getElementsByClassName("modal").style.display = "initial";
+
 document.addEventListener('DOMContentLoaded', function() {
 
     // Manejador de evento para el botón de búsqueda
@@ -132,51 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
             resultsDiv.style.display = 'none';
         }
     });
- // guardamos el id de la cancion seleccionada con la siguiente funcion:
- const resultDiv = document.querySelector("#resultDiv");
-resultDiv.setAttribute("data-id", trackId);
-});
-// prueba gpt
-// esconder elegir cancion funciones
-// document.getElementsByClassName("modal").style.display = "none";
-// elegir cancion aparece
-// document.getElementsByClassName("modal").style.display = "initial";
-document.addEventListener('DOMContentLoaded', function() {
-    // ... Tu código existente ...
 
-    // Manejador de evento para hacer clic en una canción en los resultados
-    const resultsDiv = document.getElementById('resultsDropdown');
-    resultsDiv.addEventListener('click', (event) => {
-        const clickedElement = event.target.closest('.result');
-        if (clickedElement) {
-            const modal = document.querySelector('.modal');
-            const songImage = modal.querySelector('#song-image');
-            const songTitle = modal.querySelector('h2');
-            const songArtist = modal.querySelector('p');
-            const songAlbum = modal.querySelector('.album'); // Selecciona el elemento con la clase "album"
+    // Resto de las funciones, si las hay...
 
-            // Obtener los datos de la canción seleccionada
-            const image = clickedElement.querySelector('img').src;
-            const title = clickedElement.querySelector('.song-title').textContent;
-            const artistAlbum = clickedElement.querySelector('.song-artist').textContent;
-
-            // Separa el nombre del artista y el álbum
-            const [artist, album] = artistAlbum.split(' - ');
-
-            // Actualizar los elementos en la pantalla modal
-            songImage.src = image;
-            songTitle.textContent = title;
-            songArtist.textContent = artist;
-            songAlbum.textContent = album; // Actualiza el nombre del álbum
-
-            // Mostrar la pantalla modal
-            modal.style.display = 'flex';
-
-            // Guardar el ID de la canción seleccionada en el atributo data-id
-            const resultDiv = document.getElementById('resultDiv');
-            resultDiv.setAttribute('data-id', clickedElement.dataset.trackId);
-        }
-    });
-
-    // ... Resto de tu código ...
 });
