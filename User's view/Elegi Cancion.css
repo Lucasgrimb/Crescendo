@@ -74,6 +74,7 @@ nav.nav {
     background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
     margin-left: -33px;
     margin-top: -83px;
+    margin-bottom: 50px;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -186,11 +187,11 @@ nav.nav {
 
 /* Estilo para el contenedor desplegable */
 .dropdown {
-    margin-top: 78px;
+    margin-top: 158px;
     position: absolute;
     display: none; /* inicialmente oculto */
-    width: 254px;
-    max-height: 213px;
+    width: 255px;
+    max-height: 264px;
     overflow-y: auto;
     background-color: transparent;
     color: #ffffff;
@@ -203,8 +204,8 @@ nav.nav {
 .result {
     display: flex; /* Cambia el tipo de display a flex */
     align-items: center; /* Centra verticalmente los elementos */
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+    padding: 2px 10px;
+    border-bottom: 1px solid #656565;
 }
 
 
@@ -241,8 +242,10 @@ nav.nav {
     left: 0;
     right: 0;
     bottom: 0;
-    display: none; 
+    display: none;
     background: url(/Assets/binevenida.png);
+    background-position: center;
+    background-size: cover;
 }
 .modal-wrapper {
     display: flex;
@@ -260,6 +263,7 @@ nav.nav {
        -webkit-text-fill-color: transparent;
        margin-top: -82px;
        margin-bottom: 80px;
+       font-size: 28px;
 }
 
 .modal-wrapper > h2{
@@ -267,7 +271,12 @@ nav.nav {
     font-weight: 700;
     color: #9D9C9C;
     margin-bottom: 10px;
+    max-width: 80%; /* Limita el ancho del título al 80% del contenedor */
+    white-space: nowrap; /* Evita que el título se rompa en varias líneas */
+    overflow: hidden; /* Oculta el contenido que excede el ancho máximo */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos al final del título si se corta */
 }
+
 .modal-wrapper > p{
 color: #9D9C9C;
 font-family: Inter;
@@ -275,4 +284,10 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 margin-top: -10px;
+}
+/* llamamos a la foto de la cancion seleccionada */
+#song-image {
+    max-width: 192px;
+    max-height: 192px;
+    border-radius: 9px;
 }
