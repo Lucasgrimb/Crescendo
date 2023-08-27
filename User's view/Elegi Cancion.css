@@ -183,6 +183,7 @@ nav.nav {
 }
 
 
+
 /* Editando javascript a partir de ahora /*
 
 /* Estilo para el contenedor desplegable */
@@ -285,9 +286,34 @@ font-style: normal;
 font-weight: 400;
 margin-top: -10px;
 }
+
 /* llamamos a la foto de la cancion seleccionada */
 #song-image {
     max-width: 192px;
     max-height: 192px;
     border-radius: 9px;
 }
+
+.dropdown {
+    display: none; /* inicialmente oculto */
+    width: 260px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+}
+.result {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+.result:last-child {
+    border-bottom: none;
+}
+.result img {
+    width: 50px;
+    height: 50px;
+}
+
+
+
