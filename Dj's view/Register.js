@@ -28,3 +28,36 @@ function registerUser() {
     // Redirigir a la página "success.html"
     window.location.href = "Start Party.html";
 }
+
+// main.js
+
+button.addEventListener('click', async function () {
+
+    const loginData = {
+        userName: userName,
+        password: password,
+        email: email
+    };
+
+    try {
+        const response = await fetch('localhost/:3000/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        });
+
+        const responseData = await response.json();
+console.log(response.json());
+        if (responseData.ok) {
+            // Successful login
+            Console.Log('message').textContent = 'Login successful!';
+        } else {
+            // Failed login
+            document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+    }
+});
