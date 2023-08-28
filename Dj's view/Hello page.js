@@ -48,29 +48,32 @@ button.addEventListener('click', async function () {
       userName: userName,
       password: password
   };
-console.log(loginData.userName);
-  try {
-      const response = await fetch('http://localhost:3000/api/login', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(loginData)
-      });
 
-      const responseData = await response.json();
-      console.log(responseData);  // Log the response data
+  console.log(loginData)
 
-      if (responseData.ok) {
-          // Successful login
-          document.getElementById('message').textContent = 'Login successful!';
-      } else {
-          // Failed login
-          document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
-      }
-  } catch (error) {
-      console.error('Error during login:', error);
-  }
+  // try {
+
+  //     const response = await fetch('http://localhost:3000/api/login', {
+  //         method: 'POST',
+  //         headers: {
+  //             'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify(loginData)
+  //     });
+
+  //     const responseData = await response.json();
+  //     console.log(responseData);  // Log the response data
+
+  //     if (responseData.ok) {
+  //         // Successful login
+  //         document.getElementById('message').textContent = 'Login successful!';
+  //     } else {
+  //         // Failed login
+  //         document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
+  //     }
+  // } catch (error) {
+  //     console.error('Error during login:', error);
+  // }
 });
 
 
