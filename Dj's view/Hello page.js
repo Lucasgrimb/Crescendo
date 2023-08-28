@@ -4,7 +4,7 @@ const form = document.querySelector('form');
 const button = document.querySelector('.login-cta');
 const nav = document.querySelector('.nav');
 const usuario = document.getElementById("usuario");
-const usuerName = document.getElementById("text-input");
+const userName = document.getElementById("text-input");
 const password = document.getElementById("tex1-input1");
 
 
@@ -42,33 +42,39 @@ animation
 // main.js
 
 
-  button.addEventListener('click', async function () {
+button.addEventListener('click', async function () {
 
-      const loginData = {
-          userName: userName,
-          password: password
-      };
+  const loginData = {
+      userName: userName,
+      password: password
+  };
 
-      try {
-          const response = await fetch('localhost/:3000/api/login', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(loginData)
-          });
+  console.log(loginData)
 
-          const responseData = await response.json();
-console.log(response.json());
-          if (responseData.ok) {
-              // Successful login
-              Console.Log('message').textContent = 'Login successful!';
-          } else {
-              // Failed login
-              document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
-          }
-      } catch (error) {
-          console.error('Error during login:', error);
-      }
-  });
+  // try {
+
+  //     const response = await fetch('http://localhost:3000/api/login', {
+  //         method: 'POST',
+  //         headers: {
+  //             'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify(loginData)
+  //     });
+
+  //     const responseData = await response.json();
+  //     console.log(responseData);  // Log the response data
+
+  //     if (responseData.ok) {
+  //         // Successful login
+  //         document.getElementById('message').textContent = 'Login successful!';
+  //     } else {
+  //         // Failed login
+  //         document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
+  //     }
+  // } catch (error) {
+  //     console.error('Error during login:', error);
+  // }
+});
+
+
 

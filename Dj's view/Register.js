@@ -32,32 +32,39 @@ function registerUser() {
 // main.js
 
 button.addEventListener('click', async function () {
+        event.preventDefault();  // Prevenimos la recarga automática del formulario
+        <button type="button" id="button">Click Me</button>
 
+        // Resto del código
+    });
+    
     const loginData = {
         userName: userName,
-        password: password,
-        email: email
+        password: password
     };
-
-    try {
-        const response = await fetch('localhost/:3000/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(loginData)
-        });
-
-        const responseData = await response.json();
-console.log(response.json());
-        if (responseData.ok) {
-            // Successful login
-            Console.Log('message').textContent = 'Login successful!';
-        } else {
-            // Failed login
-            document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
-        }
-    } catch (error) {
-        console.error('Error during login:', error);
-    }
-});
+  
+    console.log(loginData)
+  
+     try {
+  
+         const response = await fetch('http://localhost:3000/api/login', {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             body: JSON.stringify(loginData)
+         });
+  
+         const responseData = await response.json();
+         console.log(responseData);  // Log the response data
+  
+         if (responseData.ok) {
+             // Successful login
+             document.getElementById('message').textContent = 'Login successful!';
+         } else {
+             // Failed login
+             document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
+         }
+     } catch (error) {
+         console.error('Error during login:', error);
+     }
