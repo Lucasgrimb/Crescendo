@@ -31,22 +31,20 @@ function registerUser() {
 
 // main.js
 
-const button = document.getElementById('button');
-
 button.addEventListener('click', async function () {
     event.preventDefault();  // Prevenimos la recarga automática del formulario
 
-    const userName = ""; 
-    const password = ""; 
-
-    // Crear el objeto loginData con los valores
+    // Volver a poner los valores de los inputs ya que cambiaron de lo que eran inicialmente
+    usernameValue = document.getElementById('username').value;
+    passwordValue = document.getElementById('password').value;
+    // Crea el objeto loginData con los valores ingresados
     const loginData = {
-        userName: userName,
-        password: password
-    };
+      userName: usernameValue,
+      password: passwordValue
+  };
 
     // Mostrar el objeto loginData en la consola
-    console.log(loginData);
+    console.log(loginData); 
 
     try {
         const response = await fetch('http://localhost:3000/api/login', {
@@ -71,3 +69,39 @@ button.addEventListener('click', async function () {
         console.error('Error during login:', error);
     }
 });
+
+// const registerForm = document.querySelector('#register-form');
+
+// registerForm.addEventListener('submit', async function (event) {
+//     event.preventDefault(); // Prevenir la recarga de la página
+
+//     const username = document.querySelector('#username').value;
+//     const password = document.querySelector('#password').value;
+//     const email = document.querySelector('#email').value;
+
+//     const userData = {
+//         username: username,
+//         password: password,
+//         email: email
+//     };
+
+//     try {
+//         const response = await fetch('URL_DE_TU_API/registro', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(userData)
+//         });
+
+//         const responseData = await response.json();
+
+//         if (responseData.ok) {
+//             // Registro exitoso, puedes redirigir al usuario a otra página o mostrar un mensaje
+//         } else {
+//             // Registro fallido, muestra un mensaje de error
+//         }
+//     } catch (error) {
+//         console.error('Error durante el registro:', error);
+//     }
+// });
