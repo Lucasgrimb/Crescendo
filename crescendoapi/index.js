@@ -39,6 +39,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { fetchSongInfo, isValidSongOnSpotify } = require('./spotify');
 const { QueryDB, QueryDBp } = require("./SQL");
+require("dotenv").config()
 const QRCode = require('qrcode');
 const cors = require("cors")
 // const { createCanvas, loadImage } = require('canvas');

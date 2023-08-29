@@ -3,8 +3,8 @@ const description = document.querySelector('.color-gray');
 const form = document.querySelector('form');
 const button = document.querySelector('.login-cta');
 const nav = document.querySelector('.nav');
-const usernameValue = document.getElementById('username').value;
-const passwordValue = document.getElementById('password').value;
+var usernameValue = document.getElementById('username').value;
+var passwordValue = document.getElementById('password').value;
 
 
 
@@ -42,7 +42,9 @@ animation
 button.addEventListener('click', async function () {
     event.preventDefault();  // Prevenimos la recarga automática del formulario
 
-    // Crear el objeto loginData con los valores
+    // Volver a poner los valores de los inputs ya que cambiaron de lo que eran inicialmente
+    usernameValue = document.getElementById('username').value;
+    passwordValue = document.getElementById('password').value;
     // Crea el objeto loginData con los valores ingresados
     const loginData = {
       userName: usernameValue,
@@ -53,7 +55,7 @@ button.addEventListener('click', async function () {
     console.log(loginData); 
 
     try {
-        const response = await fetch('localhost:3000/api/login', {
+        const response = await fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
