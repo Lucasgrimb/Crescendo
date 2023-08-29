@@ -40,6 +40,7 @@ const crypto = require('crypto');
 const { fetchSongInfo, isValidSongOnSpotify } = require('./spotify');
 const { QueryDB, QueryDBp } = require("./SQL");
 const QRCode = require('qrcode');
+const cors = require("cors")
 // const { createCanvas, loadImage } = require('canvas');
 
 
@@ -47,6 +48,7 @@ const QRCode = require('qrcode');
 const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 3000;
+app.use(cors({origin: "*"}))
 
 
 // ---------- MIDDLEWARE ----------

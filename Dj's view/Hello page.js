@@ -3,11 +3,8 @@ const description = document.querySelector('.color-gray');
 const form = document.querySelector('form');
 const button = document.querySelector('.login-cta');
 const nav = document.querySelector('.nav');
-const usuario = document.getElementById("usuario");
-const userName = document.getElementById("text-input");
-const password = document.getElementById("tex1-input1");
-
-
+const usernameValue = document.getElementById('username').value;
+const passwordValue = document.getElementById('password').value;
 
 
 
@@ -16,6 +13,7 @@ const animation = anime.timeline({
   easing: 'easeOutExpo',
   duration: 500,
 });
+
 
 animation
   .add({
@@ -44,17 +42,15 @@ animation
 button.addEventListener('click', async function () {
     event.preventDefault();  // Prevenimos la recarga automática del formulario
 
-    const userName = ""; 
-    const password = ""; 
-
     // Crear el objeto loginData con los valores
+    // Crea el objeto loginData con los valores ingresados
     const loginData = {
-        userName: userName,
-        password: password
-    };
+      userName: usernameValue,
+      password: passwordValue
+  };
 
     // Mostrar el objeto loginData en la consola
-    console.log(loginData);
+    console.log(loginData); 
 
     try {
         const response = await fetch('http://localhost:3000/api/login', {
