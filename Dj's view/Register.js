@@ -30,29 +30,30 @@ function registerUser() {
 }
 
 // main.js
+const registerForm = document.querySelector('#register-form');
 
-button.addEventListener('click', async function () {
+registerForm.addEventListener('submit', async function (event) {
     event.preventDefault();  // Prevenimos la recarga automática del formulario
 
     // Volver a poner los valores de los inputs ya que cambiaron de lo que eran inicialmente
-    usernameValue = document.getElementById('username').value;
-    passwordValue = document.getElementById('password').value;
-    // Crea el objeto loginData con los valores ingresados
-    const loginData = {
-      userName: usernameValue,
-      password: passwordValue
-  };
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const userData = {
+        username: username,
+        password: password,
+    };
 
     // Mostrar el objeto loginData en la consola
-    console.log(loginData); 
+    console.log(userData);
 
     try {
-        const response = await fetch('http://localhost:3000/api/login', {
+        const response = await fetch('http://localhost:3000/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(loginData)
+            body: JSON.stringify(userData)
         });
 
         const responseData = await response.json();
@@ -60,48 +61,13 @@ button.addEventListener('click', async function () {
 
         if (responseData.ok) {
             // Successful login
-            document.getElementById('message').textContent = 'Login successful!';
+            document.getElementById('message').textContent = 'Register successful!';
         } else {
             // Failed login
-            document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
+            document.getElementById('message').textContent = 'Register failed. Please check your credentials.';
         }
     } catch (error) {
         console.error('Error during login:', error);
     }
 });
 
-// const registerForm = document.querySelector('#register-form');
-
-// registerForm.addEventListener('submit', async function (event) {
-//     event.preventDefault(); // Prevenir la recarga de la página
-
-//     const username = document.querySelector('#username').value;
-//     const password = document.querySelector('#password').value;
-//     const email = document.querySelector('#email').value;
-
-//     const userData = {
-//         username: username,
-//         password: password,
-//         email: email
-//     };
-
-//     try {
-//         const response = await fetch('URL_DE_TU_API/registro', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(userData)
-//         });
-
-//         const responseData = await response.json();
-
-//         if (responseData.ok) {
-//             // Registro exitoso, puedes redirigir al usuario a otra página o mostrar un mensaje
-//         } else {
-//             // Registro fallido, muestra un mensaje de error
-//         }
-//     } catch (error) {
-//         console.error('Error durante el registro:', error);
-//     }
-// });
