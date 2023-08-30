@@ -37,7 +37,7 @@ registerForm.addEventListener('submit', async function (event) {
     const password = document.getElementById('password').value;
 
     const userData = {
-        username: username,
+        userName: username,
         password: password,
     };
 
