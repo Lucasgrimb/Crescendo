@@ -1,8 +1,3 @@
-var usernameValue = document.getElementById('username').value;
-var passwordValue = document.getElementById('password').value;
-
-
-
 function registerUser() {
     // Validar que los campos no estén vacíos
     if (username === "" || password === "") {
@@ -28,25 +23,23 @@ function registerUser() {
     window.location.href = "Start Party.html";
 }
 
-
-
-
 // main.js
+const registerForm = document.querySelector('#register-form');
 
-button.addEventListener('click', async function () {
+registerForm.addEventListener('submit', async function (event) {
     event.preventDefault();  // Prevenimos la recarga automática del formulario
 
     // Volver a poner los valores de los inputs ya que cambiaron de lo que eran inicialmente
-    usernameValue = document.getElementById('username').value;
-    passwordValue = document.getElementById('password').value;
-    // Crea el objeto loginData con los valores ingresados
-    const loginData = {
-      userName: usernameValue,
-      password: passwordValue
-  };
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const userData = {
+        userName: username,
+        password: password,
+    };
 
     // Mostrar el objeto loginData en la consola
-    console.log(loginData); 
+    console.log(userData);
 
     try {
         const response = await fetch('http://localhost:3000/api/register', {
@@ -54,8 +47,7 @@ button.addEventListener('click', async function () {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(loginData),
-            credentials: "include",
+            body: JSON.stringify(userData)
         });
 
         const responseData = await response.json();
@@ -63,11 +55,12 @@ button.addEventListener('click', async function () {
 
         if (responseData.ok) {
             // Successful login
-            document.getElementById('message').textContent = 'register successful';
+            document.getElementById('message').textContent = 'Register successful!';
         } else {
             // Failed login
             document.getElementById('message').textContent = 'Register failed. Please check your credentials.';
         }
+
     } catch (error) {
         console.error('Error during login:', error);
     }
