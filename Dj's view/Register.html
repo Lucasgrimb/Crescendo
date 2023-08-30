@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,18 @@
     <link rel="stylesheet" href="Register.css">
 </head>
 <style>
-           @font-face {
-            font-family: 'Inter Bold';
-            src: url('/fonts/Coolvetica-Regular.ttf') format('truetype'); 
-            src: url('/fonts/Inter-Bold.ttf') format('truetype'); 
-        }
-    
-        @font-face {
-            font-family: 'Museo Moderno';
-            src: url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap');
-        }
+    @font-face {
+        font-family: 'Inter Bold';
+        src: url('/fonts/Coolvetica-Regular.ttf') format('truetype');
+        src: url('/fonts/Inter-Bold.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Museo Moderno';
+        src: url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap');
+    }
 </style>
+
 <body>
     <nav class="nav">
         <h1>Crescendo</h1>
@@ -25,24 +27,23 @@
     <div class="flex flex-col min-h-screen justify-center items-center main-bg">
         <h1 class="header-gradient">Crescendo</h1>
         <h6 class="color-gray">Elevá tus fiestas</h6>
-    <form>
-        <div class="input-container">
-            <input type="text" id="username" autocomplete="off" 
-            placeholder="ingresa tu Usuario" required
-            class="text-input">
-            <label for="username" class="label">Usuario</label>
-        </div>
-        <div class="input1-container1">
-            <input type="password" id="password" autocomplete="off"
-            placeholder="ingresa tu Contraseña" required
-            class="text1-input1">
-            <label for="password" class="label1"> Contraseña</label>
-        </div>
-        <button class="login-cta" type="submit">Iniciar fiesta</button> 
-    </form>
-</div>
+        <form id="register-form">
+            <div class="input-container">
+                <input type="text" id="username" autocomplete="off" placeholder="ingresa tu Usuario" required
+                    class="text-input">
+                <label for="username" class="label">Usuario</label>
+            </div>
+            <div class="input1-container1">
+                <input type="password" id="password" autocomplete="off" placeholder="ingresa tu Contraseña" required
+                    class="text1-input1">
+                <label for="password" class="label1"> Contraseña</label>
+            </div>
+            <button class="login-cta" type="submit">Iniciar fiesta</button>
+        </form>
+    </div>
 </body>
 
 <button type="button" id="button">Click Me</button>
+<script src="Register.js"></script>
 
 </html>

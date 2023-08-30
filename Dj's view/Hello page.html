@@ -10,10 +10,10 @@
     <style>
         @font-face {
             font-family: 'Inter Bold';
-            src: url('/fonts/Coolvetica-Regular.ttf') format('truetype'); 
-            src: url('/fonts/Inter-Bold.ttf') format('truetype'); 
+            src: url('/fonts/Coolvetica-Regular.ttf') format('truetype');
+            src: url('/fonts/Inter-Bold.ttf') format('truetype');
         }
-    
+
         @font-face {
             font-family: 'Museo Moderno';
             src: url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap');
@@ -21,40 +21,44 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
-    
-               </head>
-            <body>
-              <nav class="nav">
-                <h1>Crescendo</h1>
-                </nav>
-              <div class="flex flex-col min-h-screen justify-center items-center main-bg">
-                <h1 class="header-gradient"> <span class="light-weight">Lleva tu</span> fiesta <span class="light-weight">al</span> <br />siguiente nivel <span class="light-weight">con</span> <br/><span class="pink">Crescendo</span></h1>
-                <p class="color-gray ">Crescendo le permite a los usuarios hacerle un request
-                    al dj y que toda la experiencdsasdia de la musica en tu fiesta
-                   sea mas personalizada.</p>
-              <form>
-               <div class="input-container">
-                    <input type="text" id="username" autocomplete="off" 
-                    placeholder="ingresa tu Usuario" required
+
+</head>
+
+<body>
+    <nav class="nav">
+        <h1>Crescendo</h1>
+    </nav>
+    <div class="flex flex-col min-h-screen justify-center items-center main-bg">
+        <h1 class="header-gradient"> <span class="light-weight">Lleva tu</span> fiesta <span
+                class="light-weight">al</span> <br />siguiente nivel <span class="light-weight">con</span> <br /><span
+                class="pink">Crescendo</span></h1>
+        <p class="color-gray ">Crescendo le permite a los usuarios hacerle un request
+            al dj y que toda la experiencdsasdia de la musica en tu fiesta
+            sea mas personalizada.</p>
+        <form>
+            <div class="input-container">
+                <input type="text" id="username" autocomplete="off" placeholder="ingresa tu Usuario" required
                     class="text-input">
-                    <label for="username" class="label">Usuario</label>
-                </div>
-                <div class="input1-container1">
-                    <input type="password" id="password" autocomplete="off"
-                    placeholder="ingresa tu Contraseña" required
-                    class="text1-input1">
-                    <label for="password" class="label1"> Contraseña</label>
-                </div>
-                  <p class="m-2">¿No tenes cuenta? <a class="registrar-link" href="Register.html">Registrarme</a></p>
-                  <!-- mensaje iniciaste session/error -->
-                  <p style="color: white" id="message"></p>
-                  <button class="login-cta" type="submit">Iniciar fiesta</button> 
-              </form>
+                <label for="username" class="label">Usuario</label>
             </div>
+            <div class="input1-container1">
+                <input type="password" id="password" autocomplete="off" placeholder="ingresa tu Contraseña" required
+                    class="text1-input1">
+                <label for="password" class="label1"> Contraseña</label>
+            </div>
+            <p class="m-2">¿No tenes cuenta? <a class="registrar-link" href="Register.html">Registrarme</a></p>
+            <!-- mensaje iniciaste session/error -->
+            <p style="color: white" id="message"></p>
+            <button class="login-cta" type="submit">Iniciar fiesta</button>
+        </form>
+    </div>
 
     <script src="Hello page.js"></script>
 </body>
 
 <button type="button" id="button">Click Me</button>
 
+
+
 </html>
+

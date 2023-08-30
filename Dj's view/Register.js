@@ -30,31 +30,30 @@ function registerUser() {
 }
 
 // main.js
+const registerForm = document.querySelector('#register-form');
 
-const button = document.getElementById('button');
-
-button.addEventListener('click', async function () {
+registerForm.addEventListener('submit', async function (event) {
     event.preventDefault();  // Prevenimos la recarga automática del formulario
 
-    const userName = ""; 
-    const password = ""; 
+    // Volver a poner los valores de los inputs ya que cambiaron de lo que eran inicialmente
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-    // Crear el objeto loginData con los valores
-    const loginData = {
-        userName: userName,
-        password: password
+    const userData = {
+        username: username,
+        password: password,
     };
 
     // Mostrar el objeto loginData en la consola
-    console.log(loginData);
+    console.log(userData);
 
     try {
-        const response = await fetch('http://localhost:3000/api/login', {
+        const response = await fetch('http://localhost:3000/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(loginData)
+            body: JSON.stringify(userData)
         });
 
         const responseData = await response.json();
@@ -62,12 +61,13 @@ button.addEventListener('click', async function () {
 
         if (responseData.ok) {
             // Successful login
-            document.getElementById('message').textContent = 'Login successful!';
+            document.getElementById('message').textContent = 'Register successful!';
         } else {
             // Failed login
-            document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
+            document.getElementById('message').textContent = 'Register failed. Please check your credentials.';
         }
     } catch (error) {
         console.error('Error during login:', error);
     }
 });
+
