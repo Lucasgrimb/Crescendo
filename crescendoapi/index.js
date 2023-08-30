@@ -49,7 +49,21 @@ const cors = require("cors")
 const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 3000;
-app.use(cors({origin: "*"}))
+app.use(cors({origin: "http://localhost:5500", credentials: true}))
+app.use((req, res, next)=>{
+req.header("Access-Control-Allow-Origin", req.headers.origin);
+res.header(
+    "access-Control-Allow-Headers",
+    "Content-Type, Authorization, Content-Lenght, X-Requested-With, Set-Cookie"
+);
+res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+);
+res.header("Access-Control-Allow-Credentials", true);
+res.header("Access-Control-Expose-Headers", "Set-Cookie");
+next();
+});
 
 
 // ---------- MIDDLEWARE ----------
