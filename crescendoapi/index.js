@@ -99,7 +99,6 @@ app.post('/api/register', async (req, res) => {
         await QueryDBp("INSERT INTO users (username, password) VALUES (?, ?)", [userName, hashedPassword]);
         res.sendStatus(200); 
     } catch (err) {
-
         res.status(500).json({ error: err });
     }
 });
