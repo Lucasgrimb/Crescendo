@@ -67,26 +67,19 @@ next();
 });
 app.use(cookieParser());
 
-//---------middleware-------
 
-
+// ---------- MIDDLEWARE ----------
 function authenticateToken(req, res, next) {
-    const token = req.cookies['accessToken'];
-
-    console.log("Token received:", token);
-
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
     if (!token) return res.sendStatus(401);
-
     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
-        console.log("User after verification:", user);
-        
         if (err) return res.sendStatus(403);
-        
-        req.userId = user.userId;  // Ajusta esto según la estructura de tu objeto 'user'
+        req.userId = user.userId;
+        console.log(userId);
         next();
     });
 }
-
 
 
 // ---------- ROUTES ----------
@@ -165,15 +158,9 @@ res.cookie('refreshToken', refreshToken, {
     secure: process.env.NODE_ENV !== 'development',     // Establece la cookie como 'secure' si no estás en modo desarrollo
     sameSite: 'strict'                                 // Establece la política de SameSite
 });
-res.cookie('accessToken', accessToken, {
-    httpOnly: true,
-    expires: new Date(Date.now() + 2 * 60 * 60 * 1000),  // Expira en 2 horas
-    secure: process.env.NODE_ENV !== 'development', // sólo envía la cookie sobre HTTPS
-    sameSite: 'strict' // política de SameSite
-});
 
 res.status(200).json({ 
-    message: 'Login successful',
+    message: 'Login successful', accessToken
 });
 });
 
@@ -303,8 +290,8 @@ res.sendStatus(200);
 });
 
 //------------ Update tokens route (jd only)--------------------  OK
-app.post('/api/token', async (req, res) => {
-    const refreshToken = req.body.refreshToken;
+app.get('/api/token', async (req, res) => {
+    const refreshToken = req.cookies['newRefreshToken'];
 
     if (!refreshToken) return res.sendStatus(401);
 
