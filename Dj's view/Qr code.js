@@ -1,22 +1,24 @@
+var accesstoken;
 // Función para llamar al endpoint /api/token y obtener el accessToken
+
 async function fetchAccessToken() {
-
     try {
-        const response = await fetch('http://localhost:3000/api/token', {
-            method: "GET",
-            credentials: "include",  // Para enviar cookies
-        });
-        if (!response.ok) {
-            throw new Error("No se pudo obtener el accessToken");
-        }
-
-        const data = await response.json();
-        return data.accessToken;
+      const response = await fetch('http://localhost:3000/api/token', {
+        method: "POST",  // Actualizado a POST
+        credentials: "include",  // Para enviar cookies
+      });
+      if (response.status !== 200) {
+        throw new Error("No se pudo obtener el accessToken");
+      }
+      const data = await response.json();
+      accesstoken = data.accessToken;
+      return data.accessToken;
     } catch (error) {
-        console.error(error);
-        return null;
+      console.error(error);
+      return null;
     }
-}
+  }
+
 
 // Función para iniciar la fiesta
 async function startParty(accessToken) {
@@ -29,11 +31,10 @@ async function startParty(accessToken) {
         });
 
         if (response.status === 403) {
-         //   console.log("hola");
             // Intenta obtener un nuevo accessToken si el anterior fue rechazado
             const newAccessToken = await fetchAccessToken();
             if (newAccessToken) {
-                return startParty(newAccessToken);
+                return startParty(newAccessToken); 
             }
         }
 

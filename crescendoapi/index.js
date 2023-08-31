@@ -76,10 +76,10 @@ function authenticateToken(req, res, next) {
     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
         if (err) return res.sendStatus(403);
         req.userId = user.userId;
-        console.log(userId);
         next();
     });
 }
+
 
 
 // ---------- ROUTES ----------
@@ -290,48 +290,55 @@ res.sendStatus(200);
 });
 
 //------------ Update tokens route (jd only)--------------------  OK
-app.get('/api/token',  async (req, res) => {
-    const refreshToken = req.cookies['newRefreshToken'];
-
-    if (!refreshToken) return res.sendStatus(401);
-
-
-    const storedTokenData = await QueryDBp(`SELECT * FROM refresh_tokens WHERE token = ?`, [refreshToken]);
-
-    if (storedTokenData[0].length == 0) return res.sendStatus(403);
-
-    const tokenData = storedTokenData[0][0];
-
-    // Comprueba si el token ha expirado
-    if (new Date(tokenData.expiry_date) < new Date()) {
-        await QueryDBp(`DELETE FROM refresh_tokens WHERE token = ?`, [refreshToken]); // Borra el token expirado
-        return res.sendStatus(403);
+app.post('/api/token', async (req, res) => {
+    var refreshToken = req.cookies.refreshToken; // Obtener el refresh token de la cookie
+    
+    if (!refreshToken) {
+      return res.sendStatus(401); // No autorizado
     }
- 
-    const accessToken = jwt.sign({ userId: tokenData.username }, process.env.SECRET_KEY, { expiresIn: '5m' });
+  
+    let tokenData;
+    try {
+      // Aquí deberías buscar el refresh token en tu base de datos
+      // y obtener los datos asociados al token (como el username y la fecha de expiración)
+      tokenData = await QueryDBp('SELECT * FROM refresh_tokens WHERE token = ?', [refreshToken]);
+      
 
-
-    //creo un nuevo refresh token 
-    const newRefreshToken = crypto.randomBytes(40).toString('hex');
+      
+    } catch (error) {
+      return res.sendStatus(500); // Error interno del servidor
+    }
+  
+    // Comprueba si el token ha expirado
+    if (new Date(tokenData.expiry_date) < new Date()) {      
+      await QueryDBp('DELETE FROM refresh_tokens WHERE token = ?', [refreshToken]);
+      return res.sendStatus(403); // Prohibido
+    }
+  
+    // Crea un nuevo access token
+    const accessToken = jwt.sign({ userId: tokenData[0][0].username }, process.env.SECRET_KEY, { expiresIn: '5m' });
+    
+    // Crea un nuevo refresh token
+    refreshToken = crypto.randomBytes(40).toString('hex');
     const currentDate = new Date();
-    currentDate.setHours(currentDate.getHours() + 1); // Añade 1 hora
+    currentDate.setHours(currentDate.getHours() + 1);
     const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
-
-    // Actualizo refresh token
-     await QueryDBp(`UPDATE refresh_tokens SET token = ?, expiry_date = ? WHERE username = ?`, [newRefreshToken, formattedDate, tokenData.username]);
-
-    // Configura la respuesta para enviar la cookie httpOnly con el refresh token
-    res.cookie('newRefreshToken', newRefreshToken, {
-    httpOnly: true,
-    expires: new Date(Date.now() + 24 * 60 * 60 * 1000),  // Expira en 24 horas
-    secure: process.env.NODE_ENV !== 'development',     // Establece la cookie como 'secure' si no estás en modo desarrollo
-    sameSite: 'strict'                                 // Establece la política de SameSite
-});
- 
-
-    //muestro access y refresh token 
-    res.json({ accessToken });
-});
+  
+    // Actualiza el refresh token en la base de datos
+    await QueryDBp('UPDATE refresh_tokens SET token = ?, expiry_date = ? WHERE username = ?', [refreshToken, formattedDate, tokenData[0][0].username]);
+  
+    // Actualiza la cookie con el nuevo refresh token
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // Expira en 24 horas
+      secure: process.env.NODE_ENV !== 'development', // Asegura la cookie si no estamos en modo de desarrollo
+      sameSite: 'strict' // Política SameSite
+    });
+  
+    // Envía el nuevo access token
+    res.json({ accessToken});
+  });
+  
 
 
 // Start server
