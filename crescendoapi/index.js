@@ -164,19 +164,14 @@ res.status(200).json({
 
 //-----------------Iniciar Fiesta----------------------
 
-app.post('/api/startparty/:username', authenticateToken, (req, res) => {
-    const dj_id = req.params.username;
-
-    if (!username) {
-      return res.status(400).json({ error: 'El dj_id es requerido' });
-    }
+app.get('/api/startparty', authenticateToken, (req, res) => {
+    const username = req.user.username;  // Aquí accedemos al username
 
     // Insertar una nueva fila en la tabla 'party'
-    pool.execute('INSERT INTO party (dj_id) VALUES (?)', [dj_id])
+    QueryDBp.execute('INSERT INTO party (dj_id) VALUES (?)', [username])
         .then(async ([result]) => {
             if (result.affectedRows > 0) {
-                // Supongamos que quieres llevar al usuario a "https://tu-pagina-web.com/fiesta/{party_id}"
-                const url = `https://tu-pagina-web.com/fiesta/${result.insertId}`;
+                const url = `https://http://localhost:5500/Dj's%20view/Qr%20code.html`;
                 const qr = await QRCode.toDataURL(url);
 
                 res.json({

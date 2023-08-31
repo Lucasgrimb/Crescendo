@@ -70,6 +70,9 @@ button.addEventListener('click', async function () {
         if (responseData.message) {
             // Successful login
             document.getElementById('message').textContent = 'Login successful!';
+            setTimeout(function() {
+              window.location.href = "Qr code.html";
+          }, 3000);  // 3000 milisegundos = 3 segundos
         } else {
             // Failed login
             document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
