@@ -1,9 +1,8 @@
-// En Qr code.html o en un archivo JS vinculado a esa página
 document.addEventListener('DOMContentLoaded', (event) => {
     fetch('http://localhost:3000/api/startparty', {
         method: 'GET',
         headers: {
-            // Tus otras cabeceras aquí
+
         },
         credentials: 'include',  // Importante: esto envía cookies HTTP-only
     })
