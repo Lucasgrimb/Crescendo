@@ -133,7 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
  // guardamos el id de la cancion seleccionada con la siguiente funcion:
- const resultDiv = document.querySelector("#resultDiv");
+ const resultDiv = document.getElementById('resultsDropdown');
+ //const resultDiv = document.querySelector("#resultDiv");
 resultDiv.setAttribute("data-id", trackId);
 });
 // prueba gpt
@@ -185,13 +186,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const tokenDeCancion = seleccion.value; // Obtenemos el valor del token de la canción seleccionada
   
     // URL de tu API donde enviarás los datos
-    const url = 'https://api/store-song-request';
+    const url = 'https//localhost:3000/api/store-song-request';
   
     // Objeto con la información que enviarás a la API
     const data = {
       token: tokenDeCancion
     };
-  
+    
     // Configuración de la solicitud fetch
     const requestOptions = {
       method: 'POST',
@@ -200,7 +201,21 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       body: JSON.stringify(data) // Convertimos el objeto a JSON
     };
-  
+  // Inside your event listener for clicking on a song result
+        resultsDiv.addEventListener('click', (event) => {
+        const clickedElement = event.target.closest('.result');
+        if (clickedElement) {
+            // ... Your existing code ...
+
+            // Obtaining the trackId from the clicked element
+            const trackId = clickedElement.dataset.trackId;
+
+            // Setting the data-id attribute on the <select> element
+            const selectElement = document.getElementById('canciones');
+            selectElement.setAttribute('data-id', trackId);
+        }
+    });
+
     // Realizamos la solicitud fetch
     fetch(url, requestOptions)
       .then(response => response.json()) // Manejamos la respuesta como JSON si la API devuelve datos
