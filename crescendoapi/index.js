@@ -97,7 +97,8 @@ app.post('/api/register', async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
         await QueryDBp("INSERT INTO users (username, password) VALUES (?, ?)", [userName, hashedPassword]);
-        res.sendStatus(200); 
+        return res.status(200).json({message: "registro exitoso"});
+
     } catch (err) {
         res.status(500).json({ error: err });
     }

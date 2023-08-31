@@ -1,50 +1,36 @@
-function registerUser() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+const button = document.querySelector('.login-cta');
+const nav = document.querySelector('.nav');
 
-    // Validar que los campos no estén vacíos
-    if (username === "" || password === "") {
+
+
+// Initialize DOM elements
+const registerForm = document.querySelector('#register-form');
+
+// Event listener for form submit
+registerForm.addEventListener('submit', async function(event) {
+    event.preventDefault();  // Prevent form from auto-submitting
+
+    // Get current input values
+    const userName = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Validate input
+    if (userName === "" || password === "") {  // Note the corrected variable name
         alert("Por favor, complete todos los campos.");
         return;
     }
 
-    // Mostrar el mensaje de registro exitoso en una alerta
+    // Prepare data for sending
     const userData = {
-        username: username,
-        password: password,
+        userName,
+        password
     };
 
-    const successMessage = document.getElementById("successMessage");
-    successMessage.innerText = `¡Registro exitoso!\n\nNombre de usuario: ${userData.username}\nContraseña: ${userData.password}`;
-    successMessage.style.display = "block";
-
-    // // Limpiar los campos después de mostrar el mensajeg
-    // document.getElementById("username").value = "";
-    // document.getElementById("password").value = "";
-
-    // Redirigir a la página "success.html"
-    window.location.href = "Start Party.html";
-}
-
-// main.js
-const registerForm = document.querySelector('#register-form');
-
-registerForm.addEventListener('submit', async function (event) {
-    event.preventDefault();  // Prevenimos la recarga automática del formulario
-
-    // Volver a poner los valores de los inputs ya que cambiaron de lo que eran inicialmente
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    const userData = {
-        userName: username,
-        password: password,
-    };
-
-    // Mostrar el objeto loginData en la consola
+    // Debug log
     console.log(userData);
 
     try {
+        // Send POST request to register
         const response = await fetch('http://localhost:3000/api/register', {
             method: 'POST',
             headers: {
@@ -53,18 +39,21 @@ registerForm.addEventListener('submit', async function (event) {
             body: JSON.stringify(userData)
         });
 
+        // Parse and log the JSON response
         const responseData = await response.json();
-        console.log(responseData);  // Log the response data
+        console.log(responseData);
 
-        if (responseData.ok) {
-            // Successful login
+        // Check for successful registration
+        if (response.status === 200) {
             document.getElementById('message').textContent = 'Register successful!';
+            setTimeout(function() {
+                window.location.href = "Hello page.html";
+            }, 3000);  // 3000 milisegundos = 3 segundos
         } else {
-            // Failed login
             document.getElementById('message').textContent = 'Register failed. Please check your credentials.';
         }
-
     } catch (error) {
-        console.error('Error during login:', error);
+        console.error('Error during registration:', error);
+        document.getElementById('message').textContent = 'An error occurred during registration.';
     }
 });
