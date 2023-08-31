@@ -67,7 +67,7 @@ button.addEventListener('click', async function () {
         const responseData = await response.json();
         console.log(responseData);  // Log the response data
 
-        if (responseData.ok) {
+        if (responseData.message) {
             // Successful login
             document.getElementById('message').textContent = 'Login successful!';
         } else {
