@@ -178,5 +178,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ... Resto de tu código ...
 });
+
+document.getElementById('botonAceptar').addEventListener('click', () => {
+    const seleccion = document.getElementById('canciones');
+    const tokenDeCancion = seleccion.value; // Obtenemos el valor del token de la canción seleccionada
+  
+    // URL de tu API donde enviarás los datos
+    const url = 'https://api/store-song-request';
+  
+    // Objeto con la información que enviarás a la API
+    const data = {
+      token: tokenDeCancion
+    };
+  
+    // Configuración de la solicitud fetch
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Especificamos el tipo de contenido JSON
+      },
+      body: JSON.stringify(data) // Convertimos el objeto a JSON
+    };
+  
+    // Realizamos la solicitud fetch
+    fetch(url, requestOptions)
+      .then(response => response.json()) // Manejamos la respuesta como JSON si la API devuelve datos
+      .then(result => {
+        console.log('Respuesta de la API:', result);
+        // Puedes agregar aquí más lógica para manejar la respuesta de la API
+      })
+      .catch(error => {
+        console.error('Error al realizar la solicitud:', error);
+        // Manejo de errores, si es necesario
+      });
+  });
+  
