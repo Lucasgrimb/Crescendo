@@ -71,7 +71,7 @@ button.addEventListener('click', async function () {
             // Successful login
             document.getElementById('message').textContent = 'Login successful!';
             setTimeout(function() {
-              window.location.href = "Qr code.html";
+              window.location.href = "http://localhost:5500/Dj's%20view/Qr%20code.html";
           }, 3000);  // 3000 milisegundos = 3 segundos
         } else {
             // Failed login

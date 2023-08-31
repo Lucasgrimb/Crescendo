@@ -73,7 +73,7 @@ function authenticateToken(req, res, next) {
     if (!token) return res.sendStatus(401);
     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
         if (err) return res.sendStatus(403);
-        req.user = user;
+        req.userId = user.userId;
         next();
     });
 }
@@ -165,10 +165,10 @@ res.status(200).json({
 //-----------------Iniciar Fiesta----------------------
 
 app.get('/api/startparty', authenticateToken, (req, res) => {
-    const username = req.user.username;  // Aquí accedemos al username
+    const username = req.userId; 
 
     // Insertar una nueva fila en la tabla 'party'
-    QueryDBp.execute('INSERT INTO party (dj_id) VALUES (?)', [username])
+    QueryDBp('INSERT INTO party (username) VALUES (?)', [username])
         .then(async ([result]) => {
             if (result.affectedRows > 0) {
                 const url = `https://http://localhost:5500/Dj's%20view/Qr%20code.html`;
