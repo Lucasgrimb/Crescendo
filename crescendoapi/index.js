@@ -65,21 +65,28 @@ res.header("Access-Control-Allow-Credentials", true);
 res.header("Access-Control-Expose-Headers", "Set-Cookie");
 next();
 });
+app.use(cookieParser());
 
 //---------middleware-------
+
+
 function authenticateToken(req, res, next) {
-    // Obtener la cookie llamada 'accessToken'
     const token = req.cookies['accessToken'];
 
-    if (!token) return res.sendStatus(401); // Si no hay token, enviar respuesta no autorizada
+    console.log("Token received:", token);
 
-    // Verificar el token
+    if (!token) return res.sendStatus(401);
+
     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
-        if (err) return res.sendStatus(403);  // Si el token no es válido, enviar respuesta prohibida
-        req.userId = user.userId;  // almacenar la información de usuario en req.user
-        next();  // pasar al siguiente middleware
+        console.log("User after verification:", user);
+        
+        if (err) return res.sendStatus(403);
+        
+        req.userId = user.userId;  // Ajusta esto según la estructura de tu objeto 'user'
+        next();
     });
 }
+
 
 
 // ---------- ROUTES ----------
