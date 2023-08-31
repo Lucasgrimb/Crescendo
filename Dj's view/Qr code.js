@@ -1,12 +1,11 @@
 // Función para llamar al endpoint /api/token y obtener el accessToken
 async function fetchAccessToken() {
-    console.log("hola");
+
     try {
-        const response = await fetch("/api/token", {
+        const response = await fetch('http://localhost:3000/api/token', {
             method: "GET",
             credentials: "include",  // Para enviar cookies
         });
-
         if (!response.ok) {
             throw new Error("No se pudo obtener el accessToken");
         }
@@ -22,7 +21,7 @@ async function fetchAccessToken() {
 // Función para iniciar la fiesta
 async function startParty(accessToken) {
     try {
-        const response = await fetch("/api/startparty", {
+        const response = await fetch('http://localhost:3000/api/startparty', {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${accessToken}`,
@@ -30,7 +29,7 @@ async function startParty(accessToken) {
         });
 
         if (response.status === 403) {
-            console.log("hola");
+         //   console.log("hola");
             // Intenta obtener un nuevo accessToken si el anterior fue rechazado
             const newAccessToken = await fetchAccessToken();
             if (newAccessToken) {

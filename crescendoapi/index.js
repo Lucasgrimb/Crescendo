@@ -290,7 +290,7 @@ res.sendStatus(200);
 });
 
 //------------ Update tokens route (jd only)--------------------  OK
-app.get('/api/token', async (req, res) => {
+app.get('/api/token',  async (req, res) => {
     const refreshToken = req.cookies['newRefreshToken'];
 
     if (!refreshToken) return res.sendStatus(401);
