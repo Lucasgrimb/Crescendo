@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-document.getElementById('botonAceptar').addEventListener('click', () => {
+document.addEventListener('DOMContentLoaded', function() {
     const seleccion = document.getElementById('canciones');
     const tokenDeCancion = seleccion.value; // Obtenemos el valor del token de la canción seleccionada
   
