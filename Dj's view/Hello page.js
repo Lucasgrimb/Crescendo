@@ -71,11 +71,13 @@ button.addEventListener('click', async function () {
             // Successful login
             document.getElementById('message').textContent = 'Login successful!';
             setTimeout(function() {
-              window.location.href = "http://localhost:5500/Dj's%20view/Qr%20code.html";
-          }, 3000);  // 3000 milisegundos = 3 segundos
+
+              window.location.href = "Qr code.html";
+          }, 1000);  // 3000 milisegundos = 3 segundos
+
         } else {
             // Failed login
-            document.getElementById('message').textContent = 'Login failed. Please check your credentials.';
+            document.getElementById('message').textContent = 'Inicio de sesion fallido. Porfavor chequeee su informacion';
         }
     } catch (error) {
         console.error('Error during login:', error);

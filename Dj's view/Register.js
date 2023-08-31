@@ -48,7 +48,7 @@ registerForm.addEventListener('submit', async function(event) {
             document.getElementById('message').textContent = 'Register successful!';
             setTimeout(function() {
                 window.location.href = "Hello page.html";
-            }, 3000);  // 3000 milisegundos = 3 segundos
+            }, 1000);  // 3000 milisegundos = 3 segundos
         } else {
             document.getElementById('message').textContent = 'Register failed. Please check your credentials.';
         }
