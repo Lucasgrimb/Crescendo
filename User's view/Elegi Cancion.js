@@ -133,8 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
  // guardamos el id de la cancion seleccionada con la siguiente funcion:
- const resultDiv = document.getElementById('resultsDropdown');
- //const resultDiv = document.querySelector("#resultDiv");
+ const resultDiv = document.querySelector("#resultDiv");
 resultDiv.setAttribute("data-id", trackId);
 });
 // prueba gpt
