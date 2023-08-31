@@ -8,6 +8,7 @@ var passwordValue = document.getElementById('password').value;
 
 
 
+
 // Animacion de entrada//
 const animation = anime.timeline({
   easing: 'easeOutExpo',

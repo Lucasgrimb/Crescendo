@@ -42,6 +42,7 @@ const { QueryDB, QueryDBp } = require("./SQL");
 require("dotenv").config()
 const QRCode = require('qrcode');
 const cors = require("cors")
+const cookieParser = require('cookie-parser');
 // const { createCanvas, loadImage } = require('canvas');
 
 
@@ -65,18 +66,21 @@ res.header("Access-Control-Expose-Headers", "Set-Cookie");
 next();
 });
 
-
-// ---------- MIDDLEWARE ----------
+//---------middleware-------
 function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (!token) return res.sendStatus(401);
+    // Obtener la cookie llamada 'accessToken'
+    const token = req.cookies['accessToken'];
+
+    if (!token) return res.sendStatus(401); // Si no hay token, enviar respuesta no autorizada
+
+    // Verificar el token
     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
-        if (err) return res.sendStatus(403);
-        req.userId = user.userId;
-        next();
+        if (err) return res.sendStatus(403);  // Si el token no es válido, enviar respuesta prohibida
+        req.userId = user.userId;  // almacenar la información de usuario en req.user
+        next();  // pasar al siguiente middleware
     });
 }
+
 
 // ---------- ROUTES ----------
 
@@ -154,10 +158,15 @@ res.cookie('refreshToken', refreshToken, {
     secure: process.env.NODE_ENV !== 'development',     // Establece la cookie como 'secure' si no estás en modo desarrollo
     sameSite: 'strict'                                 // Establece la política de SameSite
 });
+res.cookie('accessToken', accessToken, {
+    httpOnly: true,
+    expires: new Date(Date.now() + 2 * 60 * 60 * 1000),  // Expira en 2 horas
+    secure: process.env.NODE_ENV !== 'development', // sólo envía la cookie sobre HTTPS
+    sameSite: 'strict' // política de SameSite
+});
 
 res.status(200).json({ 
     message: 'Login successful',
-    accessToken: accessToken 
 });
 });
 
