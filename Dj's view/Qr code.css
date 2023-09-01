@@ -30,7 +30,7 @@ body {
 
 /* Rectangle rosa glow */
 
-.Rectangle{
+.qr-container{
     position: relative;
     width: 179px;
     height: 179px;
@@ -38,7 +38,7 @@ body {
     align-items: center;
     background: #fff;
 }
-.Rectangle:before{
+.qr-container:before{
     content: '';
     position: absolute;
     top: -2px;

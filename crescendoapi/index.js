@@ -174,13 +174,17 @@ app.get('/api/startparty', authenticateToken, (req, res) => {
     QueryDBp('INSERT INTO party (username) VALUES (?)', [username])
         .then(async ([result]) => {
             if (result.affectedRows > 0) {
-                const url = `https://http://localhost:5500/Dj's%20view/Qr%20code.html`;
+                const party_id = result.insertId;
+
+                // La URL ahora incluye el party_id como un parámetro
+                const url = `http://localhost:5500/User's%20view/Elegi%20Cancion.html?party_id=${party_id}`;
+                
                 const qr = await QRCode.toDataURL(url);
 
                 res.json({
                     success: true,
                     message: 'Party iniciada con éxito',
-                    party_id: result.insertId,
+                    party_id: party_id,
                     qr_code: qr
                 });
             } else {
@@ -192,6 +196,7 @@ app.get('/api/startparty', authenticateToken, (req, res) => {
             res.status(500).json({ error: 'Error del servidor' });
         });
 });
+
 
 
 

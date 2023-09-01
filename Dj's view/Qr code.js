@@ -44,11 +44,23 @@ async function startParty(accessToken) {
         }
 
         const data = await response.json();
+
         // Haz algo con los datos, como mostrar el código QR
         console.log(data);
         party_id = data.party_id;
+                // Mostrar el QR en el HTML
+                const qrContainer = document.getElementById("qr-container");
+                if (qrContainer) {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = data.qr_code;
+                    qrContainer.appendChild(imgElement);
+                }
         
         return data; // Devuelve los datos aquí
+
+                // Mostrar el QR en el HTML
+
+
     } catch (error) {
         console.error(error);
         return null; // O también podrías manejar el error de alguna otra forma
