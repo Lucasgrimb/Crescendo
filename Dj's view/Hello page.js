@@ -74,7 +74,7 @@ button.addEventListener('click', async function () {
             setTimeout(function() {
 
              window.location.href = "Qr code.html";
-          }, 5000);  // 3000 milisegundos = 3 segundos
+          }, 1500);  // 3000 milisegundos = 3 segundos
 
         } else {
             // Failed login

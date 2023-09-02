@@ -2,80 +2,51 @@
 <html lang="en">
 
 <head>
-    <!-- Metadatos básicos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Título de la página -->
     <title>Crescendo Dj - Elegir cancion</title>
-
-    <!-- Estilos propios y de terceros -->
     <link rel="stylesheet" href="Elegi Cancion.css">
+    <!-- Usando una sola versión de FontAwesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
 </head>
 
 <body>
-    <!-- Barra de navegación -->
     <nav class="nav">
         <h1>Crescendo</h1>
     </nav>
-
-    <!-- Contenedor principal -->
     <div class="flex flex-col min-h-screen justify-center items-center main-bg">
-    
         <h2 class="clean-hand">👋</h2>
-        <!-- Encabezado de bienvenida -->
-        <h1 class="header-gradient"> 
-            Hola‎ ‎ ‎ ‎ ‎ ‎ <span class="light-weight">bienvenido <br> a</span> 
+        <h1 class="header-gradient">
+            Hola‎ ‎ ‎ ‎ ‎ ‎ <span class="light-weight">bienvenido <br> a</span>
             <span class="pink">Crescendo</span>
         </h1>
-        
-        <!-- Formulario de búsqueda -->
         <form>
             <div class="input-container">
-                <input type="text" id="search" autocomplete="off" 
-                       placeholder="ingresa tu cancion" required
-                       class="text-input">
+                <input type="text" id="search" autocomplete="off" placeholder="ingresa tu cancion" required class="text-input">
                 <label for="username" class="label">Busca tu cancion</label>
-                <!-- Botón de búsqueda con ícono -->
-                <button class="searchbtn" type="submit"> 
-                    <i class="fa fa-search" aria-hidden="true"></i> 
+                <button class="searchbtn" type="submit">
+                    <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
             </div>
         </form>
-
-        <!-- Contenedor donde se mostrarán los resultados de la búsqueda -->
         <div id="resultsDropdown" class="dropdown"></div>
     </div>
-    
-    <!-- Librerías JS y scripts propios -->
-    <script src="https://kit.fontawesome.com/a0dea97709.js" crossorigin="anonymous"></script>
-    <!-- Aquí se realiza la búsqueda y se muestran los resultados en el contenedor anterior -->
-    <script src="Elegi Cancion.js"></script>
+
     <div class="modal">
         <div id="modal-wrapper" class="modal-wrapper">
             <h1>Confirma la Cancion</h1>
-            <img id="song-image" src=""  alt="Imagen de la cancion"/>
+            <img id="song-image" src="" alt="Imagen de la cancion"/>
             <h2></h2>
             <p></p>
             <p class="album"></p>
             <div class="pick-song">
-                <!-- este href te manda al inicio de la pantalla elegir
-                 cancion para que vuelvas a llenar el campo input -->
                 <a class="cruz spaced" href="">x</a>
-                <!-- Este href tiene que 
-                1. enviar la cancion condirmada al dj  
-                2.llevarte a la  pantalla de despedida-->
-                <a class="tick spaced"  href="Preview.html">&#10003;</a>
+                <button id="acceptButton">✓</button>
             </div>
         </div>
     </div>
+
+    <script src="https://kit.fontawesome.com/a0dea97709.js" crossorigin="anonymous"></script>
+    <script src="Elegi Cancion.js"></script>
 </body>
-
-<select id="canciones" data-id="">
-    <option value="token_cancion">Canción</option>
-    <!-- Other <option> elements here -->
-</select>
-<button id="botonAceptar">Aceptar</button>
-
 </html>

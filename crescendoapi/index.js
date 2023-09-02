@@ -177,7 +177,7 @@ app.get('/api/startparty', authenticateToken, (req, res) => {
                 const party_id = result.insertId;
 
                 // La URL ahora incluye el party_id como un parámetro
-                const url = `http://localhost:5500/User's%20view/Elegi%20Cancion.html?party_id=${party_id}`;
+                const url = `http://localhost:5500/User's%20view/Elegi%20cancion.html?party_id=${party_id}`;
                 
                 const qr = await QRCode.toDataURL(url);
 
@@ -205,7 +205,6 @@ app.get('/api/startparty', authenticateToken, (req, res) => {
 //Le pasas el id de la canción seleccionada a la base de datos. 
 app.post('/api/store-song-request', async (req, res) => {
     
-
     const song = {
         songId: req.body.songId,
         party_id: req.body.party_id,
@@ -225,7 +224,7 @@ app.post('/api/store-song-request', async (req, res) => {
     }
 
     // Verificar el estado actual del songId en la base de datos
-    const currentSong = await QueryDBp(`SELECT song_state FROM songs WHERE song_id = ? AND party_id == ?`, [song.songId, song.party_id]);
+    const currentSong = await QueryDBp(`SELECT song_state FROM songs WHERE song_id = ? AND party_id = ?`, [song.songId, song.party_id]);
 
     if (currentSong[0] && currentSong[0].length) {
         const songState = currentSong[0][0].song_state;
@@ -234,13 +233,15 @@ app.post('/api/store-song-request', async (req, res) => {
             return res.status(400).json({ error: "La canción ya ha sido solicitada y está " + songState });
         } else {
             // Si la canción fue previamente rechazada, actualiza su estado a 'hold'
-            await QueryDBp(`UPDATE songs SET song_state = ?  WHERE song_id == ? AND party_id == ?`, ['hold', song.songId, song.party_id]);
-            return res.sendStatus(200);
+            await QueryDBp(`UPDATE songs SET song_state = ?  WHERE song_id = ? AND party_id = ?`, ['hold', song.songId, song.party_id]);
+            return res.status(200).json({ message: 'OK' });
+
         }
     } else {
         // Si no está en la base de datos, guarda el ID en la base de datos con estado 'hold'
         await QueryDBp(`INSERT INTO songs (song_id, song_state, party_id) VALUES (?, ?, ?)`, [song.songId, 'hold', song.party_id]);
-        return res.sendStatus(200);
+        return res.status(200).json({ message: 'OK' });
+
     }
 });
 

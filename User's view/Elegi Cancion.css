@@ -314,7 +314,7 @@ margin-bottom: 25px;
 }
 
 /* Estilo para el enlace "Check mark" */
-.tick {
+#acceptButton {
     color: #135716; /* Verde */
     background: rgba(64, 237, 71, 0.82); /* Fondo verde con transparencia */
     border-radius: 9px;

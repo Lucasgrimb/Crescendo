@@ -1,17 +1,14 @@
-// Función para obtener el token de acceso de Spotify
+// Función para solicitar un token de Spotify
 function requestSpotifyToken() {
-    // Configura tus credenciales de la aplicación Spotify
-    const clientId = '4ba679a5493041059789f92a2c776588'; 
-    const clientSecret = 'f03ee7bb97574f5fa9b1dab44d615c97'; 
+    // Credenciales del cliente
+    const clientId = '4ba679a5493041059789f92a2c776588';
+    const clientSecret = 'f03ee7bb97574f5fa9b1dab44d615c97';
 
-    // Endpoint de Spotify para obtener el token
     const tokenEndpoint = 'https://accounts.spotify.com/api/token';
     const data = 'grant_type=client_credentials';
-
-    // Codifica tus credenciales en Base64
     const base64Credentials = btoa(clientId + ':' + clientSecret);
 
-    // Hace una petición a Spotify para obtener el token
+    // Realiza la solicitud para obtener el token
     return fetch(tokenEndpoint, {
         method: 'POST',
         headers: {
@@ -29,9 +26,8 @@ function requestSpotifyToken() {
     });
 }
 
-// Función para buscar canciones en Spotify con un token dado
+// Función para buscar una pista en Spotify
 function searchTrack(query, token) {
-    // Hace una petición a Spotify para buscar canciones basadas en la query
     return fetch(`https://api.spotify.com/v1/search?q=${query}&type=track&limit=10`, {
         headers: {
             'Authorization': 'Bearer ' + token
@@ -46,14 +42,22 @@ function searchTrack(query, token) {
     });
 }
 
-// Función para mostrar los resultados de búsqueda en el DOM
+// Función para mostrar los resultados de la búsqueda
 function displayResults(tracks) {
-    // Obtiene el contenedor de resultados del DOM
-    const resultsDiv = document.getElementById('resultsDropdown'); 
+    if (!tracks || tracks.length === 0) {
+        console.log('No tracks received.');
+        return;
+    }
+
+    const resultsDiv = document.getElementById('resultsDropdown');
     resultsDiv.innerHTML = '';
 
-    // Para cada pista obtenida, crea elementos del DOM para mostrarla
     tracks.forEach((track) => {
+        if (!track || !track.album || !track.album.images || track.album.images.length === 0) {
+            console.log('Missing data for this track', track);
+            return;
+        }
+
         const image = track.album.images[0].url;
         const title = track.name;
         const artist = track.artists[0].name;
@@ -61,17 +65,18 @@ function displayResults(tracks) {
 
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('result');
+        resultDiv.setAttribute('data-track-id', trackId);
 
         const imageElement = document.createElement('img');
         imageElement.src = image;
         imageElement.alt = title;
 
-        const textContainer = document.createElement('div'); // Nuevo contenedor
+        const textContainer = document.createElement('div');
         textContainer.classList.add('text-container');
 
         const titleElement = document.createElement('p');
         titleElement.textContent = title;
-        titleElement.classList.add('song-title'); 
+        titleElement.classList.add('song-title');
 
         const artistElement = document.createElement('p');
         artistElement.textContent = artist;
@@ -79,27 +84,35 @@ function displayResults(tracks) {
 
         textContainer.appendChild(titleElement);
         textContainer.appendChild(artistElement);
-
         resultDiv.appendChild(imageElement);
-        resultDiv.appendChild(textContainer); // Agregar el nuevo contenedor
+        resultDiv.appendChild(textContainer);
+
         resultsDiv.appendChild(resultDiv);
-        resultsDiv.style.display = 'block';  // Muestra el contenedor de resultados
     });
+
+    resultsDiv.style.display = 'block';
 }
 
+// Código que se ejecuta cuando se carga la página
 document.addEventListener('DOMContentLoaded', function() {
-
-    // Manejador de evento para el botón de búsqueda
+    // Manejador para el botón Aceptar
+    document.getElementById('acceptButton').addEventListener('click', handleAcceptClick);
+    // Manejador para el botón de búsqueda
     document.querySelector('.searchbtn').addEventListener('click', (e) => {
         e.preventDefault();
         performSearch();
     });
-
-    // Manejador de evento para el campo de búsqueda
-    document.querySelector('#search').addEventListener('input', (e) => {
+    // Manejador para el campo de búsqueda
+    document.querySelector('#search').addEventListener('input', () => {
         performSearch();
     });
+    // Manejador para recargar la página cuando se presiona la "x"
+    document.querySelector('.cruz.spaced').addEventListener('click', function(event) {
+        event.preventDefault();
+        location.reload();
+    });
 
+    // Función para realizar una búsqueda
     function performSearch() {
         const query = document.getElementById('search').value;
         if (!query) {
@@ -108,111 +121,68 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         requestSpotifyToken()
-            .then(token => {
-                return searchTrack(query, token);
-            })
-            .then(tracks => {
-                displayResults(tracks);
-            })
-            .catch(error => {
-                console.error('Error:', error.message);
-            });
+            .then(token => searchTrack(query, token))
+            .then(tracks => displayResults(tracks))
+            .catch(error => console.error('Error:', error.message));
     }
 
-    // Función para ocultar los resultados cuando se hace clic fuera del área
+    // Esconder resultados si se hace clic fuera de ellos
     window.addEventListener('click', function(event) {
         const resultsDiv = document.getElementById('resultsDropdown');
         if (!resultsDiv.contains(event.target)) {
             resultsDiv.style.display = 'none';
         }
     });
- // guardamos el id de la cancion seleccionada con la siguiente funcion:
- const resultDiv = document.querySelector("#resultDiv");
-resultDiv.setAttribute("data-id", trackId);
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-
-    // Manejador de evento para hacer clic en una canción en los resultados
-    const resultsDiv = document.getElementById('resultsDropdown');
-    resultsDiv.addEventListener('click', (event) => {
+    // Actualizar los detalles de la canción al hacer clic en un resultado
+    document.getElementById('resultsDropdown').addEventListener('click', (event) => {
         const clickedElement = event.target.closest('.result');
         if (clickedElement) {
-            const modal = document.querySelector('.modal');
-            const songImage = modal.querySelector('#song-image');
-            const songTitle = modal.querySelector('h2');
-            const songArtist = modal.querySelector('p');
-            const songAlbum = modal.querySelector('.album'); // Selecciona el elemento con la clase "album"
-
-            // Obtener los datos de la canción seleccionada
             const image = clickedElement.querySelector('img').src;
             const title = clickedElement.querySelector('.song-title').textContent;
-            const artistAlbum = clickedElement.querySelector('.song-artist').textContent;
+            const artist = clickedElement.querySelector('.song-artist').textContent;
+            const trackId = clickedElement.getAttribute('data-track-id');
 
-            // Separa el nombre del artista y el álbum
-            const [artist, album] = artistAlbum.split(' - ');
-
-            // Actualizar los elementos en la pantalla modal
-            songImage.src = image;
-            songTitle.textContent = title;
-            songArtist.textContent = artist;
-            songAlbum.textContent = album; // Actualiza el nombre del álbum
-
-            // Mostrar la pantalla modal
-            modal.style.display = 'flex';
-
-            // Guardar el ID de la canción seleccionada en el atributo data-id
-            const resultDiv = document.getElementById('resultDiv');
-            resultDiv.setAttribute('data-id', clickedElement.dataset.trackId);
+            updateSongDetails(image, title, artist, trackId);
         }
     });
-
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Obtener el party_id de la URL
-    const url = window.location.href;
-    const urlObj = new URL(url);
-    const partyId = urlObj.searchParams.get("party_id");
-    
-    const seleccion = document.getElementById('canciones');
-    const tokenDeCancion = seleccion.value;
-  
-    // URL de tu API donde enviarás los datos
-    const urlapi = 'https://localhost:3000/api/store-song-request';
-  
-    // Objeto con la información que enviarás a la API
+// Actualiza los detalles de la canción en el modal
+function updateSongDetails(image, title, artist, trackId) {
+    const modal = document.querySelector('.modal');
+    modal.querySelector('#song-image').src = image;
+    modal.querySelector('h2').textContent = title;
+    modal.querySelector('p').textContent = artist;
+    modal.setAttribute('data-id', trackId);
+    modal.style.display = 'flex';
+}
+
+// Manejador para el botón Aceptar
+function handleAcceptClick() {
+    const trackId = document.querySelector('.modal').dataset.id;
+    const party_id = new URL(window.location.href).searchParams.get('party_id');
+
     const data = {
-      token: tokenDeCancion,
-      party_id: partyId // Añadir el party_id a la data
+        party_id,
+        songId: trackId
     };
-    
-    // Configuración de la solicitud fetch
+
     const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
     };
 
-    const resultsDiv = document.getElementById('resultsDropdown');
-    resultsDiv.addEventListener('click', (event) => {
-        const clickedElement = event.target.closest('.result');
-        if (clickedElement) {
-            const trackId = clickedElement.dataset.trackId;
-            const selectElement = document.getElementById('canciones');
-            selectElement.setAttribute('data-id', trackId);
-        }
-    });
+    fetch('http://localhost:3000/api/store-song-request', requestOptions)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
 
-    // Realizar la solicitud fetch
-    fetch(urlapi, requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        console.log('Respuesta de la API:', result);
-      })
-      .catch(error => {
-        console.error('Error al realizar la solicitud:', error);
-      });
-});   
+    // Recarga la página después de 3 segundos
+    setTimeout(function() {
+        location.reload();
+    }, 3000);
+}
