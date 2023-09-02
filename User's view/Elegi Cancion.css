@@ -296,8 +296,6 @@ margin-bottom: 25px;
 .spaced{
     font-weight: 500;
     font-size: 80px;
-    margin-right: 59px;
-    margin-left: 59px;
 }
 
 /* Estilo para el enlace "X" */
@@ -323,4 +321,5 @@ margin-bottom: 25px;
     border: 3px solid #135716; /* Borde verde */
     padding: 10px 20px;
     font-size: 35px;
+    margin-left: 78px;
 }
