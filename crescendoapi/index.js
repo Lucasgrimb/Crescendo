@@ -167,35 +167,50 @@ res.status(200).json({
 
 //-----------------Iniciar Fiesta----------------------
 
-app.get('/api/startparty', authenticateToken, (req, res) => {
+app.get('/api/startparty', authenticateToken, async (req, res) => {
     const username = req.userId; 
 
-    // Insertar una nueva fila en la tabla 'party'
-    QueryDBp('INSERT INTO party (username) VALUES (?)', [username])
-        .then(async ([result]) => {
-            if (result.affectedRows > 0) {
-                const party_id = result.insertId;
+    try {
+        // Primero verificar si el usuario ya tiene una fiesta
+        const [existingParties] = await QueryDBp('SELECT party_id FROM party WHERE username = ?', [username]);
+        
+        if(existingParties.length > 0) {
+            // Ya tiene una fiesta, así que devolvemos esa
+            const party_id = existingParties[0].party_id;
+            const url = `http://localhost:5500/User's%20view/Elegi%20cancion.html?party_id=${party_id}`;
+            const qr = await QRCode.toDataURL(url);
 
-                // La URL ahora incluye el party_id como un parámetro
-                const url = `http://localhost:5500/User's%20view/Elegi%20cancion.html?party_id=${party_id}`;
-                
-                const qr = await QRCode.toDataURL(url);
+            return res.json({
+                success: true,
+                message: 'Fiesta existente',
+                party_id: party_id,
+                qr_code: qr
+            });
+        }
 
-                res.json({
-                    success: true,
-                    message: 'Party iniciada con éxito',
-                    party_id: party_id,
-                    qr_code: qr
-                });
-            } else {
-                res.status(500).json({ error: 'No se pudo iniciar la party' });
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            res.status(500).json({ error: 'Error del servidor' });
-        });
+        // Si no tiene una fiesta, creamos una
+        const [result] = await QueryDBp('INSERT INTO party (username) VALUES (?)', [username]);
+        
+        if(result.affectedRows > 0) {
+            const party_id = result.insertId;
+            const url = `http://localhost:5500/User's%20view/Elegi%20cancion.html?party_id=${party_id}`;
+            const qr = await QRCode.toDataURL(url);
+
+            res.json({
+                success: true,
+                message: 'Party iniciada con éxito',
+                party_id: party_id,
+                qr_code: qr
+            });
+        } else {
+            res.status(500).json({ error: 'No se pudo iniciar la party' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error del servidor' });
+    }
 });
+
 
 
 
@@ -250,8 +265,8 @@ app.post('/api/store-song-request', async (req, res) => {
 
 //---------------Show requested songs (dj only)------------------  OK
 app.get('/api/selectedsongs/:party_id', authenticateToken, async (req, res) => {
-   const party_idf = req.params.party_id;
-    const party_id = 108;
+   const party_id = req.params.party_id;
+
     const [rows] = await QueryDBp(`SELECT song_id FROM songs WHERE party_id = ?`, [party_id]);
 
     const songIds = rows.map(row => row.song_id);
