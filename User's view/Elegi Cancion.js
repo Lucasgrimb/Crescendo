@@ -176,7 +176,7 @@ function handleAcceptClick() {
         body: JSON.stringify(data)
     };
 
-    fetch('http://localhost:3000/api/store-song-request', requestOptions)
+    fetch('https://crescendoapi.vercel.app/api/store-song-request', requestOptions)
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
