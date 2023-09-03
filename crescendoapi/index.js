@@ -251,7 +251,7 @@ app.post('/api/store-song-request', async (req, res) => {
 //---------------Show requested songs (dj only)------------------  OK
 app.get('/api/selectedsongs/:party_id', authenticateToken, async (req, res) => {
    const party_idf = req.params.party_id;
-    const party_id = 42;
+    const party_id = 108;
     const [rows] = await QueryDBp(`SELECT song_id FROM songs WHERE party_id = ?`, [party_id]);
 
     const songIds = rows.map(row => row.song_id);

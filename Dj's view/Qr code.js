@@ -2,36 +2,6 @@ var accesstoken;
 var party_id;
 
 
-// Función para solicitar un token de Spotify
-function requestSpotifyToken() {
-    // Credenciales del cliente
-    const clientId = '4ba679a5493041059789f92a2c776588';
-    const clientSecret = 'f03ee7bb97574f5fa9b1dab44d615c97';
-
-    const tokenEndpoint = 'https://accounts.spotify.com/api/token';
-    const data = 'grant_type=client_credentials';
-    const base64Credentials = btoa(clientId + ':' + clientSecret);
-
-    // Realiza la solicitud para obtener el token
-    return fetch(tokenEndpoint, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + base64Credentials
-        },
-        body: data
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            throw new Error(data.error_description);
-        }
-        return data.access_token;
-    });
-}
-
-
-
 // Función para llamar al endpoint /api/token y obtener el accessToken
 
 async function fetchAccessToken() {
@@ -100,34 +70,70 @@ async function startParty(accessToken) {
 // Función para obtener las canciones seleccionadas
 async function getSelectedSongs(party_id, accessToken) {
     try {
-        const response = await fetch(`http://localhost:3000/api/selectedsongs/${party_id}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${accessToken}`,
-            },
-        });
-
-        if (response.status === 403) {
-            // Intenta obtener un nuevo accessToken si el anterior fue rechazado
-            const newAccessToken = await fetchAccessToken();
-            if (newAccessToken) {
-                return getSelectedSongs(party_id, newAccessToken); 
-            }
+      const response = await fetch(`http://localhost:3000/api/selectedsongs/${party_id}`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${accessToken}`,
+        },
+      });
+  
+      if (response.status === 403) {
+        // Intenta obtener un nuevo accessToken si el anterior fue rechazado
+        const newAccessToken = await fetchAccessToken();
+        if (newAccessToken) {
+          return getSelectedSongs(party_id, newAccessToken);
         }
-
-        if (!response.ok) {
-            throw new Error("No se pudo obtener las canciones seleccionadas");
-        }
-
-        const data = await response.json();
-        // Haz algo con los datos, como mostrar las canciones
-        console.log(data);
+      }
+  
+      if (!response.ok) {
+        throw new Error("No se pudo obtener las canciones seleccionadas");
+      }
+  
+      const data = await response.json();
+  
+      // Haz algo con los datos, como mostrar las canciones
+      displaySongs(data);
     } catch (error) {
-        console.error(error);
+      console.error(error);
     }
-}
-
-
+  }
+  
+  
+  function displaySongs(songs) {
+    // Obtén el contenedor donde las canciones se mostrarán
+    const songContainer = document.getElementById('song-container');
+  
+    // Limpia cualquier contenido previo
+    songContainer.innerHTML = "";
+  
+    if (songs.length === 0) {
+      // Si no hay canciones, muestra un mensaje
+      const noSongsMessage = document.createElement('div');
+      noSongsMessage.className = "no-songs";
+      noSongsMessage.innerText = "Todavía no se pidió ninguna canción.";
+      songContainer.appendChild(noSongsMessage);
+    } else {
+      // Itera sobre las canciones y crea una estructura HTML para cada una
+      songs.forEach((song) => {
+        const songItem = document.createElement('div');
+        songItem.className = "song-item";
+  
+        const songImage = document.createElement('img');
+        songImage.src = song.image;
+        songImage.alt = `${song.name} - ${song.artist}`;
+  
+        const songInfo = document.createElement('div');
+        songInfo.innerHTML = `<p><strong>${song.name}</strong></p><p>${song.artist}</p>`;
+  
+        songItem.appendChild(songImage);
+        songItem.appendChild(songInfo);
+  
+        songContainer.appendChild(songItem);
+      });
+    }
+  }
+  
+  
 
 // Función principal que se ejecuta al cargar la página
 // Función principal que se ejecuta al cargar la página

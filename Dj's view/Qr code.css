@@ -66,3 +66,9 @@ body {
     max-width: 200px;
     max-height: 200px;
 }
+.no-songs {
+    font-size: 18px;
+    color: red;
+    text-align: center;
+  }
+  
