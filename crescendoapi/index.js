@@ -250,8 +250,13 @@ app.post('/api/store-song-request', async (req, res) => {
 
 //---------------Show requested songs (dj only)------------------  OK
 app.get('/api/selectedsongs/:party_id', authenticateToken, async (req, res) => {
-    const party_id = req.params.party_id;
+   // const party_id = req.params.party_id;
+const party_id = 42;
+console.log(party_id);
     const [rows] = await QueryDB(`SELECT song_id FROM songs WHERE party_id = ?`, [party_id]);
+
+    
+
     const songIds = rows.map(row => row.song_id);
 
     const CLIENT_ID = process.env.clientId;

@@ -106,7 +106,7 @@ async function main() {
     if (accessToken) {
         const partyData = await startParty(accessToken);
         console.log(partyData); // Debería mostrar los datos de la fiesta
-
+        console.log(party_id)
         if (partyData && party_id) {  // Usa partyData en lugar de accessToken aquí
             await getSelectedSongs(party_id, accessToken);
         } else {
