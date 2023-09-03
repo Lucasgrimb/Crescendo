@@ -27,27 +27,45 @@ body {
     align-items: center;
 }
 
-
-/* Rectangle rosa glow */
-
-.qr-container{
-    position: relative;
-    width: 179px;
-    height: 179px;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
+.Qr {
+    position: fixed;
+    top: 9px;
+    right: 12px;
+     background: transparent;
+     border: none;
+     transition: all 0.2s ease;
+     outline: none;
+     color: transparent;
 }
-.qr-container:before{
-    content: '';
+.Qr :active{
+    transform: scale(.96);
+}
+
+/* Finalizar fiesta*/
+.end-party {
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: #fff;
-    z-index: -1;
+    box-shadow: 0 0 5px #3E2F45,
+    0 0 25px #3E2F45;
+    width: 195px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
+    color: #fff;
+    cursor: pointer;
+    bottom: 20px;
+    font-size: 24px;
+    transition: all 0.2s ease;
 }
+.end-party:active {
+    transform: scale(.96);
+}
+    
+/* Sacamos el resaltado azul al hacer click en celular */
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 
 #song-container {
     display: flex;
