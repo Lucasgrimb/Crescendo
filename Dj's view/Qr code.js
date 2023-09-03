@@ -1,5 +1,37 @@
 var accesstoken;
 var party_id;
+
+
+// Función para solicitar un token de Spotify
+function requestSpotifyToken() {
+    // Credenciales del cliente
+    const clientId = '4ba679a5493041059789f92a2c776588';
+    const clientSecret = 'f03ee7bb97574f5fa9b1dab44d615c97';
+
+    const tokenEndpoint = 'https://accounts.spotify.com/api/token';
+    const data = 'grant_type=client_credentials';
+    const base64Credentials = btoa(clientId + ':' + clientSecret);
+
+    // Realiza la solicitud para obtener el token
+    return fetch(tokenEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic ' + base64Credentials
+        },
+        body: data
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            throw new Error(data.error_description);
+        }
+        return data.access_token;
+    });
+}
+
+
+
 // Función para llamar al endpoint /api/token y obtener el accessToken
 
 async function fetchAccessToken() {
@@ -58,9 +90,6 @@ async function startParty(accessToken) {
         
         return data; // Devuelve los datos aquí
 
-                // Mostrar el QR en el HTML
-
-
     } catch (error) {
         console.error(error);
         return null; // O también podrías manejar el error de alguna otra forma
@@ -97,6 +126,7 @@ async function getSelectedSongs(party_id, accessToken) {
         console.error(error);
     }
 }
+
 
 
 // Función principal que se ejecuta al cargar la página
