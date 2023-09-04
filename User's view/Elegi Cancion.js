@@ -130,9 +130,9 @@ console.log(data.party_id);
         .catch(error => console.error('Error:', error));
 
     // Recarga la página después de 3 segundos
-    // setTimeout(function() {
-    //     location.reload();
-    // }, 3000);
+     setTimeout(function() {
+        location.reload();
+     }, 3000);
 }
 
 
