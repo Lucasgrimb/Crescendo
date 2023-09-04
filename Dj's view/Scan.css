@@ -29,3 +29,7 @@ body {
 .items-center {
     align-items: center;
 }
+#qr-container img {
+    justify-content: center;
+    align-items: center;
+}

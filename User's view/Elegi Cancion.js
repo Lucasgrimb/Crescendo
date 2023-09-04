@@ -93,6 +93,50 @@ function displayResults(tracks) {
     resultsDiv.style.display = 'block';
 }
 
+
+// Actualiza los detalles de la canción en el modal
+function updateSongDetails(image, title, artist, trackId) {
+    const modal = document.querySelector('.modal');
+    modal.querySelector('#song-image').src = image;
+    modal.querySelector('h2').textContent = title;
+    modal.querySelector('p').textContent = artist;
+    modal.setAttribute('data-id', trackId);
+    modal.style.display = 'flex';
+}
+
+// Manejador para el botón Aceptar
+function handleAcceptClick() {
+    const trackId = document.querySelector('.modal').dataset.id;
+    console.log("URL completa:", window.location.href);
+
+    const party_id = new URL(window.location.href).searchParams.get('party_id');
+
+    const data = {
+        party_id,
+        songId: trackId
+    };
+console.log(data.party_id);
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    };
+
+    fetch('https://crescendoapi.vercel.app/api/store-song-request', requestOptions)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+
+    // Recarga la página después de 3 segundos
+    // setTimeout(function() {
+    //     location.reload();
+    // }, 3000);
+}
+
+
+
 // Código que se ejecuta cuando se carga la página
 document.addEventListener('DOMContentLoaded', function() {
     // Manejador para el botón Aceptar
@@ -147,42 +191,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-// Actualiza los detalles de la canción en el modal
-function updateSongDetails(image, title, artist, trackId) {
-    const modal = document.querySelector('.modal');
-    modal.querySelector('#song-image').src = image;
-    modal.querySelector('h2').textContent = title;
-    modal.querySelector('p').textContent = artist;
-    modal.setAttribute('data-id', trackId);
-    modal.style.display = 'flex';
-}
-
-// Manejador para el botón Aceptar
-function handleAcceptClick() {
-    const trackId = document.querySelector('.modal').dataset.id;
-    const party_id = new URL(window.location.href).searchParams.get('party_id');
-
-    const data = {
-        party_id,
-        songId: trackId
-    };
-
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    };
-
-    fetch('https://crescendoapi.vercel.app/api/store-song-request', requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
-
-    // Recarga la página después de 3 segundos
-    setTimeout(function() {
-        location.reload();
-    }, 3000);
-}
