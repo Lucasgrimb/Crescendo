@@ -66,31 +66,52 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
-
+/* Estilo para el contenedor de canciones */
 #song-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 667px;
+    min-height: 375px;
 }
 
+/* Estilo para cada canción en el contenedor */
 .song-item {
-    border: 1px solid #ccc;
+    background-color: transparent; /* Fondo transparente */
+    border: 2px solid #fff; /* Borde blanco de 2 píxeles */
+    border-radius: 0px; /* Borde sin redondear */
     margin: 10px;
     padding: 10px;
     text-align: center;
+    display: flex; /* Cambia el tipo de display a flex */
+    align-items: center; /* Centra verticalmente los elementos */
 }
 
+/* Estilo para las imágenes dentro de las canciones */
 .song-item img {
     max-width: 200px;
     max-height: 200px;
+    border-radius: 9px;
+    margin-right: 11px;
 }
+
+/* Estilo para el título de la canción */
+.song-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #ffffff; /* Color de texto oscuro */
+}
+
+/* Estilo para el nombre del artista */
+.song-artist {
+    font-size: 13px;
+    font-weight: 400;
+    color: #ffffff; /* Color de texto más claro */
+}
+
+/* Estilo para el mensaje "Todavía no se pidió ninguna canción." */
 .no-songs {
     font-size: 18px;
     color: red;
     text-align: center;
-  }
-
-  .song.name{
-    color: #fff;
-  }
-  
+}

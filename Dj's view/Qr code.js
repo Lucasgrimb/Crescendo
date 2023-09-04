@@ -97,8 +97,6 @@ async function getSelectedSongs(party_id, accessToken) {
       console.error(error);
     }
   }
-  
-  
   function displaySongs(songs) {
     // Obtén el contenedor donde las canciones se mostrarán
     const songContainer = document.getElementById('song-container');
@@ -150,7 +148,7 @@ async function main() {
         }
     }
 }
-
+// prueba gpt franco 
 
 // Ejecuta la función main cuando se carga la página
 window.addEventListener("load", main);
