@@ -50,18 +50,17 @@ async function startParty(accessToken) {
         const data = await response.json();
 
         // Haz algo con los datos, como mostrar el código QR
-        console.log("QR Code URL: ", data.qr_code);
+
 
         party_id = data.party_id;
                 // Mostrar el QR en el HTML
                 const qrContainer = document.getElementById("qr-container");
                 if (qrContainer) {
-                    console.log("qrContainer exists");  // Debería imprimir
+
                     const imgElement = document.createElement("img");
                     imgElement.src = data.qr_code;
-                    console.log("Setting image source to ", data.qr_code);  // Debería imprimir la URL
                     qrContainer.appendChild(imgElement);
-                    console.log("Image should now be appended");  // Debería imprimir
+
                 } else {
                     console.log("qrContainer does not exist");  // Debería imprimir si el contenedor no existe
                 }
