@@ -6,7 +6,7 @@ var party_id;
 
 async function fetchAccessToken() {
     try {
-      const response = await fetch('https://crescendoapi.vercel.app/api/token', {
+      const response = await fetch('https://crescendoapi-pro.vercel.app/api/token', {
         method: "POST",  // Actualizado a POST
         credentials: "include",  // Para enviar cookies
       });
@@ -28,7 +28,7 @@ async function fetchAccessToken() {
 // Función para iniciar la fiesta
 async function startParty(accessToken) {
     try {
-        const response = await fetch('https://crescendoapi.vercel.app/api/startparty', {
+        const response = await fetch('https://crescendoapi-pro.vercel.app/api/startparty', {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${accessToken}`,

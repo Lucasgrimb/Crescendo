@@ -56,7 +56,7 @@ button.addEventListener('click', async function () {
     console.log(loginData); 
 
     try {
-        const response = await fetch('https://crescendoapi.vercel.app/api/login', {
+        const response = await fetch('https://crescendoapi-pro.vercel.app/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
