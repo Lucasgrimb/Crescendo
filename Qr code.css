@@ -92,8 +92,8 @@ a {
 
 /* Estilo para las imágenes dentro de las canciones */
 .song-item img {
-    max-width: 200px;
-    max-height: 200px;
+    width: 48px;
+    height: 49px;
     border-radius: 9px;
     margin-right: 11px;
 }
