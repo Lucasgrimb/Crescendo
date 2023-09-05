@@ -37,9 +37,7 @@ nav.nav {
     background-blend-mode: normal, darken, darken, darken, darken, darken;
     */
     background-position: center;
-    background-size: cover;
-    max-width: fit-content;
-    max-height: fit-content;
+    background-size: contain;
 }
 .justify-center {
     justify-content: center;
