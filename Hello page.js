@@ -71,10 +71,10 @@ button.addEventListener('click', async function () {
         if (responseData.message) {
             // Successful login
             document.getElementById('message').textContent = 'Login successful!';
-          //   setTimeout(function() {
+            setTimeout(function() {
 
-          //    window.location.href = "Qr code.html";
-          // }, 700);  // 3000 milisegundos = 3 segundos
+             window.location.href = "Qr code.html";
+          }, 700);  // 3000 milisegundos = 3 segundos
 
         } else {
             // Failed login
