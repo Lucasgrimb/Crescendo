@@ -101,7 +101,7 @@ nav.nav {
 
 /* Etiqueta del campo de entrada */
 .label{
-    font-family: inter;
+    font-family: inter, sans-serif;
     position: absolute;
     left: 10px;
     top: 18px;
