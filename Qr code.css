@@ -19,6 +19,7 @@ body {
     background-image: url(/Assets/binevenida.png);
     background-position: center;
     background-size: cover;
+    
 }
 .justify-center {
     justify-content: center;
