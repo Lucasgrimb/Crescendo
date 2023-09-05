@@ -38,8 +38,8 @@ nav.nav {
     */
     background-position: center;
     background-size: cover;
-    max-width: max-content;
-    max-height: max-content;
+    max-width: fit-content;
+    max-height: fit-content;
 }
 .justify-center {
     justify-content: center;
