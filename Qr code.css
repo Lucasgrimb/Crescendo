@@ -54,7 +54,9 @@ body {
     color: #fff;
     cursor: pointer;
     bottom: 20px;
+    font-weight: 900;
     font-size: 22px;
+    font-family: inter, sans-serif;
     transition: all 0.2s ease;
 }
 .end-party:active {
