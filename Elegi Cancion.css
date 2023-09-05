@@ -1,4 +1,4 @@
-/* Estilos generales para el cuerpo de la página */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
 body {
     padding: 0px;
     margin: 0px;
@@ -18,7 +18,7 @@ nav.nav {
     font-weight: 400;
     color: white;
     font-size: 15px;
-    font-family: MuseoModerno;
+    font-family: MuseoModerno, sans-serif;
     margin-top: 12px;
     margin-left: 12px;
     opacity: 0;
