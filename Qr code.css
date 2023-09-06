@@ -74,7 +74,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 73px;
+    margin-top: 20px;
     width: 375px;
     max-height: 374px;
     overflow-y: auto;
