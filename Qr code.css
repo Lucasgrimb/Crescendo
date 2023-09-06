@@ -71,9 +71,10 @@ a {
 
 /* Estilo para el contenedor de canciones */
 #song-container {
+    position: absolute;
     display: flex;
     flex-direction: column;
-    bottom: 200px;
+    top: 67px;
     align-items: center;
     width: 375px;
     max-height: 374px;
