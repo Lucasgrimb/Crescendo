@@ -108,7 +108,7 @@ background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 }
 
 /* Estilo para el nombre del artista */
-.song-artist p {
+.song-item > p > strong {
     font-size: 13px;
     font-weight: 900;
     color: #c21111; /* Color de texto más claro */
