@@ -90,7 +90,6 @@ a {
     height: 68px; /* Establece la altura a 68px */
 }
 
-
 /* Estilo para las imágenes dentro de las canciones */
 .song-item img {
     width: 48px;
@@ -101,17 +100,17 @@ a {
 }
 
 /* Estilo para el título de la canción */
-.song-title {
+.song-item .song-title {
     font-weight: 700;
     font-size: 13px;
     color: #ffffff; /* Color de texto oscuro */
 }
 
 /* Estilo para el nombre del artista */
-.song-artist {
+.song-item .song-artist {
     font-size: 13px;
     font-weight: 400;
-    color: #523a3a; /* Color de texto más claro */
+    color: #a42222; /* Color de texto más claro */
 }
 
 /* Estilo para el mensaje "Todavía no se pidió ninguna canción." */
@@ -120,3 +119,4 @@ a {
     color: red;
     text-align: center;
 }
+
