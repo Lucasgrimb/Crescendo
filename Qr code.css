@@ -128,16 +128,15 @@ a {
 .song-item button {
     width: 34px; /* Ancho de 34px */
     height: 34px; /* Alto de 34px */
-    margin-left: 26px; /* Margen izquierdo de 26px entre botones */
+    margin-right: 26px; /* Margen de 26px entre botones */
     align-items: center;
     right: 15px; /* Distancia a la derecha de 15px */
+    top: 0px;
     display: flex;
     justify-content: center; /* Centra el contenido horizontalmente */
-    flex-direction: row;
+    border: none; /* Elimina el borde */
     cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%); /* Centra verticalmente los botones */
+    transition: all 0.2s ease;
 }
 
 /* Estilo para los botones de "Aceptar canción" */
@@ -145,12 +144,7 @@ a {
     color: #135716; /* Verde */
     background: rgba(64, 237, 71, 0.82); /* Fondo verde con transparencia */
     border-radius: 9px;
-    text-decoration: none;
-    box-shadow: 0px 0px 0.2736000120639801px 0px #B1DD8B, 0px 0px 0.5472000241279602px 0px #B1DD8B, 0px 0px 1.9151999950408936px 0px #B1DD8B, 0px 0px 3.830399990081787px 0px #B1DD8B, 0px 0px 6.566400051116943px 0px #B1DD8B, 0px 0px 11.49120044708252px 0px #B1DD8B;
-    border: 3px solid #135716; /* Borde verde */
-    padding: 10px 20px;
-    font-size: 30px;
-    right: 0; /* Alinea el botón a la derecha */
+    font-size: 15px;
 }
 
 /* Estilo para los botones de "Rechazar canción" */
@@ -158,7 +152,6 @@ a {
     color: #571B13; /* Rojo */
     background: rgba(237, 106, 64, 0.82); /* Fondo naranja con transparencia */
     border-radius: 9px;
-    text-decoration: none;
-    border: 3px solid #571B13; /* Borde rojo */
-    box-shadow: 0px 0px 0.2736000120639801px 0px rgba(237, 106, 64, 0.82), 0px 0px 0.5472000241279602px 0px rgba(237, 106, 64, 0.82), 0px 0px 1.9151999950408936px 0px rgba(237, 106, 64, 0.82), 0px 0px 3.830399990081787px 0px rgba(237, 106, 64, 0.82), 0px 0px 6.566400051116943px 0px rgba
+    font-size: 15px;
 }
+
