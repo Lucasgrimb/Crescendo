@@ -136,7 +136,7 @@ function displaySongs(songs) {
       // Crear botones de "Aceptar" y "Rechazar"
       const acceptButton = document.createElement('button');
       acceptButton.className = "accept-song";
-      acceptButton.innerText = "Aceptar";
+      acceptButton.innerText = "✓";
       acceptButton.addEventListener('click', () => {
         // Lógica para aceptar la canción
         // Puedes llamar a una función aquí si es necesario
@@ -144,7 +144,7 @@ function displaySongs(songs) {
 
       const rejectButton = document.createElement('button');
       rejectButton.className = "reject-song";
-      rejectButton.innerText = "Rechazar";
+      rejectButton.innerText = "x";
       rejectButton.addEventListener('click', () => {
         // Lógica para rechazar la canción
         // Puedes llamar a una función aquí si es necesario
