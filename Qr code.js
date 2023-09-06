@@ -67,69 +67,70 @@ async function startParty(accessToken) {
 
 // Función para obtener las canciones seleccionadas
 async function getSelectedSongs(party_id, accessToken) {
-    try {
-      const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${accessToken}`,
-        },
-      });
-  
-      if (response.status === 403) {
-        // Intenta obtener un nuevo accessToken si el anterior fue rechazado
-        const newAccessToken = await fetchAccessToken();
-        if (newAccessToken) {
-          return getSelectedSongs(party_id, newAccessToken);
-        }
+  try {
+    const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${accessToken}`,
+      },
+    });
+
+    if (response.status === 403) {
+      // Intenta obtener un nuevo accessToken si el anterior fue rechazado
+      const newAccessToken = await fetchAccessToken();
+      if (newAccessToken) {
+        return getSelectedSongs(party_id, newAccessToken);
       }
-  
-      if (!response.ok) {
-        throw new Error("No se pudo obtener las canciones seleccionadas");
-      }
-  
-      const data = await response.json();
-  
-      // Haz algo con los datos, como mostrar las canciones
-      displaySongs(data);
-    } catch (error) {
-      console.error(error);
     }
-  }
-  function displaySongs(songs) {
-    // Obtén el contenedor donde las canciones se mostrarán
-    const songContainer = document.getElementById('song-container');
-  
-    // Limpia cualquier contenido previo
-    songContainer.innerHTML = "";
-  
-    if (songs.length === 0) {
-      // Si no hay canciones, muestra un mensaje
-      const noSongsMessage = document.createElement('div');
-      noSongsMessage.className = "no-songs";
-      noSongsMessage.innerText = "Todavía no se pidió ninguna canción.";
-      songContainer.appendChild(noSongsMessage);
-    } else {
-      // Itera sobre las canciones y crea una estructura HTML para cada una
-      songs.forEach((song) => {
-        const songItem = document.createElement('div');
-        songItem.className = "song-item";
-  
-        const songImage = document.createElement('img');
-        songImage.src = song.image;
-        songImage.alt = `${song.name} - ${song.artist}`;
-  
-        const songInfo = document.createElement('div');
-        songInfo.innerHTML = `<p><strong>${song.name}</strong></p><p>${song.artist}</p>`;
-  
-        songItem.appendChild(songImage);
-        songItem.appendChild(songInfo);
-  
-        songContainer.appendChild(songItem);
-      });
+
+    if (!response.ok) {
+      throw new Error("No se pudo obtener las canciones seleccionadas");
     }
+
+    const data = await response.json();
+
+    // Haz algo con los datos, como mostrar las canciones
+    displaySongs(data);
+  } catch (error) {
+    console.error(error);
   }
-  
-  
+}
+
+function displaySongs(songs) {
+  // Obtén el contenedor donde las canciones se mostrarán
+  const songContainer = document.getElementById('song-container');
+
+  // Limpia cualquier contenido previo
+  songContainer.innerHTML = "";
+
+  if (songs.length === 0) {
+    // Si no hay canciones, muestra un mensaje
+    const noSongsMessage = document.createElement('div');
+    noSongsMessage.className = "no-songs";
+    noSongsMessage.innerText = "Todavía no se pidió ninguna canción.";
+    songContainer.appendChild(noSongsMessage);
+  } else {
+    // Itera sobre las canciones y crea una estructura HTML para cada una
+    songs.forEach((song) => {
+      const songItem = document.createElement('div');
+      songItem.className = "song-item";
+
+      const songImage = document.createElement('img');
+      songImage.src = song.image;
+      songImage.alt = `${song.name} - ${song.artist}`;
+
+      const songInfo = document.createElement('div');
+      songInfo.innerHTML = `<p><strong>${song.name}</strong></p><p>${song.artist}</p>`;
+      songInfo.classList.add("song-title", "song-artist"); // Agrega las clases aquí
+
+      songItem.appendChild(songImage);
+      songItem.appendChild(songInfo);
+
+      songContainer.appendChild(songItem);
+    });
+  }
+}
+
 // Función principal que se ejecuta al cargar la página
 async function main() {
   const accessToken = await fetchAccessToken();
