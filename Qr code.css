@@ -124,19 +124,23 @@ a {
     text-align: center;
 }
 
+/* Estilo para los botones de "Aceptar canción" y "Rechazar canción" */
 .song-item button {
     width: 34px; /* Ancho de 34px */
     height: 34px; /* Alto de 34px */
-    margin-right: 26px; /* Margen de 26px entre botones */
+    margin-left: 26px; /* Margen izquierdo de 26px entre botones */
     align-items: center;
     right: 15px; /* Distancia a la derecha de 15px */
     display: flex;
     justify-content: center; /* Centra el contenido horizontalmente */
-    flex-direction:row ;
+    flex-direction: row;
     cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Centra verticalmente los botones */
 }
 
-/* Estilo para los botones de "Aceptar cancion" */
+/* Estilo para los botones de "Aceptar canción" */
 .accept-song {
     color: #135716; /* Verde */
     background: rgba(64, 237, 71, 0.82); /* Fondo verde con transparencia */
@@ -146,19 +150,16 @@ a {
     border: 3px solid #135716; /* Borde verde */
     padding: 10px 20px;
     font-size: 30px;
+    right: 0; /* Alinea el botón a la derecha */
 }
-  
-  /* Estilo para los botones de "Rechazar cancion" */
-  .reject-song {
+
+/* Estilo para los botones de "Rechazar canción" */
+.reject-song {
     color: #571B13; /* Rojo */
     background: rgba(237, 106, 64, 0.82); /* Fondo naranja con transparencia */
     border-radius: 9px;
     text-decoration: none;
     border: 3px solid #571B13; /* Borde rojo */
-    box-shadow: 0px 0px 0.2736000120639801px 0px rgba(237, 106, 64, 0.82), 0px 0px 0.5472000241279602px 0px rgba(237, 106, 64, 0.82), 0px 0px 1.9151999950408936px 0px rgba(237, 106, 64, 0.82), 0px 0px 3.830399990081787px 0px rgba(237, 106, 64, 0.82), 0px 0px 6.566400051116943px 0px rgba(237, 106, 64, 0.82), 0px 0px 11.49120044708252px 0px rgba(237, 106, 64, 0.82);
-    padding: 10px 25px;
-    font-size: 30px;
-  }
-  
+    box-shadow: 0px 0px 0.2736000120639801px 0px rgba(237, 106, 64, 0.82), 0px 0px 0.5472000241279602px 0px rgba(237, 106, 64, 0.82), 0px 0px 1.9151999950408936px 0px rgba(237, 106, 64, 
 
   
