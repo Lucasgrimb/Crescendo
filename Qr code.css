@@ -129,15 +129,11 @@ a {
     height: 34px; /* Alto de 34px */
     margin-right: 26px; /* Margen de 26px entre botones */
     align-items: center;
-    right: 15px; /* Distancia a la derecha de 15px */
-    top: 0px;
     display: flex;
+    flex-direction: row;
     justify-content: center; /* Centra el contenido horizontalmente */
-    border: none; /* Elimina el borde */
     cursor: pointer;
-    transition: all 0.2s ease;
 }
-
 /* Estilo para los botones de "Aceptar canción" */
 .accept-song {
     color: #135716; /* Verde */
