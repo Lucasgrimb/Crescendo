@@ -110,8 +110,8 @@ background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 /* Estilo para el nombre del artista */
 .song-artist {
     font-size: 13px;
-    font-weight: 400;
-    color: #ffffff; /* Color de texto más claro */
+    font-weight: 900;
+    color: #c21111; /* Color de texto más claro */
 }
 
 /* Estilo para el mensaje "Todavía no se pidió ninguna canción." */
