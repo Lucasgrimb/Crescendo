@@ -97,21 +97,21 @@ a {
     height: 49px;
     border-radius: 9px;
 background: url(<path-to-image>), lightgray 50% / cover no-repeat;
-    margin-right: 11px;
+left: 15px;
 }
 
 /* Estilo para el título de la canción */
-#song-item  {
+.song-title {
     font-weight: 700;
-    font-size: 132px;
+    font-size: 13px;
     color: #ffffff; /* Color de texto oscuro */
 }
 
 /* Estilo para el nombre del artista */
-#song-artist p {
+.song-artist {
     font-size: 13px;
-    font-weight: 900;
-    color: #c21111; /* Color de texto más claro */
+    font-weight: 400;
+    color: #ffffff; /* Color de texto más claro */
 }
 
 /* Estilo para el mensaje "Todavía no se pidió ninguna canción." */
