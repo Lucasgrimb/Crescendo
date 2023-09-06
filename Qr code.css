@@ -81,12 +81,15 @@ a {
     background-color: transparent; /* Fondo transparente */
     border: 2px solid #fff; /* Borde blanco de 2 píxeles */
     border-radius: 0px; /* Borde sin redondear */
-    margin: 10px;
-    padding: 10px;
+    margin: 0; /* Quita el margen para que estén pegados */
+    padding: 0; /* Quita el padding */
     text-align: center;
     display: flex; /* Cambia el tipo de display a flex */
     align-items: center; /* Centra verticalmente los elementos */
+    width: 375px; /* Establece el ancho a 375px */
+    height: 68px; /* Establece la altura a 68px */
 }
+
 
 /* Estilo para las imágenes dentro de las canciones */
 .song-item img {
