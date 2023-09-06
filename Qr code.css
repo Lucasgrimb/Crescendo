@@ -124,3 +124,22 @@ a {
     text-align: center;
 }
 
+/* Estilo para los botones de "Aceptar cancion" */
+.accept-song {
+    background-color: #28a745; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 5px 10px; /* Espacio interno */
+    margin-right: 5px; /* Margen derecho para separar de "Rechazar" */
+    cursor: pointer;
+  }
+  
+  /* Estilo para los botones de "Rechazar cancion" */
+  .reject-song {
+    background-color: #dc3545; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 5px 10px; /* Espacio interno */
+    cursor: pointer;
+  }
+  
