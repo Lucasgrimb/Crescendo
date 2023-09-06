@@ -74,7 +74,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    top: 641px;
+    bottom: 20px;
     
 }
 
