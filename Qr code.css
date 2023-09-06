@@ -73,7 +73,7 @@ a {
 #song-container {
     display: flex;
     flex-direction: column;
-    top: -40px;
+    bottom: 200px;
     align-items: center;
     width: 375px;
     max-height: 374px;
