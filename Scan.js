@@ -85,3 +85,22 @@ async function main() {
 }
 
 window.addEventListener("load", main);
+
+// btn compartir
+document.addEventListener('DOMContentLoaded', () => {
+  const shareButton = document.getElementById('shareButton');
+  
+  shareButton.addEventListener('click', () => {
+      if (navigator.share) {
+          navigator.share({
+              title: 'Compartir',
+              text: '¡Mira este código QR!',
+              url: 'https://tudominio.com/codigo_qr.png' // Reemplaza con la URL de tu imagen QR
+          })
+          .then(() => console.log('Compartido con éxito'))
+          .catch((error) => console.error('Error al compartir:', error));
+      } else {
+          console.error('La API de compartir no es compatible');
+      }
+  });
+});
