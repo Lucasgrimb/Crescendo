@@ -103,4 +103,4 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error('La API de compartir no es compatible');
       }
   });
-});
+})
