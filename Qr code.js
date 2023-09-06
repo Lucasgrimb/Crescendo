@@ -19,7 +19,7 @@ async function fetchAccessToken() {
     const data = await response.json();
     localStorage.setItem('accessToken', data.accessToken);
     localStorage.setItem('refreshToken', data.refreshToken);
-    
+
     return data.accessToken; // Devuelve el accessToken
   } catch (error) {
     console.error('Hubo un problema con la petición de fetch:', error);
@@ -57,7 +57,7 @@ async function startParty(accessToken) {
       imgElement.src = data.qr_code;
       qrContainer.appendChild(imgElement);
     }
-    
+
     return data;
   } catch (error) {
     console.error(error);
@@ -132,6 +132,27 @@ function displaySongs(songs) {
       songArtist.innerText = song.artist;
       songDetails.appendChild(songTitle);
       songDetails.appendChild(songArtist);
+
+      // Crear botones de "Aceptar" y "Rechazar"
+      const acceptButton = document.createElement('button');
+      acceptButton.className = "accept-song";
+      acceptButton.innerText = "✓";
+      acceptButton.addEventListener('click', () => {
+        // Lógica para aceptar la canción
+        // Puedes llamar a una función aquí si es necesario
+      });
+
+      const rejectButton = document.createElement('button');
+      rejectButton.className = "reject-song";
+      rejectButton.innerText = "x";
+      rejectButton.addEventListener('click', () => {
+        // Lógica para rechazar la canción
+        // Puedes llamar a una función aquí si es necesario
+      });
+
+      // Agregar botones al contenedor de detalles
+      songDetails.appendChild(acceptButton);
+      songDetails.appendChild(rejectButton);
 
       songItem.appendChild(songImage);
       songItem.appendChild(songDetails);

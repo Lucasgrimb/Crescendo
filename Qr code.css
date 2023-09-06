@@ -71,10 +71,14 @@ a {
 
 /* Estilo para el contenedor de canciones */
 #song-container {
+    position: absolute;
     display: flex;
     flex-direction: column;
+    top: 73px;
     align-items: center;
-    margin-top: 73px;
+    width: 375px;
+    max-height: 374px;
+    overflow-y: auto;
     
 }
 
@@ -120,3 +124,36 @@ a {
     text-align: center;
 }
 
+.button{
+    align-items: center;
+    right: 15px;
+    top: 0px;
+
+}
+
+/* Estilo para los botones de "Aceptar cancion" */
+.accept-song {
+    color: #135716; /* Verde */
+    background: rgba(64, 237, 71, 0.82); /* Fondo verde con transparencia */
+    border-radius: 9px;
+    text-decoration: none;
+    box-shadow: 0px 0px 0.2736000120639801px 0px #B1DD8B, 0px 0px 0.5472000241279602px 0px #B1DD8B, 0px 0px 1.9151999950408936px 0px #B1DD8B, 0px 0px 3.830399990081787px 0px #B1DD8B, 0px 0px 6.566400051116943px 0px #B1DD8B, 0px 0px 11.49120044708252px 0px #B1DD8B;
+    border: 3px solid #135716; /* Borde verde */
+    padding: 10px 20px;
+    font-size: 15px;
+}
+  
+  /* Estilo para los botones de "Rechazar cancion" */
+  .reject-song {
+    color: #571B13; /* Rojo */
+    background: rgba(237, 106, 64, 0.82); /* Fondo naranja con transparencia */
+    border-radius: 9px;
+    text-decoration: none;
+    border: 3px solid #571B13; /* Borde rojo */
+    box-shadow: 0px 0px 0.2736000120639801px 0px rgba(237, 106, 64, 0.82), 0px 0px 0.5472000241279602px 0px rgba(237, 106, 64, 0.82), 0px 0px 1.9151999950408936px 0px rgba(237, 106, 64, 0.82), 0px 0px 3.830399990081787px 0px rgba(237, 106, 64, 0.82), 0px 0px 6.566400051116943px 0px rgba(237, 106, 64, 0.82), 0px 0px 11.49120044708252px 0px rgba(237, 106, 64, 0.82);
+    padding: 10px 25px;
+    font-size: 15px;
+  }
+  
+
+  
