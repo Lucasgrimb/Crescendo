@@ -101,7 +101,7 @@ background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 }
 
 /* Estilo para el título de la canción */
-.song-title {
+.song-item p {
     font-weight: 700;
     font-size: 13px;
     color: #ffffff; /* Color de texto oscuro */
