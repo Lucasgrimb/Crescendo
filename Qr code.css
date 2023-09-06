@@ -89,9 +89,7 @@ a {
     width: 375px; /* Establece el ancho a 375px */
     height: 68px; /* Establece la altura a 68px */
 }
-.song-info{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
+
 
 /* Estilo para las imágenes dentro de las canciones */
 .song-item img {
