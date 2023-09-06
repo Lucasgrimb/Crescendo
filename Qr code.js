@@ -115,16 +115,26 @@ function displaySongs(songs) {
       const songItem = document.createElement('div');
       songItem.className = "song-item";
 
-      const songImage = document.createElement('img');
-      songImage.src = song.image;
-      songImage.alt = `${song.name} - ${song.artist}`;
+      const songImage = document.createElement('div');
+      songImage.className = "song-image"; // Nueva clase para la imagen
+      const imgElement = document.createElement("img");
+      imgElement.src = song.image;
+      imgElement.alt = `${song.name} - ${song.artist}`;
+      songImage.appendChild(imgElement);
 
-      const songInfo = document.createElement('div');
-      songInfo.innerHTML = `<p><strong>${song.name}</strong></p><p>${song.artist}</p>`;
-      songInfo.classList.add("song-title", "song-artist"); // Agrega las clases aquí
+      const songDetails = document.createElement('div');
+      songDetails.className = "song-details"; // Nueva clase para los detalles
+      const songTitle = document.createElement('p');
+      songTitle.className = "song-title";
+      songTitle.innerHTML = `<strong>${song.name}</strong>`;
+      const songArtist = document.createElement('p');
+      songArtist.className = "song-artist";
+      songArtist.innerText = song.artist;
+      songDetails.appendChild(songTitle);
+      songDetails.appendChild(songArtist);
 
       songItem.appendChild(songImage);
-      songItem.appendChild(songInfo);
+      songItem.appendChild(songDetails);
 
       songContainer.appendChild(songItem);
     });
