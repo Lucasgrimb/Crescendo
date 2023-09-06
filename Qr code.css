@@ -101,14 +101,14 @@ background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 }
 
 /* Estilo para el título de la canción */
-.song-item p {
+.song-title p {
     font-weight: 700;
     font-size: 13px;
     color: #ffffff; /* Color de texto oscuro */
 }
 
 /* Estilo para el nombre del artista */
-.song-item strong {
+.song-item p {
     font-size: 13px;
     font-weight: 900;
     color: #c21111; /* Color de texto más claro */
