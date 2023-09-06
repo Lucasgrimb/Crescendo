@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
           navigator.share({
               title: 'Compartir',
               text: '¡Mira este código QR!',
-              url: 'https://tudominio.com/codigo_qr.png' // Reemplaza con la URL de tu imagen QR
+              url: 'https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}' // Reemplaza con la URL de tu imagen QR
           })
           .then(() => console.log('Compartido con éxito'))
           .catch((error) => console.error('Error al compartir:', error));
