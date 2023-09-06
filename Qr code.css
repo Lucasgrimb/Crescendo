@@ -29,7 +29,7 @@ body {
 }
 
 .Qr {
-    position: fixed;
+    position: absolute;
     top: 9px;
     right: 12px;
      background: transparent;
@@ -44,7 +44,7 @@ body {
 
 /* Finalizar fiesta*/
 .end-party {
-    position: static;
+    position: absolute;
     box-shadow: 0 0 5px #3E2F45,
     0 0 25px #3E2F45;
     width: 210px;
