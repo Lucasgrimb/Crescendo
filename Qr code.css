@@ -88,8 +88,8 @@ a {
     text-align: center;
     display: flex; /* Cambia el tipo de display a flex */
     align-items: center; /* Centra verticalmente los elementos */
-    width: 375px; /* Establece el ancho a 375px */
-    height: 68px; /* Establece la altura a 68px */
+    width: 375px; 
+    height: 68px; 
 }
 
 
