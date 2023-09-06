@@ -115,26 +115,15 @@ function displaySongs(songs) {
       const songItem = document.createElement('div');
       songItem.className = "song-item";
 
-      const songImage = document.createElement('div');
-      songImage.className = "song-image"; // Nueva clase para la imagen
-      const imgElement = document.createElement("img");
-      imgElement.src = song.image;
-      imgElement.alt = `${song.name} - ${song.artist}`;
-      songImage.appendChild(imgElement);
+      const songImage = document.createElement('img');
+      songImage.src = song.image;
+      songImage.alt = `${song.name} - ${song.artist}`;
 
-      const songDetails = document.createElement('div');
-      songDetails.className = "song-details"; // Nueva clase para los detalles
-      const songTitle = document.createElement('p');
-      songTitle.className = "song-title";
-      songTitle.innerHTML = `<strong>${song.name}</strong>`;
-      const songArtist = document.createElement('p');
-      songArtist.className = "song-artist";
-      songArtist.innerText = song.artist;
-      songDetails.appendChild(songTitle);
-      songDetails.appendChild(songArtist);
+      const songInfo = document.createElement('div');
+      songInfo.innerHTML = `<p class="song-info"><strong>${song.name}</strong></p><p class="song-info">${song.artist}</p>`;
 
       songItem.appendChild(songImage);
-      songItem.appendChild(songDetails);
+      songItem.appendChild(songInfo);
 
       songContainer.appendChild(songItem);
     });
