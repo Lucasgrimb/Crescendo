@@ -100,19 +100,20 @@ a {
     margin-left: 15px;
 }
 
-/* Estilo para el título de la canción */
-.song-title {
+/* Estilo para el título de la canción dentro de song-container */
+#song-container > .song-title {
     font-weight: 700;
     font-size: 13px;
     color: #ffffff; /* Color de texto oscuro */
 }
 
-/* Estilo para el nombre del artista */
-.song-artist {
+/* Estilo para el nombre del artista dentro de song-container */
+#song-container > .song-artist {
     font-size: 13px;
     font-weight: 400;
-    color: #ffffff; /* Color de texto más claro */
+    color: #be2727; /* Color de texto más claro */
 }
+
 
 /* Estilo para el mensaje "Todavía no se pidió ninguna canción." */
 .no-songs {
