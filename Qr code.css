@@ -125,6 +125,8 @@ a {
 }
 
 .song-item > button{
+    align-items: center;
+    right: 15px;
 
 }
 
