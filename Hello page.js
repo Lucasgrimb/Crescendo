@@ -67,6 +67,14 @@ button.addEventListener('click', async function () {
 
         const responseData = await response.json();
         console.log(responseData);  // Log the response data
+        // Supongamos que `response` es la respuesta del servidor
+const tokens = response.data;
+
+// Almacenar tokens en localStorage
+localStorage.setItem('accessToken', tokens.accessToken);
+localStorage.setItem('refreshToken', tokens.refreshToken);
+
+        
 
         if (responseData.message) {
             // Successful login
