@@ -95,6 +95,7 @@ a {
     width: 48px;
     height: 49px;
     border-radius: 9px;
+background: url(<path-to-image>), lightgray 50% / cover no-repeat;
     margin-right: 11px;
 }
 
