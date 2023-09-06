@@ -75,7 +75,8 @@ a {
     flex-direction: column;
     align-items: center;
     top: 0px;
-    max-height: 344px;
+    height: 344px;
+    
 }
 
 /* Estilo para cada canción en el contenedor */
