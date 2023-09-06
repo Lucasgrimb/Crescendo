@@ -81,10 +81,7 @@ a {
 /* Estilo para cada canción en el contenedor */
 .song-item {
     background-color: transparent; /* Fondo transparente */
-    border: 2px solid #fff; /* Borde blanco de 2 píxeles */
-    border-radius: 0px; /* Borde sin redondear */
-    margin: 0; /* Quita el margen para que estén pegados */
-    padding: 0; /* Quita el padding */
+    border: 2px 20px solid #fff; /* Borde blanco de 2 píxeles */
     text-align: center;
     display: flex; /* Cambia el tipo de display a flex */
     align-items: center; /* Centra verticalmente los elementos */
