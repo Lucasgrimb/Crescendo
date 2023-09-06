@@ -96,9 +96,9 @@ a {
     width: 48px;
     height: 49px;
     border-radius: 9px;
-background: url(<path-to-image>), lightgray 50% / cover no-repeat;
-left: 15px;
-margin-left: 200px;
+    background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+    left: 15px;
+    margin-left: 200px;
 }
 
 /* Estilo para el título de la canción */
