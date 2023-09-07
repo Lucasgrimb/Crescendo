@@ -95,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
           navigator.share({
               title: 'Compartir',
               text: '¡Mira este código QR!',
-              url: 'https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}'
+              url: `https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}`
+
           })
           .then(() => console.log('Compartido con éxito'))
           .catch((error) => console.error('Error al compartir:', error));
