@@ -107,7 +107,7 @@ function displaySongs(songs) {
     // Si no hay canciones, muestra un mensaje
     const noSongsMessage = document.createElement('div');
     noSongsMessage.className = "no-songs";
-    noSongsMessage.innerText = "Todavía no se pidió ninguna canción.";
+    noSongsMessage.innerText = "No tienes peticiones pendientes";
     songContainer.appendChild(noSongsMessage);
   } else {
     // Itera sobre las canciones y crea una estructura HTML para cada una
