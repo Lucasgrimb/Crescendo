@@ -119,6 +119,7 @@ a {
 
 /* Estilo para el título de la canción */
 .song-item .song-title {
+    text-align: left;
     margin-left: 10px;
     color: #F5F5F5;
     font-family: Inter;
