@@ -19,7 +19,6 @@ body {
     background-image: url(/Assets/binevenida.png);
     background-position: center;
     background-size: cover;
-    overflow-y: auto;
     
     
 }
@@ -299,3 +298,16 @@ a {
 .reject-peticion > .stroke{
     width: 240px;
 }
+
+/* Estilo para canciones aceptadas */
+.accepted {
+    top: 80px;
+  }
+  
+  /* Estilo para canciones rechazadas */
+  .rejected {
+    top: 80px;
+  }
+  
+
+  

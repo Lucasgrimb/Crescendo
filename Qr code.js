@@ -96,6 +96,8 @@ async function getSelectedSongs(party_id, accessToken) {
   }
 }
 
+// ...
+
 function displaySongs(songs) {
   // Obtén el contenedor donde las canciones se mostrarán
   const songContainer = document.getElementById('song-container');
@@ -137,18 +139,38 @@ function displaySongs(songs) {
       const acceptButton = document.createElement('button');
       acceptButton.className = "accept-song";
       acceptButton.innerText = "✓";
+
       acceptButton.addEventListener('click', () => {
         // Lógica para aceptar la canción
-        // Puedes llamar a una función aquí si es necesario
-      });
+        // Mueve el elemento de canción a la sección de aceptadas
+        const acceptSection = document.querySelector(".accept-peticion");
+        acceptSection.appendChild(songItem);
+    
+        // Agrega la clase .accepted al elemento
+        songItem.classList.add("accepted");
+    
+        // Elimina los botones de esta canción
+        acceptButton.remove();
+        rejectButton.remove();
+    });
+    
 
       const rejectButton = document.createElement('button');
       rejectButton.className = "reject-song";
-      rejectButton.innerText = "x";
+      rejectButton.innerText = "X";
       rejectButton.addEventListener('click', () => {
         // Lógica para rechazar la canción
-        // Puedes llamar a una función aquí si es necesario
-      });
+        // Mueve el elemento de canción a la sección de rechazadas
+        const rejectSection = document.querySelector(".reject-peticion");
+        rejectSection.appendChild(songItem);
+    
+        // Agrega la clase .rejected al elemento
+        songItem.classList.add("rejected");
+    
+        // Elimina los botones de esta canción
+        acceptButton.remove();
+        rejectButton.remove();
+    });
 
       // Agregar botones al contenedor de detalles
       songDetails.appendChild(acceptButton);
@@ -190,12 +212,12 @@ $(document).ready(function() {
           // Aplicar el estilo especial a la última canción
           $("#last-song").addClass("special-last-song");
       } else {
-          // Eliminar el estilo especial si no estamos en la última canción
-          $("#last-song").removeClass("special-last-song");
-      }
-  });
-});
-
-
-// Ejecuta la función main cuando se carga la página
-window.addEventListener("load", main);
+                // Eliminar el estilo especial si no estamos en la última canción
+                $("#last-song").removeClass("special-last-song");
+              }
+          });
+        });
+        
+        // Ejecuta la función main cuando se carga la página
+        window.addEventListener("load", main);
+        
