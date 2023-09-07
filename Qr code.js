@@ -144,7 +144,7 @@ function displaySongs(songs) {
 
       const rejectButton = document.createElement('button');
       rejectButton.className = "reject-song";
-      rejectButton.innerText = "x";
+      rejectButton.innerText = "X";
       rejectButton.addEventListener('click', () => {
         // Lógica para rechazar la canción
         // Puedes llamar a una función aquí si es necesario

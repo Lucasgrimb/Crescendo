@@ -80,7 +80,7 @@ a {
     top: 86px;
     align-items: center;
     width: 375px;
-    max-height: 374px;
+    max-height: 330px;
     overflow-y: auto;
     
 }
@@ -155,7 +155,7 @@ a {
 /* Estilo para el mensaje "Todavía no se pidió ninguna canción." */
 .no-songs {
     font-size: 18px;
-    color: red;
+    color: rgb(255, 255, 255);
     text-align: center;
 }
 
@@ -193,8 +193,8 @@ a {
     margin-right: 26px;
     border: 3px solid #571B13; /* Borde rojo */
     box-shadow: 0px 0px 0.2736000120639801px 0px rgba(237, 106, 64, 0.82), 0px 0px 0.5472000241279602px 0px rgba(237, 106, 64, 0.82), 0px 0px 1.9151999950408936px 0px rgba(237, 106, 64, 0.82), 0px 0px 3.830399990081787px 0px rgba(237, 106, 64, 0.82), 0px 0px 6.566400051116943px 0px rgba(237, 106, 64, 0.82), 0px 0px 11.49120044708252px 0px rgba(237, 106, 64, 0.82);
-    font-size: 30px;
-    text-align: center;
+    font-size: 26px;
+    text-align: center; /* Centra horizontalmente */
 }
 
 .header-peticion {
