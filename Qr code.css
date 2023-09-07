@@ -19,6 +19,7 @@ body {
     background-position: center;
     background-size: cover;
     
+    
 }
 .justify-center {
     justify-content: center;
@@ -105,8 +106,14 @@ a {
     background-color: #656565; /* Color del "stroke" */
     border-radius: 20px;
     filter: blur(1px);
-
 }
+
+/* Añade una clase especial para el último song-item del scroll */
+#song-container .song-item:last-child::before {
+    display: none; /* Oculta el stroke en el último song-item */
+}
+
+
 
 
 /* Estilo para las imágenes dentro de las canciones */
@@ -212,7 +219,7 @@ a {
     font-size: 18px;
     position: absolute;
     top: 41px; /* Mismo valor que el top aquí */
-    left: 24px;
+    left: 22px;
     color: #FFF;
     font-family: Inter;
     font-size: 18px;
@@ -242,3 +249,51 @@ a {
     filter: blur(1px);
 }
 
+
+.accept-peticion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 431.5px;
+}
+
+.accepted-title {
+    font-size: 18px;
+    position: absolute;
+    top: 41px; /* Mismo valor que el top aquí */
+    left: 22px;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.reject-peticion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 588px;
+}
+
+.rejected-title {
+    font-size: 18px;
+    position: absolute;
+    top: 41px; /* Mismo valor que el top aquí */
+    left: 22px;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.reject-peticion > .stroke{
+    width: 240px;
+}

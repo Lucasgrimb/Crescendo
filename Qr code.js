@@ -107,7 +107,7 @@ function displaySongs(songs) {
     // Si no hay canciones, muestra un mensaje
     const noSongsMessage = document.createElement('div');
     noSongsMessage.className = "no-songs";
-    noSongsMessage.innerText = "No tienes peticiones pendientes";
+    noSongsMessage.innerText = "Todavía no se pidió ninguna canción.";
     songContainer.appendChild(noSongsMessage);
   } else {
     // Itera sobre las canciones y crea una estructura HTML para cada una
@@ -144,7 +144,7 @@ function displaySongs(songs) {
 
       const rejectButton = document.createElement('button');
       rejectButton.className = "reject-song";
-      rejectButton.innerText = "X";
+      rejectButton.innerText = "x";
       rejectButton.addEventListener('click', () => {
         // Lógica para rechazar la canción
         // Puedes llamar a una función aquí si es necesario
@@ -174,6 +174,28 @@ async function main() {
     }
   }
 }
+
+$(document).ready(function() {
+  // Detectar cuándo se ha alcanzado el final del área de desplazamiento
+  $("#song-container").scroll(function() {
+      // Altura total del contenedor de canciones
+      var containerHeight = $("#song-container").height();
+      // Altura del área de desplazamiento
+      var scrollHeight = $("#song-container")[0].scrollHeight;
+      // Posición actual del desplazamiento
+      var scrollPosition = $("#song-container").scrollTop();
+
+      // Si hemos llegado al final
+      if (containerHeight + scrollPosition >= scrollHeight) {
+          // Aplicar el estilo especial a la última canción
+          $("#last-song").addClass("special-last-song");
+      } else {
+          // Eliminar el estilo especial si no estamos en la última canción
+          $("#last-song").removeClass("special-last-song");
+      }
+  });
+});
+
 
 // Ejecuta la función main cuando se carga la página
 window.addEventListener("load", main);
