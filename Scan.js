@@ -95,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
           navigator.share({
               title: 'Compartir',
               text: '¡Mira este código QR!',
-              url: 'https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}' // Reemplaza con la URL de tu imagen QR
+              url: `https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}`
+
           })
           .then(() => console.log('Compartido con éxito'))
           .catch((error) => console.error('Error al compartir:', error));
@@ -103,4 +104,30 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error('La API de compartir no es compatible');
       }
   });
-})
+});
+
+//btn guardar qr
+import html2canvas from 'html2canvas';
+const html2canvas = require('html2canvas');
+html2canvas(element).then(function(canvas) {
+
+document.addEventListener('DOMContentLoaded', () => {
+  const guardarButton = document.getElementById('guardarButton');
+  
+  guardarButton.addEventListener('click', () => {
+    // Selecciona el elemento que contiene el código QR que deseas guardar
+    const qrContainer = document.getElementById('codigoQR');
+    
+    // Usa html2canvas para capturar el contenido como una imagen
+    html2canvas(qrContainer).then((canvas) => {
+      // Crea un enlace para descargar la imagen
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png'); // La imagen se convierte a formato PNG
+      link.download = 'codigo_qr.png'; // Nombre del archivo a descargar
+      
+      // Simula un clic en el enlace para iniciar la descarga
+      link.click();
+      });
+    });
+  });
+});
