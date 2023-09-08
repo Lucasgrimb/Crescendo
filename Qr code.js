@@ -106,7 +106,6 @@ async function updateSongState(songId, party_id, action) {
         'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ songId, party_id })
     });
 
     if (!response.ok) {
