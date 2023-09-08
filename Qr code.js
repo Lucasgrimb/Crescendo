@@ -163,6 +163,8 @@ async function updateSongState(songId, party_id, action) {
              acceptButton.addEventListener('click', async () => { // Marca la función como async
               const songId = songItem.getAttribute('data-songid');
               if (await updateSongState(songId, party_id, 'accept')) {
+                const acceptSection = document.querySelector(".accept-peticion");
+                acceptSection.appendChild(songItem);
                 songItem.classList.add("accepted");
                 acceptButton.remove();
                 rejectButton.remove();
@@ -175,6 +177,9 @@ async function updateSongState(songId, party_id, action) {
        rejectButton.addEventListener('click', async () => { // Marca la función como async
     const songId = songItem.getAttribute('data-songid');
     if (await updateSongState(songId, party_id, 'reject')) {
+       // Mueve el elemento de canción a la sección de rechazadas
+       const rejectSection = document.querySelector(".reject-peticion");
+       rejectSection.appendChild(songItem);
       songItem.classList.add("rejected");
       acceptButton.remove();
       rejectButton.remove();
