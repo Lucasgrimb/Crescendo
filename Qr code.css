@@ -3,7 +3,8 @@ body {
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
     overflow-y: auto;
-
+    background-image: url(/Assets/Big\ bg.png);
+    background-size: cover;
 }
 .flex {
     display: flex;
@@ -12,15 +13,7 @@ body {
     flex-direction: column;
 }
 .min-h-screen {
-    min-height: 998px;
-}
-.main-bg {
-
-    background-image: url(/Assets/Big\ bg.png);
-    background-position: center;
-    background-size: cover;
-    
-    
+    min-height: 100vh;
 }
 .justify-center {
     justify-content: center;
@@ -259,7 +252,8 @@ a {
     text-align: center;
     position: absolute;
     width: 100%;
-    top: 431.5px;
+    top: 159px;
+    left: 0px;
 }
 
 .accepted-title {
@@ -281,11 +275,11 @@ a {
     text-align: center;
     position: absolute;
     width: 100%;
-    top: 588px;
+    top: 330px;
+    left: 0px;
 }
 
 .rejected-title {
-    font-size: 18px;
     position: absolute;
     top: 41px; /* Mismo valor que el top aquí */
     left: 22px;
@@ -302,12 +296,13 @@ a {
 /* Estilo para canciones aceptadas */
 .accepted {
     top: 80px;
+background: linear-gradient(90deg, rgba(46, 126, 18, 0.51) 0%, rgba(46, 126, 18, 0.00) 100%);
   }
   
   /* Estilo para canciones rechazadas */
   .rejected {
     top: 80px;
+background: linear-gradient(90deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27, 0.00) 100%);
   }
   
-
   
