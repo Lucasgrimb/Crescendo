@@ -108,24 +108,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //btn guardar qr
 document.addEventListener('DOMContentLoaded', function () {
-
   // Obtén una referencia al botón "Guardar" y la imagen del código QR
   var Guardar = document.getElementById("Guardar");
   var qrImage = document.getElementById("qrImage");
 
-  // Agrega un evento clic al botón "Guardar"
-  Guardar.addEventListener("click", function () {
-    // Crea un enlace temporal
-    var link = document.createElement("a");
-    link.href = qrImage.src;
-    link.download = "codigo_qr.png"; // Nombre del archivo a descargar
+  if (Guardar) {
+    // Agrega un evento clic al botón "Guardar"
+    Guardar.addEventListener("click", function () {
+      // Crea un enlace temporal
+      var link = document.createElement("a");
+      link.href = qrImage.src;
+      link.download = "codigo_qr.png"; // Nombre del archivo a descargar
 
-    // Simula un clic en el enlace para iniciar la descarga
-    document.body.appendChild(link);
-    link.click();
+      // Simula un clic en el enlace para iniciar la descarga
+      document.body.appendChild(link);
+      link.click();
 
-    // Limpia el enlace temporal
-    document.body.removeChild(link);
-  });
+      // Limpia el enlace temporal
+      document.body.removeChild(link);
+    });
+  } else {
+    console.error("El elemento 'Guardar' no se encontró en el documento.");
+  }
 });
 
