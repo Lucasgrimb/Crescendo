@@ -12,11 +12,11 @@ body {
     flex-direction: column;
 }
 .min-h-screen {
-    min-height: 100vh;
+    min-height: 998px;
 }
 .main-bg {
 
-    background-image: url(/Assets/binevenida.png);
+    background-image: url(/Assets/Big\ bg.png);
     background-position: center;
     background-size: cover;
     
