@@ -188,7 +188,7 @@ async function updateSongState(songId, party_id, action) {
           songItem.appendChild(songDetails);
           songItem.appendChild(acceptButton);
           songItem.appendChild(rejectButton);
-          songContainer.appendChild(songItem);
+         songContainer.appendChild(songItem);
         });
       }
     }
