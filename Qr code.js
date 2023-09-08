@@ -191,22 +191,23 @@ async function updateSongState(songId, party_id, action) {
           songItem.appendChild(acceptButton);
           songItem.appendChild(rejectButton);
     
-          // Decide dónde añadir el songItem en función de su estado
-          if (song.state === 'accepted') {
-            const acceptSection = document.querySelector(".accept-peticion");
-            acceptSection.appendChild(songItem);
-            songItem.classList.add("accepted");
-            acceptButton.remove();
-            rejectButton.remove();
-          } else if (song.state === 'rejected') {
-            const rejectSection = document.querySelector(".reject-peticion");
-            rejectSection.appendChild(songItem);
-            songItem.classList.add("rejected");
-            acceptButton.remove();
-            rejectButton.remove();
-          } else {
-            songContainer.appendChild(songItem); // Estado desconocido o pendiente
-          }
+      // Decide dónde añadir el songItem en función de su estado
+  if (song.song_state === 'accepted') {
+    const acceptSection = document.querySelector(".accept-peticion");
+    acceptSection.appendChild(songItem);
+    songItem.classList.add("accepted");
+    acceptButton.remove();
+    rejectButton.remove();
+  } else if (song.song_state === 'rejected') {
+    const rejectSection = document.querySelector(".reject-peticion");
+    rejectSection.appendChild(songItem);
+    songItem.classList.add("rejected");
+    acceptButton.remove();
+    rejectButton.remove();
+  } else {
+    songContainer.appendChild(songItem); // Estado desconocido o pendiente
+  }
+
         });
       }
     }
