@@ -96,93 +96,105 @@ async function getSelectedSongs(party_id, accessToken) {
   }
 }
 
-// ...
 
-function displaySongs(songs) {
-  // Obtén el contenedor donde las canciones se mostrarán
-  const songContainer = document.getElementById('song-container');
-
-  // Limpia cualquier contenido previo
-  songContainer.innerHTML = "";
-
-  if (songs.length === 0) {
-    // Si no hay canciones, muestra un mensaje
-    const noSongsMessage = document.createElement('div');
-    noSongsMessage.className = "no-songs";
-    noSongsMessage.innerText = "Todavía no se pidió ninguna canción.";
-    songContainer.appendChild(noSongsMessage);
-  } else {
-    // Itera sobre las canciones y crea una estructura HTML para cada una
-    songs.forEach((song) => {
-      const songItem = document.createElement('div');
-      songItem.className = "song-item";
-
-      const songImage = document.createElement('div');
-      songImage.className = "song-image"; // Nueva clase para la imagen
-      const imgElement = document.createElement("img");
-      imgElement.src = song.image;
-      imgElement.alt = `${song.name} - ${song.artist}`;
-      songImage.appendChild(imgElement);
-
-      const songDetails = document.createElement('div');
-      songDetails.className = "song-details"; // Nueva clase para los detalles
-      const songTitle = document.createElement('p');
-      songTitle.className = "song-title";
-      songTitle.innerHTML = `<strong>${song.name}</strong>`;
-      const songArtist = document.createElement('p');
-      songArtist.className = "song-artist";
-      songArtist.innerText = song.artist;
-      songDetails.appendChild(songTitle);
-      songDetails.appendChild(songArtist);
-
-      // Crear botones de "Aceptar" y "Rechazar"
-      const acceptButton = document.createElement('button');
-      acceptButton.className = "accept-song";
-      acceptButton.innerText = "✓";
-
-      acceptButton.addEventListener('click', () => {
-        // Lógica para aceptar la canción
-        // Mueve el elemento de canción a la sección de aceptadas
-        const acceptSection = document.querySelector(".accept-peticion");
-        acceptSection.appendChild(songItem);
-    
-        // Agrega la clase .accepted al elemento
-        songItem.classList.add("accepted");
-    
-        // Elimina los botones de esta canción
-        acceptButton.remove();
-        rejectButton.remove();
-    });
-    
-
-      const rejectButton = document.createElement('button');
-      rejectButton.className = "reject-song";
-      rejectButton.innerText = "X";
-      rejectButton.addEventListener('click', () => {
-        // Lógica para rechazar la canción
-        // Mueve el elemento de canción a la sección de rechazadas
-        const rejectSection = document.querySelector(".reject-peticion");
-        rejectSection.appendChild(songItem);
-    
-        // Agrega la clase .rejected al elemento
-        songItem.classList.add("rejected");
-    
-        // Elimina los botones de esta canción
-        acceptButton.remove();
-        rejectButton.remove();
+async function updateSongState(songId, party_id, action) {
+  try {
+    const accessToken = await fetchAccessToken();
+    const response = await fetch(`https://crescendoapi-pro.vercel.app/api/${songId}/${party_id}/${action}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ songId, party_id })
     });
 
-      // Agregar botones al contenedor de detalles
-      songDetails.appendChild(acceptButton);
-      songDetails.appendChild(rejectButton);
-
-      songItem.appendChild(songImage);
-      songItem.appendChild(songDetails);
-
-      songContainer.appendChild(songItem);
-    });
+    if (!response.ok) {
+      throw new Error(`Failed to ${action} the song.`);
+    }
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
 }
+// ...
+
+    function displaySongs(songs) {
+      const songContainer = document.getElementById('song-container');
+      songContainer.innerHTML = "";
+    
+      if (songs.length === 0) {
+        const noSongsMessage = document.createElement('div');
+        noSongsMessage.className = "no-songs";
+        noSongsMessage.innerText = "No hay canciones para mostrar";
+        songContainer.appendChild(noSongsMessage);
+      } else {
+        songs.forEach((song) => {
+          const songItem = document.createElement('div');
+          songItem.className = "song-item";
+          songItem.setAttribute('data-songid', song.id);  // Suponiendo que song.id tiene el songId
+    
+          const songImage = document.createElement('div');
+          songImage.className = "song-image";
+          const imgElement = document.createElement("img");
+          imgElement.src = song.image;
+          imgElement.alt = `${song.name} - ${song.artist}`;
+          songImage.appendChild(imgElement);
+    
+          const songDetails = document.createElement('div');
+          songDetails.className = "song-details";
+          const songTitle = document.createElement('p');
+          songTitle.className = "song-title";
+          songTitle.innerText = song.name;
+          const songArtist = document.createElement('p');
+          songArtist.className = "song-artist";
+          songArtist.innerText = song.artist;
+    
+          const acceptButton = document.createElement('button');
+           acceptButton.className = "accept-song";
+                 acceptButton.innerText = "✓";
+          
+    
+          const rejectButton = document.createElement('button');
+             rejectButton.className = "reject-song";
+             rejectButton.innerText = "X";
+
+
+             acceptButton.addEventListener('click', async () => { // Marca la función como async
+              const songId = songItem.getAttribute('data-songid');
+              if (await updateSongState(songId, party_id, 'accept')) {
+                songItem.classList.add("accepted");
+                acceptButton.remove();
+                rejectButton.remove();
+              } else {
+                console.error(`Failed to accept song with ID: ${songId}`);
+              }
+            });
+
+
+       rejectButton.addEventListener('click', async () => { // Marca la función como async
+    const songId = songItem.getAttribute('data-songid');
+    if (await updateSongState(songId, party_id, 'reject')) {
+      songItem.classList.add("rejected");
+      acceptButton.remove();
+      rejectButton.remove();
+    } else {
+      console.error(`Failed to reject song with ID: ${songId}`);
+    }
+  });
+          songDetails.appendChild(songTitle);
+          songDetails.appendChild(songArtist);
+          songItem.appendChild(songImage);
+          songItem.appendChild(songDetails);
+          songItem.appendChild(acceptButton);
+          songItem.appendChild(rejectButton);
+          songContainer.appendChild(songItem);
+        });
+      }
+    }
+  
+
 
 // Función principal que se ejecuta al cargar la página
 async function main() {
