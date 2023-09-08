@@ -107,12 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //btn guardar qr
-// Obtén una referencia al botón "Guardar" y la imagen del código QR
-var guardarButton = document.getElementById("guardarButton");
-var qrImage = document.getElementById("qrImage");
+document.addEventListener('DOMContentLoaded', function () {
 
-// Agrega un evento clic al botón "Guardar"
-guardarButton.addEventListener("click", function () {
+  // Obtén una referencia al botón "Guardar" y la imagen del código QR
+  var Guardar = document.getElementById("Guardar");
+  var qrImage = document.getElementById("qrImage");
+
+  // Agrega un evento clic al botón "Guardar"
+  Guardar.addEventListener("click", function () {
     // Crea un enlace temporal
     var link = document.createElement("a");
     link.href = qrImage.src;
@@ -124,4 +126,6 @@ guardarButton.addEventListener("click", function () {
 
     // Limpia el enlace temporal
     document.body.removeChild(link);
+  });
 });
+
