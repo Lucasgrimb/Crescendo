@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Getting the songIds from localStorage
   const songIds = localStorage.getItem(party_id);
 
-  if (!storedSongIds) {
+  if (!songIds) {
     console.log("No songIds in localStorage for this party_id");
     return;
   }
