@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Datos a enviar en el cuerpo de la solicitud POST
     const data = {
       songIds,
-      party_id: storedPartyId
+      party_id
     };
   
     // Opciones de la solicitud fetch
