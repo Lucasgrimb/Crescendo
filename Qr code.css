@@ -254,6 +254,7 @@ a {
     width: 100%;
     top: 159px;
     left: 0px;
+   margin-top: 30.5px;
 }
 
 .accepted-title {
@@ -277,6 +278,7 @@ a {
     width: 100%;
     top: 330px;
     left: 0px;
+    margin-top: 30px;
 }
 
 .rejected-title {
