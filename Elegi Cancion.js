@@ -107,15 +107,16 @@ function updateSongDetails(image, title, artist, trackId) {
 // Manejador para el botón Aceptar
 function handleAcceptClick() {
     const trackId = document.querySelector('.modal').dataset.id;
-    console.log("URL completa:", window.location.href);
-
     const party_id = new URL(window.location.href).searchParams.get('party_id');
+    
+    // Guardar la información en localStorage
+    saveToLocalStorage(party_id, trackId);
 
     const data = {
         party_id,
         songId: trackId
     };
-console.log(data.party_id);
+
     const requestOptions = {
         method: 'POST',
         headers: {
@@ -129,11 +130,24 @@ console.log(data.party_id);
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
 
-    // Recarga la página después de 3 segundos
-     setTimeout(function() {
+    // Recarga la página después de 1.5 segundos
+    setTimeout(function() {
         location.reload();
-     }, 3000);
+    }, 1500);
 }
+
+// Función para guardar datos en localStorage
+function saveToLocalStorage(party_id, trackId) {
+    // Obtenemos cualquier dato existente para ese party_id
+    const existingData = JSON.parse(localStorage.getItem(party_id)) || [];
+    
+    // Añadimos el nuevo trackId
+    existingData.push(trackId);
+    
+    // Guardamos la nueva lista en localStorage
+    localStorage.setItem(party_id, JSON.stringify(existingData));
+}
+
 
 
 
