@@ -51,12 +51,6 @@ async function startParty(accessToken) {
     const data = await response.json();
     party_id = data.party_id;
 
-    const qrContainer = document.getElementById("qr-container");
-    if (qrContainer) {
-      const imgElement = document.createElement("img");
-      imgElement.src = data.qr_code;
-      qrContainer.appendChild(imgElement);
-    }
 
     return data;
   } catch (error) {
