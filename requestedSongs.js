@@ -1,6 +1,6 @@
 var party_id;
 
-// Función para llamar al endpoint /api/token y obtener el accessToken
+// Función para obtener el accessToken
 async function fetchAccessToken() {
   try {
     const refreshToken = localStorage.getItem('refreshToken');
@@ -12,17 +12,15 @@ async function fetchAccessToken() {
       body: JSON.stringify({ refreshToken })
     });
 
-    if (!response.ok) {
-      throw new Error('La petición de token no fue exitosa');
-    }
+    if (!response.ok) throw new Error('Failed to fetch token');
 
     const data = await response.json();
     localStorage.setItem('accessToken', data.accessToken);
     localStorage.setItem('refreshToken', data.refreshToken);
 
-    return data.accessToken; // Devuelve el accessToken
+    return data.accessToken;
   } catch (error) {
-    console.error('Hubo un problema con la petición de fetch:', error);
+    console.error('Fetch Error:', error);
     return null;
   }
 }
@@ -31,93 +29,72 @@ async function fetchAccessToken() {
 async function startParty(accessToken) {
   try {
     const response = await fetch('https://crescendoapi-pro.vercel.app/api/startparty', {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Authorization": `Bearer ${accessToken}`,
-      },
+        "Authorization": `Bearer ${accessToken}`
+      }
     });
 
     if (response.status === 403) {
       const newAccessToken = await fetchAccessToken();
-      if (newAccessToken) {
-        return startParty(newAccessToken);
-      }
+      if (newAccessToken) return startParty(newAccessToken);
     }
 
-    if (!response.ok) {
-      throw new Error("No se pudo iniciar la fiesta");
-    }
+    if (!response.ok) throw new Error('Failed to start party');
 
     const data = await response.json();
     party_id = data.party_id;
-
+    localStorage.setItem('party_id', party_id);  // Store party_id in localStorage
 
     return data;
   } catch (error) {
-    console.error(error);
+    console.error('Fetch Error:', error);
     return null;
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', async () => {
-    // Esta función se ejecuta cuando la página se ha cargado completamente
-  
-    // Obtiene el accessToken (también actualiza el token en localStorage si es necesario)
-    const accessToken = await fetchAccessToken();
-    
-    if (!accessToken) {
-      console.log("No se pudo obtener el token de acceso.");
-      return;
-    }
-  
-    // Inicia la fiesta (Esto actualizará el party_id)
-    const partyData = await startParty(accessToken);
-  
-    if (!partyData) {
-      console.log("No se pudo iniciar la fiesta.");
-      return;
-    }
-  
-    // Aquí, party_id debería estar establecido por startParty
-    const storedPartyId = localStorage.getItem(party_id); // Debería ser igual a party_id
-  
-    if (!storedPartyId) {
-      console.log("No hay partyId en el localStorage");
-      return;
-    }
+  const accessToken = await fetchAccessToken();
+  if (!accessToken) return;
 
-  
-    const songIds = JSON.parse(storedPartyId); // Convierte la cadena JSON en un array
-    
-    // Datos a enviar en el cuerpo de la solicitud POST
-    const data = {
-      songIds,
-      party_id
-    };
-  
-    // Opciones de la solicitud fetch
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    };
-  
-    // Realizar la solicitud al endpoint
-    fetch('https://crescendoapi-pro.vercel.app/api/get-multiple-songs', requestOptions)
-      .then(response => response.json())
-      .then(songs => {
-        // Mostrar la información en la consola
+  const partyData = await startParty(accessToken);
+  if (!partyData) return;
+
+  // Getting the songIds from localStorage
+  const storedSongIds = localStorage.getItem('storedSongIds');
+  if (!storedSongIds) {
+    console.log("No songIds in localStorage for this party_id");
+    return;
+  }
+
+  const songIds = JSON.parse(storedSongIds);
+  const data = {
+    songIds,
+    party_id
+  };
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  };
+
+  fetch('https://crescendoapi-pro.vercel.app/api/get-multiple-songs', requestOptions)
+    .then(response => response.json())
+    .then(songs => {
+      if (Array.isArray(songs)) {
         songs.forEach(song => {
-          console.log(`Foto: ${song.image}`);
-          console.log(`Nombre: ${song.name}`);
-          console.log(`Artista: ${song.artist}`);
-          console.log(`Estado: ${song.songState}`);
+          console.log(`Image: ${song.image}`);
+          console.log(`Name: ${song.name}`);
+          console.log(`Artist: ${song.artist}`);
+          console.log(`SongState: ${song.songState}`);
           console.log('---');
         });
-      })
-      .catch(error => console.error('Error:', error));
-  });
-  
+      } else {
+        console.error('Songs is not an array:', songs);
+      }
+    })
+    .catch(error => console.error('Error:', error));
+});
