@@ -81,22 +81,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     // Aquí, party_id debería estar establecido por startParty
     const storedPartyId = localStorage.getItem(party_id); // Debería ser igual a party_id
-    console.log(storedPartyId);
   
     if (!storedPartyId) {
       console.log("No hay partyId en el localStorage");
       return;
     }
+
   
-    // Obteniendo los songIds asociados al party_id desde localStorage
-    const storedSongIds = localStorage.getItem(storedPartyId); // Esto devolverá una cadena JSON
-  
-    if (!storedSongIds) {
-      console.log("No hay songIds en el localStorage para este party_id");
-      return;
-    }
-  
-    const songIds = JSON.parse(storedSongIds); // Convierte la cadena JSON en un array
+    const songIds = JSON.parse(storedPartyId); // Convierte la cadena JSON en un array
     
     // Datos a enviar en el cuerpo de la solicitud POST
     const data = {
