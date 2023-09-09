@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     // Aquí, party_id debería estar establecido por startParty
     const storedPartyId = localStorage.getItem(party_id); // Debería ser igual a party_id
+    console.log(storedPartyId);
   
     if (!storedPartyId) {
       console.log("No hay partyId en el localStorage");
