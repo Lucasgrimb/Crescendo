@@ -223,26 +223,28 @@ async function main() {
   }
 }
 
-$(document).ready(function() {
-  // Detectar cuándo se ha alcanzado el final del área de desplazamiento
-  $("#song-container").scroll(function() {
-      // Altura total del contenedor de canciones
-      var containerHeight = $("#song-container").height();
-      // Altura del área de desplazamiento
-      var scrollHeight = $("#song-container")[0].scrollHeight;
-      // Posición actual del desplazamiento
-      var scrollPosition = $("#song-container").scrollTop();
+// Reemplaza el código jQuery por JavaScript puro
+const songContainer = document.getElementById('song-container');
+songContainer.addEventListener('scroll', function () {
+  const containerHeight = songContainer.clientHeight;
+  const scrollHeight = songContainer.scrollHeight;
+  const scrollPosition = songContainer.scrollTop;
 
-      // Si hemos llegado al final
-      if (containerHeight + scrollPosition >= scrollHeight) {
-          // Aplicar el estilo especial a la última canción
-          $("#last-song").addClass("special-last-song");
-      } else {
-                // Eliminar el estilo especial si no estamos en la última canción
-                $("#last-song").removeClass("special-last-song");
-              }
-          });
-        });
+  if (containerHeight + scrollPosition >= scrollHeight) {
+    // Aplica el estilo especial a la última canción
+    const lastSong = document.querySelector('.song-item.accepted:last-child');
+    if (lastSong) {
+      lastSong.classList.add('special-last-song');
+    }
+  } else {
+    // Elimina el estilo especial si no estamos en la última canción
+    const specialLastSong = document.querySelector('.song-item.accepted.special-last-song');
+    if (specialLastSong) {
+      specialLastSong.classList.remove('special-last-song');
+    }
+  }
+});
+
         
         // Ejecuta la función main cuando se carga la página
         window.addEventListener("load", main);
