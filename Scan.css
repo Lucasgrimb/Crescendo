@@ -2,6 +2,8 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
+    background-image: url(/Assets/binevenida.png);
+    background-size: cover;
 
 }
 
@@ -14,22 +16,56 @@ body {
 .min-h-screen {
     min-height: 100vh;
 }
-.main-bg {
 
-    background-image: url(/Assets/binevenida.png);
-   /* background: linear-gradient(134deg, rgba(200, 176, 212, 0.20) 0%, rgba(17, 5, 23, 0.20) 80.21%), radial-gradient(95.74% 140.04% at 188.67% 125.41%, rgba(190, 164, 202, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(211, 187, 217, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(206, 181, 212, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(194, 169, 201, 0.00) 0%, #110517 100%), radial-gradient(101.21% 104.58% at 134.13% 134.71%, rgba(210, 181, 200, 0.00) 0%, #110517 100%);
-    background-blend-mode: normal, darken, darken, darken, darken, darken;
-    */
-    background-position: center;
-    background-size: cover;
-}
 .justify-center {
     justify-content: center;
 }
 .items-center {
     align-items: center;
 }
+
 #qr-container img {
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    right: 83px;
+    left: 83px;
+    top:174px;
+    width: 203px;
+    height: 203px;
+    border-radius: 15px;
 }
+.but{
+    top: 417px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+}
+  
+
+.shareButton{
+margin-right: 23px;
+background-color: transparent;
+border: 3px solid;
+width: 158px;
+height: 50px;
+stroke-width: 3px;
+stroke: #9A2BD2;
+filter: drop-shadow(0px 0px 0.7020000219345093px #5A3766) drop-shadow(0px 0px 1.4040000438690186px #5A3766) drop-shadow(0px 0px 4.914000034332275px #5A3766) drop-shadow(0px 0px 9.82800006866455px #5A3766) drop-shadow(0px 0px 16.847999572753906px #5A3766) drop-shadow(0px 0px 29.483999252319336px #5A3766);
+}
+
+.guardarButton{ 
+        font-family:Inter;
+          width: 158px;
+          height: 50px;
+          border: none;
+          border-radius: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-weight: 600;
+          font-size: 20px;
+          background: linear-gradient( to right,#9A2BD2,#c73bfe);
+          box-shadow: 0 20px 30px -7px rgba(184, 51, 236, 0.5);
+          cursor: pointer;
+        }
+        

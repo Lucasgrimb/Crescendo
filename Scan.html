@@ -7,16 +7,9 @@
     <title>Crescendo DJ - Scan</title>
     <link rel="stylesheet" href="Scan.css">
     <style>
-        @font-face {
-            font-family: 'Inter Bold';
-            src: url('/fonts/Coolvetica-Regular.ttf') format('truetype');
-            src: url('/fonts/Inter-Bold.ttf') format('truetype');
-        }
+     @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
+     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
 
-        @font-face {
-            font-family: 'Museo Moderno';
-            src: url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap');
-        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
@@ -28,18 +21,17 @@
 <body>
     <div class="flex flex-col min-h-screen justify-center items-center main-bg">  
         <div id="qr-container">
-            <!-- Aquí se mostrarán las canciones -->
+            <div class="glow" img src="/Assets/Rectangle .png" alt="">  </div>
         </div>
-    </div>
  
 
-    
-    <button id="shareButton">Compartir</button>
-
+    <div class="but">
+  <button id="shareButton">Compartir</button>
     <button id="guardarButton">Guardar</button>
-    <img src="Qr btn.png" alt="Código QR" id="qrImage">
+    </div>
+  
     <script src="Scan.js"></script>
-
+</div>
 </body>
 
 </html>

@@ -1,0 +1,75 @@
+/* background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%); */
+body {
+    padding: 0px;
+    margin: 0px;
+    background-image: url(/Assets/Big\ bg.png);
+    background-size: cover;
+    overflow-y: auto;
+}
+.nav-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.end-party {
+    position: fixed;
+    box-shadow: 0 0 5px #3E2F45,
+    0 0 25px #3E2F45;
+    width: 210px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
+    color: #fff;
+    cursor: pointer;
+    bottom: 45px;
+    left: 20vw;
+    font-weight: 500;
+    font-size: 23px;
+    font-family: inter, sans-serif;
+    transition: all 0.2s ease;
+}
+.petitions-header {
+    font-size: 18px;
+    position: absolute;
+    top: 41px; 
+    left: 22px;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 700;
+}
+.green-light {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #4DC025;
+}
+.song-petitions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.stroke-in {
+    height: 4px;
+    background-color: #888;
+    position: absolute; /* Añadido para posicionar */
+    top: 70px; /* Mismo valor que el top aquí */
+    left: 1px;
+    width: 13.2px;
+    border-radius: 20px;
+    filter: blur(1px);
+}
+
+.stroke-out{
+    margin-left: 10px;
+    height: 4px;
+    background-color: #888;
+    position: absolute; /* Añadido para posicionar */
+    top: 70px; /* Mismo valor que el top aquí */
+    right: 0px;
+    width: 252px;
+    border-radius: 20px;
+    filter: blur(1px);
+}
