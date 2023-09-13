@@ -148,6 +148,7 @@ rejectedContainer.innerHTML = "";
           const songArtist = document.createElement('p');
           songArtist.className = "song-artist";
           songArtist.innerText = song.artist;
+          
     
           const acceptButton = document.createElement('button');
           acceptButton.className = "accept-song";
@@ -198,6 +199,7 @@ rejectedContainer.innerHTML = "";
         songItem.classList.add("accepted");
         acceptButton.remove();
         rejectButton.remove();
+        
       } else if (songItem.getAttribute('data-songstate') === 'rejected') {
         const rejectSection = document.querySelector(".song-container-rejected");
         rejectSection.appendChild(songItem);

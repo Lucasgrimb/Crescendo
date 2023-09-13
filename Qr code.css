@@ -75,7 +75,7 @@ a {
     top: 86px;
     align-items: center;
     width: 375px;
-    max-height: 330px;
+    max-height: 138px;
     overflow-y: auto;
     
 }
@@ -242,8 +242,6 @@ a {
     border-radius: 20px;
     filter: blur(1px);
 }
-
-
 .accept-peticion {
     display: flex;
     flex-direction: column;
@@ -253,7 +251,6 @@ a {
     width: 100%;
     top: 159px;
     left: 0px;
-   margin-top: 30.5px;
 }
 
 .accepted-title {
@@ -282,6 +279,7 @@ a {
 
 .rejected-title {
     position: absolute;
+    margin-top: 0px;
     top: 41px; /* Mismo valor que el top aquí */
     left: 22px;
     color: #FFF;
@@ -297,17 +295,19 @@ a {
 
 /* Estilo para canciones aceptadas */
 .accepted {
-background: linear-gradient(90deg, rgba(46, 126, 18, 0.51) 0%, rgba(46, 126, 18, 0.00) 100%);
+background: linear-gradient(270deg, rgba(46, 126, 18, 0.51) 0%, rgba(46, 126, 18, 0.00) 100%);
+border: #FFF 40px;
   }
   
   /* Estilo para canciones rechazadas */
   .rejected {
-background: linear-gradient(90deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27, 0.00) 100%);
+background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27, 0.00) 100%);
   }
 
   .song-container-accepted{
     position: absolute;
     height: 128px;
+    width: 375px;
     overflow-y: auto;
     top: 78px;
     background-color: transparent;
@@ -317,6 +317,7 @@ background: linear-gradient(90deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27,
   .song-container-rejected{
     position: absolute;
     height: 128px;
+    width: 375px;
     top: 78px;
 overflow-y: auto;
 background-color: transparent;
