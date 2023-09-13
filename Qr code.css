@@ -248,7 +248,7 @@ a {
     align-items: center;
     background-color: transparent;
     position: absolute;
-    width: 375px;
+    width: 800px;
     top: 159px;
     left: 0px;
 }
@@ -272,7 +272,7 @@ a {
     background-color: transparent;
     text-align: center;
     position: absolute;
-    width: 375px;
+    width: 800px;
     top: 330px;
     left: 0px;
 }
@@ -296,7 +296,6 @@ a {
 /* Estilo para canciones aceptadas */
 .accepted {
 background: linear-gradient(270deg, rgba(46, 126, 18, 0.51) 0%, rgba(46, 126, 18, 0.00) 100%);
-border: #FFF 40px;
   }
   
   /* Estilo para canciones rechazadas */
@@ -307,7 +306,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
   .song-container-accepted{
     position: absolute;
     height: 128px;
-    width: 375px;
+    width: 800px;
     overflow-y: auto;
     top: 78px;
     background-color: transparent;
@@ -317,7 +316,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
   .song-container-rejected{
     position: absolute;
     height: 128px;
-    width: 375px;
+    width: 800px;
     top: 78px;
 overflow-y: auto;
 background-color: transparent;
