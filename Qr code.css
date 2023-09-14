@@ -21,7 +21,6 @@ body {
 .items-center {
     align-items: center;
 }
-
 .Qr {
     position: absolute;
     top: 4px;
@@ -35,7 +34,6 @@ body {
 .Qr :active{
     transform: scale(.96);
 }
-
 /* Finalizar fiesta*/
 .end-party {
     position: absolute;
@@ -57,7 +55,6 @@ body {
 .end-party:active {
     transform: scale(.96);
 }
-
 button{
     -webkit-tap-highlight-color: transparent;
 }
@@ -66,7 +63,6 @@ button{
 a {
     -webkit-tap-highlight-color: transparent;
 }
-
 /* Estilo para el contenedor de canciones */
 #song-container {
     position: absolute;
@@ -85,11 +81,10 @@ a {
     text-align: center;
     display: flex;
     align-items: center;
-    width: 450px; 
+    width: 375px; 
     height: 68px;
     position: relative;
 }
-
 .song-item::before {
     content: "";
     position: absolute;
@@ -101,15 +96,10 @@ a {
     border-radius: 20px;
     filter: blur(1px);
 }
-
 /* Añade una clase especial para el último song-item del scroll */
 #song-container .song-item:last-child::before {
     display: none; /* Oculta el stroke en el último song-item */
 }
-
-
-
-
 /* Estilo para las imágenes dentro de las canciones */
 .song-item img {
     width: 48px;
@@ -117,7 +107,6 @@ a {
     border-radius: 9px;
     margin-left: 15px;
 }
-
 /* Estilo para el título de la canción */
 .song-item .song-title {
     text-align: left;
@@ -133,7 +122,6 @@ a {
     overflow: hidden; /* Oculta el exceso de texto */
     text-overflow: ellipsis; /* Muestra puntos suspensivos */
 }
-
 /* Estilo para el nombre del artista */
 .song-item .song-artist {
     margin-left: 10px;
@@ -143,22 +131,19 @@ a {
     font-family: Inter, sans-serif;
     font-size: 14px;
     font-style: normal;
+    font-weight: 0;
     line-height: normal;
     max-width: 160px; /* Ancho máximo */
     white-space: nowrap; /* Evita el salto de línea */
     overflow: hidden; /* Oculta el exceso de texto */
     text-overflow: ellipsis; /* Muestra puntos suspensivos */
 }
-
-
-
 /* Estilo para el mensaje "Todavía no se pidió ninguna canción." */
 .no-songs {
     font-size: 18px;
     color: rgb(255, 255, 255);
     text-align: center;
 }
-
 /* Estilo para los botones de "Aceptar canción" y "Rechazar canción" */
 .song-item button {
     align-items: center;
@@ -171,8 +156,6 @@ a {
     width: 34px;
     height: 34px;
 }
-
-
 /* Estilo para los botones de "Aceptar canción" */
 .accept-song {
     color: #135716; /* Verde */
@@ -183,7 +166,6 @@ a {
     border: 3px solid #135716; /* Borde verde */
     font-size: 30px;
 }
-
 /* Estilo para los botones de "Rechazar canción" */
 .reject-song {
     color: #571B13; /* Rojo */
@@ -196,7 +178,6 @@ a {
     font-size: 26px;
     text-align: center; /* Centra horizontalmente */
 }
-
 .header-peticion {
     display: flex;
     flex-direction: column;
@@ -207,7 +188,6 @@ a {
     top: 0;
     width: 100%;
 }
-
 .requests-title {
     font-size: 18px;
     position: absolute;
@@ -218,7 +198,6 @@ a {
     font-size: 18px;
     font-weight: 700;
 }
-
 .stroke {
     margin-left: 10px;
     height: 4px;
@@ -230,7 +209,6 @@ a {
     border-radius: 20px;
     filter: blur(1px);
 }
-
 .strokeito{
     height: 4px;
     background-color: #888;
@@ -247,11 +225,11 @@ a {
     align-items: center;
     background-color: transparent;
     position: absolute;
+    width: 100%;
     width: 375px;
     top: 159px;
     left: 0px;
 }
-
 .accepted-title {
     font-size: 18px;
     position: absolute;
@@ -263,7 +241,6 @@ a {
     font-weight: 700;
     z-index: 1000000;
 }
-
 .reject-peticion {
     display: flex;
     flex-direction: column;
@@ -271,11 +248,11 @@ a {
     background-color: transparent;
     text-align: center;
     position: absolute;
+    width: 100%;
     width: 375px;
     top: 330px;
     left: 0px;
 }
-
 .rejected-title {
     position: absolute;
     margin-top: 0px;
@@ -287,21 +264,19 @@ a {
     font-weight: 700;
     z-index: 1000000;
 }
-
 .reject-peticion > .stroke{
     width: 240px;
 }
-
 /* Estilo para canciones aceptadas */
 .accepted {
 background: linear-gradient(270deg, rgba(46, 126, 18, 0.51) 0%, rgba(46, 126, 18, 0.00) 100%);
+border: #FFF 40px;
   }
   
   /* Estilo para canciones rechazadas */
   .rejected {
 background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27, 0.00) 100%);
   }
-
   .song-container-accepted{
     position: absolute;
     height: 128px;
@@ -309,9 +284,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
     overflow-y: auto;
     top: 78px;
     background-color: transparent;
-
   }
-
   .song-container-rejected{
     position: absolute;
     height: 128px;
