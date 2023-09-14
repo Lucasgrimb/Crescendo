@@ -85,7 +85,7 @@ a {
     text-align: center;
     display: flex;
     align-items: center;
-    width: 375px; 
+    width: 450px; 
     height: 68px;
     position: relative;
 }
@@ -143,7 +143,6 @@ a {
     font-family: Inter, sans-serif;
     font-size: 14px;
     font-style: normal;
-    font-weight: 0;
     line-height: normal;
     max-width: 160px; /* Ancho máximo */
     white-space: nowrap; /* Evita el salto de línea */
@@ -248,7 +247,7 @@ a {
     align-items: center;
     background-color: transparent;
     position: absolute;
-    width: 800px;
+    width: 375px;
     top: 159px;
     left: 0px;
 }
@@ -272,7 +271,7 @@ a {
     background-color: transparent;
     text-align: center;
     position: absolute;
-    width: 800px;
+    width: 375px;
     top: 330px;
     left: 0px;
 }
@@ -306,7 +305,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
   .song-container-accepted{
     position: absolute;
     height: 128px;
-    width: 800px;
+    width: 375px;
     overflow-y: auto;
     top: 78px;
     background-color: transparent;
@@ -316,7 +315,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
   .song-container-rejected{
     position: absolute;
     height: 128px;
-    width: 800px;
+    width: 375px;
     top: 78px;
 overflow-y: auto;
 background-color: transparent;
