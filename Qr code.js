@@ -120,7 +120,7 @@ function displaySongs(songs) {
 
   songContainer.innerHTML = "";
   acceptedContainer.innerHTML = ""; // Clear the accepted songs container
-rejectedContainer.innerHTML = "";
+  rejectedContainer.innerHTML = "";
 
   if (songs.length === 0) {
     const noSongsMessage = document.createElement('div');
@@ -159,11 +159,11 @@ rejectedContainer.innerHTML = "";
           rejectButton.innerText = "X";
     
       // Agregar los manejadores de eventos aquí
-      acceptButton.addEventListener('click', async () => { // Marca la función como async
+      acceptButton.addEventListener('click', async () => {
         const songId = songItem.getAttribute('data-songid');
         if (await updateSongState(songId, party_id, 'accept')) {
-          const acceptSection = document.querySelector(".accept-peticion");
-          acceptSection.appendChild(songItem);
+          // Mueve la canción al final de la lista de canciones aceptadas
+          acceptedContainer.appendChild(songItem);
           songItem.classList.add("accepted");
           acceptButton.remove();
           rejectButton.remove();
@@ -171,19 +171,20 @@ rejectedContainer.innerHTML = "";
           console.error(`Failed to accept song with ID: ${songId}`);
         }
       });
-      rejectButton.addEventListener('click', async () => { // Marca la función como async
-        const songId = songItem.getAttribute('data-songid');
-        if (await updateSongState(songId, party_id, 'reject')) {
-          // Mueve el elemento de canción a la sección de rechazadas
-          const rejectSection = document.querySelector(".reject-peticion");
-          rejectSection.appendChild(songItem);
-          songItem.classList.add("rejected");
-          acceptButton.remove();
-          rejectButton.remove();
-        } else {
-          console.error(`Failed to reject song with ID: ${songId}`);
-        }
-      });
+
+
+rejectButton.addEventListener('click', async () => {
+  const songId = songItem.getAttribute('data-songid');
+  if (await updateSongState(songId, party_id, 'reject')) {
+    // Mueve la canción al final de la lista de canciones rechazadas
+    rejectedContainer.appendChild(songItem);
+    songItem.classList.add("rejected");
+    acceptButton.remove();
+    rejectButton.remove();
+  } else {
+    console.error(`Failed to reject song with ID: ${songId}`);
+  }
+});
       
           songDetails.appendChild(songTitle);
           songDetails.appendChild(songArtist);
@@ -191,36 +192,30 @@ rejectedContainer.innerHTML = "";
           songItem.appendChild(songDetails);
           songItem.appendChild(acceptButton);
           songItem.appendChild(rejectButton);
-    
-      // Decide dónde añadir el songItem en función de su estado
-      
-      if (songItem.getAttribute('data-songstate') === 'accepted') {
-        acceptedContainer.appendChild(songItem); // Move it to the accepted container
-        songItem.classList.add("accepted");
-        acceptButton.remove();
-        rejectButton.remove();
-        
-      } else if (songItem.getAttribute('data-songstate') === 'rejected') {
-        const rejectSection = document.querySelector(".song-container-rejected");
-        rejectSection.appendChild(songItem);
-        songItem.classList.add("rejected");
-        acceptButton.remove();
-        rejectButton.remove();
-      } else {
-        songContainer.appendChild(songItem);
-      }
-    });
+
+   // Decide dónde añadir el songItem en función de su estado
+   if (songItem.getAttribute('data-songstate') === 'accepted') {
+    acceptedContainer.appendChild(songItem);
+    songItem.classList.add("accepted");
+    acceptButton.remove();
+    rejectButton.remove();
+  } else if (songItem.getAttribute('data-songstate') === 'rejected') {
+    rejectedContainer.appendChild(songItem);
+    songItem.classList.add("rejected");
+    acceptButton.remove();
+    rejectButton.remove();
+  } else {
+    songContainer.appendChild(songItem);
   }
+});
 }
-    
+}
 
-
-
-
-// Función principal que se ejecuta al cargar la página
 async function main() {
   const accessToken = await fetchAccessToken();
   if (accessToken) {
+    // Llama a displaySongs con un arreglo vacío al inicio
+    displaySongs([]);
     const partyData = await startParty(accessToken);
     if (partyData && party_id) {
       await getSelectedSongs(party_id, accessToken);
@@ -230,7 +225,6 @@ async function main() {
   }
 }
 
-// Reemplaza el código jQuery por JavaScript puro
 const songContainer = document.getElementById('song-container');
 songContainer.addEventListener('scroll', function () {
   const containerHeight = songContainer.clientHeight;
@@ -253,6 +247,6 @@ songContainer.addEventListener('scroll', function () {
 });
 
         
-        // Ejecuta la función main cuando se carga la página
-        window.addEventListener("load", main);
+// Ejecuta la función main cuando se carga la página
+window.addEventListener("load", main);
         

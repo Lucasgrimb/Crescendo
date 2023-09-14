@@ -51,6 +51,9 @@ body {
     font-size: 23px;
     font-family: inter, sans-serif;
     transition: all 0.2s ease;
+    text-align: center;
+    align-items: center;
+    line-height: 50px;
 }
 .end-party:active {
     transform: scale(.96);
