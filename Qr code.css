@@ -202,13 +202,13 @@ a {
     font-weight: 700;
 }
 .stroke {
-    margin-left: 10px;
+    margin-left: 5px;
     height: 4px;
     background-color: #888;
     position: absolute; /* Añadido para posicionar */
     top: 70px; /* Mismo valor que el top aquí */
     right: 0px;
-    width: 252px;
+    width: 258px;
     border-radius: 20px;
     filter: blur(1px);
 }
