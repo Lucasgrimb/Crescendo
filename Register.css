@@ -231,7 +231,7 @@ escrito el usuario se quede arriba */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 45px;
-    margin-top: -120px;
+    margin-top: -250px;
     font-family:Inter ;
 }
 /* Eleva tus fiestas */
@@ -256,7 +256,7 @@ escrito el usuario se quede arriba */
     background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
     color: #fff;
     cursor: pointer;
-    margin-top: 470px;
+    bottom: 35px;
     font-size: 24px;
 }
 
