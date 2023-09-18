@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+//Arranca la logica para que al tocar el btn guardar se guarde la foto del qr
 
 // Obtén una referencia al botón "Guardar"
 const guardarButton = document.getElementById('guardarButton');
