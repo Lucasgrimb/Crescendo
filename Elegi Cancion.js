@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
         // Manejador para el botón "Ir a otra página"
-        document.getElementById('redirectToPageButton').addEventListener('click', function() {
+        document.getElementById('ShowRequestedSongs').addEventListener('click', function() {
             const party_id = new URL(window.location.href).searchParams.get('party_id');
     
             // Redirigir a la otra página con el parámetro en la URL
