@@ -65,17 +65,9 @@ async function getSelectedSongs(party_id) {
     const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
       method: "GET",
       headers: {
-       // "Authorization": `Bearer ${accessToken}`,
+
       },
     });
-
-    if (response.status === 403) {
-      // Intenta obtener un nuevo accessToken si el anterior fue rechazado
-      const newAccessToken = await fetchAccessToken();
-      if (newAccessToken) {
-        return getSelectedSongs(party_id, newAccessToken);
-      }
-    }
 
     if (!response.ok) {
       throw new Error("No se pudo obtener las canciones seleccionadas");
