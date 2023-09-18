@@ -326,7 +326,15 @@ margin-bottom: 25px;
 
 
 .reqsong{
-    display: flex;
-    top: 0px;
-    right: 10px;
+    position: absolute;
+    box-shadow: 0 0 5px #3E2F45,
+    0 0 25px #3E2F45;
+    width: 105px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
+    font-size: 15px;
+    color: #fff;
+    bottom: 30px;
 }
