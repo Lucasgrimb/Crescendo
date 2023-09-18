@@ -323,3 +323,10 @@ margin-bottom: 25px;
     font-size: 35px;
     margin-left: 78px;
 }
+
+
+.reqsong{
+    display: flex;
+    top: 0px;
+    right: 10px;
+}
