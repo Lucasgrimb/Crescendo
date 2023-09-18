@@ -209,6 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const party_id = new URL(window.location.href).searchParams.get('party_id');
     
             // Redirigir a la otra página con el parámetro en la URL
-            window.location.href = 'otra_pagina.html?party_id=' + party_id;
+            window.location.href = 'requestedSongs.html?party_id=' + party_id;
         });
 });
