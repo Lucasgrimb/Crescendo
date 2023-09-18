@@ -77,20 +77,15 @@ function displaySongs(songs) {
           songDetails.appendChild(songArtist);
           songItem.appendChild(songImage);
           songItem.appendChild(songDetails);
-          songItem.appendChild(acceptButton);
-          songItem.appendChild(rejectButton);
 
    // Decide dónde añadir el songItem en función de su estado
    if (songItem.getAttribute('data-songstate') === 'accepted') {
     acceptedContainer.appendChild(songItem);
     songItem.classList.add("accepted");
-    acceptButton.remove();
-    rejectButton.remove();
   } else if (songItem.getAttribute('data-songstate') === 'rejected') {
     rejectedContainer.appendChild(songItem);
     songItem.classList.add("rejected");
-    acceptButton.remove();
-    rejectButton.remove();
+
   } else {
     songContainer.appendChild(songItem);
   }
