@@ -73,7 +73,7 @@ button.addEventListener('click', async function (event) {
     document.getElementById('message').textContent = 'Login successful!';
     setTimeout(function() {
       window.location.href = "Qr code.html";
-    }, 700); // 700 milisegundos = 0.7 segundos
+    }, 100); // 700 milisegundos = 0.7 segundos
 
   } catch (error) {
     console.log(`Error during login: ${error}`);

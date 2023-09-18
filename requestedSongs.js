@@ -1,102 +1,99 @@
-var party_id;
+// Obtener el parámetro 'party_id' de la URL
+const params = new URLSearchParams(window.location.search);
+const partyId = params.get('party_id');
 
-// Función para obtener el accessToken
-async function fetchAccessToken() {
+// Función para obtener las canciones seleccionadas
+async function getSelectedSongs(party_id) {
   try {
-    const refreshToken = localStorage.getItem('refreshToken');
-    const response = await fetch('https://crescendoapi-pro.vercel.app/api/token', {
-      method: 'POST',
+    const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json'
+       // "Authorization": `Bearer ${accessToken}`,
       },
-      body: JSON.stringify({ refreshToken })
-    });
-
-    if (!response.ok) throw new Error('Failed to fetch token');
-
-    const data = await response.json();
-    localStorage.setItem('accessToken', data.accessToken);
-    localStorage.setItem('refreshToken', data.refreshToken);
-
-    return data.accessToken;
-  } catch (error) {
-    console.error('Fetch Error:', error);
-    return null;
-  }
-}
-
-// Función para iniciar la fiesta
-async function startParty(accessToken) {
-  try {
-    const response = await fetch('https://crescendoapi-pro.vercel.app/api/startparty', {
-      method: 'GET',
-      headers: {
-        "Authorization": `Bearer ${accessToken}`
-      }
     });
 
     if (response.status === 403) {
+      // Intenta obtener un nuevo accessToken si el anterior fue rechazado
       const newAccessToken = await fetchAccessToken();
-      if (newAccessToken) return startParty(newAccessToken);
+      if (newAccessToken) {
+        return getSelectedSongs(party_id, newAccessToken);
+      }
     }
 
-    if (!response.ok) throw new Error('Failed to start party');
+    if (!response.ok) {
+      throw new Error("No se pudo obtener las canciones seleccionadas");
+    }
 
     const data = await response.json();
-    party_id = data.party_id;
-    localStorage.setItem('party_id', party_id);  // Store party_id in localStorage
-
-    return data;
+console.log(data);
+    // Haz algo con los datos, como mostrar las canciones
+    displaySongs(data);
   } catch (error) {
-    console.error('Fetch Error:', error);
-    return null;
+    console.error(error);
   }
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const accessToken = await fetchAccessToken();
-  if (!accessToken) return;
 
-  const partyData = await startParty(accessToken);
-  if (!partyData) return;
 
-  // Getting the songIds from localStorage
-  const songIds = localStorage.getItem(party_id);
+function displaySongs(songs) {
+  const songContainer = document.getElementById('song-container');
+  const acceptedContainer = document.querySelector('.song-container-accepted'); 
+  const rejectedContainer = document.querySelector('.song-container-rejected')
 
-  if (!songIds) {
-    console.log("No songIds in localStorage for this party_id");
-    return;
+  songContainer.innerHTML = "";
+  acceptedContainer.innerHTML = ""; // Clear the accepted songs container
+  rejectedContainer.innerHTML = "";
+
+  if (songs.length === 0) {
+    const noSongsMessage = document.createElement('div');
+    noSongsMessage.className = "no-songs";
+    noSongsMessage.innerText = "No hay canciones para mostrar";
+    songContainer.appendChild(noSongsMessage);
+  } else {
+    songs.forEach((song) => {
+      const songItem = document.createElement('div');
+      songItem.className = "song-item";
+      songItem.setAttribute('data-songid', song.id);
+      songItem.setAttribute('data-songstate', song.song_state);
+    
+          const songImage = document.createElement('div');
+          songImage.className = "song-image";
+          const imgElement = document.createElement("img");
+          imgElement.src = song.image;
+          songImage.appendChild(imgElement);
+    
+          const songDetails = document.createElement('div');
+          songDetails.className = "song-details";
+          const songTitle = document.createElement('p');
+          songTitle.className = "song-title";
+          songTitle.innerText = song.name;
+          const songArtist = document.createElement('p');
+          songArtist.className = "song-artist";
+          songArtist.innerText = song.artist;
+          
+
+      
+          songDetails.appendChild(songTitle);
+          songDetails.appendChild(songArtist);
+          songItem.appendChild(songImage);
+          songItem.appendChild(songDetails);
+          songItem.appendChild(acceptButton);
+          songItem.appendChild(rejectButton);
+
+   // Decide dónde añadir el songItem en función de su estado
+   if (songItem.getAttribute('data-songstate') === 'accepted') {
+    acceptedContainer.appendChild(songItem);
+    songItem.classList.add("accepted");
+    acceptButton.remove();
+    rejectButton.remove();
+  } else if (songItem.getAttribute('data-songstate') === 'rejected') {
+    rejectedContainer.appendChild(songItem);
+    songItem.classList.add("rejected");
+    acceptButton.remove();
+    rejectButton.remove();
+  } else {
+    songContainer.appendChild(songItem);
   }
-
-
-
-  const data = {
-    songIds,
-    party_id
-  };
-
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data)
-  };
-
-  fetch('https://crescendoapi-pro.vercel.app/api/get-multiple-songs', requestOptions)
-    .then(response => response.json())
-    .then(songs => {
-      if (Array.isArray(songs)) {
-        songs.forEach(song => {
-          console.log(`Image: ${song.image}`);
-          console.log(`Name: ${song.name}`);
-          console.log(`Artist: ${song.artist}`);
-          console.log(`SongState: ${song.songState}`);
-          console.log('---');
-        });
-      } else {
-        console.error('Songs is not an array:', songs);
-      }
-    })
-    .catch(error => console.error('Error:', error));
 });
+}
+}

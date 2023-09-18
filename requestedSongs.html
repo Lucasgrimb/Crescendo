@@ -1,21 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Canciones Solicitadas</title>
-    <script src="requestedSongs.js" defer></script> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crescendo - show reqeuested songs</title>
+    <link rel="stylesheet" href="Qr code.css">
+   
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
+   @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
     </style>
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <h1>Canciones Solicitadas</h1>
-
-    <div id="song-list">
-        <!-- Aquí es donde podrías insertar dinámicamente la información de las canciones -->
+    </head>
+    <body>
+        <div class="flex flex-col min-h-screen justify-center items-center main-bg">
+          <div class="header-peticion">
+            <div class="requests-title">
+                <p>Peticiones</p>
+            </div>
+            <div class="stroke"></div>
+            <div class="strokeito"></div>
+        </div>
+        <div id="song-container">
+            <!-- Para cada canción -->
+            <div class="song-item">
+                <div class="song-image">
+                    <img src="" alt="">
+                </div>
+                <div class="song-details">
+                    <p class="song-title">Nombre de la Canción</p>
+                    <p class="song-artist">Nombre del Artista</p>
+                    
+                </div>
+            </div>
+            <!-- Repite este bloque para cada canción -->
+        </div>
+        
+        <div id="accepted-songs" class="all-accepted">
+            <div class="accept-peticion">
+                <div class="accepted-title">
+                    <p>Aceptadas</p>
+                </div>
+                <div class="stroke"></div>
+                <div class="strokeito"></div>
+            <div class="song-container-accepted">  </div>
+          
+            </div>
+        </div>
+        <div id="rejected-songs" class="all-rejected">
+            <div class="reject-peticion">
+                <div class="rejected-title">
+                    <p>Rechazadas</p>
+                </div>
+                <div class="stroke"></div>
+                <div class="strokeito"></div>
+                <div class="song-container-rejected">  </div>
+            </div>
+        </div>
     </div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="requestedSongs.js"></script>
 
-</body>
+            
+    </body>
 </html>

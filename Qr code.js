@@ -60,12 +60,12 @@ async function startParty(accessToken) {
 }
 
 // Función para obtener las canciones seleccionadas
-async function getSelectedSongs(party_id, accessToken) {
+async function getSelectedSongs(party_id) {
   try {
     const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${accessToken}`,
+       // "Authorization": `Bearer ${accessToken}`,
       },
     });
 
