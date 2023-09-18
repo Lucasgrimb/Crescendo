@@ -132,3 +132,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+
+// Obtén una referencia al botón "Guardar"
+const guardarButton = document.getElementById('guardarButton');
+
+// Agrega un evento click al botón
+guardarButton.addEventListener('click', () => {
+    // Obtén la imagen del QR desde el DOM
+    const qrImage = document.querySelector('#qr-container img');
+
+    // Crea un elemento <a> para descargar la imagen
+    const enlaceDescarga = document.createElement('a');
+    enlaceDescarga.href = qrImage.src;
+    enlaceDescarga.download = 'qr-code.png';
+
+    // Simula un clic en el enlace para iniciar la descarga
+    enlaceDescarga.click();
+});
+
