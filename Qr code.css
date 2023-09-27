@@ -207,7 +207,7 @@ a {
     background-color: #888;
     position: absolute; /* Añadido para posicionar */
     top: 70px; /* Mismo valor que el top aquí */
-    right: 0px;
+    left: 116px;
     width: 258px;
     border-radius: 20px;
     filter: blur(1px);
@@ -269,6 +269,9 @@ a {
 }
 .reject-peticion > .stroke{
     width: 240px;
+    margin-left: 5px;
+    top: 70px; /* Mismo valor que el top aquí */
+    left: 128px;
 }
 /* Estilo para canciones aceptadas */
 .accepted {
