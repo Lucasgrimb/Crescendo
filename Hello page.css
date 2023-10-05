@@ -27,9 +27,7 @@ nav.nav {
 .flex-col {
     flex-direction: column;
 }
-.min-h-screen {
-    min-height: 100vh;
-}
+
 .main-bg {
 
     background-image: url(/Assets/binevenida.png);
