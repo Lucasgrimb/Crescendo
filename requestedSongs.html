@@ -66,6 +66,30 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="requestedSongs.js"></script>
 
+            <script>
+              // Esta función actualizará los pedidos de canciones
+              function actualizarPedidos() {
+                $.ajax({
+                  url: 'tu_servidor/tu_endpoint_de_pedidos', // Cambia esto por la URL correcta
+                  method: 'GET',
+                  dataType: 'json',
+                  success: function(data) {
+                    // Actualiza la sección de pedidos con los nuevos datos
+                    $('#cancion-container').html(data.pedidos);
+                  },
+                  error: function(error) {
+                    console.error('Error al cargar los pedidos de canciones: ' + error);
+                  }
+                });
+              }
+            
+              // Configura el intervalo para actualizar los pedidos cada 5 segundos
+              var intervalo = setInterval(actualizarPedidos, 5000);
+            
+              // Para detener la actualización automática, puedes usar clearInterval en algún punto
+              // clearInterval(intervalo);
+            </script>
+            
             
     </body>
 </html>
