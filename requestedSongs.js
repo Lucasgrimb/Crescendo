@@ -85,4 +85,22 @@ document.addEventListener('DOMContentLoaded', function() {
           });
       }
   }
+  
+  const express = require('express');
+const app = express();
+
+// Habilitar CORS para todas las solicitudes
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://crescendo-nine.vercel.app'); // Reemplaza con tu dominio
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+// Resto de la configuración del servidor
+
+app.listen(3000, () => {
+  console.log('Servidor en funcionamiento en el puerto 3000');
+});
+
 });
