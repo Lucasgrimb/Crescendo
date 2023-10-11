@@ -75,7 +75,7 @@
                   dataType: 'json',
                   success: function(data) {
                     // Actualiza la sección de pedidos con los nuevos datos
-                    $('#cancion-container').html(data.pedidos);
+                    $('#song-container').html(data.pedidos);
                   },
                   error: function(error) {
                     console.error('Error al cargar los pedidos de canciones: ' + error);
