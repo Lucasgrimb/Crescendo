@@ -213,21 +213,21 @@ body {
     }
   }
 
-  .sub{
+  .sub {
     position: absolute;
-    top: 200px;
-    left: 40px;
+    top: 30%; /* Ajusta este porcentaje según tus preferencias */
+    left: 10%; /* Ajusta este porcentaje según tus preferencias */
     color: #ecf0f1;
-    font-size: 38.5px;
+    font-size: 250%; /* Ajusta este porcentaje según tus preferencias */
     font-family: 'Inter', sans-serif;
     font-weight: 800;
-
-  }
-  .pink {
+}
+  
+.pink {
     position: absolute;
-    top: 214px;
-    left: 125px;
-    font-size: 38.5px;
+    top: 32%; /* Ajusta este porcentaje según tus preferencias */
+    left: 35%; /* Ajusta este porcentaje según tus preferencias */
+    font-size: 250%; /* Ajusta este porcentaje según tus preferencias */
     font-family: 'Inter', sans-serif;
     font-weight: 800;
     background: linear-gradient(278deg, #b27ecc 4.08%, #9A23D6 100%);
