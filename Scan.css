@@ -2,11 +2,11 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
-    background-image: url(/Assets/binevenida.png);
-    background-size: cover;
-
+    overflow-y: auto;
+    background-image: url(/Assets/ESS.png);
+    background-position: center;
+    background-size: 100%;
 }
-
 .flex {
     display: flex;
 }

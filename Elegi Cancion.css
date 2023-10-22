@@ -1,8 +1,12 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
-body {
+  body {
     padding: 0px;
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
+    overflow-y: auto;
+    background-image: url(/Assets/Big\ bg.png);
+    background-position: center;
+    background-size: cover;
 }
 
 /* Estilos para la barra de navegación */
@@ -39,12 +43,6 @@ nav.nav {
     min-height: 100vh;
 }
 
-/* Estilos de fondo para el contenedor principal */
-.main-bg {
-    background-image: url(/Assets/binevenida.png);
-    background-position: center;
-    background-size: cover;
-}
 
 /* Centrar elementos hijos horizontalmente en un contenedor flex */
 .justify-center {
