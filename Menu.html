@@ -14,11 +14,58 @@
          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="nav"> 
-        
-    </nav>
+  
     <div class="flex flex-col min-h-screen justify-center items-center main-bg"> 
 
+        <input type="checkbox" id="checkbox">
+        <label for="checkbox" class="toggle">
+            <div class="bars" id="bar1"></div>
+            <div class="bars" id="bar2"></div>
+            <div class="bars" id="bar3"></div>
+        </label>
+        <div class="menu-container">
+            <ul>
+                <li><a href="#">Mi Perfil</a></li>
+                <li><a href="#">Historial</a></li>
+                <li><a href="#">Mis fiestas</a></li>
+            </ul>
+        </div>
+
+        <div class="framer-001">
+            <div class="box">
+                <div class="content">
+                  <div class="content__box">
+                    <p class="content__box__text">
+                      Eleva tus 
+                    </p>
+                    <ul class="content__box__list">
+                      <li class="content__box__list__item">fiestas</li>
+                      <li class="content__box__list__item">eventos</li>
+                      <li class="content__box__list__item">bodas</li>
+                      <li class="content__box__list__item">sets</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        </div>
     </div>
 </body>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.getElementById('checkbox');
+    const menuContainer = document.querySelector('.menu-container');
+    const closeIcon = document.querySelector('.close-icon');
+
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            menuContainer.style.left = '0';
+        } else {
+            menuContainer.style.left = '-100%';
+        }
+    });
+  
+});
+
+</script>
 </html>
