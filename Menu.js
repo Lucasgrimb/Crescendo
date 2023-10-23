@@ -17,17 +17,18 @@ document.addEventListener('DOMContentLoaded', function() {
 let valueDisplays = document.querySelectorAll(".num");
 let interval = 2000; // Cambia el intervalo a 2 segundos (2000 ms)
 
-// Obtén la referencia a la sección "Portfolio"
-let section = document.querySelector(".Portfolio");
-
 // Agrega una variable para rastrear si la animación ya ha comenzado
 let started = false;
 
 window.onscroll = function () {
-    if (window.scrollY >= section.offsetTop) {
-        if (!started) {
-            valueDisplays.forEach((valueDisplay) => startCount(valueDisplay));
-        }
+    if (!started) {
+        valueDisplays.forEach((valueDisplay) => {
+            // Verifica si el elemento num es visible en la ventana actual
+            if (isElementInViewport(valueDisplay)) {
+                // Inicia la animación solo para elementos visibles
+                startCount(valueDisplay);
+            }
+        });
         started = true;
     }
 };
@@ -38,14 +39,19 @@ function startCount(valueDisplay) {
     let duration = Math.floor(interval / endValue);
     let counter = setInterval(function () {
         startValue += 1;
-        valueDisplay.textContent = "+" + startValue; // Agrega el símbolo "+" al número
+        valueDisplay.textContent = "+" + startValue + "M"; // Agrega el símbolo "+" y "M" al número
         if (startValue == endValue) {
             clearInterval(counter);
         }
     }, duration);
 }
 
-
-
-
-
+function isElementInViewport(el) {
+    let rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
