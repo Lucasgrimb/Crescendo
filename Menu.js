@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 let valueDisplays = document.querySelectorAll(".num");
-let interval = 2000; // Cambia el intervalo a 2 segundos (2000 ms)
+let interval = 800; // Cambia el intervalo a 2 segundos (2000 ms)
 
 // Variable para rastrear si la animación ya ha comenzado para cada elemento
 let started = Array(valueDisplays.length).fill(false);
