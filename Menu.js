@@ -13,33 +13,38 @@ document.addEventListener('DOMContentLoaded', function() {
   
 });
 
-
 let valueDisplays = document.querySelectorAll(".num");
 let interval = 2000; // Cambia el intervalo a 2 segundos (2000 ms)
 
-// Agrega una variable para rastrear si la animación ya ha comenzado
-let started = false;
+// Variable para rastrear si la animación ya ha comenzado para cada elemento
+let started = Array(valueDisplays.length).fill(false);
 
 window.onscroll = function () {
-    if (!started) {
-        valueDisplays.forEach((valueDisplay) => {
-            // Verifica si el elemento num es visible en la ventana actual
-            if (isElementInViewport(valueDisplay)) {
-                // Inicia la animación solo para elementos visibles
-                startCount(valueDisplay);
+    valueDisplays.forEach((valueDisplay, index) => {
+        if (!started[index] && isElementInViewport(valueDisplay)) {
+            if (index === 0) {
+                // Si es el primer elemento, agrega "M"
+                startCount(valueDisplay, index, true);
+            } else {
+                // Para los otros elementos, no agrega "M"
+                startCount(valueDisplay, index, false);
             }
-        });
-        started = true;
-    }
+            started[index] = true;
+        }
+    });
 };
 
-function startCount(valueDisplay) {
+function startCount(valueDisplay, index, addM) {
     let startValue = 0;
     let endValue = parseInt(valueDisplay.getAttribute("data-val"));
     let duration = Math.floor(interval / endValue);
     let counter = setInterval(function () {
         startValue += 1;
-        valueDisplay.textContent = "+" + startValue + "M"; // Agrega el símbolo "+" y "M" al número
+        if (addM) {
+            valueDisplay.textContent = "+" + startValue + "M"; // Agrega el símbolo "+" y "M" al primer número
+        } else {
+            valueDisplay.textContent = "+" + startValue; // Solo agrega "+"
+        }
         if (startValue == endValue) {
             clearInterval(counter);
         }
@@ -50,8 +55,6 @@ function isElementInViewport(el) {
     let rect = el.getBoundingClientRect();
     return (
         rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        rect.bottom <= window.innerHeight
     );
 }
