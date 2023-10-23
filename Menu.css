@@ -300,3 +300,18 @@ span.text{
     font-weight: 600;
     line-height: normal;
 }
+
+.paragraph{
+    width: 269px;
+height: 141px;
+text-align: center;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+background: linear-gradient(180deg, #8C8A8A 0%, rgba(255, 255, 255, 0.00) 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
