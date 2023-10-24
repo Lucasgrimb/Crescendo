@@ -203,23 +203,7 @@ function displaySongs(songs) {
   }
 }
 
-async function main() {
-  console.log("MAIN")
-  const accessToken = await fetchAccessToken();
-  if (accessToken) {
-    // Llama a displaySongs con un arreglo vacío al inicio
-    displaySongs([]);
-    const partyData = await startParty(accessToken);
-    if (partyData && party_id) {
-      await getSelectedSongs(party_id, accessToken);
-    } else {
-      console.log("No hay datos de la fiesta o party_id");
-    }
-  }
-  var intervalo = setInterval(actualizarPedidos, 1000);
-  console.log(intervalo)
 
-}
 
 const songContainer = document.getElementById('song-container');
 songContainer.addEventListener('scroll', function () {
@@ -242,7 +226,20 @@ songContainer.addEventListener('scroll', function () {
   }
 });
 
-
+async function main() {
+  console.log("MAIN")
+  const accessToken = await fetchAccessToken();
+  if (accessToken) {
+    // Llama a displaySongs con un arreglo vacío al inicio
+    displaySongs([]);
+    const partyData = await startParty(accessToken);
+    if (partyData && party_id) {
+      await getSelectedSongs(party_id, accessToken);
+    } else {
+      console.log("No hay datos de la fiesta o party_id");
+    }
+  }
+  
 // Ejecuta la función main cuando se carga la página
 function actualizarPedidos() {
   console.log("A")
@@ -260,6 +257,10 @@ function actualizarPedidos() {
   });
 }
 
+var intervalo = setInterval(actualizarPedidos, 1000);
+  console.log(intervalo)
+
+}
 // Set up the interval to update the requests every 5 seconds
 
 // To stop automatic updating, you can use clearInterval at some point
