@@ -1,55 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="height=device-height, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crescendo DJ - Iniciar Sesión</title>
-    <link rel="stylesheet" href="Hello page.css">
+    <title>Menu DJ's</title>
+    <link rel="stylesheet" href="Menu.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
-
-    
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
+         </style>
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <nav class="nav">
-        <h1>Crescendo</h1>
-    </nav>
-    <div class="flex flex-col min-h-screen justify-center items-center main-bg">
-        <h1 class="header-gradient"> <span class="light-weight">Lleva tu</span> fiesta <span
-                class="light-weight">al</span> <br />siguiente nivel <span class="light-weight">con</span> <br /><span
-                class="pink">Crescendo</span></h1>
-        <p class="color-gray ">Crescendo le permite a los usuarios hacerle un request
-            al dj y que toda la experiencia de la musica en tu fiesta
-            sea mas personalizada.</p>
-        <form>
-            <div class="input-container">
-                <input type="text" id="username" autocomplete="off" placeholder="ingresa tu Usuario" required
-                    class="text-input">
-                <label for="username" class="label">Usuario</label>
-            </div>
-            <div class="input1-container1">
-                <input type="password" id="password" autocomplete="off" placeholder="ingresa tu Contraseña" required
-                    class="text1-input1">
-                <label for="password" class="label1"> Contraseña</label>
-            </div>
-            <p class="m-2">¿No tenes cuenta? <a class="registrar-link" href="Register.html">Registrarme</a></p>
-            <!-- mensaje iniciaste session/error -->
-            <p style="color: white" id="message"></p>
-            <button class="login-cta" type="submit">Iniciar fiesta</button>
-        </form>
-    </div>
-
-    <script src="Hello page.js"></script>
+  
+    <div class="flex flex-col min-h-screen justify-center items-center main-bg"> 
+        <input type="checkbox" id="checkbox">
+        <label for="checkbox" class="toggle">
+            <div class="bars" id="bar1"></div>
+            <div class="bars" id="bar2"></div>
+            <div class="bars" id="bar3"></div>
+        </label>
+        <div class="menu-container">
+            <ul>
+                <li><a href="Hello page.html">Mi Perfil</a></li>
+                <li><a href="Historial.html">Historial</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#Portfolio">Nosotros</a></li>
+            </ul>
+        </div>
+        <div class="framer-001">
+            <div class="box">
+                <div class="content">
+                  <div class="content__box">
+                    <p class="content__box__text">
+                      Eleva tus 
+                    </p>
+                    <ul class="content__box__list">
+                      <li class="content__box__list__item">fiestas</li>
+                      <li class="content__box__list__item">eventos</li>
+                      <li class="content__box__list__item">bodas</li>
+                      <li class="content__box__list__item">sets</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <p class="sub">con</p>
+              <h1 class="pink">Crescendo</h1>
+              <p class="sub-head">Incrementa la interactividad de tus oyentes en tus eventos usando la función request de Crescendo.</p>
+        </div>
+<section class="Portfolio" id="Portfolio">
+    <a href="Register.html" class="Register">Registrate ahora</a>
+        <div class="framer-002">
+                <div class="lada">
+                    <span class="num" data-val="+80M">+00M</span>
+                    <span class="text">Canciones</span>
+                    <p class="paragraph">Todas las canciones de la biblioteca de Spotify a la disposición de tus oyentes solo con escanear un Qr</p>
+                </div>
+                <div class="lada">
+                    <span class="num" data-val="+100">+000</span>
+                    <span class="text">Usuarios</span>
+                    <p class="paragraph">Todos los usuarios de Crescendo dieron reseñas positivas sobre el uso y funcionalidad de la web</p>
+                </div>
+                <div class="lada">
+                    <span class="num" data-val="500">00</span>
+                    <span class="text">Request</span>
+                    <p class="paragraph">La rapidez y facilidad que nuestro servicio provee es tan rápido que logramos juntar mas de 400 request en tan solo dos semanas
+                        de prueba en eventos.</p>
+                </div>
+        </div>
+    </section>
+</div>
 </body>
 
-
+<script src="inxed.js"></script>
 </html>

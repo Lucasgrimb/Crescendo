@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crescendo DJ - Iniciar Sesión</title>
+    <link rel="stylesheet" href="Hello page.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
+
+    
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+    <nav class="nav">
+        <h1>Crescendo</h1>
+    </nav>
+    <div class="flex flex-col min-h-screen justify-center items-center main-bg">
+        <h1 class="header-gradient"> <span class="light-weight">Lleva tu</span> fiesta <span
+                class="light-weight">al</span> <br />siguiente nivel <span class="light-weight">con</span> <br /><span
+                class="pink">Crescendo</span></h1>
+        <p class="color-gray ">Crescendo le permite a los usuarios hacerle un request
+            al dj y que toda la experiencia de la musica en tu fiesta
+            sea mas personalizada.</p>
+        <form>
+            <div class="input-container">
+                <input type="text" id="username" autocomplete="off" placeholder="ingresa tu Usuario" required
+                    class="text-input">
+                <label for="username" class="label">Usuario</label>
+            </div>
+            <div class="input1-container1">
+                <input type="password" id="password" autocomplete="off" placeholder="ingresa tu Contraseña" required
+                    class="text1-input1">
+                <label for="password" class="label1"> Contraseña</label>
+            </div>
+            <p class="m-2">¿No tenes cuenta? <a class="registrar-link" href="Register.html">Registrarme</a></p>
+            <!-- mensaje iniciaste session/error -->
+            <p style="color: white" id="message"></p>
+            <button class="login-cta" type="submit">Iniciar fiesta</button>
+        </form>
+    </div>
+
+    <script src="Hello page.js"></script>
+</body>
+
+
+</html>
