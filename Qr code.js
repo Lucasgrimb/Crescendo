@@ -242,7 +242,7 @@ async function main() {
   
 // Ejecuta la función main cuando se carga la página
 function actualizarPedidos() {
-  console.log("A")
+  //console.log("A")
   $.ajax({
     url: `https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, // Change this to the correct URL
     method: 'GET',
