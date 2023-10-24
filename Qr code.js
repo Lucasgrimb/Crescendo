@@ -241,4 +241,25 @@ songContainer.addEventListener('scroll', function () {
         
 // Ejecuta la función main cuando se carga la página
 window.addEventListener("load", main);
+function actualizarPedidos() {
+  $.ajax({
+    url: 'https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}', // Change this to the correct URL
+    method: 'GET',
+    dataType: 'json',
+    success: function(data) {
+      // Update the section of requests with the new data
+      $('#song-container').html(data.pedidos);
+    },
+    error: function(error) {
+      console.error('Error loading song requests: ' + error);
+    }
+  });
+}
+
+// Set up the interval to update the requests every 5 seconds
+var intervalo = setInterval(actualizarPedidos, 5000);
+
+// To stop automatic updating, you can use clearInterval at some point
+// clearInterval(intervalo);
+
         
