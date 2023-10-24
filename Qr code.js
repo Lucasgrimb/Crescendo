@@ -65,7 +65,7 @@ async function getSelectedSongs(party_id) {
     const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
       method: "GET",
       headers: {
-       
+
       },
     });
 
@@ -245,7 +245,7 @@ songContainer.addEventListener('scroll', function () {
 
 // Ejecuta la función main cuando se carga la página
 function actualizarPedidos() {
-  //console.log("A")
+  console.log("A")
   $.ajax({
     url: `https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, // Change this to the correct URL
     method: 'GET',
@@ -259,7 +259,7 @@ function actualizarPedidos() {
     }
   });
 }
-var intervalo = setInterval(actualizarPedidos, 1000);
+
 // Set up the interval to update the requests every 5 seconds
 
 // To stop automatic updating, you can use clearInterval at some point
