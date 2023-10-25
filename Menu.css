@@ -7,9 +7,7 @@ body {
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
     overflow-y: auto;
-    background-image: url(/Assets/ESS.png);
-    background-position: center;
-    background-size: 100%;
+  
 }
 .flex {
     display: flex;
@@ -25,6 +23,16 @@ body {
 }
 .items-center {
     align-items: center;
+}
+.main-bg{
+    background-image: url(/Assets/binevenida.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+overflow-y: auto;
 }
 
 #checkbox {
@@ -320,4 +328,13 @@ background: linear-gradient(180deg, #8C8A8A 0%, rgba(255, 255, 255, 0.00) 100%);
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
+}
+
+.framer-003{
+    display: flex;
+    flex-direction: column;
+    max-height: fit-content;
+    top: 1400px;
+    left: 50px;
+    position: absolute;
 }

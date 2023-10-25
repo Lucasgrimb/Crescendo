@@ -2,10 +2,6 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
-    overflow-y: auto;
-    background-image: url(/Assets/Big\ bg.png);
-    background-position: center;
-    background-size: cover;
 }
 .flex {
     display: flex;
@@ -22,6 +18,17 @@ body {
 .items-center {
     align-items: center;
 }
+.main-bg{
+    background-image: url(/Assets/binevenida.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+overflow-y: auto;
+}
+
 .Qr {
     position: absolute;
     top: 4px;

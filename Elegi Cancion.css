@@ -3,10 +3,6 @@
     padding: 0px;
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
-    overflow-y: auto;
-    background-image: url(/Assets/Big\ bg.png);
-    background-position: center;
-    background-size: cover;
 }
 
 /* Estilos para la barra de navegación */
@@ -53,6 +49,18 @@ nav.nav {
 .items-center {
     align-items: center;
 }
+
+.main-bg{
+    background-image: url(/Assets/binevenida.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+overflow-y: auto;
+}
+
 
 /* Estilo de texto con fondo amarillo y texto transparente */
 .clean-hand {

@@ -2,10 +2,6 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: Inter, Coolvetica, Museo-Moderno, sans-serif;
-    overflow-y: auto;
-    background-image: url(/Assets/ESS.png);
-    background-position: center;
-    background-size: cover;
 }
 
 nav.nav {
@@ -39,6 +35,16 @@ nav.nav {
 }
 .items-center {
     align-items: center;
+}
+.main-bg{
+    background-image: url(/Assets/binevenida.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+overflow-y: auto;
 }
 
 /* titulo palabras bold */
