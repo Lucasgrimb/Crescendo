@@ -404,15 +404,13 @@ background-clip: text;
   justify-content: center; 
   text-align: center; 
   align-items: center; 
-  overflow-y: auto;
 }
 
 .block{
 background-color: radial-gradient(375.51% 81.95% at 74.8% 57.4%, #110517 66.67%);
 background: #110517;
-width: 375px;
+width: 450px;
 height: 128px;
-overflow-y: auto;
 }
 
 .media {
@@ -421,7 +419,7 @@ overflow-y: auto;
   justify-content: center; /* Para centrar horizontalmente */
   position: absolute;
   margin-top: 20px;
-  margin-left: 13px;
+  margin-left: 50px;
   gap: 21px; /* Espacio de 21px entre elementos */
 }
 
