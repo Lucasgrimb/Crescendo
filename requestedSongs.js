@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para obtener las canciones seleccionadas
     async function getSelectedSongs(party_id) {
         try {
-            const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
+            const response = await fetch(`https://tricky-dove-poncho.cyclic.app/api/selectedsongs/${party_id}`, {
                 method: "GET",
                 headers: {
 
