@@ -29,7 +29,7 @@ body {
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: relative;
   overflow-y: auto;
 }
 #checkbox {
@@ -409,7 +409,7 @@ background-clip: text;
 .block{
 background-color: radial-gradient(375.51% 81.95% at 74.8% 57.4%, #110517 66.67%);
 background: #110517;
-width: 450px;
+width: 100vw;
 height: 128px;
 }
 
@@ -419,11 +419,11 @@ height: 128px;
   justify-content: center; /* Para centrar horizontalmente */
   position: absolute;
   margin-top: 20px;
-  margin-left: 50px;
+  margin-left: 15px;
   gap: 21px; /* Espacio de 21px entre elementos */
 }
 
 .twitter, .tiktok, .instagram {
   display: flex;
-  align-items: center; /* Para centrar verticalmente */
+  align-items: center; 
 }
