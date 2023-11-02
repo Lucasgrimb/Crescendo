@@ -364,7 +364,6 @@ line-height: normal;
 background: #2C2C2C;
 border: none;
 margin-bottom: 10px;
-
 }
 
 .send-email{
@@ -417,8 +416,8 @@ height: 128px;
   flex-direction: row;
   justify-content: center; /* Para centrar horizontalmente */
   position: absolute;
+  left: 13px;
   margin-top: 20px;
-  margin-left: 13px;
   gap: 21px; /* Espacio de 21px entre elementos */
 }
 
