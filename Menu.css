@@ -399,7 +399,6 @@ background-clip: text;
 .framer-004{
   position: absolute;
   top: 1720px;
-  left: 50%; 
   transform: translate(-50%, -50%); 
   justify-content: center; 
   text-align: center; 
