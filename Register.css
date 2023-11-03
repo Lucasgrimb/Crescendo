@@ -41,9 +41,9 @@ nav.nav {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    position: fixed;
-overflow-y: auto;
-}
+    position: relative;
+    overflow-y: auto;
+  }
 
 /* formulario ,user,password, */
 div>form {
@@ -256,7 +256,7 @@ escrito el usuario se quede arriba */
     background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
     color: #fff;
     cursor: pointer;
-    bottom: 65px;
+    bottom: 165px;
     font-size: 24px;
 }
 
