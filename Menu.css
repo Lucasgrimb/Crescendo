@@ -136,7 +136,6 @@ body {
   .framer-001{
     display: flex;
     flex-direction: column;
-    max-height: fit-content;
     
 }
 
@@ -393,11 +392,11 @@ background-clip: text;
 
 
 .framer-004{
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 1720px;
   transform: translate(-50%, -50%); 
-  justify-content: center; 
-  text-align: center; 
   align-items: center; 
 }
 
@@ -406,19 +405,16 @@ background-color: radial-gradient(375.51% 81.95% at 74.8% 57.4%, #110517 66.67%)
 background: #110517;
 width: 100vw;
 height: 128px;
+align-items: center;
 }
 
 .media {
   display: flex;
   flex-direction: row;
-  justify-content: center; /* Para centrar horizontalmente */
+  align-items: center;
   position: absolute;
-  left: 13px;
-  margin-top: 20px;
-  gap: 21px; /* Espacio de 21px entre elementos */
-}
-
-.twitter, .tiktok, .instagram {
-  display: flex;
-  align-items: center; 
+  top: 50%; /* Centra verticalmente */
+  left: 50%; /* Centra horizontalmente */
+  transform: translate(-50%, -50%); /* Centra el contenido en el medio */
+  gap: 21px;
 }
