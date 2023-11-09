@@ -4,7 +4,7 @@ var party_id;
 async function fetchAccessToken() {
   try {
     const refreshToken = localStorage.getItem('refreshToken');
-    const response = await fetch('https://crescendo-nine.vercel.app/api/token', {
+    const response = await fetch('https://crescendoapi-pro.vercel.app/api/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ async function fetchAccessToken() {
 // Función para iniciar la fiesta
 async function startParty(accessToken) {
   try {
-    const response = await fetch('https://crescendo-nine.vercel.app/api/startparty', {
+    const response = await fetch('https://crescendoapi-pro.vercel.app/api/startparty', {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${accessToken}`,
@@ -62,7 +62,7 @@ async function startParty(accessToken) {
 // Función para obtener las canciones seleccionadas
 async function getSelectedSongs(party_id) {
   try {
-    const response = await fetch(`https://crescendo-nine.vercel.app/api/selectedsongs/${party_id}`, {
+    const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
       method: "GET",
       headers: {
 
@@ -86,7 +86,7 @@ async function getSelectedSongs(party_id) {
 async function updateSongState(songId, party_id, action) {
   try {
     const accessToken = await fetchAccessToken();
-    const response = await fetch(`https://crescendo-nine.vercel.app/api/${songId}/${party_id}/${action}`, {
+    const response = await fetch(`https://crescendoapi-pro.vercel.app/api/${songId}/${party_id}/${action}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${accessToken}`,
@@ -245,7 +245,7 @@ async function main() {
 function actualizarPedidos() {
   console.log("A")
   $.ajax({
-    url: `https://crescendo-nine.vercel.app/api/selectedsongs/${party_id}`,
+    url: `https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`,
     method: 'GET',
     dataType: 'json',
     success: function (data) {

@@ -8,7 +8,7 @@ async function fetchAccessToken() {
       console.error("No refresh token found in local storage");
       return null;
     }
-    const response = await fetch('https://crescendo-nine.vercel.app/api/token', {
+    const response = await fetch('https://crescendoapi-pro.vercel.app/api/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ async function fetchAccessToken() {
 async function startParty() {
   try {
     let accessToken = localStorage.getItem('accessToken');
-    const response = await fetch('https://crescendo-nine.vercel.app/api/startparty', {
+    const response = await fetch('https://crescendoapi-pro.vercel.app/api/startparty', {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${accessToken}`,

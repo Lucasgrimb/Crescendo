@@ -31,7 +31,7 @@ registerForm.addEventListener('submit', async function(event) {
 
     try {
         // Send POST request to register
-        const response = await fetch('https://crescendo-nine.vercel.app/api/register', {
+        const response = await fetch('https://crescendoapi-pro.vercel.app/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
