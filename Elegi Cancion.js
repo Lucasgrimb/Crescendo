@@ -107,7 +107,7 @@ function updateSongDetails(image, title, artist, trackId) {
 // Manejador para el botón Aceptar
 function handleAcceptClick() {
     const trackId = document.querySelector('.modal').dataset.id;
-    const party_id = new URL(window.location.href).searchParams.get('party_id');
+    const party_id = new URL(window.location.href).searchParams.get('partyId');
     
     // Guardar la información en localStorage
     saveToLocalStorage(party_id, trackId);
