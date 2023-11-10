@@ -116,7 +116,7 @@ function handleAcceptClick() {
         party_id,
         songId: trackId
     };
-console.log(party_id, songId);
+console.log(data.party_id, data.songId);
 
     const requestOptions = {
         method: 'POST',
