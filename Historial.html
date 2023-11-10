@@ -8,31 +8,75 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
+        
+        /* Estilos básicos */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #content {
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #createPartyButton {
+            display: block;
+            width: 100%;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #createPartyButton:hover {
+            background-color: #0056b3;
+        }
+
+        #partiesList {
+            list-style: none;
+            padding: 0;
+        }
+
+        .party {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .party:hover {
+            background-color: #dde0e3;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Historial de Fiestas</h1>
-            <button id="createPartyBtn">Crear Fiesta</button>
-            <!-- Considera añadir un botón de cierre de sesión si es necesario -->
-            <!-- <button id="logoutBtn">Cerrar Sesión</button> -->
-        </header>
-
-        <!-- Mensajes de estado o error -->
-        <div id="statusMessage" class="status-message"></div>
-
-        <!-- El formulario de creación de fiestas se inyectará aquí -->
-        <div id="partyCreationForm" class="party-creation-form"></div>
-
-        <!-- Lista de fiestas -->
-        <div id="partiesList" class="parties-list">
-            <!-- Las fiestas se cargarán aquí -->
+    <div id="content">
+        <h1>Historial de Fiestas</h1>
+        <button id="createPartyButton">Crear Fiesta</button>
+        <div id="partiesList">
+            <!-- Las fiestas se cargarán aquí dinámicamente -->
         </div>
-
-        <!-- Lista de canciones de la fiesta seleccionada -->
-        <!-- Esta sección puede ser inyectada por historial.js -->
-        <div id="songsList" class="songs-list"></div>
     </div>
 
     <script src="Historial.js"></script>
