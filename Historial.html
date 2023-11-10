@@ -3,19 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu DJ's</title>
+    <title>Historial de Fiestas</title>
     <link rel="stylesheet" href="Historial.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
-         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
-         </style>
-         <link rel="preconnect" href="https://fonts.googleapis.com">
-         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
+    </style>
 </head>
 <body>
-    <div class="flex flex-col min-h-screen justify-center items-center main-bg"> 
+    <div class="container">
+        <header class="header">
+            <h1>Historial de Fiestas</h1>
+            <button id="createPartyBtn">Crear Fiesta</button>
+            <!-- Considera añadir un botón de cierre de sesión si es necesario -->
+            <!-- <button id="logoutBtn">Cerrar Sesión</button> -->
+        </header>
 
+        <!-- Mensajes de estado o error -->
+        <div id="statusMessage" class="status-message"></div>
+
+        <!-- El formulario de creación de fiestas se inyectará aquí -->
+        <div id="partyCreationForm" class="party-creation-form"></div>
+
+        <!-- Lista de fiestas -->
+        <div id="partiesList" class="parties-list">
+            <!-- Las fiestas se cargarán aquí -->
+        </div>
+
+        <!-- Lista de canciones de la fiesta seleccionada -->
+        <!-- Esta sección puede ser inyectada por historial.js -->
+        <div id="songsList" class="songs-list"></div>
     </div>
+
+    <script src="historial.js"></script>
 </body>
 </html>
