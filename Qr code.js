@@ -44,12 +44,14 @@ async function getSelectedSongs() {
       throw new Error("No se pudo obtener las canciones seleccionadas");
     }
 
-    const data = await response.json();
-    displaySongs(data.songs);
+    const songs = await response.json(); // Directamente un array de canciones
+    displaySongs(songs); // Pasa este array a la función displaySongs
   } catch (error) {
     console.error(error);
+    displaySongs([]);
   }
 }
+
 
 // Función para actualizar el estado de una canción
 async function updateSongState(songId, action) {

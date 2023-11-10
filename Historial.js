@@ -87,7 +87,7 @@ async function createParty() {
 
     const data = await response.json();
     if (data.success) {
-        window.location.href = `/Qr%20code?partyId=${data.party_id}`;
+        window.location.href = `/Qr%20code.html?partyId=${data.party_id}`;
     } else {
         alert('No se pudo crear la fiesta. Intente nuevamente.');
     }
