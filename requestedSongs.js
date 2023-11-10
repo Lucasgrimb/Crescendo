@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener el parámetro 'party_id' de la URL
     const params = new URLSearchParams(window.location.search);
-    const partyId = params.get('party_id');
+    const party_id = params.get('party_id');
 
     // Llama a la función para obtener las canciones seleccionadas
-    getSelectedSongs(partyId);
+    getSelectedSongs(party_id);
 
     // Función para obtener las canciones seleccionadas
     async function getSelectedSongs(party_id) {

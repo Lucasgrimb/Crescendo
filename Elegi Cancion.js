@@ -107,16 +107,16 @@ function updateSongDetails(image, title, artist, trackId) {
 // Manejador para el botón Aceptar
 function handleAcceptClick() {
     const trackId = document.querySelector('.modal').dataset.id;
-    const party_id = new URL(window.location.href).searchParams.get('partyId');
+    const party_id = new URL(window.location.href).searchParams.get('party_id');
     
     // Guardar la información en localStorage
     saveToLocalStorage(party_id, trackId);
 
     const data = {
         party_id,
-        songId: trackId
+        song_id: trackId
     };
-console.log(data.party_id, data.songId);
+console.log(data.party_id, data.song_id);
 
     const requestOptions = {
         method: 'POST',

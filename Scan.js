@@ -1,90 +1,31 @@
-var party_id;
-
-// Función para llamar al endpoint /api/token y obtener el accessToken
-async function fetchAccessToken() {
-  try {
-    const refreshToken = localStorage.getItem('refreshToken');
-    if (!refreshToken) {
-      console.error("No refresh token found in local storage");
-      return null;
-    }
-    const response = await fetch('https://crescendoapi-pro.vercel.app/api/token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ refreshToken }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch new access token");
-    }
-
-    const data = await response.json();
-    localStorage.setItem('accessToken', data.accessToken);
-    localStorage.setItem('refreshToken', data.refreshToken);
-    return data.accessToken;
-  } catch (error) {
-    console.error('Error in fetchAccessToken:', error);
-    return null;
-  }
+//Tomo el party_id de la url
+function getPartyIdFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('party_id');
 }
 
-// Función para iniciar la fiesta
-async function startParty() {
-  try {
-    let accessToken = localStorage.getItem('accessToken');
-    const response = await fetch('https://crescendoapi-pro.vercel.app/api/startparty', {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${accessToken}`,
-      },
-    });
-
-    if (response.status === 403) {
-      accessToken = await fetchAccessToken();
-      if (accessToken) {
-        return startParty();
-      }
-    }
-
-    if (!response.ok) {
-      throw new Error("Failed to start the party");
-    }
-
-    const data = await response.json();
-    party_id = data.party_id;
-    // Show QR code
-    const qrContainer = document.getElementById("qr-container");
-    if (qrContainer) {
-      const imgElement = document.createElement("img");
-      imgElement.src = data.qr_code;
-      qrContainer.appendChild(imgElement);
-    }
-
-    return data;
-  } catch (error) {
-    console.error('Error in startParty:', error);
-    return null;
-  }
+//genero el qr y lo pongo en su container
+function generateQRCode(party_id) {
+  const qrUrl = `https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}`;
+  const qrContainer = document.getElementById('qr-container');
+  new QRCode(qrContainer, qrUrl);
 }
+
 
 // Main function
 async function main() {
-  const accessToken = await fetchAccessToken();
-  if (accessToken) {
-    const partyData = await startParty();
-    if (partyData) {
-      console.log('Party started:', partyData);
-    } else {
-      console.log("No party data");
-    }
+  const party_id = getPartyIdFromUrl();
+  if (party_id) {
+      generateQRCode(party_id);
   } else {
-    console.log("No access token");
+      console.log("No party ID found in URL");
   }
 }
 
 window.addEventListener("load", main);
+
+
+
 
 // btn compartir
 document.addEventListener('DOMContentLoaded', () => {
