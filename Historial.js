@@ -49,7 +49,7 @@ async function fetchWithTokenRefresh(url, options) {
 
 async function loadPartiesList() {
     const accessToken = localStorage.getItem('accessToken');
-    const response = await fetchWithTokenRefresh('https://crescendoapi-pro.vercel.app/api/partyhistory', {
+    const response = await fetchWithTokenRefresh('https://defiant-slug-top-hat.cyclic.app/api/partyhistory', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`
@@ -84,7 +84,7 @@ async function createParty() {
     const partyName = prompt('Ingrese el nombre de la fiesta:');
     if (!partyName) return;
     const accessToken = localStorage.getItem('accessToken');
-    const response = await fetchWithTokenRefresh('https://crescendoapi-pro.vercel.app/api/createParty', {
+    const response = await fetchWithTokenRefresh('https://defiant-slug-top-hat.cyclic.app/api/createParty', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

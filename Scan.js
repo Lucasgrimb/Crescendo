@@ -6,7 +6,7 @@ function getPartyIdFromUrl() {
 
 //genero el qr y lo pongo en su container
 function generateQRCode(party_id) {
-  const qrUrl = `https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}`;
+  const qrUrl = `https://defiant-slug-top-hat.cyclic.app/Elegi%20Cancion.html?party_id=${party_id}`;
   const qrContainer = document.getElementById('qr-container');
   new QRCode(qrContainer, qrUrl);
 }
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
           navigator.share({
               title: 'Compartir',
               text: '¡Mira este código QR!',
-              url: `https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}`
+              url: `https://defiant-slug-top-hat.cyclic.app/Elegi%20Cancion.html?party_id=${party_id}`
 
           })
           .then(() => console.log('Compartido con éxito'))
