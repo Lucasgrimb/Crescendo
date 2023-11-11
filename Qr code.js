@@ -60,7 +60,7 @@ async function getSelectedSongs() {
 async function updateSongState(song_id, action) {
   try {
     const accessToken = await fetchAccessToken();
-    const response = await fetch(`https://defiant-slug-top-hat.cyclic.app/${song_id}/${party_id}/${action}`, {
+    const response = await fetch(`https://defiant-slug-top-hat.cyclic.app/B/${song_id}/${party_id}/${action}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${accessToken}`,
