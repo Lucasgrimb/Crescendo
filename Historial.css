@@ -88,38 +88,39 @@ nav.nav {
             cursor: pointer;
         }
 
-#partiesList {
-    list-style: none;
-    padding: 0;
-}
-
-.party {
-    position: relative;
-    padding: 10px;
-    margin: 0px 0;
-    background-color: transparent;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #F5F5F5;
-    font-family: Inter;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-decoration-line: underline;
-}
-
-.party::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100vh;
-    height: 1px;
-    background-color: #656565;
-    filter: blur(1px);
-}
-
+        #partiesList {
+            list-style: none;
+            padding: 0;
+            margin: 0; /* Ajuste para eliminar el margen */
+        }
+        
+        .party {
+            position: relative;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #F5F5F5;
+            font-family: Inter;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-decoration-line: underline;
+        }
+        
+        .party::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%; /* Cambiado de 100vh a 100% */
+            height: 1px;
+            background-color: #656565;
+            filter: blur(1px);
+        }
+        
 
 
         
