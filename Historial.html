@@ -8,77 +8,20 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
-        
-        /* Estilos básicos */
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
 
-        #content {
-            width: 80%;
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        #createPartyButton {
-            display: block;
-            width: 100%;
-            padding: 10px 20px;
-            margin: 10px 0;
-            font-size: 16px;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #createPartyButton:hover {
-            background-color: #0056b3;
-        }
-
-        #partiesList {
-            list-style: none;
-            padding: 0;
-        }
-
-        .party {
-            padding: 10px;
-            margin: 5px 0;
-            background-color: #e9ecef;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .party:hover {
-            background-color: #dde0e3;
-        }
     </style>
 </head>
 <body>
+
+ <div class="flex flex-col min-h-screen justify-center items-center main-bg"> 
     <div id="content">
-        <h1>Historial de Fiestas</h1>
-        <button id="createPartyButton">Crear Fiesta</button>
+        <h1>Mis fiestas</h1>
+        <button id="createPartyButton">Crear Fiesta +</button>
         <div id="partiesList">
             <!-- Las fiestas se cargarán aquí dinámicamente -->
         </div>
     </div>
-
+</div>
     <script src="Historial.js"></script>
 </body>
 </html>
