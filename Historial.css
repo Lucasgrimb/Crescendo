@@ -90,6 +90,7 @@ nav.nav {
 
 #partiesList {
     list-style: none;
+    left: 0px;
     padding: 0;
 }
 
