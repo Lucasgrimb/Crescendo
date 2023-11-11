@@ -89,7 +89,6 @@ nav.nav {
         }
 
 #partiesList {
-    width: 100vh;
     list-style: none;
     padding: 0;
 }
@@ -101,8 +100,13 @@ nav.nav {
     background-color: transparent;
     border-radius: 5px;
     cursor: pointer;
-    color: #fff; /* Texto blanco */
-    text-decoration: underline; /* Subrayado */
+    color: #F5F5F5;
+    font-family: Inter;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
 }
 
 .party::after {
@@ -110,7 +114,7 @@ nav.nav {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 100vh;
     height: 1px;
     background-color: #656565;
     filter: blur(1px);
