@@ -91,7 +91,7 @@ form>input{
     padding: 15px;
     width: 250px;
     height: 25px;
-    border: 1px solid #9D9C9C;
+    border: 2px solid #9D9C9C;
     background: transparent;
     border-radius: 5px;
     font-size: 18px;
@@ -112,7 +112,7 @@ z-index: -1;
 }
 /* borde al clickear */
 .text-input:focus{
-    border: 2px solid #ffffff;
+    border: 2px solid #9A2CD1;
 }
 /* texto al clickear */
 .text-input:focus+.label,
@@ -170,7 +170,7 @@ escrito el usuario se quede arriba */
     padding: 15px;
     width: 250px;
     height: 25px;
-    border: 1px solid #9D9C9C;
+    border: 2px solid #9D9C9C;
     background: transparent;
     border-radius: 5px;
     font-size: 18px;
@@ -191,7 +191,7 @@ z-index: -1;
 }
 /* borde al clickear */
 .text1-input1:focus{
-    border: 2px solid #ffffff;
+    border: 2px solid #9A2CD1;
 }
 /* texto al clickear */
 .text1-input1:focus+.label1,

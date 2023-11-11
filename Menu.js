@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function startCount(valueDisplay, value, isFirstNumber) {
         let startValue = 0;
-        const duration = 800; // Duración en milisegundos
+        const duration = 600; // Duración en milisegundos
     
         function updateValue() {
             if (startValue <= parseInt(value)) {

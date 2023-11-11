@@ -4,64 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial de Fiestas</title>
-    <link rel="stylesheet" href="HistorialP.css">
+    <link rel="stylesheet" href="Historial.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
-        
-        /* Estilos básicos */
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
 
-        #content {
-            width: 80%;
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-
-        #partiesList {
-            list-style: none;
-            padding: 0;
-        }
-
-        .party {
-            padding: 10px;
-            margin: 5px 0;
-            background-color: #e9ecef;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .party:hover {
-            background-color: #dde0e3;
-        }
     </style>
 </head>
 <body>
+
+ <div class="flex flex-col min-h-screen justify-center items-center main-bg"> 
+    <div class="header-peticion">
+        <div class="requests-title">
+            <p>Historial</p>
+        </div>
+        <div class="stroke"></div>
+        <div class="strokeito"></div>
+    </div>
     <div id="content">
-        <h1>Historial de Fiestas</h1>
+        <h1>Mis fiestas</h1>
         <div id="partiesList">
             <!-- Las fiestas se cargarán aquí dinámicamente -->
         </div>
     </div>
-
-    <script src="HistorialP.js"></script>
+</div>
+    <script src="Historial.js"></script>
 </body>
 </html>
