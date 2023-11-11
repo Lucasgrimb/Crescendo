@@ -339,8 +339,22 @@ margin-bottom: 25px;
     height: 50px;
     border: none;
     border-radius: 15px;
-    background: linear-gradient(87deg, #9A2BD2 0%, #9D9C9C 250.25%);
     font-size: 15px;
-    color: #fff;
+    color: #000000;
     top: 570px;
+    left: 20px;
+}
+
+.profiledj{
+    position: absolute;
+    box-shadow: 0 0 5px #3E2F45,
+    0 0 25px #3E2F45;
+    width: 155px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    color: #000000;
+    top: 570px;
+    right: 20px;
 }
