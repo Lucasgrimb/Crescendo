@@ -90,12 +90,12 @@ nav.nav {
 
 #partiesList {
     list-style: none;
-    left: 0px;
     padding: 0;
 }
 
 .party {
     position: relative;
+    left: 0px;
     padding: 10px;
     margin: 5px 0;
     background-color: transparent;
