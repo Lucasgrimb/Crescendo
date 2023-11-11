@@ -87,22 +87,30 @@ nav.nav {
             border-radius: 15px;
             cursor: pointer;
         }
+
         #partiesList {
             list-style: none;
             padding: 0;
-            display: flex; /* Cambiado a flex para ocupar el ancho completo */
-            flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben en una línea */
-            gap: 10px; /* Añadido un espacio entre las fiestas */
-            overflow-y: auto; /* Agregado desplazamiento vertical cuando sea necesario */
         }
         
         .party {
-            flex: 1; /* Ocupa todo el espacio disponible en la línea */
+            position: relative; /* Añadido para posición relativa */
             padding: 10px;
             margin: 5px 0;
-            background-color: #e9ecef;
+            background-color: transparent; /* Cambiado a fondo transparente */
             border-radius: 5px;
             cursor: pointer;
+        }
+        
+        .party::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #656565;
+            filter: blur(1px);
         }
         
 
