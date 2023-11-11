@@ -175,24 +175,10 @@ function displaySongs(songs, showButtons = false) {
   }
 }
 
-let partyEnded = false;
 
-document.querySelector('.end-party').addEventListener('click', function(event) {
-    event.preventDefault();
-    const endPartyButton = this; // O usa document.querySelector('.end-party') si 'this' no funciona
 
-    if (!partyEnded) {
-        // Muestra los botones de aceptar/rechazar
-        document.querySelectorAll('.accept-song, .reject-song').forEach(button => {
-            button.style.display = 'block';
-        });
-        endPartyButton.textContent = 'Finalizar Fiesta'; // Cambia el texto del botón
-        partyEnded = true;
-    } else {
-        // Redirige a Historial.html
-        window.location.href = 'Historial.html';
-    }
-});
+
+
 
 
 
