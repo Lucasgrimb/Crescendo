@@ -57,16 +57,28 @@ async function getSelectedSongs() {
 
 
 // Función para actualizar el estado de una canción
-async function updateSongState(song_id, action) {
+async function updateSongState(song_id, party_id, action) {
   try {
     const accessToken = await fetchAccessToken();
-    const response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/B/${song_id}/${party_id}/accept`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      },
-    });
+    let response;
+
+    if (action == "accept") {
+      response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/B/${song_id}/${party_id}/accept`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+      });
+    } else {
+      response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/B/${song_id}/${party_id}/reject`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+      });
+    }
 
     if (!response.ok) {
       throw new Error(`Failed to ${action} the song.`);
@@ -77,6 +89,7 @@ async function updateSongState(song_id, action) {
     return false;
   }
 }
+
 
 // Función para mostrar las canciones
 function displaySongs(songs) {
