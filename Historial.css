@@ -77,7 +77,7 @@ nav.nav {
             right: 15px;
             top: 15px;
             position: absolute;
-            width: 159px;
+            width: 100vh;
             height: 44.5px; 
             font-size: 17px;
             font-family: Inter;
@@ -88,31 +88,32 @@ nav.nav {
             cursor: pointer;
         }
 
-        #partiesList {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .party {
-            position: relative; /* Añadido para posición relativa */
-            padding: 10px;
-            margin: 5px 0;
-            background-color: transparent; /* Cambiado a fondo transparente */
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .party::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: #656565;
-            filter: blur(1px);
-        }
-        
+#partiesList {
+    list-style: none;
+    padding: 0;
+}
+
+.party {
+    position: relative;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff; /* Texto blanco */
+    text-decoration: underline; /* Subrayado */
+}
+
+.party::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #656565;
+    filter: blur(1px);
+}
 
         .header-peticion {
             display: flex;
