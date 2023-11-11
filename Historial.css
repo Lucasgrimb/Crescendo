@@ -94,8 +94,7 @@ nav.nav {
 }
 
 .party {
-    position: absolute;
-    left: 0px;
+    position: relative;
     padding: 10px;
     margin: 5px 0;
     background-color: transparent;
@@ -108,6 +107,9 @@ nav.nav {
     font-weight: 700;
     line-height: normal;
     text-decoration-line: underline;
+    left: 0; /* Ajuste para comenzar desde la izquierda */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho total */
 }
 
 .party::after {
