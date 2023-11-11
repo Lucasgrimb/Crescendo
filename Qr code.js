@@ -36,7 +36,7 @@ async function fetchAccessToken() {
 async function getSelectedSongs() {
   try {
     const accessToken = await fetchAccessToken();
-    const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
+    const response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/selectedsongs/${party_id}`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${accessToken}`,
