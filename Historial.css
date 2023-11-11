@@ -48,6 +48,7 @@ nav.nav {
 
 
         #content {
+            left: 0px;
             width: 80%;
             max-width: 600px;
             margin: auto;
@@ -90,7 +91,6 @@ nav.nav {
 
 #partiesList {
     list-style: none;
-    padding: 0;
 }
 
 .party {
