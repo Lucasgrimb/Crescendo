@@ -91,7 +91,8 @@ nav.nav {
         #partiesList {
             list-style: none;
             padding: 0;
-            margin: 0; /* Ajuste para eliminar el margen */
+            margin: 0;
+            width: 100vw; /* Añadido para ocupar todo el ancho de la pantalla */
         }
         
         .party {
@@ -108,6 +109,7 @@ nav.nav {
             font-weight: 700;
             line-height: normal;
             text-decoration-line: underline;
+            width: 100%; /* Añadido para ocupar todo el ancho de la pantalla */
         }
         
         .party::after {
@@ -115,7 +117,7 @@ nav.nav {
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 100%; /* Cambiado de 100vh a 100% */
+            width: 100%;
             height: 1px;
             background-color: #656565;
             filter: blur(1px);
