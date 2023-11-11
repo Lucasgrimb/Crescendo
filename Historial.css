@@ -92,7 +92,7 @@ nav.nav {
             list-style: none;
             padding: 0;
             margin: 0;
-            width: 100vw; /* Añadido para ocupar todo el ancho de la pantalla */
+            width: 100vw;
         }
         
         .party {
@@ -109,7 +109,8 @@ nav.nav {
             font-weight: 700;
             line-height: normal;
             text-decoration-line: underline;
-            width: 100%; /* Añadido para ocupar todo el ancho de la pantalla */
+            width: calc(100% - 40px); /* Ajuste para compensar el padding en el #content */
+            left: 0; /* Añadido para iniciar desde la izquierda */
         }
         
         .party::after {
@@ -122,6 +123,7 @@ nav.nav {
             background-color: #656565;
             filter: blur(1px);
         }
+        
         
 
 
