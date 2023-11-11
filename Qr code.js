@@ -126,7 +126,7 @@ function displaySongs(songs) {
       songTitle.innerText = song.name;
       const songArtist = document.createElement('p');
       songArtist.className = "song-artist";
-      songArtist.innerText = song.artist;
+      songArtist.innerText = song.artist.name;
 
 
       const acceptButton = document.createElement('button');

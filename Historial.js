@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function fetchAccessToken() {
     try {
         const refreshToken = localStorage.getItem('refreshToken');
-        const response = await fetch('https://crescendoapi-pro.vercel.app/api/token', {
+        const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
