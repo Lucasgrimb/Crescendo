@@ -48,7 +48,6 @@ nav.nav {
 
 
         #content {
-            left: 0px;
             width: 80%;
             max-width: 600px;
             margin: auto;
@@ -91,11 +90,13 @@ nav.nav {
 
 #partiesList {
     list-style: none;
+    padding: 0;
 }
 
 .party {
     position: relative;
-    padding: 10px;
+    padding: 0px;
+    margin: 5px 0;
     background-color: transparent;
     border-radius: 5px;
     cursor: pointer;
@@ -106,16 +107,13 @@ nav.nav {
     font-weight: 700;
     line-height: normal;
     text-decoration-line: underline;
-    left: 0; /* Ajuste para comenzar desde la izquierda */
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
-    box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho total */
 }
 
 .party::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0px;
+    left: 0;
     width: 100vh;
     height: 1px;
     background-color: #656565;
