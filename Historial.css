@@ -87,21 +87,24 @@ nav.nav {
             border-radius: 15px;
             cursor: pointer;
         }
-
         #partiesList {
-
             list-style: none;
             padding: 0;
+            display: flex; /* Cambiado a flex para ocupar el ancho completo */
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben en una línea */
+            gap: 10px; /* Añadido un espacio entre las fiestas */
+            overflow-y: auto; /* Agregado desplazamiento vertical cuando sea necesario */
         }
-
+        
         .party {
-            color: blueviolet;
+            flex: 1; /* Ocupa todo el espacio disponible en la línea */
             padding: 10px;
             margin: 5px 0;
             background-color: #e9ecef;
             border-radius: 5px;
             cursor: pointer;
         }
+        
 
         .header-peticion {
             display: flex;
