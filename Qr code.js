@@ -127,7 +127,7 @@ function displaySongs(songs) {
       // Agregar los manejadores de eventos aquí
       acceptButton.addEventListener('click', async () => {
         const songId = songItem.getAttribute('data-songid');
-        if (await updateSongState(songId, party_id, 'accept')) {
+        if (await updateSongState(songId,'accept')) {
           // Mueve la canción al final de la lista de canciones aceptadas
           acceptedContainer.appendChild(songItem);
           songItem.classList.add("accepted");
@@ -141,7 +141,7 @@ function displaySongs(songs) {
 
       rejectButton.addEventListener('click', async () => {
         const songId = songItem.getAttribute('data-songid');
-        if (await updateSongState(songId, party_id, 'reject')) {
+        if (await updateSongState(songId,'reject')) {
           // Mueve la canción al final de la lista de canciones rechazadas
           rejectedContainer.appendChild(songItem);
           songItem.classList.add("rejected");
