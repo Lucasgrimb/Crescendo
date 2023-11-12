@@ -156,8 +156,13 @@ function saveToLocalStorage(party_id, trackId) {
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
-    var profileDjLink = document.getElementById('profiledj-link');
-    profileDjLink.href = 'PerfilDj.html?party_id=' + party_id;
+
+    //logica para boton dj profile
+    var profileDjButton = document.getElementById('profiledj-button');
+    profileDjButton.addEventListener('click', function() {
+        window.location.href = 'PerfilDj.html?party_id=' + party_id;
+    });
+    
     // Manejador para el botón Aceptar
     document.getElementById('acceptButton').addEventListener('click', handleAcceptClick);
     // Manejador para el botón de búsqueda
