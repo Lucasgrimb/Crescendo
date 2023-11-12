@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 songTitle.innerText = song.name;
                 const songArtist = document.createElement('p');
                 songArtist.className = "song-artist";
-                songArtist.innerText = song.artist;
+                songArtist.innerText = song.artist.name;
 
                 songDetails.appendChild(songTitle);
                 songDetails.appendChild(songArtist);
