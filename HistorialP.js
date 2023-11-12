@@ -2,13 +2,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Obtener el party_id de la URL
 const urlParams = new URLSearchParams(window.location.search);
 const party_id = urlParams.get('party_id');
-    if (accessToken) {
-        await loadPartiesList();
-        document.getElementById('createPartyButton').addEventListener('click', createParty);
-    } else {
-        console.error('No se pudo obtener el token de acceso.');
-        // Manejar la situación en la que no se puede obtener un token (mostrar mensaje, redirigir, etc.)
-    }
+    
+        await loadPartiesList(party_id);
+    
 });
 
 

@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil dj</title>
+    <title>Perfil DJ</title>
     <link rel="stylesheet" href="PerfilDj.css">
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
-         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
-         </style>
-         <link rel="preconnect" href="https://fonts.googleapis.com">
-         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  
     <div class="flex flex-col min-h-screen justify-center items-center main-bg"> 
-        <h1 class="header">Perfil del dj</h1>
-        
+        <h1 class="header">Perfil del DJ</h1>
     </div>
+
+    <div id="dj-profile" class="profile-container">
+        <p>Total de fiestas: <span id="total-parties"></span></p>
+        <p>Total de pedidos de canciones: <span id="total-requests"></span></p>
+        <p>Canciones aceptadas: <span id="accepted-songs"></span></p>
+        <p>Género más aceptado: <span id="dominant-genre"></span></p>
+        <button id="historial-fiestas-link">Historial de Fiestas</button>
+    </div>
+
+    <!-- Incluye tu script de JavaScript aquí -->
+    <script src="PerfilDj.js"></script>
+</body>
+</html>
