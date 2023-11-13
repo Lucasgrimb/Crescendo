@@ -44,3 +44,39 @@ body {
     position: absolute;
 }
 
+
+
+
+.historial-fiestas-link{
+border-radius: 10px;
+ background: #FFF;
+width: 226px;
+height: 38px;
+border: none;
+position: absolute;
+justify-content: center;
+align-items: center;
+margin-top: 320px;
+left: 60px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    left: 10px;
+    position: absolute;
+}
+
+.profile-container > p {
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(180deg, #8C8A8A 0%, rgba(255, 255, 255, 0.00) 138.16%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px; /* Separación entre elementos */
+}
+
