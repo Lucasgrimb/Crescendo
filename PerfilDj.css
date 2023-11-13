@@ -44,9 +44,6 @@ body {
     position: absolute;
 }
 
-
-
-
 .historial-fiestas-link{
 border-radius: 10px;
  background: #FFF;
@@ -54,10 +51,8 @@ width: 226px;
 height: 38px;
 border: none;
 position: absolute;
-justify-content: center;
-align-items: center;
 margin-top: 320px;
-left: 60px;
+left: 70px;
 }
 
 .profile-container {
@@ -79,4 +74,3 @@ left: 60px;
     -webkit-text-fill-color: transparent;
     margin-bottom: 10px; /* Separación entre elementos */
 }
-
