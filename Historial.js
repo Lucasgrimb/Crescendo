@@ -34,26 +34,10 @@ async function fetchAccessToken() {
     }
 }
 
-async function fetchWithTokenRefresh(url, options) {
-    let response = await fetch(url, options);
-    if (response.status === 401) {
-        const newAccessToken = await fetchAccessToken();
-        if (!newAccessToken) {
-            throw new Error('No se pudo obtener un nuevo token de acceso');
-        }
-        options.headers['Authorization'] = `Bearer ${newAccessToken}`;
-        response = await fetch(url, options);
-    }
-    return response;
-}
 
 async function loadPartiesList() {
-    const accessToken = localStorage.getItem('accessToken');
-    const response = await fetchWithTokenRefresh('https://defiant-slug-top-hat.cyclic.app/api/partyhistory', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`
-        }
+    const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/partyhistory', {
+        method: 'GET'
     });
 
     const data = await response.json();
@@ -80,19 +64,37 @@ async function loadPartiesList() {
 }
 
 
+
 async function createParty() {
     const partyName = prompt('Ingrese el nombre de la fiesta:');
     if (!partyName) return;
-    const accessToken = localStorage.getItem('accessToken');
-    const response = await fetchWithTokenRefresh('https://defiant-slug-top-hat.cyclic.app/api/createParty', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        },
-        body: JSON.stringify({ partyName })
-    });
 
+    async function sendCreateRequest(token) {
+        const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/createParty', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ partyName })
+        });
+        return response;
+    }
+
+    let accessToken = localStorage.getItem('accessToken');
+    let response = await sendCreateRequest(accessToken);
+
+    // Si el token es inválido o expiró, intenta obtener uno nuevo
+    if (response.status === 403) {
+        accessToken = await fetchAccessToken();
+        if (!accessToken) {
+            alert('No se pudo renovar el token de acceso. Intente iniciar sesión nuevamente.');
+            return;
+        }
+        response = await sendCreateRequest(accessToken);
+    }
+
+    // Procesar la respuesta
     const data = await response.json();
     if (data.success) {
         window.location.href = `/Qr%20code.html?party_id=${data.party_id}`;
@@ -100,6 +102,7 @@ async function createParty() {
         alert('No se pudo crear la fiesta. Intente nuevamente.');
     }
 }
+
 
 
 

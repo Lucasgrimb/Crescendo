@@ -134,7 +134,7 @@ console.log(data.party_id, data.song_id);
     // Recarga la página después de 1.5 segundos
     setTimeout(function() {
         location.reload();
-    }, 1500);
+    }, 500);
 }
 
 // Función para guardar datos en localStorage

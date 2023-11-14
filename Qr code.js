@@ -33,62 +33,71 @@ async function fetchAccessToken() {
 }
 
 // Función para obtener las canciones seleccionadas
-async function getSelectedSongs() {
+async function getSelectedSongs(party_id) {
   try {
-    const accessToken = await fetchAccessToken();
-    const response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/selectedsongs/${party_id}`, {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${accessToken}`,
+      const response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/selectedsongs/${party_id}`, {
+          method: "GET",
+          headers: {
+
+          },
+      });
+
+      if (!response.ok) {
+          throw new Error("No se pudo obtener las canciones seleccionadas");
       }
-    });
 
-    if (!response.ok) {
-      throw new Error("No se pudo obtener las canciones seleccionadas");
-    }
+      const data = await response.json();
+      console.log(data);
 
-    const songs = await response.json(); // Directamente un array de canciones
-    displaySongs(songs); // Pasa este array a la función displaySongs
+      // Haz algo con los datos, como mostrar las canciones
+      displaySongs(data);
   } catch (error) {
-    console.error(error);
-    displaySongs([]);
+      console.error(error);
   }
 }
 
 
-// Función para actualizar el estado de una canción
-async function updateSongState(song_id, party_id, action) {
-  try {
-    const accessToken = await fetchAccessToken();
-    let response;
 
-    if (action == "accept") {
-      response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/B/${song_id}/${party_id}/accept`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/json'
-        },
-      });
-    } else {
-      response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/B/${song_id}/${party_id}/reject`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/json'
-        },
-      });
+// Función para actualizar el estado de una canción
+async function updateSongState(song_id, action) {
+  let accessToken = localStorage.getItem('accessToken');
+
+  async function sendUpdateRequest(token) {
+    const endpointAction = action === "accept" ? "accept" : "reject";
+    const response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/B/${song_id}/${party_id}/${endpointAction}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+    });
+    return response;
+  }
+
+  try {
+    let response = await sendUpdateRequest(accessToken);
+
+    // Si el token es inválido o expiró, intenta obtener uno nuevo
+    if (response.status === 403) {
+      accessToken = await fetchAccessToken();
+      if (!accessToken) {
+        throw new Error('No se pudo renovar el token de acceso');
+      }
+      response = await sendUpdateRequest(accessToken);
     }
 
+    // Manejar respuestas no exitosas después de la renovación del token
     if (!response.ok) {
       throw new Error(`Failed to ${action} the song.`);
     }
+
     return true;
   } catch (error) {
     console.error(error);
     return false;
   }
 }
+
 
 
 // Función para mostrar las canciones
@@ -110,7 +119,7 @@ function displaySongs(songs) {
     songs.forEach((song) => {
       const songItem = document.createElement('div');
       songItem.className = "song-item";
-      songItem.setAttribute('data-songid', song.id);
+      songItem.setAttribute('data-song_id', song.id);
       songItem.setAttribute('data-songstate', song.song_state);
 
       const songImage = document.createElement('div');
@@ -139,29 +148,29 @@ function displaySongs(songs) {
 
       // Agregar los manejadores de eventos aquí
       acceptButton.addEventListener('click', async () => {
-        const songId = songItem.getAttribute('data-songid');
-        if (await updateSongState(songId,'accept')) {
+        const song_id = songItem.getAttribute('data-song_id');
+        if (await updateSongState(song_id,'accept')) {
           // Mueve la canción al final de la lista de canciones aceptadas
           acceptedContainer.appendChild(songItem);
           songItem.classList.add("accepted");
           acceptButton.remove();
           rejectButton.remove();
         } else {
-          console.error(`Failed to accept song with ID: ${songId}`);
+          console.error(`Failed to accept song with ID: ${song_id}`);
         }
       });
 
 
       rejectButton.addEventListener('click', async () => {
-        const songId = songItem.getAttribute('data-songid');
-        if (await updateSongState(songId,'reject')) {
+        const song_id = songItem.getAttribute('data-song_id');
+        if (await updateSongState(song_id,'reject')) {
           // Mueve la canción al final de la lista de canciones rechazadas
           rejectedContainer.appendChild(songItem);
           songItem.classList.add("rejected");
           acceptButton.remove();
           rejectButton.remove();
         } else {
-          console.error(`Failed to reject song with ID: ${songId}`);
+          console.error(`Failed to reject song with ID: ${song_id}`);
         }
       });
 
@@ -223,7 +232,6 @@ songContainer.addEventListener('scroll', function () {
 // Función principal que inicia las operaciones
 async function main() {
   console.log("MAIN");
-  const accessToken = await fetchAccessToken();
   if (accessToken) {
       displaySongs([]); // false para no mostrar los botones inicialmente
       await getSelectedSongs();
