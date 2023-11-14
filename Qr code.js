@@ -232,10 +232,10 @@ songContainer.addEventListener('scroll', function () {
 // Función principal que inicia las operaciones
 async function main() {
   console.log("MAIN");
-  if (accessToken) {
+
       displaySongs([]); // false para no mostrar los botones inicialmente
       await getSelectedSongs();
-  }
+  
 }
 
 
