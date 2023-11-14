@@ -35,10 +35,60 @@ async function fetchAccessToken() {
 }
 
 
+async function fetchAccessToken() {
+    try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ refreshToken })
+        });
+
+        if (!response.ok) {
+            throw new Error('La petición de token no fue exitosa');
+        }
+
+        const data = await response.json();
+        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        return data.accessToken;
+    } catch (error) {
+        console.error('Hubo un problema con la petición de fetch:', error);
+        return null;
+    }
+}
+
 async function loadPartiesList() {
-    const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/partyhistory', {
-        method: 'GET'
-    });
+    async function fetchPartiesList(token) {
+        const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/partyhistory', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response;
+    }
+
+    let accessToken = localStorage.getItem('accessToken');
+    let response = await fetchPartiesList(accessToken);
+
+    // Si el token es inválido o expiró, intenta obtener uno nuevo
+    if (response.status === 403) {
+        accessToken = await fetchAccessToken();
+        if (!accessToken) {
+            console.error('No se pudo renovar el token de acceso. Intente iniciar sesión nuevamente.');
+            return;
+        }
+        response = await fetchPartiesList(accessToken);
+    }
+
+    // Procesar la respuesta
+    if (!response.ok) {
+        console.error('Error al cargar la lista de fiestas');
+        return;
+    }
 
     const data = await response.json();
     console.log(data);
@@ -50,18 +100,16 @@ async function loadPartiesList() {
             const partyElement = document.createElement('div');
             partyElement.innerText = party.party_name;
             partyElement.classList.add('party');
-
-            // Modificado para redirigir al usuario al hacer clic
             partyElement.addEventListener('click', () => {
                 window.location.href = `/Qr%20code.html?party_id=${party.party_id}`;
             });
-
             partiesList.appendChild(partyElement);
         });
     } else {
         partiesList.innerHTML = '<p>Todavía no tienes fiestas. ¡Crea una!</p>';
     }
 }
+
 
 
 
