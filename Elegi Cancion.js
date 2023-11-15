@@ -105,18 +105,15 @@ function updateSongDetails(image, title, artist, trackId) {
 }
 
 // Manejador para el botón Aceptar
-function handleAcceptClick() {
+async function handleAcceptClick() {
     const trackId = document.querySelector('.modal').dataset.id;
     const party_id = new URL(window.location.href).searchParams.get('party_id');
-    
-    // Guardar la información en localStorage
     saveToLocalStorage(party_id, trackId);
 
     const data = {
         party_id,
         song_id: trackId
     };
-console.log(data.party_id, data.song_id);
 
     const requestOptions = {
         method: 'POST',
@@ -126,16 +123,29 @@ console.log(data.party_id, data.song_id);
         body: JSON.stringify(data)
     };
 
-    fetch('https://defiant-slug-top-hat.cyclic.app/api/store-song-request', requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
-
-    // Recarga la página después de 1.5 segundos
-    setTimeout(function() {
+    try {
+        await sendRequestWithRetry('https://defiant-slug-top-hat.cyclic.app/api/store-song-request', requestOptions, 3);
+        // Recarga la página después de recibir una respuesta exitosa
         location.reload();
-    }, 500);
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Hubo un problema al guardar la solicitud de la canción. Intente nuevamente.');
+    }
 }
+
+async function sendRequestWithRetry(url, options, retries) {
+    for (let i = 0; i < retries; i++) {
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) throw new Error('La petición no fue exitosa');
+            return await response.json(); // Devuelve la respuesta en caso de éxito
+        } catch (error) {
+            console.error(`Intento ${i + 1} fallido:`, error);
+            if (i === retries - 1) throw error; // Lanza el error después del último intento
+        }
+    }
+}
+
 
 // Función para guardar datos en localStorage
 function saveToLocalStorage(party_id, trackId) {
