@@ -1,5 +1,5 @@
-<h2 style="font-size:30px;">
-  Documentación de Crescendo <img src="https://github.com/Lucasgrimb/Crescendo/blob/main/Assets/LogoCerescendo.png" alt="Logo de Crescendo" width="80" style="vertical-align:middle;">
+<h2 style="font-size:50px;">
+  Documentación de Crescendo            <img src="https://github.com/Lucasgrimb/Crescendo/blob/main/Assets/LogoCerescendo.png" alt="Logo de Crescendo" width="80" style="vertical-align:middle;">
 </h2>
 
 
