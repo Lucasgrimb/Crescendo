@@ -1,7 +1,6 @@
-<h2 style="display: inline-block; margin-right: 10px; vertical-align: middle; font-size: 30px;">
-  Documentación de Crescendo
+<h2 style="font-size:30px;">
+  Documentación de Crescendo <img src="https://github.com/Lucasgrimb/Crescendo/blob/main/Assets/LogoCerescendo.png" alt="Logo de Crescendo" width="80" style="vertical-align:middle;">
 </h2>
-<img src="https://github.com/Lucasgrimb/Crescendo/blob/main/Assets/LogoCerescendo.png" alt="Logo de Crescendo" width="60" style="vertical-align: middle;">
 
 
 ## Descripción del Proyecto
