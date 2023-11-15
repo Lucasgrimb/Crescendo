@@ -9,7 +9,7 @@ console.log(party_id);
 async function fetchAccessToken() {
   try {
     const refreshToken = localStorage.getItem('refreshToken');
-    const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/token', {
+    const response = await fetch('https://energetic-gown-elk.cyclic.app/api/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ async function fetchAccessToken() {
 // Función para obtener las canciones seleccionadas
 async function getSelectedSongs(party_id) {
   try {
-      const response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/selectedsongs/${party_id}`, {
+      const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/selectedsongs/${party_id}`, {
           method: "GET",
           headers: {
 
@@ -64,7 +64,7 @@ async function updateSongState(song_id, action) {
 
   async function sendUpdateRequest(token) {
     const endpointAction = action === "accept" ? "accept" : "reject";
-    const response = await fetch(`https://defiant-slug-top-hat.cyclic.app/api/B/${song_id}/${party_id}/${endpointAction}`, {
+    const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/B/${song_id}/${party_id}/${endpointAction}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,

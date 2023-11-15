@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function fetchAccessToken() {
     try {
         const refreshToken = localStorage.getItem('refreshToken');
-        const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/token', {
+        const response = await fetch('https://energetic-gown-elk.cyclic.app/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ async function fetchAccessToken() {
 async function fetchAccessToken() {
     try {
         const refreshToken = localStorage.getItem('refreshToken');
-        const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/token', {
+        const response = await fetch('https://energetic-gown-elk.cyclic.app/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ async function fetchAccessToken() {
 
 async function loadPartiesList() {
     async function fetchPartiesList(token) {
-        const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/partyhistory', {
+        const response = await fetch('https://energetic-gown-elk.cyclic.app/api/partyhistory', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -118,7 +118,7 @@ async function createParty() {
     if (!partyName) return;
 
     async function sendCreateRequest(token) {
-        const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/createParty', {
+        const response = await fetch('https://energetic-gown-elk.cyclic.app/api/createParty', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

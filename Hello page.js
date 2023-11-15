@@ -49,7 +49,7 @@ button.addEventListener('click', async function (event) {
   console.log(loginData);
 
   try {
-    const response = await fetch('https://defiant-slug-top-hat.cyclic.app/api/login', {
+    const response = await fetch('https://energetic-gown-elk.cyclic.app/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

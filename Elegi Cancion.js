@@ -124,7 +124,7 @@ async function handleAcceptClick() {
     };
 
     try {
-        await sendRequestWithRetry('https://defiant-slug-top-hat.cyclic.app/api/store-song-request', requestOptions, 3);
+        await sendRequestWithRetry('https://energetic-gown-elk.cyclic.app/api/store-song-request', requestOptions, 3);
         // Recarga la página después de recibir una respuesta exitosa
         location.reload();
     } catch (error) {
