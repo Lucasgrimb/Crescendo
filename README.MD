@@ -1,119 +1,99 @@
-Descripción del proyecto: 
-Crescendo es un sistema revolucionario que llega para transformar las fiestas en experiencias interactivas, permitiendo a los participantes sugerir canciones al DJ de forma rápida y sencilla a través de un código QR. Con la ayuda de este sistema, el DJ obtendrá insights para personalizar su música y llevar la fiesta a otro nivel. 
+# Documentación del Proyecto Crescendo
 
-Objetivo de la plataforma: 
-El objetivo principal de este proyecto es poder innovar sobre la dinámica en la forma en que se pasa música en los eventos sociales. Por un lado, brindamos una solución a ese público que suele no sentirse totalmente identificado con la música que se pasa en el evento y le damos la posibilidad de ser parte y poder hacer llegar sus sugerencias al Dj. Por otro lado entendemos que parte del trabajo de los Dj es identificar a su público y pasar la música más acorde posible para llevar la fiesta a su máximo potencial. Con Crescendo, los Dj tienen la posibilidad de conocer a su público a través de nuestra plataforma donde las prioridades son tres: simpleza, funcionalidad y velocidad. 
-Consideramos de suma importancia que el Dj tenga la última palabra sobre la música que se pasa en su fiesta, por eso le damos la posibilidad de aceptar y rechazar los pedidos de canciones que le hace el público. Todos ganan, a todos les conviene y por sobre todo, potenciamos la experiencia musical. 
+## Descripción del Proyecto
+Crescendo es un sistema revolucionario que llega para transformar las fiestas en experiencias interactivas, permitiendo a los participantes sugerir canciones al DJ de forma rápida y sencilla a través de un código QR. Con la ayuda de este sistema, el DJ obtendrá insights para personalizar su música y llevar la fiesta a otro nivel.
 
+## Objetivo de la Plataforma
+El objetivo es innovar en cómo se maneja la música en eventos sociales. Crescendo brinda una solución a los asistentes para influir en la música y permite a los DJ's conocer mejor las preferencias de su público. Prioriza la simpleza, funcionalidad y velocidad, dándole al DJ control final sobre la música seleccionada.
 
-Funcionalidades público: 
-Buscador de canciones que utiliza la api de spotify para elegir entre más de 80 millones de canciones. 
+## Funcionalidades
 
-PerfilDj es una página donde los usuario tienen acceso a distintas estadísticas del Dj. Pueden ver la cantidad de fiestas, canciones, canciones aceptadas, género de música más aceptado y un historial con todas las fiestas y canciones pedidas. 
+### Para el Público
+- **Buscador de Canciones**: Utiliza la API de Spotify para elegir entre más de 80 millones de canciones.
+- **PerfilDj**: Acceso a estadísticas detalladas del DJ.
+- **Visualización de Canciones Pedidas**: Muestra el estado de las canciones sugeridas.
 
-Ver las canciones pedidas. Le mostramos al publico todas las canciones pedidas y sus respectivos estados que pueden ser: pendiente, aceptado o rechazado. 	
+### Para DJ's
+- **Registro y Login**: Acceso a funciones exclusivas.
+- **Historial de Eventos**: Muestra de eventos pasados.
+- **Gestión de Eventos**: Creación y manejo de eventos.
+- **Código QR por Evento**: Generación y compartición de códigos QR únicos.
 
-Funcionalidades Dj: 
-Login - Register. Accediendo a nuestra página permitimos que todos los Dj se puedan registrar o loguearse para acceder a aquellas páginas que requieren autorización. 
+## Herramientas Utilizadas
+- Spotify API
+- Visual Studio Code
+- GitHub
+- Postman
+- ChatGPT
+- MySQL Workbench,PhpMyAdmin
+- Node.js, Express
+- Figma, Pinterest
+- Cyclic, Vercel
 
-Historial de fiestas donde mostramos al Dj todos los eventos pasados.
-Crear fiestas, una vez autorizados los Dj podrán crear todas las fiestas deseadas.
-La fiesta. En esta pagina los dj podrán ver todos los pedidos de canciones y eventualmente las podrán rechazar o aceptar. 
-QR. Por cada fiesta hay un código qr distinto, el dj tiene la opción de descargarlo o compartirlo directamente desde la página web. 
+## Roles y Dificultades
 
+### Full-stack
+- **Desarrollo de API**: Creación completa de la API con 14 endpoints y middleware.
+- **Manejo de Datos En El Front**: Uso de username, tokens, party_id, principalmente a través de URL o localstorage.
+- **Seguridad Web y Autenticación**: Implementación de tokens, middleware, cookies (HttpOnly) y localstorage.
+- **Diseño de la Base de Datos**: En colaboración con la desarrolladora de backend.
 
+**Dificultades**: 
+- Comprensión de la API REST, el entorno de desarrollo y frameworks.
+- Uso de la API de Spotify y programación del sistema de autenticación.
+- Desafíos con CORS y ajustes necesarios en la lógica de autenticación para iOS.
 
+### Front-end
+- **Pantalla con 3 Secciones**: Diseño e implementación de una pantalla dividida para gestionar peticiones.
+- **Gestión de Estados Dinámica**: Manejo de estados de las peticiones.
+- **Experiencia de Usuario**: Enfoque mobile-first para la optimización en celulares.
 
+### Back-end
+- **Base de Datos**: Gestión y optimización.
+- **Alojamiento en Cyclic y Vercel**: Despliegue de la API y el front-end.
+- **Optimización del Código**: Mejoras para aumentar la eficiencia.
+- **Actualización en Tiempo Real**: Implementación de `setInterval` para visualización constante de las canciones.
+- **Funcionalidades Adicionales**: Integración de botones para compartir y guardar códigos QR.
 
+**Dificultades Técnicas**:
+- Implementación de `setInterval` para actualizaciones automáticas.
+- Botón de Guardar QR y alojamiento manual en Cyclic.
 
-Herramientas utilizadas durante el desarrollo: 
-Api spotify 
-Visual Studio 
-Workbench Mysql 
-Api REST - Nodejs - Express
-Github 
-ChatGPT
-Figma 
-PhpMyAdmin 
-Postman
-Cyclic
-Vercel 
-Pinterest 
+### Arte y Diseño
+- **Diseño de Interfaz**: Creación completa de las pantallas y el logo.
+- **Estética Profesional**: Tono minimalista y profesional.
 
-Roles y dificultades: 
+**Dificultades Técnicas**:
+- Falta de experiencia previa en diseño web y uso de Figma.
+- Desafíos en la creación de la primera pantalla y el logo.
 
-Full-stack
-Desarrollo de la api entera (14 endpoints + middleware)
-Materialización lógica de las funcionalidades del proyecto
-Manejo de datos (username, tokens, party_id, etc…) desde el front y llamados a la api. La mayoría de las veces por la url o localstorage. 
- Seguridad de la web y sistema de autenticación. Sistema de access y refresh tokens, middleware, uso de cookies (HttpOnly) y localstorage en el front. 
-Diagramación del funcionamiento de la plataforma plantéo soluciones para cada funcionalidad. 
-Planteo de la base de datos junto con la desarrolladora de back end. 
+## Metodología de Trabajo
+El desarrollo de Crescendo se llevó a cabo en distintas etapas, cada una de ellas enfocada en objetivos específicos. Esta estrategia nos permitió obtener resultados funcionales desde el inicio del proyecto. La principal ventaja de esta metodología es su enfoque en objetivos claros y medibles, lo que facilita la visualización de los progresos y mantiene al equipo motivado y activo. Trabajar sin ver resultados concretos durante largos períodos puede resultar frustrante y monótono; nuestra metodología evita este problema.
 
-Las mayores dificultades fueron:
-Asimilar el concepto de api rest, entorno desarrollo y framework. 
-Comprender cómo usar la api de spotify, el primer logro fue hacer funcionar el buscador. 
-Programar el sistema de autenticación fue otra dificultad ya que luego de programar todo nos dimos cuenta que Iphone no acepta las HttpOnly cookies y tuve que rearmar toda la lógica de autenticación y seguridad nuevamente. 
-En un principio el sistema estaba pensado para que cada dj tiene una fiesta. Al cambiar esto decidimos armar un historial de canciones. Para eso programe un endpoint que buscaba todas las fiestas del Dj y luego iba fiesta por fiesta a buscar las canciones y por cada canción se hacía un request a la api de spotify para obtener los datos necesarios como la foto, titulo, etc… Spotify bloquear nuestra cuenta por superar su rate limit asi que utilizamos un sistema de cache para no hacer request sobre canciones repetidas. 
-Lo mismo pasó cuando quisimos averiguar el género de las canciones más aceptadas por el dj y volvimos a utilizar el cache. 
-Problemas de CORS. Estos problemas son los más difíciles de descifrar y resolver, hubieron días enteros durante los cuales estuve trabajando en un mismo error de CORS que al solucionarlo aparecía otro diferente. 
+Además, cada dos semanas, nos reunimos con todo el equipo para evaluar el progreso de cada miembro, discutir posibles cambios y planificar los siguientes pasos. Estas reuniones son cruciales para mantenernos alineados y enfocados en nuestras metas.
 
+Otro aspecto importante de nuestro proceso de desarrollo es la colaboración con profesionales y expertos en la industria de eventos sociales. Su experiencia y conocimientos han sido fundamentales para guiar el rumbo de Crescendo, asegurando que el producto final cumpla con las necesidades reales del mercado y aporte un valor significativo a nuestros usuarios.
 
+Este enfoque por etapas y nuestra colaboración con expertos de la industria son pilares clave en el desarrollo exitoso de Crescendo.
 
-Front-end
+## El Futuro de Crescendo
 
- Pantalla con 3 Secciones: Diseñar e implementar una pantalla dividida en tres secciones para gestionar peticiones implicó coordinar la lógica de presentación y la interactividad entre estas áreas.
+Como equipo, estamos convencidos de que Crescendo posee las características esenciales para destacar y ser ampliamente utilizado en eventos. Hemos establecido contactos con varios DJ's reconocidos, quienes han proporcionado feedback valioso, aportando una perspectiva más profesional al proyecto. Este intercambio ha sido fundamental para refinar y ajustar nuestra plataforma a las necesidades reales del mercado.
 
- Gestión de Estados Dinámica: Chequear y cambiar dinámicamente los estados de las peticiones (pendientes, aceptadas, rechazadas) presentó dificultades en la sincronización de este cambio, más que nada porque cuando las canciones se encuentran en la sección “Pendientes” se le permite al dj rechazarla o aceptarla, en cambio al estar en cualquiera de las otras dos secciones nada mas la canción figura como muestra de cuales acepto o rechazo .
+Un hito importante para nosotros será el lanzamiento de nuestro Producto Mínimo Viable (MVP) el 10/12/2023. En este evento, un DJ usará Crescendo en una fiesta con más de 200 asistentes, lo que representa una oportunidad significativa para demostrar el potencial y la eficacia de nuestra plataforma en un entorno real.
 
-Experiencia de Usuario: Adoptamos un enfoque mobile-first porque crescendo está completamente pensado y diseñado para usar sola y exclusivamente en celular de la manera mas optima.
+### Planes a Futuro
 
-Back-end:
+Estamos comprometidos en continuar desarrollando y mejorando Crescendo. Entre nuestras metas futuras, hemos identificado las siguientes áreas clave de desarrollo:
 
+1. **Aplicación Móvil para DJ's**: Desarrollar una aplicación específicamente diseñada para DJ's, mejorando la accesibilidad y la experiencia de usuario en dispositivos móviles.
+   
+2. **Predicción de Aceptación de Canciones**: Implementar un sistema que prediga la probabilidad de que un DJ acepte una sugerencia de canción. Esto se basará en algoritmos de aprendizaje automático que analicen patrones en las selecciones anteriores del DJ.
 
-Base de Datos:
-- Gestión y optimización de la base de datos para un acceso eficiente.
+3. **Insights Post-Evento**: Proveer a los DJ's insights detallados sobre las preferencias del público una vez finalizada la fiesta. Esto incluiría análisis de géneros más solicitados, canciones populares y feedback general del público.
 
-- Alojamiento en Cyclic y Vercel:
-  - Despliegue de la API en Cyclic.
-  - Despliegue del front-end en Vercel para garantizar un acceso rápido y confiable.
+4. **Interacción Social Mejorada**: Explorar funcionalidades que permitan una mayor interacción social entre los asistentes y el DJ, como la posibilidad de votar por sugerencias de canciones populares o crear listas de reproducción colaborativas en tiempo real.
 
-Optimización del Código:
-- Identificación y aplicación de mejoras en el código para incrementar la velocidad de ejecución.
+5. **Integración con Otras Plataformas de Música**: Además de Spotify, considerar la integración con otras plataformas de streaming de música para ampliar las opciones de canciones disponibles.
 
-Actualización en Tiempo Real:
-- Implementación de un `setInterval` para visualizar las canciones sin necesidad de recargar la página.
-
-Funcionalidades Adicionales:
-- Integración de botones para compartir y guardar códigos QR.
-
-Dificultades Técnicas:
-
-- Set Interval para Actualización Automática: Requiere una implementación precisa para asegurar la sincronización y eficiencia.
-- Botón de Guardar QR: Necesita una manipulación cuidadosa de la lógica del sistema para garantizar un funcionamiento correcto.
-- Alojamiento Manual en Cyclic: Añade una complejidad adicional, demandando atención a los detalles y conocimientos técnicos avanzados.
-
-
-Arte, diseño :
-
-- Diseño de toda la interfaz de usuario y DJ, creando todas las pantallas de principio a fin, desde el fondo hasta los botones y pensamiento de las animaciones de botones y demas.
-- Creación del logo 
-- Estética profesional con toque minimalista
-
-Dificultades técnicas:
-
--Cero experiencia previa: jamás había diseñado una página web ni una aplicación (solo en pixel art), y además sabía muy poco de figma y sus utilidades, y me llevo tiempo empezar a diseñar de una manera más atractiva y con más facilidad, al principio las pantallas me costaban mucho y no me gustaba como eran. 
-
-- Primera pantalla: me costó mucho realizarla ya que no tenía una idea clara de lo que estábamos buscando y eso llevó a que me tardara más tiempo del esperado, pero luego de un momento de pensar bien a lo que apuntábamos se me hizo mucho más fácil realizarla, y una vez creada la primera pantalla, todas las demás se hicieron mucho más sencillas.
-
-- Creación del logo: la primeras semanas me centralice mucho en la creación del logo, lo cual no me dejo avanzar mucho con las pantallas, y estaba siendo un problema ya que el front no podía hacer nada, asi que lo deje de lado la mayoría del proyecto hasta casi el final, donde luego de 20/30 lo pude realizar sin problema
-
-
-
-El futuro de Crescendo  
-Nosotros como equipo creemos que el proyecto tiene las características necesarias para poder trascender y ser usado en eventos. Ya nos contactamos con varios Dj reconocidos los cuales nos dieron feedback y aportaron una mirada más profesional al proyecto. El día 10/12/2023 tenemos nuestro MVP, un Dj nos llamó para utilizar la plataforma en una fiesta a la que asistirán más de 200 personas lo cual es un logro muy importante para nosotros como desarrolladores. A continuación dejaremos constancia las cosas que nos propusimos a desarrollar en el futuro: 
-
-Aplicación mobile para los Dj
-Predecir las probabilidad de que un dj acepte una canción
-Insights útiles para el dj sobre el público una vez finalizada la fiesta
-
+Estos desarrollos futuros están alineados con nuestra visión de hacer de Crescendo una herramienta indispensable en el ámbito de los eventos sociales, mejorando continuamente la experiencia tanto para los DJ's como para el público.
