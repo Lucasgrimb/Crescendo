@@ -1,6 +1,7 @@
-##<p>
-  <img src="https://github.com/Lucasgrimb/Crescendo/blob/main/Assets/LogoCerescendo.png" alt="Logo de Crescendo" width="100"> <strong>Documentación de Crescendo</strong>
-</p>
+<h2>
+  <img src="https://github.com/Lucasgrimb/Crescendo/blob/main/Assets/LogoCerescendo.png" alt="Logo de Crescendo" width="50" style="vertical-align:middle;"> Documentación de Crescendo
+</h2>
+
 
 
 ## Descripción del Proyecto
