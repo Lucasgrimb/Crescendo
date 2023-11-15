@@ -234,7 +234,7 @@ async function main() {
   console.log("MAIN");
 
       displaySongs([]); // false para no mostrar los botones inicialmente
-      await getSelectedSongs();
+      await getSelectedSongs(party_id);
   
 }
 
