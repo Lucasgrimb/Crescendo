@@ -1,5 +1,7 @@
-# Documentación del Proyecto Crescendo
-![Logo de Crescendo](https://github.com/Lucasgrimb/Crescendo/blob/main/Assets/LogoCerescendo.png)
+<p>
+  <img src="URL_del_logo_aquí" alt="Logo de Crescendo" width="100"> <strong>Documentación de Crescendo</strong>
+</p>
+
 
 ## Descripción del Proyecto
 Crescendo es un sistema revolucionario que llega para transformar las fiestas en experiencias interactivas, permitiendo a los participantes sugerir canciones al DJ de forma rápida y sencilla a través de un código QR. Con la ayuda de este sistema, el DJ obtendrá insights para personalizar su música y llevar la fiesta a otro nivel.
