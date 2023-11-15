@@ -1,5 +1,5 @@
-<p>
-  <img src="URL_del_logo_aquí" alt="Logo de Crescendo" width="100"> <strong>Documentación de Crescendo</strong>
+##<p>
+  <img src="https://github.com/Lucasgrimb/Crescendo/blob/main/Assets/LogoCerescendo.png" alt="Logo de Crescendo" width="100"> <strong>Documentación de Crescendo</strong>
 </p>
 
 
