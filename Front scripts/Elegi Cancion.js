@@ -232,3 +232,5 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'requestedSongs.html?party_id=' + party_id;
         });
 });
+
+//.
