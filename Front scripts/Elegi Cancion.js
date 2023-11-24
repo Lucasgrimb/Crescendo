@@ -114,6 +114,10 @@ function showToast() {
         location.reload(); // Recarga la página después de que el toast desaparezca
     }, 2000); // El toast se muestra durante 3 segundos
 }
+window.onload = function() {
+    // Prueba para mostrar el toast al cargar la página
+    showToast();
+};
 
 
 // Manejador para el botón Aceptar
