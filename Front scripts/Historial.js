@@ -66,7 +66,7 @@ async function createParty() {
     const partyName = prompt('Ingrese el nombre de la fiesta:');
     if (!partyName) return;
 
-    const response = await attemptFetchWithTokenRenewal(() => sendCreateRequest(partyName));
+    const response = await attemptFetchWithTokenRenewal(() => sendCreateRequest(partyName, accessToken));
     if (!response) return;
 
     const data = await response.json();
