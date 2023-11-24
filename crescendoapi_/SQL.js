@@ -8,25 +8,31 @@ require('dotenv').config();
 
 
 //a esta funcion hay que pasarle parametros (ES MAS PARA UN POST)
-async function QueryDBp(query, params) {
-    const connection = await mysql.createConnection({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: "crescendo",
-        ssl: {
-            rejectUnauthorized: true
-        }
-    });
+// Crear un pool de conexiones fuera de la función.
+// Crear un pool de conexiones fuera de la función.
+const pool = mysql.createPool({
+    connectionLimit: 10, // El número de conexiones puede ser ajustado según tus necesidades
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: "crescendo",
+    ssl: {
+        rejectUnauthorized: true
+    }
+});
 
+async function QueryDBp(query, params) {
     try {
-        let [rows, fields] = await connection.execute(query, params);
+        // Usar el pool para obtener una conexión y ejecutar la consulta
+        const [rows, fields] = await pool.promise().execute(query, params);
         return [rows, fields];
-    } finally {
-        // Asegúrate de cerrar la conexión, sin importar si hubo un error o no.
-        await connection.end();
+    } catch (error) {
+        // Manejar el error como consideres apropiado
+        console.error('Error en QueryDBp:', error);
+        throw error; // O manejarlo de otra manera
     }
 }
+
 
  
 // A esta funion no se le pasan parametros (mas para un get)
