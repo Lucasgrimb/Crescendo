@@ -425,39 +425,34 @@ app.post('/api/token', async (req, res) => {
     const { refreshToken } = req.body;
     if (!refreshToken) return res.status(401).send('No refresh token');
 
-    // Check if the refresh token exists
-    let tokenData;
     try {
-        tokenData = await QueryDBp('SELECT * FROM refresh_tokens WHERE token = ?', [refreshToken]);
+        // Combinar consultas: Obtener el token y verificar su validez en una sola consulta
+        const tokenData = await QueryDBp('SELECT * FROM refresh_tokens WHERE token = ? AND expiry_date > NOW()', [refreshToken]);
+
+        if (tokenData[0].length === 0) {
+            return res.status(403).send('Invalid or expired refresh token');
+        }
+
+        const tokenRecord = tokenData[0][0];
+
+        // Generar nuevos tokens
+        const newAccessToken = jwt.sign({ userId: tokenRecord.username }, process.env.SECRET_KEY, { expiresIn: '1h' });
+        const newRefreshToken = crypto.randomBytes(40).toString('hex');
+
+        // Actualizar tokens en la DB
+        const currentDate = new Date();
+        currentDate.setHours(currentDate.getHours() + 5);
+        const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+        await QueryDBp('UPDATE refresh_tokens SET token = ?, expiry_date = ? WHERE family_token = ?', [newRefreshToken, formattedDate, tokenRecord.family_token]);
+
+        res.json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
     } catch (error) {
+        // Manejo de errores simplificado
+        console.error(error);
         return res.status(500).send('Server error');
     }
-
-    // If no token is found or token is expired
-    if (tokenData[0].length === 0) {
-        return res.status(403).send('Invalid refresh token');
-    }
-
-    const tokenRecord = tokenData[0][0];
-
-    if (new Date(tokenRecord.expiry_date) < new Date()) {
-        // Invalidate the token family if reuse is detected
-        await QueryDBp('DELETE FROM refresh_tokens WHERE family_token = ?', [tokenRecord.family_token]);
-        return res.status(403).send('Token expired');
-    }
-
-    // At this point, we are ready to perform token rotation.
-    const newAccessToken = jwt.sign({ userId: tokenRecord.username }, process.env.SECRET_KEY, { expiresIn: '1h' });
-    const newRefreshToken = crypto.randomBytes(40).toString('hex');
-    const currentDate = new Date();
-    currentDate.setHours(currentDate.getHours() + 5);
-    const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
-
-    // Update tokens in the DB, belonging to the same family
-    await QueryDBp('UPDATE refresh_tokens SET token = ?, expiry_date = ? WHERE family_token = ?', [newRefreshToken, formattedDate, tokenRecord.family_token]);
-
-    res.json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
 });
+
 
 
 // -----------------Informacion perfil dj---------------------
