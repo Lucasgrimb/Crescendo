@@ -283,46 +283,35 @@ app.post('/api/store-song-request', async (req, res) => {
 
 
 //---------------Show requested songs (dj only)------------------  OK
-const songInfoCache = new Map(); // Caché en memoria
-
-async function fetchSongInfoCached(songId, clientId, clientSecret) {
-    if (songInfoCache.has(songId)) {
-        return songInfoCache.get(songId);
-    }
-
-    const songInfo = await fetchSongInfo(songId, clientId, clientSecret);
-    songInfoCache.set(songId, songInfo);
-    return songInfo;
-}
-
-async function processSongs(rows, clientId, clientSecret) {
-    const songsInfo = [];
-    for (const row of rows) {
-        const songInfo = await fetchSongInfoCached(row.song_id, clientId, clientSecret);
-        songsInfo.push({
-            ...songInfo,
-            song_state: row.song_state,
-        });
-    }
-    return songsInfo;
-}
-
-app.get('/api/selectedsongs/:party_id', async (req, res) => {
+app.get('/api/selectedsongs/:party_id',  async (req, res) => {
     try {
         const party_id = req.params.party_id;
-        const [rows] = await QueryDBp(`SELECT song_id, song_state FROM songs WHERE party_id = ? LIMIT 100`, [party_id]);
+
+        // Ahora también seleccionamos song_state en la consulta
+        const [rows] = await QueryDBp(`SELECT song_id, song_state FROM songs WHERE party_id = ?`, [party_id]);
 
         const CLIENT_ID = process.env.clientId;
         const CLIENT_SECRET = process.env.clientSecret;
 
-        const songsInfo = await processSongs(rows, CLIENT_ID, CLIENT_SECRET);
+        // Usamos Promise.all para ejecutar en paralelo
+        const songsPromises = rows.map(async row => {
+            const songInfo = await fetchSongInfo(row.song_id, CLIENT_ID, CLIENT_SECRET);
+
+            // Combina songInfo con song_state
+            return {
+                ...songInfo,
+                song_state: row.song_state,  // Agrega song_state a cada objeto de canción
+            };
+        });
+
+        const songsInfo = await Promise.all(songsPromises);
 
         res.json(songsInfo);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-});
+}); 
 
 
 
