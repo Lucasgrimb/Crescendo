@@ -1,5 +1,6 @@
+const accessToken = localStorage.getItem('accessToken');
 document.addEventListener('DOMContentLoaded', async () => {
-    const accessToken = localStorage.getItem('accessToken');
+    
     if (accessToken) {
         await loadPartiesList();
         document.getElementById('createPartyButton').addEventListener('click', createParty);
