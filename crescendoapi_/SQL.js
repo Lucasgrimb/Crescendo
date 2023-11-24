@@ -11,6 +11,28 @@ require('dotenv').config();
 // Crear un pool de conexiones fuera de la función.
 // Crear un pool de conexiones fuera de la función.
 
+// Crear un pool de conexiones
+const pool = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: "crescendo",
+    ssl: {
+        rejectUnauthorized: true
+    }
+    // Puedes agregar más configuraciones como connectionLimit, etc.
+});
+
+async function QueryDBp(query, params) {
+    try {
+        const [rows, fields] = await pool.execute(query, params);
+        return [rows, fields];
+    } catch (error) {
+        console.error('Error en QueryDBp:', error);
+        throw error;
+    }
+}
+
 
 
  
@@ -18,7 +40,6 @@ require('dotenv').config();
 
 async function QueryDB(query) {
     const connection = await mysql.createConnection({
-        connectionLimit: 10,
         host: process.env.DB_HOST,
         user: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
