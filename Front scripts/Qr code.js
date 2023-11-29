@@ -106,14 +106,6 @@ function displaySongs(songs) {
   const acceptedContainer = document.querySelector('.song-container-accepted');
   const rejectedContainer = document.querySelector('.song-container-rejected')
 
-      // Calcula la altura total de las canciones en peticiones
-      const peticionesHeight = songs.length * 68;
-
-      // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-      acceptedContainer.style.top = `${peticionesHeight + 28}px`;
-      rejectedContainer.style.top = `${peticionesHeight + 28}px`;
-  
-
   songContainer.innerHTML = "";
   acceptedContainer.innerHTML = ""; // Clear the accepted songs container
   rejectedContainer.innerHTML = "";
