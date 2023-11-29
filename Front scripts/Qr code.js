@@ -8,10 +8,12 @@ function displaySongs(songs) {
   const rejectedContainer = document.querySelector('.song-container-rejected');
   const gapHeight = 20;
 
+  // Calcula la altura total de las canciones en peticiones
   const peticionesHeight = songs.length * 68;
 
-  acceptedContainer.style.top = `${peticionesHeight + gapHeight - 290}px`;
-  rejectedContainer.style.top = `${peticionesHeight + gapHeight - 290}px`;
+  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
+  acceptedContainer.style.top = `${peticionesHeight + gapHeight}px`;
+  rejectedContainer.style.top = `${peticionesHeight + gapHeight}px`;
 
   songContainer.innerHTML = "";
   acceptedContainer.innerHTML = "";
@@ -55,10 +57,7 @@ function displaySongs(songs) {
       acceptButton.addEventListener('click', async () => {
         const song_id = songItem.getAttribute('data-song_id');
         if (await updateSongState(song_id, 'accept')) {
-          acceptedContainer.appendChild(songItem);
-          songItem.classList.add("accepted");
-          acceptButton.remove();
-          rejectButton.remove();
+          updateDisplayAfterAction(songItem, 'accept');
         } else {
           console.error(`Failed to accept song with ID: ${song_id}`);
         }
@@ -67,10 +66,7 @@ function displaySongs(songs) {
       rejectButton.addEventListener('click', async () => {
         const song_id = songItem.getAttribute('data-song_id');
         if (await updateSongState(song_id, 'reject')) {
-          rejectedContainer.appendChild(songItem);
-          songItem.classList.add("rejected");
-          acceptButton.remove();
-          rejectButton.remove();
+          updateDisplayAfterAction(songItem, 'reject');
         } else {
           console.error(`Failed to reject song with ID: ${song_id}`);
         }
@@ -97,6 +93,33 @@ function displaySongs(songs) {
         songContainer.appendChild(songItem);
       }
     });
+  }
+}
+
+// Función para agregar una canción aceptada
+function addAcceptedSong(songItem) {
+  const acceptedContainer = document.querySelector('.song-container-accepted');
+  acceptedContainer.appendChild(songItem);
+}
+
+// Función para agregar una canción rechazada
+function addRejectedSong(songItem) {
+  const rejectedContainer = document.querySelector('.song-container-rejected');
+  rejectedContainer.appendChild(songItem);
+}
+
+// Función para actualizar la visualización después de aceptar o rechazar una canción
+function updateDisplayAfterAction(songItem, action) {
+  const songContainer = document.getElementById('song-container');
+
+  // Elimina la canción de la lista de peticiones
+  songContainer.removeChild(songItem);
+
+  // Agrega la canción a la lista correspondiente
+  if (action === 'accept') {
+    addAcceptedSong(songItem);
+  } else if (action === 'reject') {
+    addRejectedSong(songItem);
   }
 }
 
@@ -200,13 +223,5 @@ async function main() {
   console.log("MAIN");
   const urlParams = new URLSearchParams(window.location.search);
   party_id = urlParams.get('party_id');
-  displaySongs([]); // false para no mostrar los botones inicialmente
   await getSelectedSongs(party_id);
 }
-
-// Evento para cargar las funciones principales cuando la página se carga
-window.addEventListener("load", () => {
-  const qrLink = document.getElementById('qrLink');
-  qrLink.href = `Scan.html?party_id=${party_id}`;
-  main();
-});
