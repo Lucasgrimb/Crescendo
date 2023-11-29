@@ -19,11 +19,7 @@ body {
     align-items: center;
 }
 .main-bg{
-<<<<<<< HEAD:Frontscripts/Qr code.css
-    background-image: url(Crescendo/Frontscripts/Assets/binevenida.png);
-=======
     background-image: url(/Assets/binevenida.png);
->>>>>>> parent of 6c44e18 (Arrancando a probar pantalla distribucion de canciones):Front scripts/Qr code.css
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
