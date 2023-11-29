@@ -102,17 +102,31 @@ async function updateSongState(song_id, action) {
 
 // Función para mostrar las canciones
 function displaySongs(songs) {
-  const songContainer = document.getElementById('song-container');
+  const songContainerPeticiones = document.getElementById('song-container');
   const acceptedContainer = document.querySelector('.song-container-accepted');
-  const rejectedContainer = document.querySelector('.song-container-rejected')
+  const rejectedContainer = document.querySelector('.song-container-rejected');
+  const acceptedTitle = document.querySelector('.accepted-title');
+  const rejectedTitle = document.querySelector('.rejected-title');
+  const strokeAccepted = document.querySelector('.accepted-title + .stroke');
+  const strokeitoAccepted = document.querySelector('.accepted-title + .strokeito');
+  const strokeRejected = document.querySelector('.rejected-title + .stroke');
+  const strokeitoRejected = document.querySelector('.rejected-title + .strokeito');
 
-      // Calcula la altura total de las canciones en peticiones
-      const peticionesHeight = songs.length * 68;
+  // Calcula la altura total de las canciones en peticiones
+  const peticionesHeight = songs.length * 68;
 
-      // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-      acceptedContainer.style.top = `${peticionesHeight + 78}px`;
-      rejectedContainer.style.top = `${peticionesHeight + 78}px`;
-  
+  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
+  acceptedContainer.style.top = `${peticionesHeight + 78}px`;
+  rejectedContainer.style.top = `${peticionesHeight + 78}px`;
+
+  // Ajusta la posición de los títulos y líneas de separación
+  acceptedTitle.style.top = `${peticionesHeight + 41}px`;
+  strokeAccepted.style.top = `${peticionesHeight + 70}px`;
+  strokeitoAccepted.style.top = `${peticionesHeight + 70}px`;
+
+  rejectedTitle.style.top = `${peticionesHeight + 41}px`;
+  strokeRejected.style.top = `${peticionesHeight + 70}px`;
+  strokeitoRejected.style.top = `${peticionesHeight + 70}px`;
 
   songContainer.innerHTML = "";
   acceptedContainer.innerHTML = ""; // Clear the accepted songs container
