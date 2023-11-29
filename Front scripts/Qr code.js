@@ -100,16 +100,17 @@ async function updateSongState(song_id, action) {
 
 
 
+// Función para mostrar las canciones
 function displaySongs(songs) {
   const songContainer = document.getElementById('song-container');
   const acceptedContainer = document.querySelector('.song-container-accepted');
   const rejectedContainer = document.querySelector('.song-container-rejected');
+  const gapHeight = 20; // Diferencia de 20px entre peticiones y aceptadas/rechazadas
 
   // Calcula la altura total de las canciones en peticiones
   const peticionesHeight = songs.length * 68;
 
   // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-  const gapHeight = 20; // Diferencia de 20px entre peticiones y aceptadas/rechazadas
   acceptedContainer.style.top = `${peticionesHeight + gapHeight}px`;
   rejectedContainer.style.top = `${peticionesHeight + gapHeight}px`;
 }
@@ -240,9 +241,10 @@ songContainer.addEventListener('scroll', function () {
 async function main() {
   console.log("MAIN");
 
-      displaySongs([]); // false para no mostrar los botones inicialmente
-      await getSelectedSongs(party_id);
-  
+  const urlParams = new URLSearchParams(window.location.search);
+  const party_id = urlParams.get('party_id');
+  displaySongs([]); // false para no mostrar los botones inicialmente
+  await getSelectedSongs(party_id);
 }
 
 
@@ -251,7 +253,7 @@ async function main() {
 
 // Evento para cargar las funciones principales cuando la página se carga
 window.addEventListener("load", () => {
-    const qrLink = document.getElementById('qrLink');
-    qrLink.href = `Scan.html?party_id=${party_id}`;
-    main();
+  const qrLink = document.getElementById('qrLink');
+  qrLink.href = `Scan.html?party_id=${party_id}`;
+  main();
 });
