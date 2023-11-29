@@ -110,8 +110,8 @@ function displaySongs(songs) {
       const peticionesHeight = songs.length * 68;
 
       // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-      acceptedContainer.style.top = `${peticionesHeight + 78}px`;
-      rejectedContainer.style.top = `${peticionesHeight + 78}px`;
+      acceptedContainer.style.top = `${peticionesHeight + 1}px`;
+      rejectedContainer.style.top = `${peticionesHeight + 1}px`;
   
 
   songContainer.innerHTML = "";
