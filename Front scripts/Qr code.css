@@ -295,14 +295,12 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
     height: 128px;
     width: 375px;
     overflow-y: auto;
-    top: 78px;
     background-color: transparent;
   }
   .song-container-rejected{
     position: absolute;
     height: 128px;
     width: 375px;
-    top: 78px;
 overflow-y: auto;
 background-color: transparent;
 }
