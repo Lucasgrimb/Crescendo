@@ -100,19 +100,19 @@ async function updateSongState(song_id, action) {
 
 
 
-// Función para mostrar las canciones
 function displaySongs(songs) {
   const songContainer = document.getElementById('song-container');
   const acceptedContainer = document.querySelector('.song-container-accepted');
-  const rejectedContainer = document.querySelector('.song-container-rejected')
+  const rejectedContainer = document.querySelector('.song-container-rejected');
 
-      // Calcula la altura total de las canciones en peticiones
-      const peticionesHeight = songs.length * 68;
+  // Calcula la altura total de las canciones en peticiones
+  const peticionesHeight = songs.length * 68;
 
-      // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-      acceptedContainer.style.top = `${peticionesHeight + 28}px`;
-      rejectedContainer.style.top = `${peticionesHeight + 28}px`;
-  
+  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
+  const gapHeight = 20; // Diferencia de 20px entre peticiones y aceptadas/rechazadas
+  acceptedContainer.style.top = `${peticionesHeight + gapHeight}px`;
+  rejectedContainer.style.top = `${peticionesHeight + gapHeight}px`;
+}
 
   songContainer.innerHTML = "";
   acceptedContainer.innerHTML = ""; // Clear the accepted songs container
@@ -205,7 +205,6 @@ function displaySongs(songs) {
       }
     });
   }
-}
 
 
 
