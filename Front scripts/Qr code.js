@@ -10,8 +10,8 @@ function displaySongs(songs) {
 
   const peticionesHeight = songs.length * 68;
 
-  acceptedContainer.style.top = `${peticionesHeight + gapHeight - 250}px`;
-  rejectedContainer.style.top = `${peticionesHeight + gapHeight - 250}px`;
+  acceptedContainer.style.top = `${peticionesHeight + gapHeight - 290}px`;
+  rejectedContainer.style.top = `${peticionesHeight + gapHeight - 290}px`;
 
   songContainer.innerHTML = "";
   acceptedContainer.innerHTML = "";
