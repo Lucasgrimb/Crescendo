@@ -1,127 +1,9 @@
-// Variables globales
-let party_id; // Declara party_id en un ámbito global
+// Obtener el party_id de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const party_id = urlParams.get('party_id');
+console.log(party_id);
 
-// Función para mostrar las canciones
-function displaySongs(songs) {
-  const songContainer = document.getElementById('song-container');
-  const acceptedContainer = document.querySelector('.song-container-accepted');
-  const rejectedContainer = document.querySelector('.song-container-rejected');
-  const gapHeight = 20;
 
-  // Calcula la altura total de las canciones en peticiones
-  const peticionesHeight = songs.length * 68;
-
-  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-  acceptedContainer.style.top = `${peticionesHeight + gapHeight}px`;
-  rejectedContainer.style.top = `${peticionesHeight + gapHeight}px`;
-
-  songContainer.innerHTML = "";
-  acceptedContainer.innerHTML = "";
-  rejectedContainer.innerHTML = "";
-
-  if (songs.length === 0) {
-    const noSongsMessage = document.createElement('div');
-    noSongsMessage.className = "no-songs";
-    noSongsMessage.innerText = "No hay canciones para mostrar";
-    songContainer.appendChild(noSongsMessage);
-  } else {
-    songs.forEach((song) => {
-      const songItem = document.createElement('div');
-      songItem.className = "song-item";
-      songItem.setAttribute('data-song_id', song.id);
-      songItem.setAttribute('data-songstate', song.song_state);
-
-      const songImage = document.createElement('div');
-      songImage.className = "song-image";
-      const imgElement = document.createElement("img");
-      imgElement.src = song.image;
-      songImage.appendChild(imgElement);
-
-      const songDetails = document.createElement('div');
-      songDetails.className = "song-details";
-      const songTitle = document.createElement('p');
-      songTitle.className = "song-title";
-      songTitle.innerText = song.name;
-      const songArtist = document.createElement('p');
-      songArtist.className = "song-artist";
-      songArtist.innerText = song.artist.name;
-
-      const acceptButton = document.createElement('button');
-      acceptButton.className = "accept-song";
-      acceptButton.innerText = "✓";
-
-      const rejectButton = document.createElement('button');
-      rejectButton.className = "reject-song";
-      rejectButton.innerText = "X";
-
-      acceptButton.addEventListener('click', async () => {
-        const song_id = songItem.getAttribute('data-song_id');
-        if (await updateSongState(song_id, 'accept')) {
-          updateDisplayAfterAction(songItem, 'accept');
-        } else {
-          console.error(`Failed to accept song with ID: ${song_id}`);
-        }
-      });
-
-      rejectButton.addEventListener('click', async () => {
-        const song_id = songItem.getAttribute('data-song_id');
-        if (await updateSongState(song_id, 'reject')) {
-          updateDisplayAfterAction(songItem, 'reject');
-        } else {
-          console.error(`Failed to reject song with ID: ${song_id}`);
-        }
-      });
-
-      songDetails.appendChild(songTitle);
-      songDetails.appendChild(songArtist);
-      songItem.appendChild(songImage);
-      songItem.appendChild(songDetails);
-      songItem.appendChild(acceptButton);
-      songItem.appendChild(rejectButton);
-
-      if (songItem.getAttribute('data-songstate') === 'accepted') {
-        acceptedContainer.appendChild(songItem);
-        songItem.classList.add("accepted");
-        acceptButton.remove();
-        rejectButton.remove();
-      } else if (songItem.getAttribute('data-songstate') === 'rejected') {
-        rejectedContainer.appendChild(songItem);
-        songItem.classList.add("rejected");
-        acceptButton.remove();
-        rejectButton.remove();
-      } else {
-        songContainer.appendChild(songItem);
-      }
-    });
-  }
-}
-
-// Función para agregar una canción aceptada
-function addAcceptedSong(songItem) {
-  const acceptedContainer = document.querySelector('.song-container-accepted');
-  acceptedContainer.appendChild(songItem);
-}
-
-// Función para agregar una canción rechazada
-function addRejectedSong(songItem) {
-  const rejectedContainer = document.querySelector('.song-container-rejected');
-  rejectedContainer.appendChild(songItem);
-}
-
-// Función para actualizar la visualización después de aceptar o rechazar una canción
-function updateDisplayAfterAction(songItem, action) {
-  const songContainer = document.getElementById('song-container');
-
-  // Elimina la canción de la lista de peticiones
-  songContainer.removeChild(songItem);
-
-  // Agrega la canción a la lista correspondiente
-  if (action === 'accept') {
-    addAcceptedSong(songItem);
-  } else if (action === 'reject') {
-    addRejectedSong(songItem);
-  }
-}
 
 // Función para llamar al endpoint /api/token y obtener el accessToken
 async function fetchAccessToken() {
@@ -153,25 +35,28 @@ async function fetchAccessToken() {
 // Función para obtener las canciones seleccionadas
 async function getSelectedSongs(party_id) {
   try {
-    const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/selectedsongs/${party_id}`, {
-      method: "GET",
-      headers: {
+      const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/selectedsongs/${party_id}`, {
+          method: "GET",
+          headers: {
 
-      },
-    });
+          },
+      });
 
-    if (!response.ok) {
-      throw new Error("No se pudo obtener las canciones seleccionadas");
-    }
+      if (!response.ok) {
+          throw new Error("No se pudo obtener las canciones seleccionadas");
+      }
 
-    const data = await response.json();
-    console.log(data);
+      const data = await response.json();
+      console.log(data);
 
-    displaySongs(data);
+      // Haz algo con los datos, como mostrar las canciones
+      displaySongs(data);
   } catch (error) {
-    console.error(error);
+      console.error(error);
   }
 }
+
+
 
 // Función para actualizar el estado de una canción
 async function updateSongState(song_id, action) {
@@ -192,6 +77,7 @@ async function updateSongState(song_id, action) {
   try {
     let response = await sendUpdateRequest(accessToken);
 
+    // Si el token es inválido o expiró, intenta obtener uno nuevo
     if (response.status === 403) {
       accessToken = await fetchAccessToken();
       if (!accessToken) {
@@ -200,6 +86,7 @@ async function updateSongState(song_id, action) {
       response = await sendUpdateRequest(accessToken);
     }
 
+    // Manejar respuestas no exitosas después de la renovación del token
     if (!response.ok) {
       throw new Error(`Failed to ${action} the song.`);
     }
@@ -211,17 +98,161 @@ async function updateSongState(song_id, action) {
   }
 }
 
-// Evento para cargar las funciones principales cuando la página se carga
-window.addEventListener("load", () => {
-  const qrLink = document.getElementById('qrLink');
-  qrLink.href = `Scan.html?party_id=${party_id}`;
-  main();
+
+
+// Función para mostrar las canciones
+function displaySongs(songs) {
+  const songContainer = document.getElementById('song-container');
+  const acceptedContainer = document.querySelector('.song-container-accepted');
+  const rejectedContainer = document.querySelector('.song-container-rejected')
+
+      // Calcula la altura total de las canciones en peticiones
+      const peticionesHeight = songs.length * 68;
+
+      // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
+      acceptedContainer.style.top = `${peticionesHeight + 28}px`;
+      rejectedContainer.style.top = `${peticionesHeight + 28}px`;
+  
+
+  songContainer.innerHTML = "";
+  acceptedContainer.innerHTML = ""; // Clear the accepted songs container
+  rejectedContainer.innerHTML = "";
+
+  if (songs.length === 0) {
+    const noSongsMessage = document.createElement('div');
+    noSongsMessage.className = "no-songs";
+    noSongsMessage.innerText = "No hay canciones para mostrar";
+    songContainer.appendChild(noSongsMessage);
+  } else {
+    songs.forEach((song) => {
+      const songItem = document.createElement('div');
+      songItem.className = "song-item";
+      songItem.setAttribute('data-song_id', song.id);
+      songItem.setAttribute('data-songstate', song.song_state);
+
+      const songImage = document.createElement('div');
+      songImage.className = "song-image";
+      const imgElement = document.createElement("img");
+      imgElement.src = song.image;
+      songImage.appendChild(imgElement);
+
+      const songDetails = document.createElement('div');
+      songDetails.className = "song-details";
+      const songTitle = document.createElement('p');
+      songTitle.className = "song-title";
+      songTitle.innerText = song.name;
+      const songArtist = document.createElement('p');
+      songArtist.className = "song-artist";
+      songArtist.innerText = song.artist.name;
+
+
+      const acceptButton = document.createElement('button');
+      acceptButton.className = "accept-song";
+      acceptButton.innerText = "✓";
+
+      const rejectButton = document.createElement('button');
+      rejectButton.className = "reject-song";
+      rejectButton.innerText = "X";
+
+      // Agregar los manejadores de eventos aquí
+      acceptButton.addEventListener('click', async () => {
+        const song_id = songItem.getAttribute('data-song_id');
+        if (await updateSongState(song_id,'accept')) {
+          // Mueve la canción al final de la lista de canciones aceptadas
+          acceptedContainer.appendChild(songItem);
+          songItem.classList.add("accepted");
+          acceptButton.remove();
+          rejectButton.remove();
+        } else {
+          console.error(`Failed to accept song with ID: ${song_id}`);
+        }
+      });
+
+
+      rejectButton.addEventListener('click', async () => {
+        const song_id = songItem.getAttribute('data-song_id');
+        if (await updateSongState(song_id,'reject')) {
+          // Mueve la canción al final de la lista de canciones rechazadas
+          rejectedContainer.appendChild(songItem);
+          songItem.classList.add("rejected");
+          acceptButton.remove();
+          rejectButton.remove();
+        } else {
+          console.error(`Failed to reject song with ID: ${song_id}`);
+        }
+      });
+
+      songDetails.appendChild(songTitle);
+      songDetails.appendChild(songArtist);
+      songItem.appendChild(songImage);
+      songItem.appendChild(songDetails);
+      songItem.appendChild(acceptButton);
+      songItem.appendChild(rejectButton);
+
+      // Decide dónde añadir el songItem en función de su estado
+      if (songItem.getAttribute('data-songstate') === 'accepted') {
+        acceptedContainer.appendChild(songItem);
+        songItem.classList.add("accepted");
+        acceptButton.remove();
+        rejectButton.remove();
+      } else if (songItem.getAttribute('data-songstate') === 'rejected') {
+        rejectedContainer.appendChild(songItem);
+        songItem.classList.add("rejected");
+        acceptButton.remove();
+        rejectButton.remove();
+      } else {
+        songContainer.appendChild(songItem);
+      }
+    });
+  }
+}
+
+
+
+const songContainer = document.getElementById('song-container');
+songContainer.addEventListener('scroll', function () {
+  const containerHeight = songContainer.clientHeight;
+  const scrollHeight = songContainer.scrollHeight;
+  const scrollPosition = songContainer.scrollTop;
+
+  if (containerHeight + scrollPosition >= scrollHeight) {
+    // Aplica el estilo especial a la última canción
+    const lastSong = document.querySelector('.song-item.accepted:last-child');
+    if (lastSong) {
+      lastSong.classList.add('special-last-song');
+    }
+  } else {
+    // Elimina el estilo especial si no estamos en la última canción
+    const specialLastSong = document.querySelector('.song-item.accepted.special-last-song');
+    if (specialLastSong) {
+      specialLastSong.classList.remove('special-last-song');
+    }
+  }
 });
+
+
+
+
+
+
+
 
 // Función principal que inicia las operaciones
 async function main() {
   console.log("MAIN");
-  const urlParams = new URLSearchParams(window.location.search);
-  party_id = urlParams.get('party_id');
-  await getSelectedSongs(party_id);
+
+      displaySongs([]); // false para no mostrar los botones inicialmente
+      await getSelectedSongs(party_id);
+  
 }
+
+
+
+
+
+// Evento para cargar las funciones principales cuando la página se carga
+window.addEventListener("load", () => {
+    const qrLink = document.getElementById('qrLink');
+    qrLink.href = `Scan.html?party_id=${party_id}`;
+    main();
+});
