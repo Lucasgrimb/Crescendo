@@ -265,6 +265,7 @@ a {
 }
 .rejected-title {
     position: absolute;
+    margin-top: 0px;
     top: 41px; /* Mismo valor que el top aquí */
     left: 22px;
     color: #FFF;
@@ -304,10 +305,4 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
     top: 78px;
 overflow-y: auto;
 background-color: transparent;
-}
-
-
-.all-accepted, .all-rejected {
-    max-height: 128px;
-    overflow-y: auto;
 }
