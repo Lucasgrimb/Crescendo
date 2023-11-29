@@ -101,7 +101,7 @@ async function updateSongState(song_id, action) {
 
 
 function displaySongs(songs) {
-  const songContainerPeticiones = document.getElementById('song-container');
+  const songContainer = document.getElementById('song-container');
   const acceptedContainer = document.querySelector('.song-container-accepted');
   const rejectedContainer = document.querySelector('.song-container-rejected');
   const acceptedTitle = document.querySelector('.accepted-title');
@@ -111,25 +111,8 @@ function displaySongs(songs) {
   const strokeRejected = document.querySelector('.rejected-title + .stroke');
   const strokeitoRejected = document.querySelector('.rejected-title + .strokeito');
 
-  // Calcula la altura total de las canciones en peticiones
-  const peticionesHeight = songs.length * 68;
-
-  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-  acceptedContainer.style.top = `${peticionesHeight + 78}px`;
-  rejectedContainer.style.top = `${peticionesHeight + 78}px`;
-
-  // Ajusta la posición de los títulos y líneas de separación en las secciones aceptadas y rechazadas
-  acceptedTitle.style.top = `${peticionesHeight + 41}px`;
-  strokeAccepted.style.top = `${peticionesHeight + 70}px`;
-  strokeitoAccepted.style.top = `${peticionesHeight + 70}px`;
-
-  rejectedTitle.style.top = `${peticionesHeight + 41}px`;
-  strokeRejected.style.top = `${peticionesHeight + 70}px`;
-  strokeitoRejected.style.top = `${peticionesHeight + 70}px`;
-
-  
   songContainer.innerHTML = "";
-  acceptedContainer.innerHTML = ""; // Clear the accepted songs container
+  acceptedContainer.innerHTML = "";
   rejectedContainer.innerHTML = "";
 
   if (songs.length === 0) {
@@ -159,7 +142,6 @@ function displaySongs(songs) {
       songArtist.className = "song-artist";
       songArtist.innerText = song.artist.name;
 
-
       const acceptButton = document.createElement('button');
       acceptButton.className = "accept-song";
       acceptButton.innerText = "✓";
@@ -168,11 +150,9 @@ function displaySongs(songs) {
       rejectButton.className = "reject-song";
       rejectButton.innerText = "X";
 
-      // Agregar los manejadores de eventos aquí
       acceptButton.addEventListener('click', async () => {
         const song_id = songItem.getAttribute('data-song_id');
         if (await updateSongState(song_id,'accept')) {
-          // Mueve la canción al final de la lista de canciones aceptadas
           acceptedContainer.appendChild(songItem);
           songItem.classList.add("accepted");
           acceptButton.remove();
@@ -182,11 +162,9 @@ function displaySongs(songs) {
         }
       });
 
-
       rejectButton.addEventListener('click', async () => {
         const song_id = songItem.getAttribute('data-song_id');
         if (await updateSongState(song_id,'reject')) {
-          // Mueve la canción al final de la lista de canciones rechazadas
           rejectedContainer.appendChild(songItem);
           songItem.classList.add("rejected");
           acceptButton.remove();
@@ -203,7 +181,6 @@ function displaySongs(songs) {
       songItem.appendChild(acceptButton);
       songItem.appendChild(rejectButton);
 
-      // Decide dónde añadir el songItem en función de su estado
       if (songItem.getAttribute('data-songstate') === 'accepted') {
         acceptedContainer.appendChild(songItem);
         songItem.classList.add("accepted");
@@ -219,7 +196,20 @@ function displaySongs(songs) {
       }
     });
   }
+
+  const totalHeight = songContainer.clientHeight + acceptedContainer.clientHeight + rejectedContainer.clientHeight;
+  acceptedContainer.style.top = `${totalHeight + 78}px`;
+  rejectedContainer.style.top = `${totalHeight + 78}px`;
+
+  acceptedTitle.style.top = `${totalHeight + 41}px`;
+  strokeAccepted.style.top = `${totalHeight + 70}px`;
+  strokeitoAccepted.style.top = `${totalHeight + 70}px`;
+
+  rejectedTitle.style.top = `${totalHeight + 41}px`;
+  strokeRejected.style.top = `${totalHeight + 70}px`;
+  strokeitoRejected.style.top = `${totalHeight + 70}px`;
 }
+
 
 
 
