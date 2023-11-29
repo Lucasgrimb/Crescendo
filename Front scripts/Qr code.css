@@ -19,7 +19,7 @@ body {
     align-items: center;
 }
 .main-bg{
-    background-image: url(/Assets/binevenida.png);
+    background-image: url(/Front\ scripts/Assets/binevenida.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -291,6 +291,12 @@ border: #FFF 40px;
   .rejected {
 background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27, 0.00) 100%);
   }
+.song-container-peticiones {
+    max-height: none;
+    overflow-y: visible;
+    margin-bottom: 20px;
+}
+
   .song-container-accepted{
     position: absolute;
     height: 128px;
@@ -306,4 +312,9 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
     top: 78px;
 overflow-y: auto;
 background-color: transparent;
+}
+
+.all-accepted, .all-rejected {
+    max-height: 128px;
+    overflow-y: auto;
 }
