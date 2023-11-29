@@ -107,7 +107,7 @@ function displaySongs(songs) {
   const rejectedContainer = document.querySelector('.song-container-rejected')
 
       // Calcula la altura total de las canciones en peticiones
-      const peticionesHeight = songs.length * 28;
+      const peticionesHeight = songs.length * 68;
 
       // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
       acceptedContainer.style.top = `${peticionesHeight + 28}px`;
