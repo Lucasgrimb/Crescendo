@@ -209,12 +209,8 @@ a {
     font-weight: 700;
 }
 .stroke {
-    margin-left: 5px;
     height: 4px;
     background-color: #888;
-    position: absolute; /* Añadido para posicionar */
-    top: 70px; /* Mismo valor que el top aquí */
-    left: 116px;
     width: 258px;
     border-radius: 20px;
     filter: blur(1px);
@@ -222,9 +218,6 @@ a {
 .strokeito{
     height: 4px;
     background-color: #888;
-    position: absolute; /* Añadido para posicionar */
-    top: 70px; /* Mismo valor que el top aquí */
-    left: 1px;
     width: 13.2px;
     border-radius: 20px;
     filter: blur(1px);
@@ -265,7 +258,6 @@ a {
 }
 .rejected-title {
     position: absolute;
-    margin-top: 0px;
     top: 41px; /* Mismo valor que el top aquí */
     left: 22px;
     color: #FFF;
