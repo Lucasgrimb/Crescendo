@@ -222,7 +222,7 @@ function ajustarPosiciones() {
   if (peticionesHeight === 0) {
     // Caso sin peticiones, ajusta a alturas específicas
     acceptPeticion.style.top = "100px";  // Altura específica para aceptadas
-    rejectPeticion.style.top = "250px";  // Altura específica para rechazadas
+    rejectPeticion.style.top = "350px";  // Altura específica para rechazadas
   } else {
     // Caso normal con peticiones, ajusta en función de la altura total
     acceptPeticion.style.top = `${peticionesHeight + alturaAdicional * 1.3}px`;
