@@ -25,9 +25,8 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: absolute;
 overflow-y: auto;
-margin-bottom: 40px;
 }
 
 .Qr {
@@ -92,7 +91,7 @@ a {
     text-align: center;
     display: flex;
     align-items: center;
-    width: 375px; 
+    width: 100vw; 
     height: 68px;
     position: relative;
 }
@@ -217,7 +216,7 @@ a {
     position: absolute; /* Añadido para posicionar */
     top: 70px; /* Mismo valor que el top aquí */
     left: 116px;
-    width: 258px;
+    width: 100vw;
     border-radius: 20px;
     filter: blur(1px);
     z-index: 100000000000000;
@@ -276,7 +275,7 @@ a {
     z-index: 1000000000000;
 }
 .reject-peticion > .stroke{
-    width: 240px;
+    width: 100vw;
     margin-left: 5px;
     top: 70px; /* Mismo valor que el top aquí */
     left: 128px;
@@ -298,7 +297,6 @@ a {
 /* Estilo para canciones aceptadas */
 .accepted {
 background: linear-gradient(270deg, rgba(46, 126, 18, 0.51) 0%, rgba(46, 126, 18, 0.00) 100%);
-border: #FFF 40px;
   }
   
   /* Estilo para canciones rechazadas */
