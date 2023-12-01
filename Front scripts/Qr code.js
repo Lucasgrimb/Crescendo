@@ -216,8 +216,8 @@ function ajustarPosiciones() {
   }, 0);
 
   // Define la altura adicional en píxeles debajo de la última canción
-  const alturaAdicional = 70; // Ajusta este valor según sea necesario
-  const espacioEntreSecciones = 20; // Nuevo: Espacio entre secciones aceptadas y rechazadas
+  const alturaAdicional = 50; // Ajusta este valor según sea necesario
+  const espacioEntreSecciones = 30; // Nuevo: Espacio entre secciones aceptadas y rechazadas
 
   // Ajusta la posición de los elementos .accept-peticion y .reject-peticion
   if (peticionesHeight === 0) {
