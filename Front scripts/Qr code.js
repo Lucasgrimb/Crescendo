@@ -215,10 +215,16 @@ function ajustarPosiciones() {
     return totalHeight + songItem.clientHeight;
   }, 0);
 
+    // Define la altura adicional en píxeles debajo de la última canción
+    const alturaAdicional = 45; // Ajusta este valor según sea necesario
+
   // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-  acceptedContainer.style.top = `${peticionesHeight + 1 + 45}px`; // 45 píxeles de distancia
-  rejectedContainer.style.top = `${peticionesHeight + 1 + 45 * 2}px`; // 45 píxeles desde la sección aceptada
+  acceptedContainer.style.top = `${peticionesHeight + alturaAdicional}px`;
+  rejectedContainer.style.top = `${peticionesHeight + alturaAdicional * 2}px`;
 }
+
+// Llama a esta función al inicio para ajustar las posiciones iniciales
+ajustarPosiciones();
 
 // Función para actualizar el estilo de la última canción aceptada
 function actualizarUltimaCancion() {
