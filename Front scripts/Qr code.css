@@ -84,7 +84,6 @@ a {
     align-items: center;
     width: 375px;
     max-height: 138px;
-    overflow-x: hidden; 
 }
 /* Estilo para cada canción en el contenedor */
 .song-item {
