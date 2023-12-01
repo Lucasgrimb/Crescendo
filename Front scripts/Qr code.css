@@ -237,6 +237,7 @@ a {
     position: absolute;
     width: 100%;
     width: 375px;
+    top: 159px;
     left: 0px;
 }
 .accepted-title {
@@ -259,6 +260,7 @@ a {
     position: absolute;
     width: 100%;
     width: 375px;
+    top: 330px;
     left: 0px;
 }
 .rejected-title {
