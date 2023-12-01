@@ -292,7 +292,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
   }
   .song-container-accepted{
     position: absolute;
-    height: 128px;
+    height: 136px;
     width: 375px;
     margin-top: 5px;
     overflow-y: auto;
