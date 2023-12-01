@@ -242,6 +242,15 @@ function actualizarUltimaCancion() {
   }
 }
 
+
+// Función principal que inicia las operaciones
+async function main() {
+  console.log("MAIN");
+
+  displaySongs([]); // false para no mostrar los botones inicialmente
+  await getSelectedSongs(party_id);
+}
+
 // Evento para cargar las funciones principales cuando la página se carga
 window.addEventListener("load", () => {
   const qrLink = document.getElementById('qrLink');
