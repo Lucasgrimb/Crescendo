@@ -217,6 +217,7 @@ function ajustarPosiciones() {
 
   // Define la altura adicional en píxeles debajo de la última canción
   const alturaAdicional = 70; // Ajusta este valor según sea necesario
+  const espacioEntreSecciones = 20; // Nuevo: Espacio entre secciones aceptadas y rechazadas
 
   // Ajusta la posición de los elementos .accept-peticion y .reject-peticion
   if (peticionesHeight === 0) {
@@ -224,14 +225,12 @@ function ajustarPosiciones() {
     acceptPeticion.style.top = "100px";  // Altura específica para aceptadas
     rejectPeticion.style.top = "300px";  // Altura específica para rechazadas
   } else {
-    // Caso normal con peticiones, ajusta en función de la altura total
+    // Caso normal con peticiones, ajusta en función de la altura total y el espacio entre secciones
     acceptPeticion.style.top = `${peticionesHeight + alturaAdicional * 1.3}px`;
-    rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 3.3}px`;
+    rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 3.3 + espacioEntreSecciones}px`;
   }
 }
 
-// Llama a esta función al inicio para ajustar las posiciones iniciales
-ajustarPosiciones();
 
 
 // Llama a esta función al inicio para ajustar las posiciones iniciales
