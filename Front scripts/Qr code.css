@@ -301,6 +301,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
     position: absolute;
     height: 128px;
     width: 375px;
+    margin-top: -35px;
 overflow-y: auto;
 background-color: transparent;
 }
