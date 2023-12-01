@@ -221,7 +221,7 @@ function ajustarPosiciones() {
 
 
   // Ajusta la posición de los elementos .accept-peticion y .reject-peticion
-  acceptPeticion.style.top = `${peticionesHeight + alturaAdicional * 2}px`;
+  acceptPeticion.style.top = `${peticionesHeight + alturaAdicional }px`;
   rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 2}px`;
 }
 
