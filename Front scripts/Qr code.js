@@ -218,10 +218,15 @@ function ajustarPosiciones() {
   // Define la altura adicional en píxeles debajo de la última canción
   const alturaAdicional = 70; // Ajusta este valor según sea necesario
 
+
+
   // Ajusta la posición de los elementos .accept-peticion y .reject-peticion
-  acceptPeticion.style.top = `${peticionesHeight + alturaAdicional}px`;
-  rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 2}px`;
+  acceptPeticion.style.top = `${peticionesHeight + alturaAdicional  }  px`;
+  rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 3}px`;
 }
+
+// Llama a esta función al inicio para ajustar las posiciones iniciales
+ajustarPosiciones();
 
 // Función para actualizar el estilo de la última canción aceptada
 function actualizarUltimaCancion() {
