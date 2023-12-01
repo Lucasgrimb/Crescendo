@@ -204,23 +204,25 @@ function displaySongs(songs) {
   }
 }
 
-// Función para ajustar las posiciones de las secciones de canciones aceptadas y rechazadas
+// Función para ajustar las posiciones de las secciones y los elementos .accept-peticion y .reject-peticion
 function ajustarPosiciones() {
   const songContainer = document.getElementById('song-container');
-  const acceptedContainer = document.querySelector('.song-container-accepted');
-  const rejectedContainer = document.querySelector('.song-container-rejected');
+  const acceptPeticion = document.querySelector('.accept-peticion');
+  const rejectPeticion = document.querySelector('.reject-peticion');
 
   // Calcula la altura total de las canciones en peticiones
   const peticionesHeight = Array.from(songContainer.children).reduce((totalHeight, songItem) => {
     return totalHeight + songItem.clientHeight;
   }, 0);
 
-    // Define la altura adicional en píxeles debajo de la última canción
-    const alturaAdicional = 70; // Ajusta este valor según sea necesario
+  // Define la altura adicional en píxeles debajo de la última canción
+  const alturaAdicional = 70; // Ajusta este valor según sea necesario
 
-  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-  acceptedContainer.style.top = `${peticionesHeight + alturaAdicional}px`;
-  rejectedContainer.style.top = `${peticionesHeight + alturaAdicional }px`;
+
+
+  // Ajusta la posición de los elementos .accept-peticion y .reject-peticion
+  acceptPeticion.style.top = `${peticionesHeight + alturaAdicional * 2}px`;
+  rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 2}px`;
 }
 
 // Llama a esta función al inicio para ajustar las posiciones iniciales
