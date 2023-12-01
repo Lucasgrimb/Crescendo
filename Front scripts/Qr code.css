@@ -207,6 +207,7 @@ a {
     font-family: Inter;
     font-size: 18px;
     font-weight: 700;
+    z-index: 10000000000000;
 }
 .stroke {
     margin-left: 5px;
@@ -218,6 +219,7 @@ a {
     width: 258px;
     border-radius: 20px;
     filter: blur(1px);
+    z-index: 100000000000000;
 }
 .strokeito{
     height: 4px;
@@ -248,7 +250,7 @@ a {
     font-family: Inter;
     font-size: 18px;
     font-weight: 700;
-    z-index: 1000000;
+    z-index: 100000000000000;
 }
 .reject-peticion {
     display: flex;
@@ -270,7 +272,7 @@ a {
     font-family: Inter;
     font-size: 18px;
     font-weight: 700;
-    z-index: 1000000;
+    z-index: 1000000000000;
 }
 .reject-peticion > .stroke{
     width: 240px;
