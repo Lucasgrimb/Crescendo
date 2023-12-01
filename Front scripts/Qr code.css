@@ -163,8 +163,9 @@ a {
     cursor: pointer;
     position: absolute; /* Usamos posición absoluta */
     top: 12px; /* Lo centramos verticalmente */
-    width: 17px;
-    height: 17px;
+    gap: 30px;
+    width: 34px;
+    height: 34px;
 }
 /* Estilo para los botones de "Aceptar canción" */
 .accept-song {
