@@ -220,7 +220,7 @@ function ajustarPosiciones() {
 
   // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
   acceptedContainer.style.top = `${peticionesHeight + alturaAdicional}px`;
-  rejectedContainer.style.top = `${peticionesHeight + alturaAdicional * 1.3}px`;
+  rejectedContainer.style.top = `${peticionesHeight + alturaAdicional }px`;
 }
 
 // Llama a esta función al inicio para ajustar las posiciones iniciales
