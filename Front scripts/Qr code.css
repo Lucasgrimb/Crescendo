@@ -27,6 +27,7 @@ body {
     height: 100%;
     position: fixed;
 overflow-y: auto;
+margin-bottom: 40px;
 }
 
 .Qr {
@@ -280,6 +281,20 @@ a {
     top: 70px; /* Mismo valor que el top aquí */
     left: 128px;
 }
+
+
+.reject-peticion > .strokeito-rejected{
+    height: 4px;
+      background-color: #888;
+      position: absolute; /* Añadido para posicionar */
+      top: 70px; /* Mismo valor que el top aquí */
+      left: 1px;
+      width: 13.2px;
+      border-radius: 20px;
+      filter: blur(1px);
+  }
+  
+
 /* Estilo para canciones aceptadas */
 .accepted {
 background: linear-gradient(270deg, rgba(46, 126, 18, 0.51) 0%, rgba(46, 126, 18, 0.00) 100%);
