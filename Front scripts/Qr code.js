@@ -3,8 +3,6 @@ const urlParams = new URLSearchParams(window.location.search);
 const party_id = urlParams.get('party_id');
 console.log(party_id);
 
-
-
 // Función para llamar al endpoint /api/token y obtener el accessToken
 async function fetchAccessToken() {
   try {
@@ -35,28 +33,27 @@ async function fetchAccessToken() {
 // Función para obtener las canciones seleccionadas
 async function getSelectedSongs(party_id) {
   try {
-      const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/selectedsongs/${party_id}`, {
-          method: "GET",
-          headers: {
+    const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/selectedsongs/${party_id}`, {
+      method: "GET",
+      headers: {}
+    });
 
-          },
-      });
+    if (!response.ok) {
+      throw new Error("No se pudo obtener las canciones seleccionadas");
+    }
 
-      if (!response.ok) {
-          throw new Error("No se pudo obtener las canciones seleccionadas");
-      }
+    const data = await response.json();
+    console.log(data);
 
-      const data = await response.json();
-      console.log(data);
+    // Haz algo con los datos, como mostrar las canciones
+    displaySongs(data);
 
-      // Haz algo con los datos, como mostrar las canciones
-      displaySongs(data);
+    // Ajusta las posiciones después de mostrar las canciones
+    ajustarPosiciones();
   } catch (error) {
-      console.error(error);
+    console.error(error);
   }
 }
-
-
 
 // Función para actualizar el estado de una canción
 async function updateSongState(song_id, action) {
@@ -98,22 +95,20 @@ async function updateSongState(song_id, action) {
   }
 }
 
-
-
 // Función para mostrar las canciones
 function displaySongs(songs) {
   const songContainer = document.getElementById('song-container');
   const acceptedContainer = document.querySelector('.song-container-accepted');
-  const rejectedContainer = document.querySelector('.song-container-rejected')
+  const rejectedContainer = document.querySelector('.song-container-rejected');
 
-      // Calcula la altura total de las canciones en peticiones
-      const peticionesHeight = songs.length * 68;
+  // Calcula la altura total de las canciones en peticiones
+  const peticionesHeight = Array.from(songContainer.children).reduce((totalHeight, songItem) => {
+    return totalHeight + songItem.clientHeight;
+  }, 0);
 
-      // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-      acceptedContainer.style.top = `${peticionesHeight + 1}px`;
-      rejectedContainer.style.top = `${peticionesHeight + 1}px`;
-  
-
+  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
+  acceptedContainer.style.top = `${peticionesHeight + 1 + 45}px`; // 45 píxeles de distancia
+  rejectedContainer.style.top = `${peticionesHeight + 1 + 45 * 2}px`; // 45 píxeles desde la sección aceptada
   songContainer.innerHTML = "";
   acceptedContainer.innerHTML = ""; // Clear the accepted songs container
   rejectedContainer.innerHTML = "";
@@ -145,7 +140,6 @@ function displaySongs(songs) {
       songArtist.className = "song-artist";
       songArtist.innerText = song.artist.name;
 
-
       const acceptButton = document.createElement('button');
       acceptButton.className = "accept-song";
       acceptButton.innerText = "✓";
@@ -157,26 +151,29 @@ function displaySongs(songs) {
       // Agregar los manejadores de eventos aquí
       acceptButton.addEventListener('click', async () => {
         const song_id = songItem.getAttribute('data-song_id');
-        if (await updateSongState(song_id,'accept')) {
+        if (await updateSongState(song_id, 'accept')) {
           // Mueve la canción al final de la lista de canciones aceptadas
           acceptedContainer.appendChild(songItem);
           songItem.classList.add("accepted");
           acceptButton.remove();
           rejectButton.remove();
+          // Ajusta las posiciones después de aceptar la canción
+          ajustarPosiciones();
         } else {
           console.error(`Failed to accept song with ID: ${song_id}`);
         }
       });
 
-
       rejectButton.addEventListener('click', async () => {
         const song_id = songItem.getAttribute('data-song_id');
-        if (await updateSongState(song_id,'reject')) {
+        if (await updateSongState(song_id, 'reject')) {
           // Mueve la canción al final de la lista de canciones rechazadas
           rejectedContainer.appendChild(songItem);
           songItem.classList.add("rejected");
           acceptButton.remove();
           rejectButton.remove();
+          // Ajusta las posiciones después de rechazar la canción
+          ajustarPosiciones();
         } else {
           console.error(`Failed to reject song with ID: ${song_id}`);
         }
@@ -207,10 +204,25 @@ function displaySongs(songs) {
   }
 }
 
+// Función para ajustar las posiciones de las secciones de canciones aceptadas y rechazadas
+function ajustarPosiciones() {
+  const songContainer = document.getElementById('song-container');
+  const acceptedContainer = document.querySelector('.song-container-accepted');
+  const rejectedContainer = document.querySelector('.song-container-rejected');
 
+  // Calcula la altura total de las canciones en peticiones
+  const peticionesHeight = Array.from(songContainer.children).reduce((totalHeight, songItem) => {
+    return totalHeight + songItem.clientHeight;
+  }, 0);
 
-const songContainer = document.getElementById('song-container');
-songContainer.addEventListener('scroll', function () {
+  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
+  acceptedContainer.style.top = `${peticionesHeight + 1 + 45}px`; // 45 píxeles de distancia
+  rejectedContainer.style.top = `${peticionesHeight + 1 + 45 * 2}px`; // 45 píxeles desde la sección aceptada
+}
+
+// Función para actualizar el estilo de la última canción aceptada
+function actualizarUltimaCancion() {
+  const songContainer = document.getElementById('song-container');
   const containerHeight = songContainer.clientHeight;
   const scrollHeight = songContainer.scrollHeight;
   const scrollPosition = songContainer.scrollTop;
@@ -228,31 +240,15 @@ songContainer.addEventListener('scroll', function () {
       specialLastSong.classList.remove('special-last-song');
     }
   }
-});
-
-
-
-
-
-
-
-
-// Función principal que inicia las operaciones
-async function main() {
-  console.log("MAIN");
-
-      displaySongs([]); // false para no mostrar los botones inicialmente
-      await getSelectedSongs(party_id);
-  
 }
-
-
-
-
 
 // Evento para cargar las funciones principales cuando la página se carga
 window.addEventListener("load", () => {
-    const qrLink = document.getElementById('qrLink');
-    qrLink.href = `Scan.html?party_id=${party_id}`;
-    main();
+  const qrLink = document.getElementById('qrLink');
+  qrLink.href = `Scan.html?party_id=${party_id}`;
+  main();
 });
+
+// Evento para actualizar el estilo de la última canción aceptada al hacer scroll
+const songContainer = document.getElementById('song-container');
+songContainer.addEventListener('scroll', actualizarUltimaCancion);
