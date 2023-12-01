@@ -27,6 +27,7 @@ body {
     height: 100%;
     position: absolute;
 overflow-y: auto;
+overflow-x: hidden; 
 }
 
 .Qr {
@@ -83,7 +84,7 @@ a {
     align-items: center;
     width: 375px;
     max-height: 138px;
-    
+    overflow-x: hidden; 
 }
 /* Estilo para cada canción en el contenedor */
 .song-item {
@@ -220,6 +221,7 @@ a {
     border-radius: 20px;
     filter: blur(1px);
     z-index: 100000000000000;
+    overflow-x: hidden; 
 }
 .strokeito{
     height: 4px;
@@ -279,6 +281,7 @@ a {
     margin-left: 5px;
     top: 70px; /* Mismo valor que el top aquí */
     left: 128px;
+    overflow-x: hidden; 
 }
 
 
