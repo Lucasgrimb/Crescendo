@@ -216,7 +216,7 @@ function ajustarPosiciones() {
   }, 0);
 
     // Define la altura adicional en píxeles debajo de la última canción
-    const alturaAdicional = 45; // Ajusta este valor según sea necesario
+    const alturaAdicional = 0; // Ajusta este valor según sea necesario
 
   // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
   acceptedContainer.style.top = `${peticionesHeight + alturaAdicional}px`;
