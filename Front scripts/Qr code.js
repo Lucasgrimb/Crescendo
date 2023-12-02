@@ -1,3 +1,4 @@
+
 // Obtener el party_id de la URL
 const urlParams = new URLSearchParams(window.location.search);
 const party_id = urlParams.get('party_id');
@@ -261,10 +262,12 @@ function actualizarUltimaCancion() {
 
 // Función principal que inicia las operaciones
 async function main() {
+  document.getElementById('loadingSpinner').style.display = 'block';
   console.log("MAIN");
 
   displaySongs([]); // false para no mostrar los botones inicialmente
   await getSelectedSongs(party_id);
+  document.getElementById('loadingSpinner').style.display = 'none';
 }
 
 // Evento para cargar las funciones principales cuando la página se carga
