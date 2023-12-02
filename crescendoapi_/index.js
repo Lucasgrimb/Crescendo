@@ -305,7 +305,7 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
                     id: song.song_id,
                     name: songInfo.song_name, 
                     artist: { name: songInfo.artist_name },
-                    image: songInfo.song_image_url,
+                    image: songInfo.song_image,
                     song_state: song.song_state
                 });
             } else {
