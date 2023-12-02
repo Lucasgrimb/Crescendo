@@ -283,35 +283,56 @@ app.post('/api/store-song-request', async (req, res) => {
 
 
 //---------------Show requested songs (dj only)------------------  OK
-app.get('/api/selectedsongs/:party_id',  async (req, res) => {
+app.get('/api/selectedsongs/:party_id', async (req, res) => {
     try {
         const party_id = req.params.party_id;
 
-        // Ahora también seleccionamos song_state en la consulta
-        const [rows] = await QueryDBp(`SELECT song_id, song_state FROM songs WHERE party_id = ?`, [party_id]);
+        // Obtener song_id y song_state de la tabla songs
+        const [songs] = await QueryDBp(`SELECT song_id, song_state FROM songs WHERE party_id = ?`, [party_id]);
 
         const CLIENT_ID = process.env.clientId;
         const CLIENT_SECRET = process.env.clientSecret;
 
-        // Usamos Promise.all para ejecutar en paralelo
-        const songsPromises = rows.map(async row => {
-            const songInfo = await fetchSongInfo(row.song_id, CLIENT_ID, CLIENT_SECRET);
+        // Preparar un mapa para almacenar la información final de las canciones
+        const songsInfoMap = new Map();
 
-            // Combina songInfo con song_state
-            return {
-                ...songInfo,
-                song_state: row.song_state,  // Agrega song_state a cada objeto de canción
-            };
-        });
+        for (const song of songs) {
+            // Verificar si la información de la canción ya está en la base de datos
+            const [songInfoResults] = await QueryDBp(`SELECT * FROM song_info WHERE song_id = ?`, [song.song_id]);
+            if (songInfoResults.length > 0) {
+                const songInfo = songInfoResults[0];
+                songsInfoMap.set(song.song_id, { 
+                    id: song.song_id,
+                    name: songInfo.song_name, 
+                    artist: { name: songInfo.artist_name },
+                    image: songInfo.song_image_url,
+                    song_state: song.song_state
+                });
+            } else {
+                // Si no, obtener la información de Spotify
+                const spotifySongInfo = await fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET);
 
-        const songsInfo = await Promise.all(songsPromises);
+                // Almacenar la información nueva en la base de datos
+                await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) VALUES (?, ?, ?, ?)`, 
+                               [song.song_id, spotifySongInfo.name, spotifySongInfo.artist.name, spotifySongInfo.image]);
 
-        res.json(songsInfo);
+                // Agregar la información al mapa
+                songsInfoMap.set(song.song_id, { 
+                    ...spotifySongInfo, 
+                    song_state: song.song_state 
+                });
+            }
+        }
+
+        // Devolver la información combinada
+        res.json(Array.from(songsInfoMap.values()));
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-}); 
+});
+
+
 
 
 
