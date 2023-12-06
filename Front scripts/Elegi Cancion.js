@@ -108,7 +108,7 @@ function updateSongDetails(image, title, artist, trackId) {
 // Función para mostrar la notificación toast
 
 
-// Manejador para el botón Aceptar
+
 // Manejador para el botón Aceptar
 async function handleAcceptClick() {
     const trackId = document.querySelector('.modal').dataset.id;
@@ -131,7 +131,7 @@ async function handleAcceptClick() {
     try {
         await sendRequestWithRetry('https://energetic-gown-elk.cyclic.app/api/store-song-request', requestOptions, 3);
         // Muestra un mensaje de éxito antes de recargar la página
-        alert('Solicitud realizada con éxito');
+        alert('Pedido de canción realizado exitosamente');
         location.reload();
     } catch (error) {
         console.error('Error:', error);
