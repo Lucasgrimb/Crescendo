@@ -1,3 +1,4 @@
+
 // Obtener el party_id de la URL
 const urlParams = new URLSearchParams(window.location.search);
 const party_id = urlParams.get('party_id');
@@ -45,14 +46,15 @@ async function getSelectedSongs(party_id) {
     const data = await response.json();
     console.log(data);
 
-    return data; // Devuelve los datos de las canciones
-    
+    // Haz algo con los datos, como mostrar las canciones
+    displaySongs(data);
+
+    // Ajusta las posiciones después de mostrar las canciones
+    ajustarPosiciones();
   } catch (error) {
     console.error(error);
-    return []; // Devuelve un array vacío en caso de error
   }
 }
-
 
 // Función para actualizar el estado de una canción
 async function updateSongState(song_id, action) {
@@ -115,7 +117,7 @@ function displaySongs(songs) {
   if (songs.length === 0) {
     const noSongsMessage = document.createElement('div');
     noSongsMessage.className = "no-songs";
-    noSongsMessage.innerText = "No hay canciones para mostrar";
+    noSongsMessage.innerText = "Cargando canciones pedidas...";
     songContainer.appendChild(noSongsMessage);
   } else {
     songs.forEach((song) => {
@@ -260,16 +262,13 @@ function actualizarUltimaCancion() {
 
 // Función principal que inicia las operaciones
 async function main() {
+  
   console.log("MAIN");
 
-  const songs = await getSelectedSongs(party_id);
-  displaySongs(songs); // Muestra las canciones
-  ajustarPosiciones(); // Ajusta las posiciones después de mostrar las canciones
-
-  document.getElementById('loadingSpinner').style.display = 'none';
+  displaySongs([]); // false para no mostrar los botones inicialmente
+  await getSelectedSongs(party_id);
+  
 }
-
-
 
 // Evento para cargar las funciones principales cuando la página se carga
 window.addEventListener("load", () => {
