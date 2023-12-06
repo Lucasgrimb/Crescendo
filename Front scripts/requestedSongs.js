@@ -170,15 +170,6 @@ function ajustarPosiciones() {
   }
 }
 
-// Función para actualizar el estilo de la última canción aceptada
-function actualizarUltimaCancion() {
-    const songContainer = document.getElementById('song-container');
-    const lastSong = songContainer.querySelector('.song-item:last-child');
-    
-    if (lastSong) {
-        lastSong.classList.toggle('special-last-song', songContainer.scrollHeight - songContainer.scrollTop === songContainer.clientHeight);
-    }
-}
 
 // Función principal que inicia las operaciones
 async function main() {
