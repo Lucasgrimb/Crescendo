@@ -331,7 +331,7 @@ margin-bottom: 25px;
 }
 
 /* btn ver requests*/
-.reqsong{
+.reqsong {
     position: absolute;
     box-shadow: 0 0 5px #3E2F45,
     0 0 25px #3E2F45;
@@ -341,8 +341,9 @@ margin-bottom: 25px;
     border-radius: 15px;
     font-size: 15px;
     color: #000000;
-    top: 570px;
-    left: 50px;
+    top: 570px; /* Mantener la posición vertical */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translateX(-50%); /* Ajuste fino para alinear correctamente al centro */
 }
 
 .profiledj{
