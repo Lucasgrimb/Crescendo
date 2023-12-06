@@ -217,7 +217,20 @@ a {
     background-color: #888;
     position: absolute; /* Añadido para posicionar */
     top: 70px; /* Mismo valor que el top aquí */
-    left: 250px;
+    left: 116px;
+    width: 100vw;
+    border-radius: 20px;
+    filter: blur(1px);
+    z-index: 100000000000000;
+    overflow-x: hidden; 
+}
+.strokep {
+    margin-left: 5px;
+    height: 4px;
+    background-color: #888;
+    position: absolute; /* Añadido para posicionar */
+    top: 70px; /* Mismo valor que el top aquí */
+    left: 200px;
     width: 100vw;
     border-radius: 20px;
     filter: blur(1px);
