@@ -328,10 +328,10 @@ background-color: transparent;
     position: fixed; /* Posicionamiento fijo en la pantalla */
     top: 50%; /* Centrado verticalmente */
     left: 50%; /* Centrado horizontalmente */
-    width: 40px; /* Ancho del spinner */
-    height: 40px; /* Altura del spinner */
     transform: translate(-50%, -50%); /* Ajuste fino para centrar exactamente */
+
 }
+
 
 .dot {
     width: 4px; /* Tamaño de los puntitos */
