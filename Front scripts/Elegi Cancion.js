@@ -136,6 +136,7 @@ async function handleAcceptClick() {
     } catch (error) {
         console.error('Error:', error);
         alert('¡Ups! Parece que esta canción ya fue solicitada');
+        location.reload();
     }
 }
 
