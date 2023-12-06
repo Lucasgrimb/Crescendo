@@ -47,12 +47,12 @@ async function getSelectedSongs(party_id) {
     console.log(data);
 
     return data; // Devuelve los datos de las canciones
+    
   } catch (error) {
     console.error(error);
     return []; // Devuelve un array vacío en caso de error
   }
 }
-
 
 
 // Función para actualizar el estado de una canción
@@ -265,10 +265,12 @@ async function main() {
   console.log("MAIN");
 
   const songs = await getSelectedSongs(party_id);
-  displaySongs(songs); // Muestra las canciones después de obtenerlas
+  displaySongs(songs); // Muestra las canciones
+  ajustarPosiciones(); // Ajusta las posiciones después de mostrar las canciones
 
   document.getElementById('loadingSpinner').style.display = 'none';
 }
+
 
 
 // Evento para cargar las funciones principales cuando la página se carga
