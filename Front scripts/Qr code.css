@@ -327,7 +327,7 @@ background-color: transparent;
 .spinner {
     position: fixed; /* Posicionamiento fijo en la pantalla */
     top: 50%; /* Centrado verticalmente */
-    left: 50%; /* Centrado horizontalmente */
+    left: 40%; /* Centrado horizontalmente */
     transform: translate(-50%, -50%); /* Ajuste fino para centrar exactamente */
 
 }
@@ -340,7 +340,7 @@ background-color: transparent;
     border-radius: 50%; /* Hace los puntitos redondos */
     position: absolute; /* Posicionamiento absoluto dentro del spinner */
     top: 50%;
-    left: 40%;
+    left: 50%;
     transform-origin: 20px; /* Ajusta el radio del círculo */
 }
 
