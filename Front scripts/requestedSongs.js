@@ -48,7 +48,7 @@ function displaySongs(songs) {
   if (songs.length === 0) {
     const noSongsMessage = document.createElement('div');
     noSongsMessage.className = "no-songs";
-    noSongsMessage.innerText = "Cargando canciones pedidas...";
+    noSongsMessage.innerText = "Todavía no se pidieron canciones";
     songContainer.appendChild(noSongsMessage);
   } else {
     songs.forEach((song) => {
