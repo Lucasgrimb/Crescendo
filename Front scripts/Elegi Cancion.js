@@ -131,11 +131,11 @@ async function handleAcceptClick() {
     try {
         await sendRequestWithRetry('https://energetic-gown-elk.cyclic.app/api/store-song-request', requestOptions, 3);
         // Muestra un mensaje de éxito antes de recargar la página
-        alert('Pedido de canción realizado exitosamente');
+        alert('¡Gracias por tu solicitud!');
         location.reload();
     } catch (error) {
         console.error('Error:', error);
-        alert('Hubo un problema al guardar la solicitud de la canción. Intente nuevamente.');
+        alert('¡Ups! Parece que esta canción ya fue solicitada');
     }
 }
 
