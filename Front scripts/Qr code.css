@@ -327,7 +327,7 @@ background-color: transparent;
 .spinner {
     position: fixed; /* Posicionamiento fijo en la pantalla */
     top: 50%; /* Centrado verticalmente */
-    left: 40%; /* Centrado horizontalmente */
+    left: 45%; /* Centrado horizontalmente */
     transform: translate(-50%, -50%); /* Ajuste fino para centrar exactamente */
 
 }
