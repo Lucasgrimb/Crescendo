@@ -188,8 +188,6 @@ async function main() {
 }
 
 window.addEventListener("load", () => {
-    const qrLink = document.getElementById('qrLink');
-    qrLink.href = `Scan.html?party_id=${party_id}`;
     main();
 });
 
