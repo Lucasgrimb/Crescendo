@@ -232,7 +232,7 @@ function ajustarPosiciones() {
 
 
 // Llama a esta función al inicio para ajustar las posiciones iniciales
-ajustarPosiciones();
+
 
 // Función para actualizar el estilo de la última canción aceptada
 function actualizarUltimaCancion() {
