@@ -46,11 +46,8 @@ async function getSelectedSongs(party_id) {
     const data = await response.json();
     console.log(data);
 
-    // Haz algo con los datos, como mostrar las canciones
-    displaySongs(data);
-
-    // Ajusta las posiciones después de mostrar las canciones
-    ajustarPosiciones();
+    displaySongs(data); // Muestra las canciones
+    ajustarPosiciones(); // Ajusta las posiciones después de mostrar las canciones
   } catch (error) {
     console.error(error);
   }
@@ -262,13 +259,15 @@ function actualizarUltimaCancion() {
 
 // Función principal que inicia las operaciones
 async function main() {
-  
+  document.getElementById('loadingSpinner').style.display = 'block'; // Muestra el spinner
   console.log("MAIN");
 
-  displaySongs([]); // false para no mostrar los botones inicialmente
-  await getSelectedSongs(party_id);
-  
+  await getSelectedSongs(party_id); // Espera a que las canciones se carguen y se muestren
+
+  document.getElementById('loadingSpinner').style.display = 'none'; // Oculta el spinner
 }
+
+
 
 // Evento para cargar las funciones principales cuando la página se carga
 window.addEventListener("load", () => {
