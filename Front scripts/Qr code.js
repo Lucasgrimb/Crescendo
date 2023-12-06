@@ -109,8 +109,8 @@ function displaySongs(songs) {
   }, 0);
 
   // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-  acceptedContainer.style.top = `${peticionesHeight + 1 + 10}px`; // 45 píxeles de distancia
-  rejectedContainer.style.top = `${peticionesHeight + 1 + 10 * 2}px`; // 45 píxeles desde la sección aceptada
+  acceptedContainer.style.top = `${peticionesHeight + 1 + 45}px`; // 45 píxeles de distancia
+  rejectedContainer.style.top = `${peticionesHeight + 1 + 45 * 2}px`; // 45 píxeles desde la sección aceptada
   songContainer.innerHTML = "";
   acceptedContainer.innerHTML = ""; // Clear the accepted songs container
   rejectedContainer.innerHTML = "";
