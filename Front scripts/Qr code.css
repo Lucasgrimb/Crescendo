@@ -325,21 +325,37 @@ background-color: transparent;
 }
 /* Estilos para el spinner */
 .spinner {
-    border: 4px solid rgba(255, 255, 255, 0.3); /* Color de fondo de los círculos, semi-transparente */
-    border-top: 4px dotted #fff; /* Puntos blancos */
-    border-right: 4px dotted #fff; /* Puntos blancos */
-    border-bottom: 4px dotted #fff; /* Puntos blancos */
-    width: 40px; /* Ancho del spinner */
-    height: 40px; /* Altura del spinner */
-    border-radius: 50%;
     position: fixed; /* Posicionamiento fijo en la pantalla */
     top: 50%; /* Centrado verticalmente */
     left: 50%; /* Centrado horizontalmente */
+    width: 40px; /* Ancho del spinner */
+    height: 40px; /* Altura del spinner */
     transform: translate(-50%, -50%); /* Ajuste fino para centrar exactamente */
-    animation: spin 1s ease infinite;
+}
+
+.dot {
+    width: 4px; /* Tamaño de los puntitos */
+    height: 4px; /* Tamaño de los puntitos */
+    background-color: white; /* Color de los puntitos */
+    border-radius: 50%; /* Hace los puntitos redondos */
+    position: absolute; /* Posicionamiento absoluto dentro del spinner */
+    top: 50%;
+    left: 50%;
+    transform-origin: 20px; /* Ajusta el radio del círculo */
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg) translate(-50%, -50%); }
-    100% { transform: rotate(360deg) translate(-50%, -50%); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
+
+/* Aplicar la animación a cada dot con un ligero retraso para cada uno */
+.dot:nth-child(1) { animation: spin 1s linear infinite; }
+.dot:nth-child(2) { animation: spin 1s linear infinite; animation-delay: -0.9s; }
+.dot:nth-child(3) { animation: spin 1s linear infinite; animation-delay: -0.8s; }
+.dot:nth-child(4) { animation: spin 1s linear infinite; animation-delay: -0.7s; }
+.dot:nth-child(5) { animation: spin 1s linear infinite; animation-delay: -0.6s; }
+.dot:nth-child(6) { animation: spin 1s linear infinite; animation-delay: -0.5s; }
+.dot:nth-child(7) { animation: spin 1s linear infinite; animation-delay: -0.4s; }
+.dot:nth-child(8) { animation: spin 1s linear infinite; animation-delay: -0.3s; }
+
