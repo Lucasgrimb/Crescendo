@@ -244,41 +244,32 @@ app.post('/api/rateSong', async (req, res) => {
 //-----------------Request song route------------------   OK
 //Le pasas el id de la canción seleccionada a la base de datos. 
 app.post('/api/store-song-request', async (req, res) => {
-    
-    const song = {
-        song_id: req.body.song_id,
-        party_id: req.body.party_id,
+    const { song_id, party_id } = req.body;
+
+    // Validación básica
+    if (!song_id || !party_id) {
+        return res.status(400).json({ error: "song_id and party_id are required" });
     }
 
-    if (!song.song_id || !song.party_id) {
-        return res.status(400).json({ error: "song_id and party_id are required " });
-    }
+    try {
+        // Verificar si la canción ya existe en la base de datos
+        const currentSong = await QueryDBp(`SELECT * FROM songs WHERE song_id = ? AND party_id = ?`, [song_id, party_id]);
 
-    const CLIENT_ID = process.env.clientId;
-    const CLIENT_SECRET = process.env.clientSecret;
-
-
-    // Verificar el estado actual del song_id en la base de datos
-    const currentSong = await QueryDBp(`SELECT song_state FROM songs WHERE song_id = ? AND party_id = ?`, [song.song_id, song.party_id]);
-
-    if (currentSong[0] && currentSong[0].length) {
-        const song_state = currentSong[0][0].song_state;
-
-        if (song_state === 'accepted' || song_state === 'hold') {
-            return res.status(400).json({ error: "La canción ya ha sido solicitada y está " + song_state });
+        if (currentSong.length > 0) {
+            // Si la canción existe, incrementar request_number
+            await QueryDBp(`UPDATE songs SET request_number = request_number + 1 WHERE song_id = ? AND party_id = ?`, [song_id, party_id]);
         } else {
-            // Si la canción fue previamente rechazada, actualiza su estado a 'hold'
-            await QueryDBp(`UPDATE songs SET song_state = ?  WHERE song_id = ? AND party_id = ?`, ['hold', song.song_id, song.party_id]);
-            return res.status(200).json({ message: 'OK' });
-
+            // Si no existe, agregar la canción con request_number inicial de 1
+            await QueryDBp(`INSERT INTO songs (song_id, party_id, song_state) VALUES (?, ?,'hold')`, [song_id, party_id]);
         }
-    } else {
-        // Si no está en la base de datos, guarda el ID en la base de datos con estado 'hold'
-        await QueryDBp(`INSERT INTO songs (song_id, song_state, party_id) VALUES (?, ?, ?)`, [song.song_id, 'hold', song.party_id]);
-        return res.status(200).json({ message: 'OK' });
 
+        return res.status(200).json({ message: "La solicitud de canción ha sido procesada exitosamente" });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Ocurrió un error al procesar la solicitud de canción" });
     }
 });
+
 
 
 
