@@ -133,6 +133,7 @@ function displaySongs(songs) {
       imgElement.src = song.image;
       songImage.appendChild(imgElement);
 
+     
       const songDetails = document.createElement('div');
       songDetails.className = "song-details";
       const songTitle = document.createElement('p');
@@ -141,6 +142,9 @@ function displaySongs(songs) {
       const songArtist = document.createElement('p');
       songArtist.className = "song-artist";
       songArtist.innerText = song.artist.name;
+      const requestNumber = document.createElement('p');
+      requestNumber.className = "request-number";
+      requestNumber.innerText = `Pedidos:  ${song.request_number}`;
 
       const acceptButton = document.createElement('button');
       acceptButton.className = "accept-song";
@@ -187,6 +191,7 @@ function displaySongs(songs) {
       songItem.appendChild(songDetails);
       songItem.appendChild(acceptButton);
       songItem.appendChild(rejectButton);
+      songDetails.appendChild(requestNumber);
 
       // Decide dónde añadir el songItem en función de su estado
       if (songItem.getAttribute('data-songstate') === 'accepted') {
