@@ -341,8 +341,8 @@ margin-bottom: 25px;
     border-radius: 15px;
     font-size: 15px;
     color: #000000;
-    top: 7px;
-    right: 12px; /* Centrar horizontalmente */
+    top: 10px;
+    right: 9px; /* Centrar horizontalmente */
     transform: translateX(-50%); /* Ajuste fino para alinear correctamente al centro */
 }
 
