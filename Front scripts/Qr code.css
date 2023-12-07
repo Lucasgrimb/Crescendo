@@ -264,26 +264,23 @@ a {
     border-radius: 20px;
     filter: blur(1px);
 }
-.accept-peticion {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: transparent;
+
+.accept-peticion, .reject-peticion {
     position: absolute;
     width: 100vw;
-    top: 159px;
-    left: 0px;
+    /* Definir una altura fija para estos contenedores */
+    height: 50px; /* Ajustar según sea necesario */
 }
-.accepted-title {
+
+.accepted-title, .rejected-title {
     font-size: 18px;
     position: absolute;
-    top: 41px; /* Mismo valor que el top aquí */
+    top: 0px;
     left: 20px;
     color: #FFF;
     font-family: Inter;
-    font-size: 18px;
     font-weight: 700;
-    z-index: 100000000000000;
+    z-index: 1000;
 }
 .reject-peticion {
     display: flex;
@@ -337,14 +334,15 @@ background: linear-gradient(270deg, rgba(46, 126, 18, 0.51) 0%, rgba(46, 126, 18
   .rejected {
 background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27, 0.00) 100%);
   }
-  .song-container-accepted{
+  .song-container-accepted {
     position: absolute;
-    height: 134px;
+    top: 50px; /* Altura del contenedor de título */
     width: 100vw;
-    margin-top: 5px;
-    overflow-y: auto;
     background-color: transparent;
-  }
+    overflow-y: auto;
+    /* Ajustar la altura máxima para evitar la superposición */
+    max-height: 270px; /* Ajustar según sea necesario */
+}
   .song-container-rejected{
     position: absolute;
     height: 128px;
