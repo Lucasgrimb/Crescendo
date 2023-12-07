@@ -65,7 +65,12 @@ function displaySongs(songs) {
         songArtist.innerText = song.artist.name;
         const requestNumber = document.createElement('p');
         requestNumber.className = "request-number";
-        requestNumber.innerText = `X${song.request_number}`;
+        if (song.request_number<2){
+        requestNumber.innerText = `${song.request_number} pedido`;
+        }
+        else{
+            requestNumber.innerText = `${song.request_number} pedidos`;
+        }
   
         songDetails.appendChild(songTitle);
         songDetails.appendChild(songArtist);
