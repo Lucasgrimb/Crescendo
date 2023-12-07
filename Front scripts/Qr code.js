@@ -144,7 +144,7 @@ function displaySongs(songs) {
       songArtist.innerText = song.artist.name;
       const requestNumber = document.createElement('p');
       requestNumber.className = "request-number";
-      requestNumber.innerText = `Pedidos:  ${song.request_number}`;
+      requestNumber.innerText = `X${song.request_number}`;
 
       const acceptButton = document.createElement('button');
       acceptButton.className = "accept-song";
