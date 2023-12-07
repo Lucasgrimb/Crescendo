@@ -71,10 +71,14 @@ function displaySongs(songs) {
       const songArtist = document.createElement('p');
       songArtist.className = "song-artist";
       songArtist.innerText = song.artist.name;
+      const requestNumber = document.createElement('p');
+      requestNumber.className = "request-number";
+      requestNumber.innerText = `Veces pedida: ${song.request_number}`;
 
 
       songDetails.appendChild(songTitle);
       songDetails.appendChild(songArtist);
+      songDetails.appendChild(requestNumber);
       songItem.appendChild(songImage);
       songItem.appendChild(songDetails);
 

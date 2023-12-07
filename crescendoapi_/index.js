@@ -253,14 +253,17 @@ app.post('/api/store-song-request', async (req, res) => {
 
     try {
         // Verificar si la canción ya existe en la base de datos
-        const currentSong = await QueryDBp(`SELECT * FROM songs WHERE song_id = ? AND party_id = ?`, [song_id, party_id]);
+        const currentSongQueryResult = await QueryDBp(`SELECT * FROM songs WHERE song_id = ? AND party_id = ?`, [song_id, party_id]);
 
-        if (currentSong.length > 0) {
+        // Verificar si la consulta devolvió resultados
+        if (currentSongQueryResult.length > 0 && currentSongQueryResult[0].length > 0) {
             // Si la canción existe, incrementar request_number
             await QueryDBp(`UPDATE songs SET request_number = request_number + 1 WHERE song_id = ? AND party_id = ?`, [song_id, party_id]);
+            console.log("Incremented request number for existing song");
         } else {
             // Si no existe, agregar la canción con request_number inicial de 1
-            await QueryDBp(`INSERT INTO songs (song_id, party_id, song_state) VALUES (?, ?,'hold')`, [song_id, party_id]);
+            await QueryDBp(`INSERT INTO songs (song_id, party_id, song_state, request_number) VALUES (?, ?, 'hold', 1)`, [song_id, party_id]);
+            console.log("Added new song");
         }
 
         return res.status(200).json({ message: "La solicitud de canción ha sido procesada exitosamente" });
@@ -278,8 +281,8 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
     try {
         const party_id = req.params.party_id;
 
-        // Obtener song_id y song_state de la tabla songs para el party_id dado
-        const [songs] = await QueryDBp(`SELECT song_id, song_state FROM songs WHERE party_id = ?`, [party_id]);
+        // Obtener song_id, song_state y request_number de la tabla songs para el party_id dado
+        const [songs] = await QueryDBp(`SELECT song_id, song_state, request_number FROM songs WHERE party_id = ?`, [party_id]);
 
         // Consultar la información de la canción de la base de datos en una sola operación
         const [songInfos] = await QueryDBp(`SELECT * FROM song_info WHERE song_id IN (?)`, [songs.map(song => song.song_id)]);
@@ -315,18 +318,21 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
             });
         }
 
-        // Combinar la información de song_state con la información de la canción
+        // Combinar la información de song_state, request_number con la información de la canción
         const result = songs.map(song => ({
             ...songInfoMap.get(song.song_id),
-            song_state: song.song_state
+            song_state: song.song_state,
+            request_number: song.request_number
         }));
-
+        console.log(result);
         res.json(result);
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 
 

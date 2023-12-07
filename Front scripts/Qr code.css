@@ -148,6 +148,23 @@ a {
     overflow: hidden; /* Oculta el exceso de texto */
     text-overflow: ellipsis; /* Muestra puntos suspensivos */
 }
+
+.song-item .request-number {
+    margin-left: 300px;
+    margin-top: -10px;
+    text-align: left;
+    color: #FFF;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 0;
+    line-height: normal;
+    max-width: 160px; /* Ancho máximo */
+    white-space: nowrap; /* Evita el salto de línea */
+    overflow: hidden; /* Oculta el exceso de texto */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos */
+}
+
 /* Estilo para el mensaje "Todavía no se pidió ninguna canción." */
 .no-songs {
     font-size: 18px;
