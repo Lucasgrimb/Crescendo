@@ -352,6 +352,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
     margin-top: -35px;
 overflow-y: auto;
 background-color: transparent;
+margin-bottom: 20px;
 }
 /* Estilos para el spinner */
 .spinner {
