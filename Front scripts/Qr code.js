@@ -98,123 +98,178 @@ async function updateSongState(song_id, action) {
 }
 
 // Función para mostrar las canciones
-function displaySongs(songs) {
-  const songContainer = document.getElementById('song-container');
-  const acceptedContainer = document.querySelector('.song-container-accepted');
-  const rejectedContainer = document.querySelector('.song-container-rejected');
+// function displaySongs(songs) {
+//   const songContainer = document.getElementById('song-container');
+//   const acceptedContainer = document.querySelector('.song-container-accepted');
+//   const rejectedContainer = document.querySelector('.song-container-rejected');
 
-  // Calcula la altura total de las canciones en peticiones
-  const peticionesHeight = Array.from(songContainer.children).reduce((totalHeight, songItem) => {
-    return totalHeight + songItem.clientHeight;
-  }, 0);
+//   // Calcula la altura total de las canciones en peticiones
+//   const peticionesHeight = Array.from(songContainer.children).reduce((totalHeight, songItem) => {
+//     return totalHeight + songItem.clientHeight;
+//   }, 0);
 
-  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
-  acceptedContainer.style.top = `${peticionesHeight + 1 + 45}px`; // 45 píxeles de distancia
-  rejectedContainer.style.top = `${peticionesHeight + 1 + 45 * 2}px`; // 45 píxeles desde la sección aceptada
-  songContainer.innerHTML = "";
-  acceptedContainer.innerHTML = ""; // Clear the accepted songs container
-  rejectedContainer.innerHTML = "";
+//   // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
+//   acceptedContainer.style.top = `${peticionesHeight + 1 + 45}px`; // 45 píxeles de distancia
+//   rejectedContainer.style.top = `${peticionesHeight + 1 + 45 * 2}px`; // 45 píxeles desde la sección aceptada
+//   songContainer.innerHTML = "";
+//   acceptedContainer.innerHTML = ""; // Clear the accepted songs container
+//   rejectedContainer.innerHTML = "";
 
-  if (songs.length === 0) {
-    const noSongsMessage = document.createElement('div');
-    noSongsMessage.className = "no-songs";
-    noSongsMessage.innerText = "Todavía no se pidieron canciones";
-    songContainer.appendChild(noSongsMessage);
-  } else {
-    songs.forEach((song) => {
-      const songItem = document.createElement('div');
-      songItem.className = "song-item";
-      songItem.setAttribute('data-song_id', song.id);
-      songItem.setAttribute('data-songstate', song.song_state);
+//   if (songs.length === 0) {
+//     const noSongsMessage = document.createElement('div');
+//     noSongsMessage.className = "no-songs";
+//     noSongsMessage.innerText = "Todavía no se pidieron canciones";
+//     songContainer.appendChild(noSongsMessage);
+//   } else {
+//     songs.forEach((song) => {
+//       const songItem = document.createElement('div');
+//       songItem.className = "song-item";
+//       songItem.setAttribute('data-song_id', song.id);
+//       songItem.setAttribute('data-songstate', song.song_state);
 
-      const songImage = document.createElement('div');
-      songImage.className = "song-image";
-      const imgElement = document.createElement("img");
-      imgElement.src = song.image;
-      songImage.appendChild(imgElement);
+//       const songImage = document.createElement('div');
+//       songImage.className = "song-image";
+//       const imgElement = document.createElement("img");
+//       imgElement.src = song.image;
+//       songImage.appendChild(imgElement);
 
      
-      const songDetails = document.createElement('div');
-      songDetails.className = "song-details";
-      const songTitle = document.createElement('p');
-      songTitle.className = "song-title";
-      songTitle.innerText = song.name;
-      const songArtist = document.createElement('p');
-      songArtist.className = "song-artist";
-      songArtist.innerText = song.artist.name;
-      const requestNumber = document.createElement('p');
-      requestNumber.className = "request-number";
-      if (song.request_number<2){
-        requestNumber.innerText = `${song.request_number} pedido`;
-        }
-        else{
-            requestNumber.innerText = `${song.request_number} pedidos`;
-        }
+//       const songDetails = document.createElement('div');
+//       songDetails.className = "song-details";
+//       const songTitle = document.createElement('p');
+//       songTitle.className = "song-title";
+//       songTitle.innerText = song.name;
+//       const songArtist = document.createElement('p');
+//       songArtist.className = "song-artist";
+//       songArtist.innerText = song.artist.name;
+//       const requestNumber = document.createElement('p');
+//       requestNumber.className = "request-number";
+//       if (song.request_number<2){
+//         requestNumber.innerText = `${song.request_number} pedido`;
+//         }
+//         else{
+//             requestNumber.innerText = `${song.request_number} pedidos`;
+//         }
 
-      const acceptButton = document.createElement('button');
-      acceptButton.className = "accept-song";
-      acceptButton.innerText = "✓";
+//       const acceptButton = document.createElement('button');
+//       acceptButton.className = "accept-song";
+//       acceptButton.innerText = "✓";
 
-      const rejectButton = document.createElement('button');
-      rejectButton.className = "reject-song";
-      rejectButton.innerText = "X";
+//       const rejectButton = document.createElement('button');
+//       rejectButton.className = "reject-song";
+//       rejectButton.innerText = "X";
 
-      // Agregar los manejadores de eventos aquí
-      acceptButton.addEventListener('click', async () => {
-        const song_id = songItem.getAttribute('data-song_id');
-        if (await updateSongState(song_id, 'accept')) {
-          // Mueve la canción al final de la lista de canciones aceptadas
-          acceptedContainer.appendChild(songItem);
-          songItem.classList.add("accepted");
-          acceptButton.remove();
-          rejectButton.remove();
-          // Ajusta las posiciones después de aceptar la canción
-          ajustarPosiciones();
-        } else {
-          console.error(`Failed to accept song with ID: ${song_id}`);
-        }
-      });
+//       // Agregar los manejadores de eventos aquí
+//       acceptButton.addEventListener('click', async () => {
+//         const song_id = songItem.getAttribute('data-song_id');
+//         if (await updateSongState(song_id, 'accept')) {
+//           // Mueve la canción al final de la lista de canciones aceptadas
+//           acceptedContainer.appendChild(songItem);
+//           songItem.classList.add("accepted");
+//           acceptButton.remove();
+//           rejectButton.remove();
+//           // Ajusta las posiciones después de aceptar la canción
+//           ajustarPosiciones();
+//         } else {
+//           console.error(`Failed to accept song with ID: ${song_id}`);
+//         }
+//       });
 
-      rejectButton.addEventListener('click', async () => {
-        const song_id = songItem.getAttribute('data-song_id');
-        if (await updateSongState(song_id, 'reject')) {
-          // Mueve la canción al final de la lista de canciones rechazadas
-          rejectedContainer.appendChild(songItem);
-          songItem.classList.add("rejected");
-          acceptButton.remove();
-          rejectButton.remove();
-          // Ajusta las posiciones después de rechazar la canción
-          ajustarPosiciones();
-        } else {
-          console.error(`Failed to reject song with ID: ${song_id}`);
-        }
-      });
+//       rejectButton.addEventListener('click', async () => {
+//         const song_id = songItem.getAttribute('data-song_id');
+//         if (await updateSongState(song_id, 'reject')) {
+//           // Mueve la canción al final de la lista de canciones rechazadas
+//           rejectedContainer.appendChild(songItem);
+//           songItem.classList.add("rejected");
+//           acceptButton.remove();
+//           rejectButton.remove();
+//           // Ajusta las posiciones después de rechazar la canción
+//           ajustarPosiciones();
+//         } else {
+//           console.error(`Failed to reject song with ID: ${song_id}`);
+//         }
+//       });
 
-      songDetails.appendChild(songTitle);
-      songDetails.appendChild(songArtist);
-      songItem.appendChild(songImage);
-      songItem.appendChild(songDetails);
-      songItem.appendChild(acceptButton);
-      songItem.appendChild(rejectButton);
-      songDetails.appendChild(requestNumber);
+//       songDetails.appendChild(songTitle);
+//       songDetails.appendChild(songArtist);
+//       songItem.appendChild(songImage);
+//       songItem.appendChild(songDetails);
+//       songItem.appendChild(acceptButton);
+//       songItem.appendChild(rejectButton);
+//       songDetails.appendChild(requestNumber);
 
-      // Decide dónde añadir el songItem en función de su estado
-      if (songItem.getAttribute('data-songstate') === 'accepted') {
-        acceptedContainer.appendChild(songItem);
-        songItem.classList.add("accepted");
-        acceptButton.remove();
-        rejectButton.remove();
-      } else if (songItem.getAttribute('data-songstate') === 'rejected') {
-        rejectedContainer.appendChild(songItem);
-        songItem.classList.add("rejected");
-        acceptButton.remove();
-        rejectButton.remove();
-      } else {
-        songContainer.appendChild(songItem);
+//       // Decide dónde añadir el songItem en función de su estado
+//       if (songItem.getAttribute('data-songstate') === 'accepted') {
+//         acceptedContainer.appendChild(songItem);
+//         songItem.classList.add("accepted");
+//         acceptButton.remove();
+//         rejectButton.remove();
+//       } else if (songItem.getAttribute('data-songstate') === 'rejected') {
+//         rejectedContainer.appendChild(songItem);
+//         songItem.classList.add("rejected");
+//         acceptButton.remove();
+//         rejectButton.remove();
+//       } else {
+//         songContainer.appendChild(songItem);
+//       }
+//     });
+//   }
+// }
+
+app.get('/api/selectedsongs/:party_id', async (req, res) => {
+  try {
+      const party_id = req.params.party_id;
+
+      // Obtener song_id y song_state de la tabla songs para el party_id dado
+      const [songs] = await QueryDBp(`SELECT song_id, song_state FROM songs WHERE party_id = ?`, [party_id]);
+
+      // Consultar la información de la canción de la base de datos en una sola operación
+      const [songInfos] = await QueryDBp(`SELECT * FROM song_info WHERE song_id IN (?)`, [songs.map(song => song.song_id)]);
+
+      const songInfoMap = new Map(songInfos.map(info => [info.song_id, info]));
+
+      const CLIENT_ID = process.env.clientId;
+      const CLIENT_SECRET = process.env.clientSecret;
+
+      // Solo buscar en Spotify las canciones que no están en la base de datos
+      const songsToFetch = songs.filter(song => !songInfoMap.has(song.song_id));
+      
+      const fetchPromises = songsToFetch.map(song => fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET));
+      const fetchedSongsInfo = await Promise.all(fetchPromises);
+
+      // Almacenar la nueva información y agregarla al mapa
+      for (const songInfo of fetchedSongsInfo) {
+          // Usar ON DUPLICATE KEY UPDATE para manejar claves duplicadas
+          await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) 
+                          VALUES (?, ?, ?, ?)
+                          ON DUPLICATE KEY UPDATE 
+                          song_name = VALUES(song_name), 
+                          artist_name = VALUES(artist_name), 
+                          song_image = VALUES(song_image)`, 
+                         [songInfo.id, songInfo.name, songInfo.artist.name, songInfo.image]);
+
+          songInfoMap.set(songInfo.id, { 
+              id: songInfo.id, 
+              name: songInfo.name, 
+              artist: { name: songInfo.artist.name }, 
+              image: songInfo.image,
+              song_state: songInfo.song_state
+          });
       }
-    });
+
+      // Combinar la información de song_state con la información de la canción
+      const result = songs.map(song => ({
+          ...songInfoMap.get(song.song_id),
+          song_state: song.song_state
+      }));
+
+      res.json(result);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
   }
-}
+});
+
 // Crear un elemento de canción individual
 function createSongItem(song) {
     const songItem = document.createElement('div');
