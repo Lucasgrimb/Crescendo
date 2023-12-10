@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="height=device-height, initial-scale=1.0">
-    <title>Crescendo - show reqeuested songs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crescendo DJ - Qr Code</title>
     <link rel="stylesheet" href="Qr code.css">
    
     <style>
    @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,7 @@
     </head>
     <body>
         <div class="flex flex-col min-h-screen justify-center items-center main-bg">
+         <a href="Scan.html" class="Qr" id="qrLink"> <img src="/Assets/Qr btn.png" alt=""> </a> 
           <div class="header-peticion">
             <div class="requests-title">
                 <p>Canciones Pedidas</p>
@@ -26,7 +27,7 @@
             <div class="strokep"></div>
             <div class="strokeito"></div>
         </div>
-        <div id="song-container">
+        <div id="song-container" class="song-container">
             <!-- Para cada canción -->
             <div class="song-item">
                 <div class="song-image">
@@ -59,24 +60,30 @@
                     <p>Rechazadas</p>
                 </div>
                 <div class="stroke"></div>
-                <div class="strokeito"></div>
+                <div class="strokeito-rejected"></div>
                 <div class="song-container-rejected">  </div>
             </div>
         </div>
-         <div id="loadingSpinner" class="spinner">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
+    <div id="loadingSpinner" class="spinner">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
     </div>
 
-    <script src="requestedSongs.js"></script>
-      
+    
+
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+            <script src="requestedSongs.js"></script>
+
             
     </body>
 </html>

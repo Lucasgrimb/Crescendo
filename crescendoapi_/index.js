@@ -284,60 +284,54 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
         // Obtener song_id, song_state y request_number de la tabla songs para el party_id dado
         const [songs] = await QueryDBp(`SELECT song_id, song_state, request_number FROM songs WHERE party_id = ?`, [party_id]);
 
-        // Crear un mapa para almacenar la información de las canciones
-        const songInfoMap = new Map();
-
-        // Recuperar los song_id para verificar en la base de datos
-        const songIds = songs.map(song => song.song_id);
-
-        // Consultar la información de la canción de la base de datos
-        const [existingSongInfos] = await QueryDBp(`SELECT * FROM song_info WHERE song_id IN (?)`, [songIds]);
-        console.log("Información recuperada de la base de datos:", existingSongInfos); // Log de la información recuperada
-        existingSongInfos.forEach(info => songInfoMap.set(info.song_id, info));
-
         const CLIENT_ID = process.env.clientId;
         const CLIENT_SECRET = process.env.clientSecret;
 
-        // Filtrar las canciones que no están en la base de datos
-        const songsToFetch = songs.filter(song => !songInfoMap.has(song.song_id));
-        console.log("Solicitando información a Spotify para las canciones:", songsToFetch.map(song => song.song_id)); // Log de las canciones solicitadas a Spotify
+        const songInfoMap = new Map();
 
-        // Buscar la información faltante en Spotify y actualizar la base de datos y el mapa
-        for (const song of songsToFetch) {
-            const spotifySongInfo = await fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET);
+        for (const song of songs) {
+            // Consultar la información de cada canción individualmente
+            const [existingSongInfo] = await QueryDBp(`SELECT * FROM song_info WHERE song_id = ?`, [song.song_id]);
 
-            // Insertar o actualizar la información en la base de datos
-            await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) 
-                            VALUES (?, ?, ?, ?)
-                            ON DUPLICATE KEY UPDATE 
-                            song_name = VALUES(song_name), 
-                            artist_name = VALUES(artist_name), 
-                            song_image = VALUES(song_image)`, 
-                            [song.song_id, spotifySongInfo.name, spotifySongInfo.artist.name, spotifySongInfo.image]);
+            if (existingSongInfo.length > 0) {
+                console.log("Información recuperada de la base de datos para song_id:", song.song_id, existingSongInfo[0]); // Log de la información recuperada
+                songInfoMap.set(song.song_id, {
+                    ...existingSongInfo[0],
+                    song_state: song.song_state,
+                    request_number: song.request_number
+                });
+            } else {
+                console.log("Solicitando información a Spotify para song_id:", song.song_id); // Log de la canción solicitada a Spotify
+                const spotifySongInfo = await fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET);
+                await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) 
+                                VALUES (?, ?, ?, ?)
+                                ON DUPLICATE KEY UPDATE 
+                                song_name = VALUES(song_name), 
+                                artist_name = VALUES(artist_name), 
+                                song_image = VALUES(song_image)`, 
+                                [song.song_id, spotifySongInfo.name, spotifySongInfo.artist.name, spotifySongInfo.image]);
 
-            songInfoMap.set(song.song_id, {
-                id: song.song_id, 
-                name: spotifySongInfo.name, 
-                artist: { name: spotifySongInfo.artist.name }, 
-                image: spotifySongInfo.image,
-                song_state: song.song_state,
-                request_number: song.request_number
-            });
+                songInfoMap.set(song.song_id, {
+                    id: song.song_id,
+                    name: spotifySongInfo.name,
+                    artist: { name: spotifySongInfo.artist.name },
+                    image: spotifySongInfo.image,
+                    song_state: song.song_state,
+                    request_number: song.request_number
+                });
+            }
         }
 
         // Preparar la respuesta con la información combinada
-        const result = songs.map(song => ({
-            ...songInfoMap.get(song.song_id),
-            song_state: song.song_state,
-            request_number: song.request_number
-        }));
-
+        const result = Array.from(songInfoMap.values());
         res.json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 
 
 

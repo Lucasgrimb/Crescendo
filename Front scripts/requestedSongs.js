@@ -29,68 +29,82 @@ async function getSelectedSongs(party_id) {
 
 // Función para mostrar las canciones
 function displaySongs(songs) {
-    const songContainer = document.getElementById('song-container');
-    const acceptedContainer = document.querySelector('.song-container-accepted');
-    const rejectedContainer = document.querySelector('.song-container-rejected');
-  
-    songContainer.innerHTML = "";
-    acceptedContainer.innerHTML = "";
-    rejectedContainer.innerHTML = "";
-  
-    if (songs.length === 0) {
-      const noSongsMessage = document.createElement('div');
-      noSongsMessage.className = "no-songs";
-      noSongsMessage.innerText = "Todavía no se pidieron canciones";
-      songContainer.appendChild(noSongsMessage);
-    } else {
-      songs.forEach((song) => {
-        const songItem = document.createElement('div');
-        songItem.className = "song-item";
-        songItem.setAttribute('data-song_id', song.id);
-        songItem.setAttribute('data-songstate', song.song_state);
-  
-        const songImage = document.createElement('div');
-        songImage.className = "song-image";
-        const imgElement = document.createElement("img");
-        imgElement.src = song.image;
-        songImage.appendChild(imgElement);
-  
-        const songDetails = document.createElement('div');
-        songDetails.className = "song-details";
-        const songTitle = document.createElement('p');
-        songTitle.className = "song-title";
-        songTitle.innerText = song.name;
-        const songArtist = document.createElement('p');
-        songArtist.className = "song-artist";
-        songArtist.innerText = song.artist.name;
-        const requestNumber = document.createElement('p');
-        requestNumber.className = "request-number";
-        if (song.request_number<2){
+  const songContainer = document.getElementById('song-container');
+  const acceptedContainer = document.querySelector('.song-container-accepted');
+  const rejectedContainer = document.querySelector('.song-container-rejected');
+
+  // Calcula la altura total de las canciones en peticiones
+  const peticionesHeight = Array.from(songContainer.children).reduce((totalHeight, songItem) => {
+    return totalHeight + songItem.clientHeight;
+  }, 0);
+
+  // Ajusta la posición de las secciones de canciones aceptadas y rechazadas
+  acceptedContainer.style.top = `${peticionesHeight + 1 + 45}px`; // 45 píxeles de distancia
+  rejectedContainer.style.top = `${peticionesHeight + 1 + 45 * 2}px`; // 45 píxeles desde la sección aceptada
+  songContainer.innerHTML = "";
+  acceptedContainer.innerHTML = ""; // Clear the accepted songs container
+  rejectedContainer.innerHTML = "";
+
+  if (songs.length === 0) {
+    const noSongsMessage = document.createElement('div');
+    noSongsMessage.className = "no-songs";
+    noSongsMessage.innerText = "Todavía no se pidieron canciones";
+    songContainer.appendChild(noSongsMessage);
+  } else {
+    songs.forEach((song) => {
+      const songItem = document.createElement('div');
+      songItem.className = "song-item";
+      songItem.setAttribute('data-song_id', song.id);
+      songItem.setAttribute('data-songstate', song.song_state);
+
+      const songImage = document.createElement('div');
+      songImage.className = "song-image";
+      const imgElement = document.createElement("img");
+      imgElement.src = song.image;
+      songImage.appendChild(imgElement);
+
+     
+      const songDetails = document.createElement('div');
+      songDetails.className = "song-details";
+      const songTitle = document.createElement('p');
+      songTitle.className = "song-title";
+      songTitle.innerText = song.name;
+      const songArtist = document.createElement('p');
+      songArtist.className = "song-artist";
+      songArtist.innerText = song.artist.name;
+      const requestNumber = document.createElement('p');
+      requestNumber.className = "request-number";
+      if (song.request_number<2){
         requestNumber.innerText = `${song.request_number} pedido`;
         }
         else{
             requestNumber.innerText = `${song.request_number} pedidos`;
         }
-  
-        songDetails.appendChild(songTitle);
-        songDetails.appendChild(songArtist);
-        songDetails.appendChild(requestNumber);
-        songItem.appendChild(songImage);
-        songItem.appendChild(songDetails);
-  
-        // Decide dónde añadir el songItem en función de su estado
-        if (songItem.getAttribute('data-songstate') === 'accepted') {
-          acceptedContainer.appendChild(songItem);
-          songItem.classList.add("accepted");
-        } else if (songItem.getAttribute('data-songstate') === 'rejected') {
-          rejectedContainer.appendChild(songItem);
-          songItem.classList.add("rejected");
-        } else {
-          songContainer.appendChild(songItem);
-        }
-      });
-    }
+
+
+
+
+
+
+      songDetails.appendChild(songTitle);
+      songDetails.appendChild(songArtist);
+      songItem.appendChild(songImage);
+      songItem.appendChild(songDetails);
+      songDetails.appendChild(requestNumber);
+
+      // Decide dónde añadir el songItem en función de su estado
+      if (songItem.getAttribute('data-songstate') === 'accepted') {
+        acceptedContainer.appendChild(songItem);
+        songItem.classList.add("accepted");
+      } else if (songItem.getAttribute('data-songstate') === 'rejected') {
+        rejectedContainer.appendChild(songItem);
+        songItem.classList.add("rejected");
+      } else {
+        songContainer.appendChild(songItem);
+      }
+    });
   }
+}
   
 
 // Crear un elemento de canción individual
