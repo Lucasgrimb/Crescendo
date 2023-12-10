@@ -284,54 +284,56 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
         // Obtener song_id, song_state y request_number de la tabla songs para el party_id dado
         const [songs] = await QueryDBp(`SELECT song_id, song_state, request_number FROM songs WHERE party_id = ?`, [party_id]);
 
-        // Consultar la información de la canción de la base de datos en una sola operación
-        const [songInfos] = await QueryDBp(`SELECT * FROM song_info WHERE song_id IN (?)`, [songs.map(song => song.song_id)]);
+        // Crear un mapa para almacenar la información de las canciones
+        const songInfoMap = new Map();
 
-        const songInfoMap = new Map(songInfos.map(info => [info.song_id, info]));
+        // Llenar el mapa con información existente de la base de datos
+        const [existingSongInfos] = await QueryDBp(`SELECT * FROM song_info WHERE song_id IN (?)`, [songs.map(song => song.song_id)]);
+        existingSongInfos.forEach(info => songInfoMap.set(info.song_id, info));
 
         const CLIENT_ID = process.env.clientId;
         const CLIENT_SECRET = process.env.clientSecret;
 
-        // Solo buscar en Spotify las canciones que no están en la base de datos
+        // Preparar la búsqueda de información faltante en Spotify
         const songsToFetch = songs.filter(song => !songInfoMap.has(song.song_id));
-        
-        const fetchPromises = songsToFetch.map(song => fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET));
-        const fetchedSongsInfo = await Promise.all(fetchPromises);
 
-        // Almacenar la nueva información y agregarla al mapa
-        for (const songInfo of fetchedSongsInfo) {
-            // Usar ON DUPLICATE KEY UPDATE para manejar claves duplicadas
+        // Registrar las canciones que se solicitarán a Spotify
+        if (songsToFetch.length > 0) {
+            console.log("Solicitando información de Spotify para las canciones:", songsToFetch.map(song => song.song_id));
+        }
+
+        // Buscar la información faltante en Spotify y actualizar la base de datos y el mapa
+        for (const song of songsToFetch) {
+            const spotifySongInfo = await fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET);
             await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) 
                             VALUES (?, ?, ?, ?)
                             ON DUPLICATE KEY UPDATE 
                             song_name = VALUES(song_name), 
                             artist_name = VALUES(artist_name), 
                             song_image = VALUES(song_image)`, 
-                           [songInfo.id, songInfo.name, songInfo.artist.name, songInfo.image]);
-
-            songInfoMap.set(songInfo.id, { 
-                id: songInfo.id, 
-                name: songInfo.name, 
-                artist: { name: songInfo.artist.name }, 
-                image: songInfo.image,
-                song_state: songInfo.song_state
+                            [song.song_id, spotifySongInfo.name, spotifySongInfo.artist.name, spotifySongInfo.image]);
+            songInfoMap.set(song.song_id, { 
+                ...spotifySongInfo,
+                song_state: song.song_state,
+                request_number: song.request_number
             });
         }
 
-        // Combinar la información de song_state, request_number con la información de la canción
+        // Preparar la respuesta con la información combinada
         const result = songs.map(song => ({
             ...songInfoMap.get(song.song_id),
             song_state: song.song_state,
             request_number: song.request_number
         }));
-        console.log(result);
-        res.json(result);
 
+        res.json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 
 
 
