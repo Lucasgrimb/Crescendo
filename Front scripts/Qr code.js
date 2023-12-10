@@ -215,61 +215,6 @@ function displaySongs(songs) {
     });
   }
 }
-
-app.get('/api/selectedsongs/:party_id', async (req, res) => {
-  try {
-      const party_id = req.params.party_id;
-
-      // Obtener song_id y song_state de la tabla songs para el party_id dado
-      const [songs] = await QueryDBp(`SELECT song_id, song_state FROM songs WHERE party_id = ?`, [party_id]);
-
-      // Consultar la información de la canción de la base de datos en una sola operación
-      const [songInfos] = await QueryDBp(`SELECT * FROM song_info WHERE song_id IN (?)`, [songs.map(song => song.song_id)]);
-
-      const songInfoMap = new Map(songInfos.map(info => [info.song_id, info]));
-
-      const CLIENT_ID = process.env.clientId;
-      const CLIENT_SECRET = process.env.clientSecret;
-
-      // Solo buscar en Spotify las canciones que no están en la base de datos
-      const songsToFetch = songs.filter(song => !songInfoMap.has(song.song_id));
-      
-      const fetchPromises = songsToFetch.map(song => fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET));
-      const fetchedSongsInfo = await Promise.all(fetchPromises);
-
-      // Almacenar la nueva información y agregarla al mapa
-      for (const songInfo of fetchedSongsInfo) {
-          // Usar ON DUPLICATE KEY UPDATE para manejar claves duplicadas
-          await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) 
-                          VALUES (?, ?, ?, ?)
-                          ON DUPLICATE KEY UPDATE 
-                          song_name = VALUES(song_name), 
-                          artist_name = VALUES(artist_name), 
-                          song_image = VALUES(song_image)`, 
-                         [songInfo.id, songInfo.name, songInfo.artist.name, songInfo.image]);
-
-          songInfoMap.set(songInfo.id, { 
-              id: songInfo.id, 
-              name: songInfo.name, 
-              artist: { name: songInfo.artist.name }, 
-              image: songInfo.image,
-              song_state: songInfo.song_state
-          });
-      }
-
-      // Combinar la información de song_state con la información de la canción
-      const result = songs.map(song => ({
-          ...songInfoMap.get(song.song_id),
-          song_state: song.song_state
-      }));
-
-      res.json(result);
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
 // Crear un elemento de canción individual
 function createSongItem(song) {
     const songItem = document.createElement('div');
