@@ -304,6 +304,9 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
                     request_number: song.request_number
                 });
             } else {
+                // Registrar la solicitud a Spotify
+                console.log("Solicitando información a Spotify para song_id:", song.song_id);
+
                 // Solicitar información a Spotify
                 const spotifySongInfo = await fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET);
                 await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) 
@@ -333,6 +336,7 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 
 
