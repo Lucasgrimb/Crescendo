@@ -296,7 +296,7 @@ function ajustarPosiciones() {
     rejectPeticion.style.top = "300px";  // Altura específica para rechazadas
   } else {
     // Caso normal con peticiones, ajusta en función de la altura total y el espacio entre secciones
-    acceptPeticion.style.top = `${peticionesHeight + alturaAdicional * 1.0}px`;
+    acceptPeticion.style.top = `${peticionesHeight + alturaAdicional * 0.5}px`;
     rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 3.0 + espacioEntreSecciones}px`;
   }
 }
