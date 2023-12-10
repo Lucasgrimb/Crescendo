@@ -142,32 +142,37 @@ async function handleSongAction(song_id, action) {
     }
 }
 
-// Función para ajustar las posiciones de las secciones y los elementos
-function ajustarPosiciones() {
-  const songContainer = document.getElementById('song-container');
-  const acceptPeticion = document.querySelector('.accept-peticion');
-  const rejectPeticion = document.querySelector('.reject-peticion');
+// Función para ajustar las posiciones de las secciones y los elementos en la página del usuario
+function ajustarPosicionesUsuario() {
+  const acceptedContainer = document.querySelector('.song-container-accepted');
+  const rejectedContainer = document.querySelector('.song-container-rejected');
 
-  // Calcula la altura total de las canciones en peticiones
-  const peticionesHeight = Array.from(songContainer.children).reduce((totalHeight, songItem) => {
-    return totalHeight + songItem.clientHeight;
+  // Calcula la altura total de las canciones aceptadas
+  const acceptedHeight = Array.from(acceptedContainer.children).reduce((totalHeight, songItem) => {
+      return totalHeight + songItem.clientHeight;
+  }, 0);
+
+  // Calcula la altura total de las canciones rechazadas
+  const rejectedHeight = Array.from(rejectedContainer.children).reduce((totalHeight, songItem) => {
+      return totalHeight + songItem.clientHeight;
   }, 0);
 
   // Define la altura adicional en píxeles debajo de la última canción
-  const alturaAdicional = 70; // Ajusta este valor según sea necesario
+  const alturaAdicional = 60; // Ajusta este valor según sea necesario
   const espacioEntreSecciones = 30; // Nuevo: Espacio entre secciones aceptadas y rechazadas
 
-  // Ajusta la posición de los elementos .accept-peticion y .reject-peticion
-  if (peticionesHeight === 0) {
-    // Caso sin peticiones, ajusta a alturas específicas
-    acceptPeticion.style.top = "100px";  // Altura específica para aceptadas
-    rejectPeticion.style.top = "300px";  // Altura específica para rechazadas
-  } else {
-    // Caso normal con peticiones, ajusta en función de la altura total y el espacio entre secciones
-    acceptPeticion.style.top = `${peticionesHeight + alturaAdicional * 1.3}px`;
-    rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 3.3 + espacioEntreSecciones}px`;
-  }
+  // Ajusta la posición de la sección aceptada
+  acceptedContainer.style.top = `${acceptedHeight + alturaAdicional * 1.3}px`;
+
+  // Ajusta la posición de la sección rechazada
+  rejectedContainer.style.top = `${rejectedHeight + alturaAdicional * 3.3 + espacioEntreSecciones}px`;
 }
+
+// Llama a la función para ajustar las posiciones al cargar la página
+window.addEventListener("load", () => {
+  ajustarPosicionesUsuario();
+});
+
 
 
 // Función principal que inicia las operaciones
