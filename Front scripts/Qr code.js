@@ -297,7 +297,7 @@ function ajustarPosiciones() {
   } else {
     // Caso normal con peticiones, ajusta en función de la altura total y el espacio entre secciones
     acceptPeticion.style.top = `${peticionesHeight + alturaAdicional }px`;
-    rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 2.0 + espacioEntreSecciones}px`;
+    rejectPeticion.style.top = `${peticionesHeight + alturaAdicional * 3.0 + espacioEntreSecciones}px`;
   }
 }
 
