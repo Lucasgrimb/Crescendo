@@ -287,24 +287,26 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
         // Crear un mapa para almacenar la información de las canciones
         const songInfoMap = new Map();
 
-        // Llenar el mapa con información existente de la base de datos
-        const [existingSongInfos] = await QueryDBp(`SELECT * FROM song_info WHERE song_id IN (?)`, [songs.map(song => song.song_id)]);
+        // Recuperar los song_id para verificar en la base de datos
+        const songIds = songs.map(song => song.song_id);
+
+        // Consultar la información de la canción de la base de datos
+        const [existingSongInfos] = await QueryDBp(`SELECT * FROM song_info WHERE song_id IN (?)`, [songIds]);
+        console.log("Información recuperada de la base de datos:", existingSongInfos); // Log de la información recuperada
         existingSongInfos.forEach(info => songInfoMap.set(info.song_id, info));
 
         const CLIENT_ID = process.env.clientId;
         const CLIENT_SECRET = process.env.clientSecret;
 
-        // Preparar la búsqueda de información faltante en Spotify
+        // Filtrar las canciones que no están en la base de datos
         const songsToFetch = songs.filter(song => !songInfoMap.has(song.song_id));
-
-        // Registrar las canciones que se solicitarán a Spotify
-        if (songsToFetch.length > 0) {
-            console.log("Solicitando información de Spotify para las canciones:", songsToFetch.map(song => song.song_id));
-        }
+        console.log("Solicitando información a Spotify para las canciones:", songsToFetch.map(song => song.song_id)); // Log de las canciones solicitadas a Spotify
 
         // Buscar la información faltante en Spotify y actualizar la base de datos y el mapa
         for (const song of songsToFetch) {
             const spotifySongInfo = await fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET);
+
+            // Insertar o actualizar la información en la base de datos
             await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) 
                             VALUES (?, ?, ?, ?)
                             ON DUPLICATE KEY UPDATE 
@@ -312,8 +314,12 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
                             artist_name = VALUES(artist_name), 
                             song_image = VALUES(song_image)`, 
                             [song.song_id, spotifySongInfo.name, spotifySongInfo.artist.name, spotifySongInfo.image]);
-            songInfoMap.set(song.song_id, { 
-                ...spotifySongInfo,
+
+            songInfoMap.set(song.song_id, {
+                id: song.song_id, 
+                name: spotifySongInfo.name, 
+                artist: { name: spotifySongInfo.artist.name }, 
+                image: spotifySongInfo.image,
                 song_state: song.song_state,
                 request_number: song.request_number
             });
