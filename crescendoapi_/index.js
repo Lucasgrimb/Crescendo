@@ -282,7 +282,7 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
         const party_id = req.params.party_id;
 
         // Obtener song_id, song_state y request_number de la tabla songs para el party_id dado
-        const [songs] = await QueryDBp(`SELECT song_id, song_state, request_number FROM songs WHERE party_id = ?`, [party_id]);
+        const [songs] = await QueryDBp(`SELECT song_id, song_state, request_number FROM songs WHERE party_id = ? ORDER BY request_number DESC`, [party_id]);
 
         const CLIENT_ID = process.env.clientId;
         const CLIENT_SECRET = process.env.clientSecret;
@@ -294,14 +294,17 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
             const [existingSongInfo] = await QueryDBp(`SELECT * FROM song_info WHERE song_id = ?`, [song.song_id]);
 
             if (existingSongInfo.length > 0) {
-                console.log("Información recuperada de la base de datos para song_id:", song.song_id, existingSongInfo[0]); // Log de la información recuperada
+                // Información existente en la base de datos
                 songInfoMap.set(song.song_id, {
-                    ...existingSongInfo[0],
+                    id: song.song_id,
+                    name: existingSongInfo[0].song_name,
+                    artist: { name: existingSongInfo[0].artist_name },
+                    image: existingSongInfo[0].song_image,
                     song_state: song.song_state,
                     request_number: song.request_number
                 });
             } else {
-                console.log("Solicitando información a Spotify para song_id:", song.song_id); // Log de la canción solicitada a Spotify
+                // Solicitar información a Spotify
                 const spotifySongInfo = await fetchSongInfo(song.song_id, CLIENT_ID, CLIENT_SECRET);
                 await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) 
                                 VALUES (?, ?, ?, ?)
@@ -323,13 +326,15 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
         }
 
         // Preparar la respuesta con la información combinada
-        const result = Array.from(songInfoMap.values());
+        const result = Array.from(songInfoMap.values()).sort((a, b) => b.request_number - a.request_number);
         res.json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 
 
 
