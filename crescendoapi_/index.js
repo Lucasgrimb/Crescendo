@@ -300,6 +300,7 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
 
         // Almacenar la nueva información y agregarla al mapa
         for (const songInfo of fetchedSongsInfo) {
+            // Usar ON DUPLICATE KEY UPDATE para manejar claves duplicadas
             await QueryDBp(`INSERT INTO song_info (song_id, song_name, artist_name, song_image) 
                             VALUES (?, ?, ?, ?)
                             ON DUPLICATE KEY UPDATE 
@@ -318,23 +319,19 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
         }
 
         // Combinar la información de song_state, request_number con la información de la canción
-        let result = songs.map(song => ({
+        const result = songs.map(song => ({
             ...songInfoMap.get(song.song_id),
             song_state: song.song_state,
             request_number: song.request_number
         }));
-
-        // Ordenar las canciones por request_number de mayor a menor
-        result = result.sort((a, b) => b.request_number - a.request_number);
-
         console.log(result);
         res.json(result);
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
 
 
 
