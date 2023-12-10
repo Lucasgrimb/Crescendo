@@ -339,7 +339,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
   }
   .song-container-accepted{
     position: absolute;
-    height: 147px;
+    height: 149px;
     width: 100vw;
    margin-top: -42px;
     overflow-y: auto;
@@ -348,7 +348,7 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
   .song-container-rejected{
     position: absolute;
     height: 128px;
-    margin-top: -78px;
+    margin-top: -82px;
     width: 100vw;
 overflow-y: auto;
 background-color: transparent;
