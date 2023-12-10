@@ -339,15 +339,17 @@ background: linear-gradient(270deg, rgba(105, 16, 16, 0.51) 0%, rgba(172, 27, 27
   }
   .song-container-accepted{
     position: absolute;
-    height: 230px;
+    height: 134px;
     width: 100vw;
+    margin-top: 5px;
     overflow-y: auto;
     background-color: transparent;
   }
   .song-container-rejected{
     position: absolute;
-    height: 230px;
+    height: 128px;
     width: 100vw;
+    margin-top: -35px;
 overflow-y: auto;
 background-color: transparent;
 }
@@ -386,4 +388,3 @@ background-color: transparent;
 .dot:nth-child(6) { animation: spin 1s linear infinite; animation-delay: -0.5s; }
 .dot:nth-child(7) { animation: spin 1s linear infinite; animation-delay: -0.4s; }
 .dot:nth-child(8) { animation: spin 1s linear infinite; animation-delay: -0.3s; }
-
