@@ -106,9 +106,11 @@ function updateSongDetails(image, title, artist, trackId) {
 
 
 function isSongAlreadyRequested(party_id, trackId) {
-    const requestedSongs = JSON.parse(localStorage.getItem('requestedSongs')) || [];
-    return requestedSongs.includes(party_id + '-' + trackId);
+    const requestedSongs = JSON.parse(localStorage.getItem('requestedSongs')) || {};
+    const key = party_id + '-' + trackId;
+    return !!requestedSongs[key]; // Devuelve true si la clave existe
 }
+
 
 
 
@@ -157,10 +159,12 @@ async function handleAcceptClick() {
 }
 
 function saveToLocalStorage(party_id, trackId) {
-    const requestedSongs = JSON.parse(localStorage.getItem('requestedSongs')) || [];
-    requestedSongs.push(party_id + '-' + trackId);
+    const key = party_id + '-' + trackId;
+    const requestedSongs = JSON.parse(localStorage.getItem('requestedSongs')) || {};
+    requestedSongs[key] = true; // Almacena la combinación como una clave en un objeto
     localStorage.setItem('requestedSongs', JSON.stringify(requestedSongs));
 }
+
 
 
 
