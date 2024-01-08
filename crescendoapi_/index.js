@@ -122,12 +122,12 @@ app.post('/api/login', async (req, res) => {
     const familyToken = crypto.randomBytes(40).toString('hex');
 
     // Creo Access y Refresh Token 
-    const accessToken = jwt.sign({ userId: user.username }, process.env.SECRET_KEY, { expiresIn: '1h' });
+    const accessToken = jwt.sign({ userId: user.username }, process.env.SECRET_KEY, { expiresIn: '8h' });
     const refreshToken = crypto.randomBytes(40).toString('hex');
 
     // Almacenar el refresh token y el family token en la base de datos con su fecha de vencimiento
     const currentDate = new Date();
-    currentDate.setHours(currentDate.getHours() + 5); // Añade 5 horas
+    currentDate.setHours(currentDate.getHours() + 24); // Añade 5 horas
     const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
     // Me comunico con la base de datos para guardar refresh token y family token
@@ -337,81 +337,6 @@ app.get('/api/selectedsongs/:party_id', async (req, res) => {
     }
 });
 
-
-
-
-
-
-//--------------SHOW REQUESTED SONGS ABRU------------------
-const cacheCanciones = {};
-const cacheTimers = {};
-
-
-// Función para actualizar la interfaz con las canciones y gestionar el caché
-async function actualizarInterfaz(partyId, res) {
-    try {
-        // Verificar si las canciones en el caché han expirado
-        if (cacheCanciones[partyId] && cacheCanciones[partyId].tiempo && (Date.now() - cacheCanciones[partyId].tiempo) < tiempoExpiracion) {
-            // Utilizar las canciones del caché en lugar de realizar una nueva solicitud
-            res.json(cacheCanciones[partyId].canciones);
-        } else {
-            // Realizar una solicitud a la API de Spotify para obtener las canciones
-            const rows = await QueryDBp(`SELECT song_id, song_state FROM songs WHERE party_id = ?`, [partyId]);
-
-            const CLIENT_ID = process.env.clientId;
-            const CLIENT_SECRET = process.env.clientSecret;
-
-            // Usamos Promise.all para ejecutar en paralelo
-            const songsPromises = rows.map(async row => {
-                const songInfo = await fetchSongInfo(row.song_id, CLIENT_ID, CLIENT_SECRET);
-
-                // Combina songInfo con song_state
-                return {
-                    ...songInfo,
-                    song_state: row.song_state,
-                };
-            });
-
-            const songsInfo = await Promise.all(songsPromises);
-
-            // Actualizar el caché con las nuevas canciones y el tiempo actual
-            cacheCanciones[partyId] = {
-                canciones: songsInfo,
-                tiempo: Date.now(),
-            };
-
-            // Enviar las canciones actualizadas a la interfaz
-            res.json(songsInfo);
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-}
-
-// Ruta para obtener las canciones con manejo de caché y polling
-app.get('/api/selectedsongsABRU/:party_id', (req, res) => {
-    const partyId = req.params.party_id;
-
-    // Actualizar la interfaz y gestionar el caché
-    actualizarInterfaz(partyId, res);
-
-    // Configurar un temporizador solo si no existe uno para este party_id
-    if (!cacheTimers[partyId]) {
-        cacheTimers[partyId] = setInterval(() => {
-            actualizarInterfaz(partyId, res);
-        }, 60000); // por ejemplo, cada 1 minuto
-    }
-});
-
-// Ruta para limpiar el caché de una fiesta específica
-app.post('/api/clearCache/:party_id', (req, res) => {
-    const partyId = req.params.party_id;
-    clearInterval(cacheTimers[partyId]);
-    delete cacheTimers[partyId];
-    delete cacheCanciones[partyId];
-    res.sendStatus(200);
-});
 
 
 
