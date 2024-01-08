@@ -105,18 +105,30 @@ function updateSongDetails(image, title, artist, trackId) {
 }
 
 
-// Función para mostrar la notificación toast
+function isSongAlreadyRequested(party_id, trackId) {
+    const requestedSongs = JSON.parse(localStorage.getItem('requestedSongs')) || [];
+    return requestedSongs.includes(party_id + '-' + trackId);
+}
+
 
 
 
 // Manejador para el botón Aceptar
 async function handleAcceptClick() {
-    const acceptButton = document.getElementById('acceptButton'); // Asegúrate de tener un ID para tu botón
-    acceptButton.disabled = true; // Deshabilita el botón
+    const acceptButton = document.getElementById('acceptButton');
+    acceptButton.disabled = true;
 
     const trackId = document.querySelector('.modal').dataset.id;
     const party_id = new URL(window.location.href).searchParams.get('party_id');
-    saveToLocalStorage(party_id, trackId);
+
+    
+    // Verificar si la canción ya fue solicitada
+    if (isSongAlreadyRequested(party_id, trackId)) {
+        alert("Ya has solicitado esta canción, elige otra por favor!");
+        return;
+    }
+
+    saveToLocalStorage(party_id, trackId); // Actualizar el localStorage
 
     const data = {
         party_id,
@@ -131,6 +143,8 @@ async function handleAcceptClick() {
         body: JSON.stringify(data)
     };
 
+
+
     try {
         await sendRequestWithRetry('https://energetic-gown-elk.cyclic.app/api/store-song-request', requestOptions, 3);
         alert('¡Gracias por tu solicitud!');
@@ -138,9 +152,16 @@ async function handleAcceptClick() {
     } catch (error) {
         console.error('Error:', error);
         alert('¡Ups! Parece que hubo un error al mandar la solicitud');
-        acceptButton.disabled = false; // Rehabilita el botón en caso de error
+        acceptButton.disabled = false;
     }
 }
+
+function saveToLocalStorage(party_id, trackId) {
+    const requestedSongs = JSON.parse(localStorage.getItem('requestedSongs')) || [];
+    requestedSongs.push(party_id + '-' + trackId);
+    localStorage.setItem('requestedSongs', JSON.stringify(requestedSongs));
+}
+
 
 
 
