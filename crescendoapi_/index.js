@@ -274,8 +274,6 @@ app.post('/api/store-song-request', async (req, res) => {
 });
 
 
-
-
 //---------------Show requested songs (dj only)------------------  OK
 app.get('/api/selectedsongs/:party_id', async (req, res) => {
     try {

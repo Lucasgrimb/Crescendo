@@ -111,6 +111,9 @@ function updateSongDetails(image, title, artist, trackId) {
 
 // Manejador para el botón Aceptar
 async function handleAcceptClick() {
+    const acceptButton = document.getElementById('acceptButton'); // Asegúrate de tener un ID para tu botón
+    acceptButton.disabled = true; // Deshabilita el botón
+
     const trackId = document.querySelector('.modal').dataset.id;
     const party_id = new URL(window.location.href).searchParams.get('party_id');
     saveToLocalStorage(party_id, trackId);
@@ -130,13 +133,12 @@ async function handleAcceptClick() {
 
     try {
         await sendRequestWithRetry('https://energetic-gown-elk.cyclic.app/api/store-song-request', requestOptions, 3);
-        // Muestra un mensaje de éxito antes de recargar la página
         alert('¡Gracias por tu solicitud!');
         location.reload();
     } catch (error) {
         console.error('Error:', error);
         alert('¡Ups! Parece que hubo un error al mandar la solicitud');
-        location.reload();
+        acceptButton.disabled = false; // Rehabilita el botón en caso de error
     }
 }
 
