@@ -127,6 +127,7 @@ async function handleAcceptClick() {
     // Verificar si la canción ya fue solicitada
     if (isSongAlreadyRequested(party_id, trackId)) {
         alert("Ya has solicitado esta canción, elige otra por favor!");
+        acceptButton.disabled = false;
         return;
     }
 
