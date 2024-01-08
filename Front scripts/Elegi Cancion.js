@@ -104,12 +104,12 @@ function updateSongDetails(image, title, artist, trackId) {
     modal.style.display = 'flex';
 }
 
-
 function isSongAlreadyRequested(party_id, trackId) {
-    const requestedSongs = JSON.parse(localStorage.getItem('requestedSongs')) || {};
-    const key = party_id + '-' + trackId;
-    return !!requestedSongs[key]; // Devuelve true si la clave existe
+    const key = party_id.toString(); // Convertimos el party_id a string por si acaso es un número
+    const requestedSongs = JSON.parse(localStorage.getItem(key)) || [];
+    return requestedSongs.includes(trackId);
 }
+
 
 
 
@@ -159,11 +159,16 @@ async function handleAcceptClick() {
 }
 
 function saveToLocalStorage(party_id, trackId) {
-    const key = party_id + '-' + trackId;
-    const requestedSongs = JSON.parse(localStorage.getItem('requestedSongs')) || {};
-    requestedSongs[key] = true; // Almacena la combinación como una clave en un objeto
-    localStorage.setItem('requestedSongs', JSON.stringify(requestedSongs));
+    const key = party_id.toString(); // Convertimos el party_id a string por si acaso es un número
+    const requestedSongs = JSON.parse(localStorage.getItem(key)) || [];
+
+    // Verificamos si trackId ya está en el arreglo para evitar duplicados
+    if (!requestedSongs.includes(trackId)) {
+        requestedSongs.push(trackId);
+        localStorage.setItem(key, JSON.stringify(requestedSongs));
+    }
 }
+
 
 
 
