@@ -50,7 +50,7 @@ nav.nav {
         #content {
             max-width: 600px;
             background-color: transparent;
-            top: 100px;
+            top: -100px;
         }
 
         h1 {
