@@ -90,7 +90,7 @@ nav.nav {
             margin: 0;
             width: 100vw;
             height: 390px;
-            overflow-y: auto;
+            overflow-x: auto;
         }
         
         .party {
