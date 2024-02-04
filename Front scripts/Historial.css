@@ -91,6 +91,7 @@ nav.nav {
             width: 100vw;
             height: 390px;
             overflow-x: auto;
+            overflow-y: hidden;
         }
         
         .party {
