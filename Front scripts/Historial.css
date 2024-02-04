@@ -87,7 +87,7 @@ nav.nav {
         #partiesList {
             list-style: none;
             padding: 0;
-        margin-top: 100px;
+        margin-top: 60px;
             width: 100vw;
             max-height: 385px; /* Ajusta la altura máxima según tus necesidades */
             overflow-y: scroll;
