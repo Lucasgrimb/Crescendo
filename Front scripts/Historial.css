@@ -89,14 +89,14 @@ nav.nav {
             padding: 0;
             margin: 0;
             width: 100vw;
-            height: 390px;
-            overflow-x: auto;
-            overflow-y: hidden;
+            max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+            overflow-y: scroll;
+            overflow-x: hidden; /* Para ocultar la barra de desplazamiento horizontal si es necesario */
         }
         
         .party {
             position: relative;
-            padding: 5px;
+            padding: 8px;
             margin: 5px 0;
             background-color: transparent;
             border-radius: 5px;
