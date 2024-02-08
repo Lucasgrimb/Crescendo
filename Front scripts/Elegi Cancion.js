@@ -211,12 +211,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
     
-    // Obtener el hostName del localStorage
     const hostName = localStorage.getItem('hostName');
-
-    // Actualizar el contenido del elemento con el id 'HostName'
+    console.log('HostName from localStorage:', hostName);
+    
     const hostNameElement = document.getElementById('HostName');
-
     if (hostNameElement && hostName) {
         hostNameElement.textContent = hostName;
     }
