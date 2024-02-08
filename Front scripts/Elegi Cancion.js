@@ -207,13 +207,15 @@ function saveToLocalStorage(party_id, trackId) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Obtener el party_id y hostName de la URL
+    // Obtener el party_id de la URL
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
 
-    // Obtener el hostName del localStorage
-    const hostName = localStorage.getItem('hostName');
-    console.log('Fede from localStorage:', hostName);
+    // Obtener el objeto de localStorage
+    const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
+
+    // Obtener el hostName correspondiente al party_id actual
+    const hostName = partyData[party_id];
 
     // Obtener la referencia al elemento span
     const hostNameElement = document.getElementById('Fede');
@@ -223,7 +225,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Asignar el hostName al contenido del elemento
         hostNameElement.textContent = hostName;
     }
-
 
 
     // Manejador para el botón Aceptar
