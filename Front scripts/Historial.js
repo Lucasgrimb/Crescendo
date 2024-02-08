@@ -66,15 +66,12 @@ async function loadPartiesList() {
     }
 }
 
- // En la función createParty():
+// In the function createParty()
 async function createParty() {
     const partyName = prompt('Ingrese el nombre de la fiesta:');
     const hostName = prompt('Ingrese el nombre del anfitrión de la fiesta:');
 
     if (!partyName || !hostName) return;
-
-    // Guardar el hostName asociado al party_id
-    saveToLocalStorage(party_id, hostName);
 
     localStorage.setItem('hostName', hostName); // Almacena el hostName en Local Storage
 

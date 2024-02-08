@@ -163,33 +163,15 @@ async function handleAcceptClick() {
 // Función para guardar datos en localStorage
 function saveToLocalStorage(party_id, trackId) {
     // Obtenemos cualquier dato existente para ese party_id
-    const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
+    const existingData = JSON.parse(localStorage.getItem(party_id)) || [];
 
     // Verificamos si trackId ya está en el arreglo para evitar duplicados
-    if (!partyData[party_id]) {
-        partyData[party_id] = [trackId];
-    } else if (!partyData[party_id].includes(trackId)) {
-        partyData[party_id].push(trackId);
+    if (!existingData.includes(trackId)) {
+        existingData.push(trackId);
+        localStorage.setItem(party_id, JSON.stringify(existingData));
     }
-
-    // Guardar los datos actualizados en localStorage
-    localStorage.setItem('partyData', JSON.stringify(partyData));
 }
 
-// Obtener el hostName del localStorage
-const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
-
-// Obtener el hostName asociado al party_id actual
-const hostName = partyData[party_id];
-
-// Mostrar hostName en la consola para verificar
-console.log('HostName from localStorage:', hostName);
-
-// Asignar el hostName al contenido del elemento
-const hostNameElement = document.getElementById('Fede');
-if (hostNameElement && hostName) {
-    hostNameElement.textContent = hostName;
-}
 
 
 
@@ -212,27 +194,26 @@ async function sendRequestWithRetry(url, options, retries) {
 // Función para guardar datos en localStorage
 function saveToLocalStorage(party_id, trackId) {
     // Obtenemos cualquier dato existente para ese party_id
-    const existingData = JSON.parse(localStorage.getItem('partyData')) || {};
-
-    // Verificamos si trackId ya está en el arreglo para evitar duplicados
-    if (!existingData[party_id]) {
-        existingData[party_id] = [trackId];
-        localStorage.setItem('partyData', JSON.stringify(existingData));
-    } else if (!existingData[party_id].includes(trackId)) {
-        existingData[party_id].push(trackId);
-        localStorage.setItem('partyData', JSON.stringify(existingData));
-    }
+    const existingData = JSON.parse(localStorage.getItem(party_id)) || [];
+    
+    // Añadimos el nuevo trackId
+    existingData.push(trackId);
+    
+    // Guardamos la nueva lista en localStorage
+    localStorage.setItem(party_id, JSON.stringify(existingData));
 }
 
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
-    // Obtener el party_id de la URL
+    // Obtener el party_id y hostName de la URL
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
 
     // Obtener el hostName del localStorage
-    const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
-    const hostName = partyData[party_id];
+    const hostName = localStorage.getItem('hostName');
+    console.log('Fede from localStorage:', hostName);
 
     // Obtener la referencia al elemento span
     const hostNameElement = document.getElementById('Fede');
