@@ -211,11 +211,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
 
-    // Obtener el objeto de localStorage
-    const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
-
     // Obtener el hostName correspondiente al party_id actual
-    const hostName = partyData[party_id];
+    const hostName = localStorage.getItem(`hostName_${party_id}`);
 
     // Obtener la referencia al elemento span
     const hostNameElement = document.getElementById('Fede');
