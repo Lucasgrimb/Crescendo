@@ -1,9 +1,7 @@
-const accessToken = localStorage.getItem('accessToken');
 document.addEventListener('DOMContentLoaded', async () => {
-      // Agrega el console.log aquí
-      console.log('HostName from localStorage:', localStorage.getItem('hostName'));
+    // Agrega el console.log aquí
+    console.log('HostName from localStorage:', localStorage.getItem('hostName'));
 
-    
     if (accessToken) {
         await loadPartiesList();
         document.getElementById('createPartyButton').addEventListener('click', createParty);
@@ -12,6 +10,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Mostrar un mensaje al usuario y redirigir a la página de inicio de sesión o página principal
         alert('Su sesión ha expirado o no está autenticado. Por favor, inicie sesión nuevamente.');
         window.location.href = '/Hello page.html'; // Reemplaza '/login.html' con la URL de tu página de inicio de sesión
+    }
+
+    // Obtener el party_id de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const party_id = urlParams.get('party_id');
+    
+    // Obtener la referencia al elemento span
+    const hostNameElement = document.getElementById('Fede');
+
+    // Verificar si el elemento y el hostName existen
+    const hostNameKey = `hostName_${party_id}`;
+    const hostName = localStorage.getItem(hostNameKey);
+    if (hostNameElement && hostName) {
+        // Asignar el hostName al contenido del elemento
+        hostNameElement.textContent = hostName;
     }
 });
 
