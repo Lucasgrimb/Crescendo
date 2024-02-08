@@ -207,17 +207,17 @@ function saveToLocalStorage(party_id, trackId) {
 
 // Código que se ejecuta cuando se carga la página
 document.addEventListener('DOMContentLoaded', function() {
+    // Obtener el party_id y hostName de la URL
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
+    const hostName = urlParams.get('hostName');
 
-     // Obtener el HostName del localStorage
-     const storedHostname = localStorage.getItem('hostname');
+    // Actualizar el contenido del elemento con el id 'HostName'
+    if (hostName) {
+        localStorage.setItem('hostname', hostName);  // Actualiza el hostname en localStorage
+        document.getElementById('HostName').textContent = hostName;
+    }
 
-     // Actualizar el contenido del elemento con el id 'HostName'
-     if (storedHostname) {
-         document.getElementById('HostName').textContent = storedHostname;
-     }
-     
     // Manejador para el botón Aceptar
     document.getElementById('acceptButton').addEventListener('click', handleAcceptClick);
     // Manejador para el botón de búsqueda
