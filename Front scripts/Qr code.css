@@ -30,6 +30,11 @@ overflow-y: auto;
 overflow-x: hidden; 
 }
 
+/* Estilo para ocultar la estructura inicialmente */
+.main-bg.loading .song-item {
+    display: none;
+}
+
 .Qr {
     position: absolute;
     top: 4px;
