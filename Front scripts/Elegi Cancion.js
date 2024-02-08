@@ -211,18 +211,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
 
-    // Obtener el hostName del localStorage
-    const hostName = localStorage.getItem('hostName');
-    console.log('Fede from localStorage:', hostName);
 
-    // Obtener la referencia al elemento span
-    const hostNameElement = document.getElementById('Fede');
+ // Obtener el hostName del localStorage
+const hostName = localStorage.getItem('hostName');
+console.log('Fede from localStorage:', hostName);
 
-    // Verificar si el elemento y el hostName existen
-    if (hostNameElement && hostName) {
-        // Asignar el hostName al contenido del elemento
-        hostNameElement.textContent = hostName;
-    }
+// Obtener la referencia al elemento span
+const hostNameElement = document.getElementById('Fede');
+
+// Verificar si el elemento y el hostName existen
+if (hostNameElement && hostName) {
+    // Asignar el hostName al contenido del elemento
+    hostNameElement.textContent = hostName;
+}
 
 
 
