@@ -198,7 +198,7 @@ a {
 /* Estilo para los botones de "Rechazar canción" */
 .reject-song {
     color: #571B13; /* Rojo */
-    right: 68px;
+    right: 70px;
     background: rgba(237, 106, 64, 0.82); 
     border-radius: 9px;
     margin-right: 26px;
