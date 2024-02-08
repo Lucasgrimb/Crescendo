@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Obtener el party_id y hostName de la URL
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
-    const hostName = urlParams.get('hostName');
+    const hostName = localStorage.getItem('hostName');
 
     // Actualizar el contenido del elemento con el id 'HostName'
     if (hostName) {
