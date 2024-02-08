@@ -65,12 +65,16 @@ async function loadPartiesList() {
 
 async function createParty() {
     const partyName = prompt('Ingrese el nombre de la fiesta:');
-    if (!partyName) return;
+    const hostName = prompt('Ingrese el nombre del anfitrión:');
+    
+    if (!partyName || !hostName) return;
 
-    const response = await attemptFetchWithTokenRenewal(() => sendCreateRequest(partyName, accessToken));
+    const response = await attemptFetchWithTokenRenewal(() => sendCreateRequest(partyName, hostName, accessToken));
+
     if (!response) return;
 
     const data = await response.json();
+
     if (data.success) {
         window.location.href = `/Qr%20code.html?party_id=${data.party_id}`;
     } else {
@@ -103,14 +107,14 @@ async function fetchPartiesList(token) {
     });
 }
 
-async function sendCreateRequest(partyName, token) {
+async function sendCreateRequest(partyName, hostName, token) {
     return fetch('https://energetic-gown-elk.cyclic.app/api/createParty', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ partyName })
+        body: JSON.stringify({ partyName, hostName })
     });
 }
 
