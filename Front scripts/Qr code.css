@@ -31,7 +31,6 @@ overflow-x: hidden;
 }
 
 
-
 .Qr {
     position: absolute;
     top: 4px;
@@ -77,13 +76,10 @@ button{
 a {
     -webkit-tap-highlight-color: transparent;
 }
-
-#song-container {
-    display: none;
-}
 /* Estilo para el contenedor de canciones */
 #song-container {
     position: absolute;
+    display: flex;
     flex-direction: column;
     top: 86px;
     align-items: center;

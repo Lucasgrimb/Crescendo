@@ -313,12 +313,10 @@ function actualizarUltimaCancion() {
 
 // Función principal que inicia las operaciones
 async function main() {
-  document.getElementById('loadingSpinner').style.display = 'block';
-  await getSelectedSongs(party_id);
-  document.getElementById('loadingSpinner').style.display = 'none';
-  document.getElementById('song-container').style.display = 'flex';
+    document.getElementById('loadingSpinner').style.display = 'block';
+    await getSelectedSongs(party_id);
+    document.getElementById('loadingSpinner').style.display = 'none';
 }
-
 
 window.addEventListener("load", () => {
     const qrLink = document.getElementById('qrLink');
