@@ -180,8 +180,8 @@ a {
     cursor: pointer;
     position: absolute; /* Usamos posición absoluta */
     top: 12px; /* Lo centramos verticalmente */
-    width: 20%;
-    height: 54px;
+    width: 16%;
+    height: 44px;
 }
 
 /* Estilo para los botones de "Aceptar canción" */
