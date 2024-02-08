@@ -163,15 +163,32 @@ async function handleAcceptClick() {
 // Función para guardar datos en localStorage
 function saveToLocalStorage(party_id, trackId) {
     // Obtenemos cualquier dato existente para ese party_id
-    const existingData = JSON.parse(localStorage.getItem(party_id)) || [];
+    const existingData = JSON.parse(localStorage.getItem('partyData')) || {};
 
     // Verificamos si trackId ya está en el arreglo para evitar duplicados
-    if (!existingData.includes(trackId)) {
-        existingData.push(trackId);
-        localStorage.setItem(party_id, JSON.stringify(existingData));
+    if (!existingData[party_id]) {
+        existingData[party_id] = [trackId];
+        localStorage.setItem('partyData', JSON.stringify(existingData));
+    } else if (!existingData[party_id].includes(trackId)) {
+        existingData[party_id].push(trackId);
+        localStorage.setItem('partyData', JSON.stringify(existingData));
     }
 }
 
+// Obtener el hostName del localStorage
+const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
+
+// Obtener el hostName asociado al party_id actual
+const hostName = partyData[party_id];
+
+// Mostrar hostName en la consola para verificar
+console.log('HostName from localStorage:', hostName);
+
+// Asignar el hostName al contenido del elemento
+const hostNameElement = document.getElementById('Fede');
+if (hostNameElement && hostName) {
+    hostNameElement.textContent = hostName;
+}
 
 
 
