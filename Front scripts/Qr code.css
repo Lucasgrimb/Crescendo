@@ -392,3 +392,12 @@ background-color: transparent;
 
 
 
+@media screen and (max-width: 767px) {
+    .song-item button {
+        width: 10%; /* O ajusta según sea necesario */
+    }
+
+    .accept-song, .reject-song {
+        width: 10%; /* O ajusta según sea necesario */
+    }
+}
