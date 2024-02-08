@@ -212,9 +212,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const party_id = urlParams.get('party_id');
 
 
- // Obtener el hostName del localStorage
-const hostName = localStorage.getItem('hostName');
-console.log('Fede from localStorage:', hostName);
+    // Obtener el hostName del localStorage
+    const hostName = localStorage.getItem('hostName');
+    console.log('HostName from localStorage:', hostName);  // Agrega esta línea
+
 
 // Obtener la referencia al elemento span
 const hostNameElement = document.getElementById('Fede');

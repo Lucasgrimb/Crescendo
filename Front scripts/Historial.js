@@ -1,5 +1,8 @@
 const accessToken = localStorage.getItem('accessToken');
 document.addEventListener('DOMContentLoaded', async () => {
+      // Agrega el console.log aquí
+      console.log('HostName from localStorage:', localStorage.getItem('hostName'));
+
     
     if (accessToken) {
         await loadPartiesList();
