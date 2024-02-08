@@ -84,7 +84,6 @@ a {
 /* Estilo para el contenedor de canciones */
 #song-container {
     position: absolute;
-    display: flex;
     flex-direction: column;
     top: 86px;
     align-items: center;
