@@ -205,7 +205,7 @@ function saveToLocalStorage(party_id, trackId) {
 
 
 
-// Dentro del evento 'DOMContentLoaded'
+// En el evento 'DOMContentLoaded' de la página Elegicancion.js
 document.addEventListener('DOMContentLoaded', function() {
     // Obtener el party_id y hostName de la URL
     const urlParams = new URLSearchParams(window.location.search);
