@@ -205,16 +205,17 @@ function saveToLocalStorage(party_id, trackId) {
 
 
 
-// Código que se ejecuta cuando se carga la página
+// Dentro del evento 'DOMContentLoaded'
 document.addEventListener('DOMContentLoaded', function() {
     // Obtener el party_id y hostName de la URL
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
+    
+    // Obtener el hostName del localStorage
     const hostName = localStorage.getItem('hostName');
 
     // Actualizar el contenido del elemento con el id 'HostName'
     if (hostName) {
-        localStorage.setItem('hostname', hostName);  // Actualiza el hostname en localStorage
         document.getElementById('HostName').textContent = hostName;
     }
 

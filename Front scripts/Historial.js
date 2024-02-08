@@ -69,7 +69,7 @@ async function createParty() {
     
     if (!partyName || !hostName) return;
 
-    localStorage.setItem('hostName', hostName);  // Agrega esta línea para almacenar el hostName
+    localStorage.setItem('hostName', hostName); // Agrega esta línea para almacenar el hostName
 
     const response = await attemptFetchWithTokenRenewal(() => sendCreateRequest(partyName, hostName, accessToken));
 
