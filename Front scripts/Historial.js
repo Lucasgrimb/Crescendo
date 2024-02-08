@@ -78,15 +78,11 @@ async function createParty() {
     const data = await response.json();
 
     if (data.success) {
-        // Almacena el HostName en localStorage
-        localStorage.setItem('hostname', hostName);
-    
-        // Redirige a la página de "Elegir Canción" con los parámetros necesarios
-        window.location.href = `/ElegiCancion.html?party_id=${data.party_id}&hostName=${hostName}`;
+        window.location.href = `/Qr%20code.html?party_id=${data.party_id}`;
     } else {
         alert('No se pudo crear la fiesta. Intente nuevamente.');
     }
-}    
+}
 
 async function attemptFetchWithTokenRenewal(fetchFunction) {
     let accessToken = localStorage.getItem('accessToken');
@@ -123,17 +119,6 @@ async function sendCreateRequest(partyName, hostName, token) {
         body: JSON.stringify({ partyName, hostName })
     });
 }
-
-if (data.success) {
-    // Almacena el HostName en localStorage
-    localStorage.setItem('hostname', hostName);
-
-    // Redirige a la página de "Elegir Canción" con los parámetros necesarios
-    window.location.href = `/ElegiCancion.html?party_id=${data.party_id}&hostName=${hostName}`;
-} else {
-    alert('No se pudo crear la fiesta. Intente nuevamente.');
-}
-
 
 
 
