@@ -210,7 +210,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const party_id = urlParams.get('party_id');
 
-    
+     // Obtener el HostName del localStorage
+     const storedHostname = localStorage.getItem('hostname');
+
+     // Actualizar el contenido del elemento con el id 'HostName'
+     if (storedHostname) {
+         document.getElementById('HostName').textContent = storedHostname;
+     }
+     
     // Manejador para el botón Aceptar
     document.getElementById('acceptButton').addEventListener('click', handleAcceptClick);
     // Manejador para el botón de búsqueda
