@@ -207,6 +207,7 @@ a {
     font-size: 30px;
     text-align: center; /* Centra horizontalmente */
     max-width: 20px;
+    min-width: 20px;
 }
 
 
