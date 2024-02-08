@@ -211,7 +211,7 @@ a {
 /* Media Query para pantallas de hasta 600px de ancho */
 @media only screen and (max-width: 600px) {
     .song-item button {
-        width: 10%; /* Cambia el ancho para dispositivos más pequeños */
+        width: 1%; /* Cambia el ancho para dispositivos más pequeños */
     }
 }
 
