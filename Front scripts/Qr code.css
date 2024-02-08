@@ -180,7 +180,7 @@ a {
     cursor: pointer;
     position: absolute; /* Usamos posición absoluta */
     top: 12px; /* Lo centramos verticalmente */
-    width: 30px;
+    width: 10%;
     height: 34px;
 }
 /* Estilo para los botones de "Aceptar canción" */
@@ -192,6 +192,8 @@ a {
     box-shadow: 0px 0px 0.2736000120639801px 0px #B1DD8B, 0px 0px 0.5472000241279602px 0px #B1DD8B, 0px 0px 1.9151999950408936px 0px #B1DD8B, 0px 0px 3.830399990081787px 0px #B1DD8B, 0px 0px 6.566400051116943px 0px #B1DD8B, 0px 0px 11.49120044708252px 0px #B1DD8B;
     border: 3px solid #135716; /* Borde verde */
     font-size: 30px;
+    width: 30px;
+    
 }
 /* Estilo para los botones de "Rechazar canción" */
 .reject-song {
