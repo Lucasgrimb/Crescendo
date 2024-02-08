@@ -77,6 +77,10 @@ button{
 a {
     -webkit-tap-highlight-color: transparent;
 }
+
+#song-container {
+    display: none;
+}
 /* Estilo para el contenedor de canciones */
 #song-container {
     position: absolute;
