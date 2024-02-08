@@ -213,10 +213,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Obtener el hostName del localStorage
     const hostName = localStorage.getItem('hostName');
-    console.log('HostName from localStorage:', hostName);
+    console.log('Fede from localStorage:', hostName);
 
     // Obtener la referencia al elemento span
-    const hostNameElement = document.getElementById('HostName');
+    const hostNameElement = document.getElementById('Fede');
 
     // Verificar si el elemento y el hostName existen
     if (hostNameElement && hostName) {
