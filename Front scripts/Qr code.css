@@ -417,7 +417,7 @@ background-color: transparent;
     background-color: var(--ch-black);
     position: absolute;
     top:15px;
-    right:15px;
+    left:15px;
   }
   
   .reqsong:before, .reqsong:after {
