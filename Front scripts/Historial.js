@@ -1,7 +1,9 @@
+const accessToken = localStorage.getItem('accessToken');
 document.addEventListener('DOMContentLoaded', async () => {
-    // Agrega el console.log aquí
-    console.log('HostName from localStorage:', localStorage.getItem('hostName'));
+      // Agrega el console.log aquí
+      console.log('HostName from localStorage:', localStorage.getItem('hostName'));
 
+    
     if (accessToken) {
         await loadPartiesList();
         document.getElementById('createPartyButton').addEventListener('click', createParty);
@@ -10,21 +12,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Mostrar un mensaje al usuario y redirigir a la página de inicio de sesión o página principal
         alert('Su sesión ha expirado o no está autenticado. Por favor, inicie sesión nuevamente.');
         window.location.href = '/Hello page.html'; // Reemplaza '/login.html' con la URL de tu página de inicio de sesión
-    }
-
-    // Obtener el party_id de la URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const party_id = urlParams.get('party_id');
-    
-    // Obtener la referencia al elemento span
-    const hostNameElement = document.getElementById('Fede');
-
-    // Verificar si el elemento y el hostName existen
-    const hostNameKey = `hostName_${party_id}`;
-    const hostName = localStorage.getItem(hostNameKey);
-    if (hostNameElement && hostName) {
-        // Asignar el hostName al contenido del elemento
-        hostNameElement.textContent = hostName;
     }
 });
 
@@ -79,24 +66,14 @@ async function loadPartiesList() {
     }
 }
 
+// In the function createParty()
 async function createParty() {
     const partyName = prompt('Ingrese el nombre de la fiesta:');
     const hostName = prompt('Ingrese el nombre del anfitrión de la fiesta:');
 
     if (!partyName || !hostName) return;
 
-    // Obtener la lista actual de fiestas desde el localStorage
-    const partiesList = JSON.parse(localStorage.getItem('partiesList')) || [];
-
-    // Agregar la nueva fiesta con su hostName
-    const newParty = { partyName, hostName };
-    partiesList.push(newParty);
-
-    // Almacenar la lista actualizada en el localStorage
-    localStorage.setItem('partiesList', JSON.stringify(partiesList));
-
-    // Almacenar el hostName específico para esta fiesta en el localStorage
-    localStorage.setItem(`hostName_${partyName}`, hostName);
+    localStorage.setItem('hostName', hostName); // Almacena el hostName en Local Storage
 
     const response = await attemptFetchWithTokenRenewal(() => sendCreateRequest(partyName, hostName, accessToken));
 
@@ -146,8 +123,3 @@ async function sendCreateRequest(partyName, hostName, token) {
         body: JSON.stringify({ partyName, hostName })
     });
 }
-
-
-
-
-

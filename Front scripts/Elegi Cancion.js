@@ -207,13 +207,14 @@ function saveToLocalStorage(party_id, trackId) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Obtener el party_id de la URL
+    // Obtener el party_id y hostName de la URL
     const urlParams = new URLSearchParams(window.location.search);
-
     const party_id = urlParams.get('party_id');
-    const hostName = localStorage.getItem(`hostName_${party_id}`);
 
-    
+    // Obtener el hostName del localStorage
+    const hostName = localStorage.getItem('hostName');
+    console.log('Fede from localStorage:', hostName);
+
     // Obtener la referencia al elemento span
     const hostNameElement = document.getElementById('Fede');
 
@@ -222,6 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Asignar el hostName al contenido del elemento
         hostNameElement.textContent = hostName;
     }
+
 
 
     // Manejador para el botón Aceptar
@@ -283,4 +285,3 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = 'requestedSongs.html?party_id=' + party_id;
         });
 });
-
