@@ -206,24 +206,22 @@ function saveToLocalStorage(party_id, trackId) {
 
 
 
-// En el evento DOMContentLoaded de historial.js
-document.addEventListener('DOMContentLoaded', async () => {
-    // Obtener el accessToken
-    const accessToken = localStorage.getItem('accessToken');
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtener el party_id de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const party_id = urlParams.get('party_id');
 
-    // Agrega el console.log aquí
-    console.log('HostName from localStorage:', localStorage.getItem('hostName'));
+    // Obtener el hostName específico para esta fiesta desde el localStorage
+    const hostName = localStorage.getItem(`hostName_${party_id}`);
 
-    if (accessToken) {
-        await loadPartiesList();
-        document.getElementById('createPartyButton').addEventListener('click', createParty);
-    } else {
-        console.error('No se pudo obtener el token de acceso.');
-        // Mostrar un mensaje al usuario y redirigir a la página de inicio de sesión o página principal
-        alert('Su sesión ha expirado o no está autenticado. Por favor, inicie sesión nuevamente.');
-        window.location.href = '/Hello page.html'; // Reemplaza '/login.html' con la URL de tu página de inicio de sesión
+    // Obtener la referencia al elemento span
+    const hostNameElement = document.getElementById('Fede');
+
+    // Verificar si el elemento y el hostName existen
+    if (hostNameElement && hostName) {
+        // Asignar el hostName al contenido del elemento
+        hostNameElement.textContent = hostName;
     }
-});
 
 
     // Manejador para el botón Aceptar
