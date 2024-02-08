@@ -73,7 +73,14 @@ async function createParty() {
 
     if (!partyName || !hostName) return;
 
-    localStorage.setItem('hostName', hostName); // Almacena el hostName en Local Storage
+    // Obtener el objeto actual de localStorage
+    const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
+
+    // Asignar el hostName al objeto utilizando el party_id como clave
+    partyData[partyName] = hostName;
+
+    // Almacenar el objeto actualizado en localStorage
+    localStorage.setItem('partyData', JSON.stringify(partyData));
 
     const response = await attemptFetchWithTokenRenewal(() => sendCreateRequest(partyName, hostName, accessToken));
 
