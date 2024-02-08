@@ -118,6 +118,17 @@ async function sendCreateRequest(partyName, hostName, token) {
     });
 }
 
+if (data.success) {
+    // Almacena el HostName en localStorage
+    localStorage.setItem('hostname', hostName);
+
+    // Redirige a la página de "Elegir Canción"
+    window.location.href = '/ElegiCancion.html?party_id=' + data.party_id;
+} else {
+    alert('No se pudo crear la fiesta. Intente nuevamente.');
+}
+
+
 
 
 
