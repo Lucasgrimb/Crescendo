@@ -183,6 +183,7 @@ a {
     width: 20%;
     height: 34px;
 }
+
 /* Estilo para los botones de "Aceptar canción" */
 .accept-song {
     color: #135716; /* Verde */
@@ -192,8 +193,8 @@ a {
     box-shadow: 0px 0px 0.2736000120639801px 0px #B1DD8B, 0px 0px 0.5472000241279602px 0px #B1DD8B, 0px 0px 1.9151999950408936px 0px #B1DD8B, 0px 0px 3.830399990081787px 0px #B1DD8B, 0px 0px 6.566400051116943px 0px #B1DD8B, 0px 0px 11.49120044708252px 0px #B1DD8B;
     border: 3px solid #135716; /* Borde verde */
     font-size: 30px;
-    
 }
+
 /* Estilo para los botones de "Rechazar canción" */
 .reject-song {
     color: #571B13; /* Rojo */
@@ -205,6 +206,13 @@ a {
     box-shadow: 0px 0px 0.2736000120639801px 0px rgba(237, 106, 64, 0.82), 0px 0px 0.5472000241279602px 0px rgba(237, 106, 64, 0.82), 0px 0px 1.9151999950408936px 0px rgba(237, 106, 64, 0.82), 0px 0px 3.830399990081787px 0px rgba(237, 106, 64, 0.82), 0px 0px 6.566400051116943px 0px rgba(237, 106, 64, 0.82), 0px 0px 11.49120044708252px 0px rgba(237, 106, 64, 0.82);
     font-size: 30px;
     text-align: center; /* Centra horizontalmente */
+}
+
+/* Media Query para pantallas de hasta 600px de ancho */
+@media only screen and (max-width: 600px) {
+    .song-item button {
+        width: 10%; /* Cambia el ancho para dispositivos más pequeños */
+    }
 }
 
 
@@ -392,12 +400,3 @@ background-color: transparent;
 
 
 
-@media screen and (max-width: 767px) {
-    .song-item button {
-        width: -18%; /* O ajusta según sea necesario */
-    }
-
-    .accept-song, .reject-song {
-        width: -18%; /* O ajusta según sea necesario */
-    }
-}
