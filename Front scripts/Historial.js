@@ -66,20 +66,12 @@ async function loadPartiesList() {
     }
 }
 
+// En la función createParty de elegicancion.js
 async function createParty() {
     const partyName = prompt('Ingrese el nombre de la fiesta:');
     const hostName = prompt('Ingrese el nombre del anfitrión de la fiesta:');
 
     if (!partyName || !hostName) return;
-
-    // Obtener el objeto actual de localStorage
-    const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
-
-    // Asignar el hostName al objeto utilizando el party_id como clave
-    partyData[partyName] = hostName;
-
-    // Almacenar el objeto actualizado en localStorage
-    localStorage.setItem('partyData', JSON.stringify(partyData));
 
     const response = await attemptFetchWithTokenRenewal(() => sendCreateRequest(partyName, hostName, accessToken));
 
