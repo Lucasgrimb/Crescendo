@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
 
     const party_id = urlParams.get('party_id');
-    const hostName = localStorage.getItem(`hostNames_${party_id}`);
+    const hostName = localStorage.getItem(`partyHosts_${party_id}`);
     
     // Obtener la referencia al elemento span
     const hostNameElement = document.getElementById('Fede');
