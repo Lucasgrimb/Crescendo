@@ -224,6 +224,8 @@ document.addEventListener('DOMContentLoaded', function () {
         hostNameElement.textContent = hostName;
     }
 
+
+
     // Manejador para el botón Aceptar
     document.getElementById('acceptButton').addEventListener('click', handleAcceptClick);
     // Manejador para el botón de búsqueda
