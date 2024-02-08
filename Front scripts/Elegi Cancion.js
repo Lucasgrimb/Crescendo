@@ -160,14 +160,15 @@ async function handleAcceptClick() {
     }
 }
 
+// Función para guardar datos en localStorage
 function saveToLocalStorage(party_id, trackId) {
-    const key = party_id.toString(); // Convertimos el party_id a string por si acaso es un número
-    const requestedSongs = JSON.parse(localStorage.getItem(key)) || [];
+    // Obtenemos cualquier dato existente para ese party_id
+    const existingData = JSON.parse(localStorage.getItem(party_id)) || [];
 
     // Verificamos si trackId ya está en el arreglo para evitar duplicados
-    if (!requestedSongs.includes(trackId)) {
-        requestedSongs.push(trackId);
-        localStorage.setItem(key, JSON.stringify(requestedSongs));
+    if (!existingData.includes(trackId)) {
+        existingData.push(trackId);
+        localStorage.setItem(party_id, JSON.stringify(existingData));
     }
 }
 
