@@ -181,7 +181,6 @@ a {
     position: absolute; /* Usamos posición absoluta */
     top: 12px; /* Lo centramos verticalmente */
     height: 34px;
-    margin-right: -15px; /* Ajusta el margen entre los botones */
 }
 
 /* Estilo para los botones de "Aceptar canción" */
@@ -194,6 +193,7 @@ a {
     border: 3px solid #135716; /* Borde verde */
     font-size: 30px;
     width: 30px; /* Ancho fijo */
+    margin-right: 5px; /* Margen derecho entre botones */
 }
 
 /* Estilo para los botones de "Rechazar canción" */
@@ -207,7 +207,9 @@ a {
     font-size: 30px;
     text-align: center; /* Centra horizontalmente */
     width: 30px; /* Ancho fijo */
+    margin-right: 5px; /* Margen derecho entre botones */
 }
+
 
 
 .header-peticion {
