@@ -66,12 +66,24 @@ async function loadPartiesList() {
     }
 }
 
-// En la función createParty de elegicancion.js
 async function createParty() {
     const partyName = prompt('Ingrese el nombre de la fiesta:');
     const hostName = prompt('Ingrese el nombre del anfitrión de la fiesta:');
 
     if (!partyName || !hostName) return;
+
+    // Obtener la lista actual de fiestas desde el localStorage
+    const partiesList = JSON.parse(localStorage.getItem('partiesList')) || [];
+
+    // Agregar la nueva fiesta con su hostName
+    const newParty = { partyName, hostName };
+    partiesList.push(newParty);
+
+    // Almacenar la lista actualizada en el localStorage
+    localStorage.setItem('partiesList', JSON.stringify(partiesList));
+
+    // Almacenar el hostName específico para esta fiesta en el localStorage
+    localStorage.setItem(`hostName_${partyName}`, hostName);
 
     const response = await attemptFetchWithTokenRenewal(() => sendCreateRequest(partyName, hostName, accessToken));
 
@@ -80,9 +92,6 @@ async function createParty() {
     const data = await response.json();
 
     if (data.success) {
-        // Almacena el hostName específico para el party_id
-        localStorage.setItem(`hostName_${data.party_id}`, hostName);
-
         window.location.href = `/Qr%20code.html?party_id=${data.party_id}`;
     } else {
         alert('No se pudo crear la fiesta. Intente nuevamente.');
