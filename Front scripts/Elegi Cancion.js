@@ -206,7 +206,6 @@ function saveToLocalStorage(party_id, trackId) {
 
 
 
-// En el evento 'DOMContentLoaded' de la página Elegicancion.js
 document.addEventListener('DOMContentLoaded', function() {
     // Obtener el party_id y hostName de la URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -216,8 +215,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const hostName = localStorage.getItem('hostName');
 
     // Actualizar el contenido del elemento con el id 'HostName'
-    if (hostName) {
-        document.getElementById('HostName').textContent = hostName;
+    const hostNameElement = document.getElementById('HostName');
+
+    if (hostNameElement && hostName) {
+        hostNameElement.textContent = hostName;
     }
 
     // Manejador para el botón Aceptar
