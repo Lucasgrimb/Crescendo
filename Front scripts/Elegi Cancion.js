@@ -209,10 +209,10 @@ function saveToLocalStorage(party_id, trackId) {
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener el party_id de la URL
     const urlParams = new URLSearchParams(window.location.search);
-    const party_id = urlParams.get('party_id');
 
-    // Obtener el hostName específico para esta fiesta desde el localStorage
+    const party_id = urlParams.get('party_id');
     const hostName = localStorage.getItem(`hostName_${party_id}`);
+    
 
     // Obtener la referencia al elemento span
     const hostNameElement = document.getElementById('Fede');
