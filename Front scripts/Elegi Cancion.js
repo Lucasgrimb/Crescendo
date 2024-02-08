@@ -211,15 +211,17 @@ async function sendRequestWithRetry(url, options, retries) {
 // Función para guardar datos en localStorage
 function saveToLocalStorage(party_id, trackId) {
     // Obtenemos cualquier dato existente para ese party_id
-    const existingData = JSON.parse(localStorage.getItem(party_id)) || [];
-    
-    // Añadimos el nuevo trackId
-    existingData.push(trackId);
-    
-    // Guardamos la nueva lista en localStorage
-    localStorage.setItem(party_id, JSON.stringify(existingData));
-}
+    const existingData = JSON.parse(localStorage.getItem('partyData')) || {};
 
+    // Verificamos si trackId ya está en el arreglo para evitar duplicados
+    if (!existingData[party_id]) {
+        existingData[party_id] = [trackId];
+        localStorage.setItem('partyData', JSON.stringify(existingData));
+    } else if (!existingData[party_id].includes(trackId)) {
+        existingData[party_id].push(trackId);
+        localStorage.setItem('partyData', JSON.stringify(existingData));
+    }
+}
 
 
 
@@ -229,8 +231,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const party_id = urlParams.get('party_id');
 
     // Obtener el hostName del localStorage
-    const hostName = localStorage.getItem('hostName');
-    console.log('Fede from localStorage:', hostName);
+    const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
+    const hostName = partyData[party_id];
 
     // Obtener la referencia al elemento span
     const hostNameElement = document.getElementById('Fede');
