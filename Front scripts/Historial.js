@@ -65,7 +65,7 @@ async function loadPartiesList() {
 
 async function createParty() {
     const partyName = prompt('Ingrese el nombre de la fiesta:');
-    const hostName = prompt('Ingrese el nombre del anfitrión de la fiesta (Se vera en la pantalla que ven los invitados! ):');
+    const hostName = prompt('Ingrese el nombre del anfitrión de la fiesta:');
     
     if (!partyName || !hostName) return;
 
