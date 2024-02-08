@@ -161,12 +161,16 @@ async function handleAcceptClick() {
 }
 
 // Función para guardar datos en localStorage
-function saveToLocalStorage(party_id, hostName) {
+function saveToLocalStorage(party_id, trackId) {
     // Obtenemos cualquier dato existente para ese party_id
     const partyData = JSON.parse(localStorage.getItem('partyData')) || {};
 
-    // Guardar el hostName asociado al party_id
-    partyData[party_id] = hostName;
+    // Verificamos si trackId ya está en el arreglo para evitar duplicados
+    if (!partyData[party_id]) {
+        partyData[party_id] = [trackId];
+    } else if (!partyData[party_id].includes(trackId)) {
+        partyData[party_id].push(trackId);
+    }
 
     // Guardar los datos actualizados en localStorage
     localStorage.setItem('partyData', JSON.stringify(partyData));
@@ -219,7 +223,6 @@ function saveToLocalStorage(party_id, trackId) {
         localStorage.setItem('partyData', JSON.stringify(existingData));
     }
 }
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
