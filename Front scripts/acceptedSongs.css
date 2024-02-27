@@ -1,0 +1,33 @@
+.songs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.song-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    width: 80%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.song-image img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.song-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-title,
+.song-artist {
+    margin: 0;
+}
