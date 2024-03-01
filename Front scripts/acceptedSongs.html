@@ -1,13 +1,78 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canciones Aceptadas</title>
-    <link rel="stylesheet" href="acceptedSongs.css">
-</head>
-<body>
-    <div id="songsContainer" class="songs-container"></div>
-    <script src="acceptedSongs.js"></script>
-</body>
+    <title>Crescendo DJ - Qr Code</title>
+    <link rel="stylesheet" href="Qr code.css">
+   
+    <style>
+   @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        
+
+        <div class="flex flex-col min-h-screen justify-center items-center main-bg">
+
+
+        <div id="song-container" class="song-container">
+            <!-- Para cada canción -->
+            <div class="song-item">
+                <div class="song-image">
+                    <img src="" alt="">
+                </div>
+                <div class="song-details">
+                    <p class="song-title">Canción</p>
+                    <p class="song-artist">Artista</p>
+                    <button class="accept-song" data-songid="song1" >✓</button>
+                    <button class="reject-song" data-songid="song1">X</button>
+                    <p class="request-number">Pedidos</p>
+                    
+                </div>
+            </div>
+            <!-- Repite este bloque para cada canción -->
+        </div>
+        
+        <div id="accepted-songs" class="all-accepted">
+            <div class="accept-peticion">
+                <div class="accepted-title">
+                    <p>Aceptadas</p>
+                </div>
+                <div class="stroke"></div>
+                <div class="strokeito"></div>
+            <div class="song-container-accepted">  </div>
+          
+            </div>
+        </div>
+    
+    <div id="loadingSpinner" class="spinner">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    </div>
+
+    
+
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+            <script src="Qr code.js"></script>
+
+            
+    </body>
 </html>
