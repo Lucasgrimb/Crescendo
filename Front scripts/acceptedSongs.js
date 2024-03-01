@@ -17,7 +17,8 @@ function fetchAcceptedSongs(partyId) {
         .then(response => response.json())
         .then(songs => {
             const acceptedSongs = songs.filter(song => song.song_state === 'accepted');
-            const container = document.getElementById('songsContainer');
+            const container = document.getElementById('song-container-accepted');
+
             acceptedSongs.forEach(song => displaySong(song, container));
         })
         .catch(error => console.error('Error loading songs:', error));
