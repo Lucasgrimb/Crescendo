@@ -64,8 +64,16 @@ async function getSelectedSongs(party_id) {
 
 // Función para mostrar las canciones aceptadas
 function displaySongs(songs) {
+    // Asegúrate de que este elemento exista cuando se llame a esta función
     const acceptedContainer = document.getElementById('song-container-accepted');
-    acceptedContainer.innerHTML = ""; // Limpiamos el contenedor antes de agregar los elementos nuevos
+
+    // Añade una comprobación para asegurarte de que acceptedContainer no es null
+    if (!acceptedContainer) {
+        console.error('El contenedor de canciones aceptadas no se encontró en el DOM');
+        return;
+    }
+
+    acceptedContainer.innerHTML = ""; // Limpia el contenedor antes de añadir nuevas canciones
 
     songs.forEach(song => {
         const songElement = document.createElement('div');
@@ -80,6 +88,8 @@ function displaySongs(songs) {
         acceptedContainer.appendChild(songElement);
     });
 }
+
+
 
 // Inicializar la obtención de canciones aceptadas
 document.addEventListener('DOMContentLoaded', () => getSelectedSongs(party_id));
