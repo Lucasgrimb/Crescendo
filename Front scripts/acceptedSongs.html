@@ -2,17 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crescendo DJ - Canciones Aceptadas</title>
     <link rel="stylesheet" href="acceptedSongs.css">
+   
+    <style>
+    @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="flex flex-col min-h-screen justify-center items-center main-bg">
         <div id="accepted-songs" class="all-accepted">
             <div class="accept-peticion">
                 <div class="accepted-title">
-                    <p>Aceptadas</p>
+                    <p>Canciones Aceptadas</p>
                 </div>
                 <div class="stroke"></div>
                 <div class="strokeito"></div>
@@ -22,8 +30,8 @@
             </div>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-    <script src="acceptedSongs.js"></script>
+    <script src="acceptedSongs.js"></script> <!-- Asegúrate de que este script maneje correctamente los datos y actualice solo las canciones aceptadas -->
 </body>
 </html>
