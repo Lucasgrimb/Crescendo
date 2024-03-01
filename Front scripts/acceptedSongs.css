@@ -19,7 +19,7 @@ body {
     align-items: center;
 }
 .main-bg {
-    background-image: url(/Assets/bienvenida.png); /* Asegúrate de que la ruta de la imagen esté correcta */
+    background-image: url(/Assets/binevenida.png); /* Asegúrate de que la ruta de la imagen esté correcta */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
