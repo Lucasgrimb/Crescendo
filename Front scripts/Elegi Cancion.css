@@ -78,7 +78,7 @@ overflow-y: auto;
 /* Degradado para el encabezado */
 .header-gradient{
     background: linear-gradient(288deg, #555555 20.08%, #ffffff 200%);
-    margin-left: 33px;
+    left: 15px;
     margin-top: -83px;
     margin-bottom: 50px;
     background-clip: text;
