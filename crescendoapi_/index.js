@@ -428,6 +428,69 @@ app.get('/api/PerfilDJ/:party_id', async (req, res) => {
     }
 });
 
+// ---------- Bizboost Project Info Route ----------
+app.get('/api/bizboost', (req, res) => {
+  const bizboostInfo = {
+    project: {
+      name: "Bizboost",
+      slogan: "Automatizando el éxito: Impulsando la productividad comercial con Inteligencia Artificial.",
+      description: "Bizboost es una plataforma diseñada para mejorar la productividad y eficiencia de las PYMES en Argentina mediante la automatización de la prospección de clientes y la gestión de interacciones comerciales.",
+      goals: [
+        "Mejorar la productividad de las PYMES argentinas en el área comercial.",
+        "Automatizar la prospección de clientes utilizando APIs y scraping de redes sociales y bases de datos abiertas.",
+        "Automatizar la gestión de interacciones comerciales a través de un chatbot de inteligencia artificial."
+      ],
+      problem: {
+        description: "El estancamiento en el desarrollo comercial de las PYMES argentinas debido a la falta de proactividad en la venta. Con la creciente competencia, las PYMES deben modernizar sus procesos comerciales.",
+        causes: [
+          { cause: "Trabas a las importaciones." },
+          { cause: "Regulación de precios y subsidios a la demanda." },
+          { cause: "Aumento de la competencia debido a la desregulación del mercado." }
+        ]
+      },
+      solution: {
+        description: "Automatización de los procesos comerciales repetitivos, enfocándose en la prospección de clientes y la venta mediante la implementación de un sitio web y chatbot.",
+        features: [
+          { feature: "Un sitio web intuitivo donde las PYMES pueden configurar la prospección automática y la gestión de interacciones." },
+          { feature: "Algoritmo de prospección (en desarrollo futuro) que utilizará APIs de LinkedIn, redes sociales y scraping para encontrar potenciales clientes." },
+          { feature: "Chatbot que contacta a los prospectos mediante WhatsApp." }
+        ]
+      },
+      MVP: {
+        features: [
+          { feature: "Login y registro de usuarios." },
+          { feature: "Formulario de configuración del chatbot (completado por las PYMES)." },
+          { feature: "Integración del chatbot con WhatsApp." },
+          { feature: "Dashboard para gestionar la actividad del chatbot." }
+        ],
+        status: "El MVP ya incluye la página web y el chatbot conectado con WhatsApp. A futuro se desarrollará la prospección automática."
+      },
+      RAG: {
+        system: "El chatbot utiliza un sistema RAG (Retrieval-Augmented Generation) alimentado por un JSON que contiene datos clave de las empresas clientes.",
+        data_sources: [
+          { source: "Los JSON incluyen toda la información necesaria sobre las empresas para automatizar respuestas personalizadas." }
+        ]
+      },
+      team: [
+        { name: "Lucas Grimberg", role: "AI Developer", age: 17 },
+        { name: "Jano Portnoi", role: "Backend Developer", age: 17 },
+        { name: "Franco Felstinsky", role: "Frontend Developer", age: 17 }
+      ],
+      future_plans: {
+        scalability: "Aunque no hay un plan de escalabilidad técnica definido, el objetivo es que un gran número de PYMES utilicen Bizboost.",
+        next_steps: "El siguiente paso es el desarrollo de la funcionalidad de prospección automática."
+      },
+      contingency_plans: [
+        { plan: "En caso de falla en la prospección automática, se permitirá que el cliente cargue manualmente su lista de prospectos." },
+        { plan: "Si WhatsApp no permite el uso de chatbots, se implementará el correo electrónico." }
+      ]
+    }
+  };
+
+  res.json(bizboostInfo);
+});
+
+
 
 
 
