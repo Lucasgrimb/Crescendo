@@ -16,7 +16,7 @@ const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: "crescendo",
+    database: "defaultdb",
     ssl: {
         rejectUnauthorized: true
     }
@@ -43,7 +43,7 @@ async function QueryDB(query) {
         host: process.env.DB_HOST,
         user: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
-        database: "crescendo",
+        database: "defaultdb",
         ssl: {
             rejectUnauthorized: true
         }
