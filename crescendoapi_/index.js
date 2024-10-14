@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = [
   'http://localhost:5500', // permitir solicitudes desde localhost:3000
   'https://crescendo-nine.vercel.app',
+  'https://crescendoapi-pro.vercel.app/'
 ];
 
 
