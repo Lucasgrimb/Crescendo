@@ -7,7 +7,7 @@ console.log(party_id);
 // Función para obtener las canciones seleccionadas
 async function getSelectedSongs(party_id) {
     try {
-        const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/selectedsongs/${party_id}`, {
+        const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
             method: "GET",
             headers: {}
         });

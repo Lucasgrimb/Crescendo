@@ -5,7 +5,7 @@ function getPartyIdFromUrl() {
 }
 
 function generateQRCode(party_id) {
-  const qrUrl = `https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}`;
+  const qrUrl = `https://crescendoapi-pro.vercel.app/Elegi%20Cancion.html?party_id=${party_id}`;
   const qrContainer = document.getElementById('qr-container');
   new QRCode(qrContainer, qrUrl);
 }
@@ -19,7 +19,7 @@ function setupShareButton(party_id) {
               navigator.share({
                   title: 'Compartir',
                   text: '¡Mira este código QR!',
-                  url: `https://crescendo-nine.vercel.app/Elegi%20Cancion.html?party_id=${party_id}`
+                  url: `https://crescendoapi-pro.vercel.app/Elegi%20Cancion.html?party_id=${party_id}`
               })
               .then(() => console.log('Compartido con éxito'))
               .catch((error) => console.error('Error al compartir:', error));

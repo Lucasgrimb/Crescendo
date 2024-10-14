@@ -150,7 +150,7 @@ async function handleAcceptClick() {
 
 
     try {
-        await sendRequestWithRetry('https://energetic-gown-elk.cyclic.app/api/store-song-request', requestOptions, 3);
+        await sendRequestWithRetry('https://crescendoapi-pro.vercel.app/api/store-song-request', requestOptions, 3);
         alert('¡Gracias por tu solicitud!');
         location.reload();
     } catch (error) {

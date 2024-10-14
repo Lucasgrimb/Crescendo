@@ -17,7 +17,7 @@ async function loadPartiesList(party_id) {
         return;
     }
 
-    const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/partyhistoryP/${party_id}`, {
+    const response = await fetch(`https://crescendoapi-pro.vercel.app/api/partyhistoryP/${party_id}`, {
         method: 'GET'
     });
 

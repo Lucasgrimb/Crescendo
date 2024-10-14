@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function fetchAccessToken() {
     try {
         const refreshToken = localStorage.getItem('refreshToken');
-        const response = await fetch('https://energetic-gown-elk.cyclic.app/api/token', {
+        const response = await fetch('https://crescendoapi-pro.vercel.app/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -112,7 +112,7 @@ async function attemptFetchWithTokenRenewal(fetchFunction) {
 }
 
 async function fetchPartiesList(token) {
-    return fetch('https://energetic-gown-elk.cyclic.app/api/partyhistory', {
+    return fetch('https://crescendoapi-pro.vercel.app/api/partyhistory', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -121,7 +121,7 @@ async function fetchPartiesList(token) {
 }
 
 async function sendCreateRequest(partyName, hostName, token) {
-    return fetch('https://energetic-gown-elk.cyclic.app/api/createParty', {
+    return fetch('https://crescendoapi-pro.vercel.app/api/createParty', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

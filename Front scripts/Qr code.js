@@ -11,7 +11,7 @@ async function fetchAccessToken() {
             throw new Error('No se encontró refreshToken en localStorage');
         }
 
-        const response = await fetch('https://energetic-gown-elk.cyclic.app/api/token', {
+        const response = await fetch('https://crescendoapi-pro.vercel.app/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ async function fetchAccessToken() {
 // Función para obtener las canciones seleccionadas
 async function getSelectedSongs(party_id) {
     try {
-        const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/selectedsongs/${party_id}`, {
+        const response = await fetch(`https://crescendoapi-pro.vercel.app/api/selectedsongs/${party_id}`, {
             method: "GET",
             headers: {}
         });
@@ -69,7 +69,7 @@ async function updateSongState(song_id, action) {
 
     try {
         const endpointAction = action === "accept" ? "accept" : "reject";
-        const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/B/${song_id}/${party_id}/${endpointAction}`, {
+        const response = await fetch(`https://crescendoapi-pro.vercel.app/api/B/${song_id}/${party_id}/${endpointAction}`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${accessToken}`,

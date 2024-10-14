@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadDjProfile(party_id) {
     try {
-        const response = await fetch(`https://energetic-gown-elk.cyclic.app/api/PerfilDJ/${party_id}`);
+        const response = await fetch(`https://crescendoapi-pro.vercel.app/api/PerfilDJ/${party_id}`);
         if (!response.ok) {
             throw new Error('Error al obtener datos del DJ');
         }
